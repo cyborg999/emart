@@ -1,37 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0044)http://www.thetahmid.com/themes/xemart-v1.0/ -->
-<html class="no-js" lang="zxx"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>XeMart - Ecommerce Template</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="http://www.thetahmid.com/themes/xemart-v1.0/images/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="http://www.thetahmid.com/themes/xemart-v1.0/images/favicon.ico" type="image/x-icon">
-
-        <!-- Google Fonts -->
-        <link href="./index_files/css" rel="stylesheet">
-
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="./index_files/bootstrap.min.css">
-
-		<!-- Fontawesome Icon -->
-        <link rel="stylesheet" href="./index_files/font-awesome.min.css">
-
-		<!-- Animate Css -->
-        <link rel="stylesheet" href="./index_files/animate.css">
-
-        <!-- Owl Slider -->
-        <link rel="stylesheet" href="./index_files/owl.carousel.min.css">
-
-        <!-- Custom Style -->
-        <link rel="stylesheet" href="./index_files/normalize.css">
-        <link rel="stylesheet" href="./index_files/style.css">
-        <link rel="stylesheet" href="./index_files/responsive.css">
-
-    </head>
+<html class="no-js" lang="zxx">
+    <?php include_once "./head.php"; ?>
     <body>
 
         <!-- Preloader -->
@@ -44,47 +14,11 @@
         <!-- End Preloader -->
 
         <!-- Top Bar -->
-        <section class="top-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-4">
-                        <div class="top-left d-flex">
-                            <div class="lang-box">
-                                <span><img src="./index_files/fl-eng.png" alt="">English<i class="fa fa-angle-down"></i></span>
-                                <ul class="list-unstyled">
-                                    <li><img src="./index_files/fl-eng.png" alt="">English</li>
-                                    <li><img src="./index_files/fl-fra.png" alt="">French</li>
-                                    <li><img src="./index_files/fl-ger.png" alt="">German</li>
-                                    <li><img src="./index_files/fl-bra.png" alt="">Brazilian</li>
-                                </ul>
-                            </div>
-                            <div class="mny-box">
-                                <span>USD<i class="fa fa-angle-down"></i></span>
-                                <ul class="list-unstyled">
-                                    <li>USD</li>
-                                    <li>GBP</li>
-                                    <li>EUR</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-8">
-                        <div class="top-right text-right">
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/user.png" alt="">My Account</a></li>
-                                <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/wishlist.png" alt="">Wishlist</a></li>
-                                <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/checkout.png" alt="">Checkout</a></li>
-                                <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/login.png" alt="">Login</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <?php include_once "./nav.php"; ?>
         <!-- End Top Bar -->
 
         <!-- Logo Area -->
-        <section class="logo-area">
+      <!--   <section class="logo-area">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
@@ -119,11 +53,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Logo Area -->
 
         <!-- Cart Body -->
-        <div class="cart-body">
+   <!--      <div class="cart-body">
             <div class="close-btn">
                 <button class="close-cart"><img src="./index_files/close.png" alt="">Close</button>
             </div>
@@ -163,11 +97,11 @@
                 </div>
             </div>
         </div>
-        <div class="cart-overlay"></div>
+        <div class="cart-overlay"></div> -->
         <!-- End Cart Body -->
 
         <!-- Sticky Menu -->
-        <section class="sticky-menu sticky">
+   <!--      <section class="sticky-menu sticky">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md-3">
@@ -359,11 +293,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Sticky Menu -->
 
         <!-- Menu Area -->
-        <section class="menu-area">
+     <!--    <section class="menu-area">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -529,11 +463,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Menu Area -->
 
         <!-- Mobile Menu -->
-        <section class="mobile-menu-area">
+       <!--  <section class="mobile-menu-area">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -580,11 +514,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Mobile Menu -->
 
         <!-- Slider Area -->
-        <section class="slider-area">
+     <!--    <section class="slider-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-0">
@@ -925,11 +859,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Slider Area -->
 
         <!-- Product Area-->
-        <section class="product-area">
+        <section class="product-area hidden">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-4">
@@ -4065,7 +3999,7 @@
         <!-- End Product Area -->
 
         <!-- Footer Area -->
-        <section class="footer-top">
+       <!--  <section class="footer-top">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
@@ -4156,7 +4090,7 @@
             <div class="back-to-top text-center" style="display: block;">
                 <img src="./index_files/backtotop.png" alt="" class="img-fluid">
             </div>
-        </section>
+        </section> -->
         <!-- End Footer Area -->
 
 

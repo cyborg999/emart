@@ -9478,3 +9478,8 @@ input:focus, textarea:focus {
 .footer-btm .back-to-top:hover {
   background: #fff;
 }
+
+
+.hidden {
+  display: none;
+}
