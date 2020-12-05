@@ -979,12 +979,31 @@ class Model {
 
 	public function updateUserInfoListener(){
 		if(isset($_POST['updateUserInfo'])){
+			//check first
 			$sql = "
-				UPDATE userinfo
-				SET fullname = ?, address = ?, contact = ?, email = ?, bday = ?
+				SELECT *
+				FROM userinfo
+				WHERE userid = ".$_SESSION['id']."
+				LIMIT 1
 			";
 
-			$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday']));
+			$exists = $this->db->query($sql)->fetch();
+
+			if(!$exists){
+				//insert
+				$sql = "
+					INSERT INTO userinfo(fullname,address,contact,email,bday,userid)
+					VALUES(?,?,?,?,?,?)
+				";
+				$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday'], $_SESSION['id']));
+			} else {
+				$sql = "
+					UPDATE userinfo
+					SET fullname = ?, address = ?, contact = ?, email = ?, bday = ?
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday']));
+			}
 
 			$this->success = "You have sucesfully updated your personal information.";
 
