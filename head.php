@@ -2,7 +2,7 @@
     include_once "./model.php";
 
     $model = new Model();
-    // $err = $model->getErrors();
+    $err = $model->getErrors();
   // $logo = $model->getLogo();
 ?>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

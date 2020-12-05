@@ -1,0 +1,113 @@
+body {
+	background: #edf2f9;
+	margin: 0;
+	padding: 0;
+}
+.side {
+	padding: 20px 5px;
+	box-sizing: border-box;
+	margin: 0;
+	position:sticky;
+	top: 200px;
+}
+.profile {
+}
+.profile-pic {
+	position: relative;
+	overflow: hidden;
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	background: url(./../images/avatar.jpg) no-repeat;
+	background-size: contain;
+	margin: 0 auto;
+	display: block;
+}
+.profile b,
+.profile i {
+	text-align: center;
+	line-height: 1;
+	display: block;
+	margin: 5px 0 0px;
+}
+.profile i {
+	font-size: 9px;
+	margin-bottom: 10px;
+}
+.logo {
+	background: url(./../images/logo.png) no-repeat;
+	background-size: contain;
+	width: 80px;
+	height: 30px;
+	display: block;
+	margin: 20px auto;
+}
+#menu {
+	float: left;
+	cursor: pointer;
+	margin: 17px auto;
+}
+.card {
+	background: transparent;
+	border: none;
+}
+.accordion>.card>.card-header {
+	padding: 0;
+}
+.card .btn {
+	color: black;
+	font-weight: 500;
+	text-decoration: none;
+    font-size: 16px;
+    padding: 0 0 5px;
+    line-height: 1.4;
+    text-align: center!important;
+    margin: 0 auto;
+    width: 56%;
+}
+.card .btn svg {
+	float: left;
+	margin-top: 5px;
+}
+.card-header {
+	background: transparent;
+}
+.container-fluid {
+	position: relative;
+	overflow: hidden;
+}
+.card-body ul,
+.list-group,
+.sublist {
+	list-style-type: none;
+	background: transparent;
+}
+.card-body ul a,
+.list-group a,
+.sublist a {
+	font-size: 12px;
+	text-decoration: none;
+	color: black;
+}
+.list-group li {
+	background: transparent;
+}
+.gear {
+	margin-top: 20px;
+}
+.content {
+	border-radius: 10px;
+	padding: 20px;
+	background: white;
+	margin-bottom: 20px;
+}
+.chosen-container.chosen-container-single.chosen-container-single-nosearch,
+.chosen-container {
+	width: 100%!important;
+}
+.hidden {
+	display: none;
+}
+label {
+	margin-bottom: 5px;
+}

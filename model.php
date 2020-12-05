@@ -59,6 +59,92 @@ class Model {
 		$this->activatePlanListener();
 	}
 
+	public function addProductListener(){
+		if(isset($_POST['addProduct'])){
+			$sql = "
+				SELECT *
+				FROM productt
+				WHERE name = '".$_POST['title']."'  AND storeid = '".$_SESSION['storeid']."'
+				LIMIT 1
+			";
+
+			$exists = $this->db->query($sql)->fetch();
+	
+			if(!$exists){
+				$sql = "
+					INSERT INTO productt(name,categoryid,price,brand,quantity,cost,description,storeid)
+					VALUES(?,?,?,?,?,?,?,?)
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['title'], $_POST['category'],$_POST['price'],$_POST['brand'],$_POST['quantity'],$_POST['cost'],$_POST['desc'],$_SESSION['storeid']));
+
+				$this->success = "You have sucesfully added this product.";
+
+				$id = $this->db->lastInsertId();
+				$this->addMediaByProductId($id, $_POST['src'], $_POST['active']);
+
+			} else {
+				$this->errors[] = "You already have this product added before.";
+			}
+
+			die(json_encode(array("error" => $this->errors)));
+		}
+
+	}
+
+	public function addMediaByProductId($id, $media, $active){
+		$merchantPath = 'uploads/merchant/'.$_SESSION['storeid']."/";
+		$productPath = 'uploads/merchant/'.$_SESSION['storeid']."/".$id."/";
+
+		if(!file_exists($productPath)){
+			mkdir($productPath,0777,true);
+		}
+
+		foreach($media as $idx => $m){
+			$ext = strtolower(pathinfo($m,PATHINFO_EXTENSION));
+			$filename = md5($m).".".$ext;
+
+			if(copy($merchantPath.$m, $productPath.$filename)){
+				//add to media
+				if($m == $active){
+					$sql = "
+						INSERT INTO media
+						SET name = ?,
+						storeid = ?,
+						productid = ?,
+						active = 1
+					";
+				} else {
+					$sql = "
+						INSERT INTO media
+						SET name = ?,
+						storeid = ?,
+						productid = ?
+					";
+
+				}
+				
+
+				$this->db->prepare($sql)->execute(array($filename,$_SESSION['storeid'], $id));
+			}
+		}
+
+		return $this;
+	}
+
+	public function getAllProducts(){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename'
+			FROM productt t1
+			LEFT JOIN media t2
+			ON t1.id = t2.productid
+			WHERE t1.storeid = ".$_SESSION['storeid']."
+			AND t2.active = 1
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
 	public function activatePlanListener(){
 		if(isset($_POST['activatePlan'])){
 			$sql = "
@@ -199,6 +285,46 @@ class Model {
 		}
 	}
 
+	public function getAllCategories(){
+		$sql = "
+			SELECT *
+			FROM category
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getMerchantAsset($type = false){
+		$merchantPath = 'uploads/merchant/'.$_SESSION['id']."/";
+		$logoPath = 'uploads/logo/'.$_SESSION['id']."/";
+
+		if(!file_exists($logoPath)){
+			mkdir($logoPath, 0777, true);
+		}
+
+		if(!file_exists($merchantPath)){
+			mkdir($merchantPath,0777,true);
+		}
+		$assets = array();
+		$folder_name = $merchantPath;
+		$files = scandir($merchantPath);
+
+		if($type == "logo"){
+			$folder_name = $logoPath;
+			$files = scandir($logoPath);
+		}
+
+		if(false !== $files) {
+		 foreach($files as $file) {
+		  if('.' !=  $file && '..' != $file) {
+		  	$assets[] = $folder_name.$file;
+		  }
+		 }
+		}
+
+		return $assets;
+	}
+
 	public function getAdminAssets($type = false){
 		$assets = array();
 		$folder_name = 'uploads/admin/';
@@ -264,11 +390,22 @@ class Model {
 	public function dropZoneTest(){
 
 		if(isset($_POST['assetupload'])){
+			$merchantPath = 'uploads/merchant/'.$_SESSION['storeid']."/";
+			$logoPath = 'uploads/logo/'.$_SESSION['storeid']."/";
+
+			if(!file_exists($logoPath)){
+				mkdir($logoPath, 0777, true);
+			}
+
+			if(!file_exists($merchantPath)){
+				mkdir($merchantPath,0777,true);
+			}
+
 			if(isset($_FILES)){
-				$folder_name = 'uploads/admin/';
+				$folder_name = $merchantPath;
 
 				if(isset($_POST['logo'])){
-					$folder_name = 'uploads/logo/';
+					$folder_name = $logoPath;
 				}
 				if(!empty($_FILES)) {
 				 $temp_file = $_FILES['file']['tmp_name'];
@@ -735,7 +872,7 @@ class Model {
 		if(isset($_POST['searchMaterial'])) {
 			$sql = "
 				SELECT *
-				FROM material_inventory
+				FROM productt
 				WHERE name LIKE '%".$_POST['txt']."%'
 				AND storeid = '".$_SESSION['storeid']."'
 				LIMIT 20
@@ -998,12 +1135,12 @@ class Model {
 	public function editMaterialListener(){
 		if(isset($_POST['editmaterial'])){
 			$sql = "
-				UPDATE material_inventory
-				SET name = ?, price = ?, qty = ?, expiry_date = ?
+				UPDATE productt
+				SET name = ?, price = ?, cost = ?, quantity = ?, brand = ?, description = ?
 				WHERE id = ?
 			";
 
-			$this->db->prepare($sql)->execute(array($_POST['name'], $_POST['price'], $_POST['qty'], $_POST['expiry'], $_POST['editmaterial']));
+			$this->db->prepare($sql)->execute(array($_POST['name'], $_POST['price'], $_POST['cost'], $_POST['quantity'], $_POST['brand'], $_POST['description'], $_POST['editmaterial']));
 
 			die(json_encode($_POST));
 		}
@@ -1026,12 +1163,11 @@ class Model {
 	public function deleteMaterialInventoryListener(){
 		if(isset($_POST['deleteMaterialInventory'])){
 			$sql = "
-				DELETE from material_inventory
+				DELETE from productt
 				WHERE id = ?
 			";
 
 			$this->db->prepare($sql)->execute(array($_POST['id']));
-			$this->deleteMaterialsById($_POST['id']);
 
 			die(json_encode(array("added")));
 		}
@@ -1072,16 +1208,6 @@ class Model {
 
 			die(json_encode(array("added")));
 		}
-	}
-
-	public function getAllProducts(){
-		$sql = "
-			SELECT *
-			FROM product
-			WHERE storeid = '".$_SESSION['storeid']."'
-		";
-
-		return $this->db->query($sql)->fetchAll();
 	}
 
 	public function getAllMaterialInventory(){
@@ -1177,36 +1303,6 @@ class Model {
 			$this->db->query($s);
 		}
 
-	}
-
-	public function addProductListener(){
-		if(isset($_POST['addproduct'])){
-			$sql = "
-				SELECT *
-				FROM product
-				WHERE name = '".$_POST['name']."'  AND storeid = '".$_SESSION['storeid']."'
-				LIMIT 1
-			";
-
-			$exists = $this->db->query($sql)->fetch();
-	
-
-			if(!$exists){
-				$sql = "
-					INSERT INTO product(name,srp,qty,expiry_date,storeid)
-					VALUES(?,?,?,?,?)
-				";
-
-				$this->db->prepare($sql)->execute(array($_POST['name'], $_POST['price'],$_POST['qty'],$_POST['expiry'],$_SESSION['storeid']));
-
-				$this->success = "You have sucesfully added this product.";
-
-			} else {
-				$this->errors[] = "You already have this product added before.";
-			}
-
-			return $this;
-		}
 	}
 
 	public function preventReaccessIfPayed(){

@@ -79,6 +79,11 @@
 			<div class="store slide col-sm">
 				<form method="post" class="form">
 					<div class="err"></div>
+					<!-- <div class="usertype">
+						<h3>Please select user type:</h3>
+						<input type="radio" name="type" checked value="Customer"/>
+						<input type="radio" name="type" value="Merchant"/>
+					</div> -->
 					<input type="hidden" name="addstore" value="true">
 					<h3>Store Name</h3>
 					<br>

@@ -1,6 +1,7 @@
 <?php include_once "./head.php"; ?>
 <body>
 	<div class="container-sm">
+		<?php include_once "./nav.php"; ?>
 		<div class="login"><br>
 			<h4>Sign In</h4>
 		  	<div class="form-group">
