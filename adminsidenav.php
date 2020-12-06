@@ -78,15 +78,18 @@
 						   <li class="list-group-item">
 						  	<a href="slideshows.php" class="black">All Slides</a>
 						  </li>
-						   <li class="list-group-item">
+						  <li class="list-group-item">
+						  	<a href="categories.php" class="black">Categories</a>
+						  </li>
+						<!--    <li class="list-group-item">
 						  	<a href="addnews.php" class="black">Add News</a>
 						  </li>
 						   <li class="list-group-item">
 						  	<a href="news.php" class="black">All News</a>
-						  </li>
-						  <li class="list-group-item">
+						  </li> -->
+						<!--   <li class="list-group-item">
 						  	<a href="logo.php" class="black">Logo</a>
-						  </li>
+						  </li> -->
 						</ul>
 				      </div>
 				    </div>

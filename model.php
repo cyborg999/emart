@@ -57,6 +57,52 @@ class Model {
 		$this->addPlanListener();
 		$this->deletePlanListener();
 		$this->activatePlanListener();
+		$this->addCategoryListener();
+		$this->deleteCategoryListener();
+		$this->updateCategoryStatus();
+	}
+
+	public function updateCategoryStatus(){
+		if(isset($_POST['updateStatus'])){
+			$sql = "
+				UPDATE category
+				SET isactive = ?
+				WHERE id = ?
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['checked'], $_POST['id']));
+
+			die(json_encode(array("updated")));
+		}
+	}
+
+	public function deleteCategoryListener(){
+		if(isset($_POST['deleteCategory'])){
+			$sql = "
+				DELETE FROM category
+				WHERE id = ?
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['id']));
+
+			die(json_encode(array("deleted")));
+		}
+	}
+
+	public function addCategoryListener(){
+		if(isset($_POST['addCategory'])){
+			//todo check if exists
+			$sql = "
+				INSERT INTO category(name)
+				VALUES(?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['name']));
+
+			$id = $this->db->lastInsertId();
+
+			die(json_encode(array($id)));
+		}
 	}
 
 	public function addProductListener(){
@@ -285,6 +331,15 @@ class Model {
 		}
 	}
 
+	public function getAllActiveCategories(){
+		$sql = "
+			SELECT *
+			FROM category
+			WHERE isactive = 1
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
 	public function getAllCategories(){
 		$sql = "
 			SELECT *
@@ -328,6 +383,11 @@ class Model {
 	public function getAdminAssets($type = false){
 		$assets = array();
 		$folder_name = 'uploads/admin/';
+
+		if(!file_exists($folder_name)){
+			mkdir($folder_name, 0777,true);
+		}
+
 		$files = scandir('uploads/admin/');
 
 		if($type == "logo"){

@@ -111,3 +111,18 @@ body {
 label {
 	margin-bottom: 5px;
 }
+.dropzone {
+	border: 2px dashed #eee;
+	margin: 20px auto;
+	display: inline-block;
+	position: relative;
+	box-sizing: border-box;
+}
+#dropzone p.caption {
+	position: absolute;
+	top: 20%;
+	left: 0;
+	opacity: .7;
+	text-align: center;
+	width: 100%;
+}

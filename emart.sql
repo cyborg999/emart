@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2020 at 08:25 PM
+-- Generation Time: Dec 06, 2020 at 02:41 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -31,16 +31,23 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `type` varchar(255) NOT NULL DEFAULT 'parent',
-  `deleted` tinyint(1) NOT NULL,
-  `active` tinyint(1) NOT NULL
+  `deleted` int(11) NOT NULL,
+  `isactive` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `active`) VALUES
-(1, 'Foods & Beverages', 'parent', 0, 1);
+INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `isactive`) VALUES
+(23, 'Men\'s Clothing', 'parent', 0, 1),
+(24, 'Women\'s Clothing', 'parent', 0, 1),
+(25, 'Electronics', 'parent', 0, 1),
+(26, 'Home Appliances', 'parent', 0, 1),
+(27, 'Kids & Babies', 'parent', 0, 1),
+(28, 'Health & Beauty', 'parent', 0, 1),
+(29, 'Automobiles', 'parent', 0, 1),
+(30, 'Sports', 'parent', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -254,12 +261,11 @@ CREATE TABLE `slides` (
 --
 
 INSERT INTO `slides` (`id`, `title`, `content`, `status`, `photo`, `date_created`, `type`) VALUES
-(9, 'Lorem ipsum dolor sit amet', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1, 'uploads/admin/banner6.jpg', '2020-11-08 12:04:17', 'slider'),
-(10, 'Excepteur sint occaecat', 'Non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 'uploads/admin/banner3.jpg', '2020-11-08 12:04:39', 'slider'),
 (11, 'Promo #1', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, 'uploads/admin/banner1.jpg', '2020-11-08 12:06:34', 'news'),
 (12, 'Promo #2', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, 'uploads/admin/banner5.png', '2020-11-08 12:06:40', 'news'),
 (13, 'Promo #3', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, 'uploads/admin/banner4.jpg', '2020-11-08 12:06:45', 'news'),
-(14, 'Promo Optional', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 0, 'uploads/admin/banner2.jpg', '2020-11-08 12:06:59', 'news');
+(14, 'Promo Optional', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 0, 'uploads/admin/banner2.jpg', '2020-11-08 12:06:59', 'news'),
+(15, 'test slider', 'test desc', 0, './uploads/merchant/20/bottle2.jpg', '2020-12-06 00:16:15', 'slider');
 
 -- --------------------------------------------------------
 
@@ -500,7 +506,7 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `media`
@@ -548,7 +554,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `store`

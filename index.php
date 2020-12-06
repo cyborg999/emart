@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)http://www.thetahmid.com/themes/xemart-v1.0/ -->
+<!-- saved from url=(0044) -->
 <html class="no-js" lang="zxx">
     <?php include_once "./head.php"; ?>
     <body>
@@ -18,16 +18,16 @@
         <!-- End Top Bar -->
 
         <!-- Logo Area -->
-      <!--   <section class="logo-area">
+        <section class="logo-area">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/logo.png" alt=""></a>
+                            <a href="index.php"><img src="./images/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-md-5 padding-fix">
-                        <form action="http://www.thetahmid.com/themes/xemart-v1.0/#" class="search-bar">
+                        <form action="#" class="search-bar">
                             <input type="text" name="search-bar" placeholder="I&#39;m looking for...">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="cart-box ml-auto text-center">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="cart-btn">
+                                <a href="" class="cart-btn">
                                     <img src="./index_files/cart.png" alt="cart">
                                     <span>2</span>
                                 </a>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
         <!-- End Logo Area -->
 
         <!-- Cart Body -->
@@ -68,32 +68,32 @@
                 <div class="cart-content">
                     <div class="content-item d-flex justify-content-between">
                         <div class="cart-img">
-                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/cart1.png" alt=""></a>
+                            <a href=""><img src="./index_files/cart1.png" alt=""></a>
                         </div>
                         <div class="cart-disc">
-                            <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">SMART LED TV</a></p>
+                            <p><a href="">SMART LED TV</a></p>
                             <span>1 x $199.00</span>
                         </div>
                         <div class="delete-btn">
-                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-trash-o"></i></a>
+                            <a href=""><i class="fa fa-trash-o"></i></a>
                         </div>
                     </div>
                     <div class="content-item d-flex justify-content-between">
                         <div class="cart-img">
-                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/cart2.png" alt=""></a>
+                            <a href=""><img src="./index_files/cart2.png" alt=""></a>
                         </div>
                         <div class="cart-disc">
-                            <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">SMART LED TV</a></p>
+                            <p><a href="">SMART LED TV</a></p>
                             <span>1 x $199.00</span>
                         </div>
                         <div class="delete-btn">
-                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-trash-o"></i></a>
+                            <a href=""><i class="fa fa-trash-o"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="cart-btm">
                     <p class="text-right">Sub Total: <span>$398.00</span></p>
-                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Checkout</a>
+                    <a href="#">Checkout</a>
                 </div>
             </div>
         </div>
@@ -101,12 +101,12 @@
         <!-- End Cart Body -->
 
         <!-- Sticky Menu -->
-   <!--      <section class="sticky-menu sticky">
+    <!--     <section class="sticky-menu sticky">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md-3">
                         <div class="sticky-logo">
-                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/index.html"><img src="./index_files/logo.png" alt="" class="img-fluid"></a>
+                            <a href="index.html"><img src="./index_files/logo.png" alt="" class="img-fluid"></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
@@ -114,8 +114,8 @@
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item"><a>HOME <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown list-unstyled">
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/index.html">Home Style 1</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/02-home-two.html">Home Style 2</a></li>
+                                        <li><a href="index.html">Home Style 1</a></li>
+                                        <li><a href="02-home-two.html">Home Style 2</a></li>
                                     </ul>
                                 </li>
                                 <li class="list-inline-item mega-menu"><a>MEGA MENU <i class="fa fa-angle-down"></i></a>
@@ -125,14 +125,14 @@
                                                 <div class="clt-area">
                                                     <h6>Clothing</h6>
                                                     <div class="link-box">
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Western Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Traditional Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Winter Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Summer Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Inner Wear</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Night Wear</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Mens Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Womens Clothing</a>
+                                                        <a href="">- Western Clothing</a>
+                                                        <a href="">- Traditional Clothing</a>
+                                                        <a href="">- Winter Clothing</a>
+                                                        <a href="">- Summer Clothing</a>
+                                                        <a href="">- Inner Wear</a>
+                                                        <a href="">- Night Wear</a>
+                                                        <a href="">- Mens Clothing</a>
+                                                        <a href="">- Womens Clothing</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,14 +140,14 @@
                                                 <div class="sm-phn">
                                                     <h6>Smartphones</h6>
                                                     <div class="dept-box">
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- One Plus</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Iphone</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Blackberry</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Oppo</a>
+                                                        <a href="">- Samsung</a>
+                                                        <a href="">- Huawei</a>
+                                                        <a href="">- One Plus</a>
+                                                        <a href="">- Xiaomi</a>
+                                                        <a href="">- Iphone</a>
+                                                        <a href="">- Blackberry</a>
+                                                        <a href="">- Nokia</a>
+                                                        <a href="">- Oppo</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,25 +211,25 @@
                                                 <div class="mega-bnr">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-1.jpg" alt="">
                                                                 <span>Camera</span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-2.jpg" alt="">
                                                                 <span>Mouse</span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-3.jpg" alt="">
                                                                 <span>Earphone</span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-4.jpg" alt="">
                                                                 <span>Speaker</span>
                                                             </a>
@@ -242,49 +242,49 @@
                                 </li>
                                 <li class="list-inline-item"><a>PAGES <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown list-unstyled">
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/03-about-us.html">About Us</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/04-category.html">Category</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/05-single-product.html">Single Product</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/06-shopping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/07-checkout.html">Checkout</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/08-login.html">Log In</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/09-register.html">Register</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/10-wishlist.html">Wishlist</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/11-compare.html">Compare</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/15-track-order.html">Track Order</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/12-terms-condition.html">Terms &amp; Condition</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/13-faq.html">Faq</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/14-404.html">404</a></li>
+                                        <li><a href="03-about-us.html">About Us</a></li>
+                                        <li><a href="04-category.html">Category</a></li>
+                                        <li><a href="05-single-product.html">Single Product</a></li>
+                                        <li><a href="06-shopping-cart.html">Shopping Cart</a></li>
+                                        <li><a href="07-checkout.html">Checkout</a></li>
+                                        <li><a href="08-login.html">Log In</a></li>
+                                        <li><a href="09-register.html">Register</a></li>
+                                        <li><a href="10-wishlist.html">Wishlist</a></li>
+                                        <li><a href="11-compare.html">Compare</a></li>
+                                        <li><a href="15-track-order.html">Track Order</a></li>
+                                        <li><a href="12-terms-condition.html">Terms &amp; Condition</a></li>
+                                        <li><a href="13-faq.html">Faq</a></li>
+                                        <li><a href="14-404.html">404</a></li>
                                     </ul>
                                 </li>
                                 <li class="list-inline-item"><a>BLOG <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown list-unstyled">
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/16-blog-one.html">Blog Style 1</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/17-blog-two.html">Blog Style 2</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/18-blog-three.html">Blog Style 3</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/19-blog-details.html">Blog Details</a></li>
+                                        <li><a href="16-blog-one.html">Blog Style 1</a></li>
+                                        <li><a href="17-blog-two.html">Blog Style 2</a></li>
+                                        <li><a href="18-blog-three.html">Blog Style 3</a></li>
+                                        <li><a href="19-blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/20-contact.html">CONTACT</a></li>
+                                <li class="list-inline-item"><a href="20-contact.html">CONTACT</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-2">
                         <div class="carts-area d-flex">
                             <div class="src-box">
-                                <form action="http://www.thetahmid.com/themes/xemart-v1.0/#">
+                                <form action="#">
                                     <input type="text" name="search" placeholder="Search Here">
                                     <button type="button" name="button"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
                             <div class="wsh-box ml-auto">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist">
+                                <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist">
                                     <img src="./index_files/heart.png" alt="favorite">
                                     <span>0</span>
                                 </a>
                             </div>
                             <div class="cart-box ml-4">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" class="cart-btn" data-original-title="Shopping Cart">
+                                <a href="" data-toggle="tooltip" data-placement="top" title="" class="cart-btn" data-original-title="Shopping Cart">
                                     <img src="./index_files/cart.png" alt="cart">
                                     <span>2</span>
                                 </a>
@@ -305,8 +305,8 @@
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item"><a>HOME <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown list-unstyled">
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/index.html">Home Style 1</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/02-home-two.html">Home Style 2</a></li>
+                                        <li><a href="index.html">Home Style 1</a></li>
+                                        <li><a href="02-home-two.html">Home Style 2</a></li>
                                     </ul>
                                 </li>
                                 <li class="list-inline-item mega-menu"><a>MEGA MENU <i class="fa fa-angle-down"></i></a>
@@ -316,14 +316,14 @@
                                                 <div class="clt-area">
                                                     <h6>Clothing</h6>
                                                     <div class="link-box">
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Western Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Traditional Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Winter Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Summer Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Inner Wear</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Night Wear</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Mens Clothing</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Womens Clothing</a>
+                                                        <a href="">- Western Clothing</a>
+                                                        <a href="">- Traditional Clothing</a>
+                                                        <a href="">- Winter Clothing</a>
+                                                        <a href="">- Summer Clothing</a>
+                                                        <a href="">- Inner Wear</a>
+                                                        <a href="">- Night Wear</a>
+                                                        <a href="">- Mens Clothing</a>
+                                                        <a href="">- Womens Clothing</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -331,14 +331,14 @@
                                                 <div class="sm-phn">
                                                     <h6>Smartphones</h6>
                                                     <div class="dept-box">
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- One Plus</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Iphone</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Blackberry</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                        <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Oppo</a>
+                                                        <a href="">- Samsung</a>
+                                                        <a href="">- Huawei</a>
+                                                        <a href="">- One Plus</a>
+                                                        <a href="">- Xiaomi</a>
+                                                        <a href="">- Iphone</a>
+                                                        <a href="">- Blackberry</a>
+                                                        <a href="">- Nokia</a>
+                                                        <a href="">- Oppo</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -402,25 +402,25 @@
                                                 <div class="mega-bnr">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-1.jpg" alt="">
                                                                 <span>Camera</span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-2.jpg" alt="">
                                                                 <span>Mouse</span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-3.jpg" alt="">
                                                                 <span>Earphone</span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" class="bnr-box text-center">
+                                                            <a href="#" class="bnr-box text-center">
                                                                 <img src="./index_files/mega-b-4.jpg" alt="">
                                                                 <span>Speaker</span>
                                                             </a>
@@ -433,31 +433,31 @@
                                 </li>
                                 <li class="list-inline-item"><a>PAGES <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown list-unstyled">
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/03-about-us.html">About Us</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/04-category.html">Category</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/05-single-product.html">Single Product</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/06-shopping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/07-checkout.html">Checkout</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/08-login.html">Log In</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/09-register.html">Register</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/10-wishlist.html">Wishlist</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/11-compare.html">Compare</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/15-track-order.html">Track Order</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/12-terms-condition.html">Terms &amp; Condition</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/13-faq.html">Faq</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/14-404.html">404</a></li>
+                                        <li><a href="03-about-us.html">About Us</a></li>
+                                        <li><a href="04-category.html">Category</a></li>
+                                        <li><a href="05-single-product.html">Single Product</a></li>
+                                        <li><a href="06-shopping-cart.html">Shopping Cart</a></li>
+                                        <li><a href="07-checkout.html">Checkout</a></li>
+                                        <li><a href="08-login.html">Log In</a></li>
+                                        <li><a href="09-register.html">Register</a></li>
+                                        <li><a href="10-wishlist.html">Wishlist</a></li>
+                                        <li><a href="11-compare.html">Compare</a></li>
+                                        <li><a href="15-track-order.html">Track Order</a></li>
+                                        <li><a href="12-terms-condition.html">Terms &amp; Condition</a></li>
+                                        <li><a href="13-faq.html">Faq</a></li>
+                                        <li><a href="14-404.html">404</a></li>
                                     </ul>
                                 </li>
                                 <li class="list-inline-item"><a>BLOG <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown list-unstyled">
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/16-blog-one.html">Blog Style 1</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/17-blog-two.html">Blog Style 2</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/18-blog-three.html">Blog Style 3</a></li>
-                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/19-blog-details.html">Blog Details</a></li>
+                                        <li><a href="16-blog-one.html">Blog Style 1</a></li>
+                                        <li><a href="17-blog-two.html">Blog Style 2</a></li>
+                                        <li><a href="18-blog-three.html">Blog Style 3</a></li>
+                                        <li><a href="19-blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/20-contact.html">CONTACT</a></li>
-                                <li class="list-inline-item trac-btn"><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Track Your Order</a></li>
+                                <li class="list-inline-item"><a href="20-contact.html">CONTACT</a></li>
+                                <li class="list-inline-item trac-btn"><a href="">Track Your Order</a></li>
                             </ul>
                         </div>
                     </div>
@@ -473,41 +473,41 @@
                     <div class="col-md-12">
                         <div class="mobile-menu">
                             <nav id="dropdown" style="display: block;">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/logo.png" alt=""></a>
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><span>Sign In</span></a>
+                                <a href=""><img src="./index_files/logo.png" alt=""></a>
+                                <a href=""><span>Sign In</span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Home</a>
+                                    <li><a href="">Home</a>
                                         <ul class="list-unstyled">
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/index.html">Home Style 1</a></li>
-	                                        <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/02-home-two.html">Home Style 2</a></li>
+                                            <li><a href="index.html">Home Style 1</a></li>
+	                                        <li><a href="02-home-two.html">Home Style 2</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Pages</a>
+                                    <li><a href="">Pages</a>
                                         <ul class="list-unstyled">
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/03-about-us.html">About Us</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/04-category.html">Category</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/05-single-product.html">Single Product</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/06-shopping-cart.html">Shopping Cart</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/07-checkout.html">Checkout</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/08-login.html">Log In</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/09-register.html">Register</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/10-wishlist.html">Wishlist</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/11-compare.html">Compare</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/15-track-order.html">Track Order</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/12-terms-condition.html">Terms &amp; Condition</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/13-faq.html">Faq</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/14-404.html">404</a></li>
+                                            <li><a href="03-about-us.html">About Us</a></li>
+                                            <li><a href="04-category.html">Category</a></li>
+                                            <li><a href="05-single-product.html">Single Product</a></li>
+                                            <li><a href="06-shopping-cart.html">Shopping Cart</a></li>
+                                            <li><a href="07-checkout.html">Checkout</a></li>
+                                            <li><a href="08-login.html">Log In</a></li>
+                                            <li><a href="09-register.html">Register</a></li>
+                                            <li><a href="10-wishlist.html">Wishlist</a></li>
+                                            <li><a href="11-compare.html">Compare</a></li>
+                                            <li><a href="15-track-order.html">Track Order</a></li>
+                                            <li><a href="12-terms-condition.html">Terms &amp; Condition</a></li>
+                                            <li><a href="13-faq.html">Faq</a></li>
+                                            <li><a href="14-404.html">404</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Blog</a>
+                                    <li><a href="">Blog</a>
                                         <ul class="list-unstyled">
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/16-blog-one.html">Blog Style 1</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/17-blog-two.html">Blog Style 2</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/18-blog-three.html">Blog Style 3</a></li>
-                                            <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/19-blog-details.html">Blog Details</a></li>
+                                            <li><a href="16-blog-one.html">Blog Style 1</a></li>
+                                            <li><a href="17-blog-two.html">Blog Style 2</a></li>
+                                            <li><a href="18-blog-three.html">Blog Style 3</a></li>
+                                            <li><a href="19-blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/20-contact.html">Contact</a></li>
+                                    <li><a href="20-contact.html">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -518,205 +518,22 @@
         <!-- End Mobile Menu -->
 
         <!-- Slider Area -->
-     <!--    <section class="slider-area">
+        <section class="slider-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-0">
                         <div class="menu-widget">
                             <p><i class="fa fa-bars"></i>All Categories</p>
+                            <?php 
+                                $categories = $model->getAllActiveCategories();
+                            ?>
                             <ul class="list-unstyled">
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/m-cloth.png" alt="">Men's Clothing<i class="fa fa-angle-right"></i></a>
-                                    <div class="mega-menu">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="smartphone">
-                                                    <h6>Smartphones</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Asus</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Sony</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Apple</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Oppo</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- One Plus</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Htc</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Vivo</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="tablet">
-                                                    <h6>Tablets</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Apple</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Sony</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Asus</a>
-                                                </div>
-                                                <div class="f-phone">
-                                                    <h6>Feature Phones</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Infinix</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="accesories">
-                                                    <h6>Accessories</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Power Bank</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Battery &amp; Charger</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Cables &amp; Adapters</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Back / Flip Cover</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Screen Protector</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Earphones</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Memory Card</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Phone Cases</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mg-bnr">
-                                                    <img src="./index_files/ipn.png" alt="">
-                                                    <div class="mg-content text-right">
-                                                        <h4>Iphone</h4>
-                                                        <span>Save upto 50% off</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                               <?php foreach($categories as $idx => $c): ?>
+                                <li><a href=""><img src="./index_files/w-cloth.png" alt=""><?= $c['name'];?><i class="fa fa-angle-right"></i></a>
+                                   
                                 </li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/w-cloth.png" alt="">Women's Clothing<i class="fa fa-angle-right"></i></a>
-                                    <div class="mega-menu">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="smartphone">
-                                                    <h6>Smartphones</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Asus</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Sony</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Apple</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Oppo</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- One Plus</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Htc</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Vivo</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="tablet">
-                                                    <h6>Tablets</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Apple</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Sony</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Asus</a>
-                                                </div>
-                                                <div class="f-phone">
-                                                    <h6>Feature Phones</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Infinix</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="accesories">
-                                                    <h6>Accessories</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Power Bank</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Battery &amp; Charger</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Cables &amp; Adapters</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Back / Flip Cover</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Screen Protector</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Earphones</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Memory Card</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Phone Cases</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mg-bnr tab-bnr">
-                                                    <img src="./index_files/tab.png" alt="">
-                                                    <div class="mg-content text-right">
-                                                        <h4>Tablet</h4>
-                                                        <span>Save upto 50% off</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/ele.png" alt="">Electronics<i class="fa fa-angle-right"></i></a>
-                                    <div class="mega-menu">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="smartphone">
-                                                    <h6>Smartphones</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Asus</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Sony</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Apple</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Oppo</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- One Plus</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Htc</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Vivo</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="tablet">
-                                                    <h6>Tablets</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Huawei</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Apple</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Xiaomi</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Sony</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Asus</a>
-                                                </div>
-                                                <div class="f-phone">
-                                                    <h6>Feature Phones</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Samsung</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Nokia</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Infinix</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="accesories">
-                                                    <h6>Accessories</h6>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Power Bank</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Battery &amp; Charger</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Cables &amp; Adapters</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Back / Flip Cover</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Screen Protector</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Earphones</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Memory Card</a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/">- Phone Cases</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mg-bnr pw-bnr">
-                                                    <img src="./index_files/pbank.png" alt="">
-                                                    <div class="mg-content text-right">
-                                                        <h4>Powerbank</h4>
-                                                        <span>Save upto 50% off</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/sm.png" alt="">Smartphone &amp; Tablet</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/com.png" alt="">Computer &amp; Office</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/tv.png" alt="">Home Applience</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/shoe.png" alt="">Leather &amp; Shoes</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/kid.png" alt="">Kids &amp; Babies</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/watch.png" alt="">Jewelary &amp; Watches</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/health.png" alt="">Health &amp; Beauty</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/car.png" alt="">Automobiles</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/sport.png" alt="">Sports &amp; Outdoors</a></li>
+                                <?php endforeach ?>
+                                
                             </ul>
                         </div>
                     </div>
@@ -739,7 +556,7 @@
                                                 <p>Save Up To 25% Off</p>
                                             </div>
                                             <div class="wow fadeInUp effect" data-wow-duration="1.2s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1.2s; animation-delay: 0.8s; animation-name: fadeInUp;">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Shop Now</a>
+                                                <a href="#">Shop Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -759,7 +576,7 @@
                                                 <p>Save Up To 50% Off</p>
                                             </div>
                                             <div class="wow fadeInUp effect" data-wow-duration="1.2s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1.2s; animation-delay: 0.8s; animation-name: fadeInUp;">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Shop Now</a>
+                                                <a href="#">Shop Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -779,7 +596,7 @@
                                                 <p>Save Up To 25% Off</p>
                                             </div>
                                             <div class="wow fadeInUp effect" data-wow-duration="1.2s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1.2s; animation-delay: 0.8s; animation-name: fadeInUp;">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Shop Now</a>
+                                                <a href="#">Shop Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -799,7 +616,7 @@
                                                 <p>Save Up To 50% Off</p>
                                             </div>
                                             <div class="wow fadeInUp effect" data-wow-duration="1.2s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1.2s; animation-delay: 0.8s; animation-name: fadeInUp;">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Shop Now</a>
+                                                <a href="#">Shop Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -819,7 +636,7 @@
                                                 <p>Save Up To 25% Off</p>
                                             </div>
                                             <div class="wow fadeInUp effect" data-wow-duration="1.2s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1.2s; animation-delay: 0.8s; animation-name: fadeInUp;">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Shop Now</a>
+                                                <a href="#">Shop Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -839,7 +656,7 @@
                                                 <p>Save Up To 50% Off</p>
                                             </div>
                                             <div class="wow fadeInUp effect" data-wow-duration="1.2s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1.2s; animation-delay: 0.8s; animation-name: fadeInUp;">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Shop Now</a>
+                                                <a href="#">Shop Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -847,19 +664,19 @@
                             </div></div></div></div><div class="owl-nav"><div class="owl-prev"><img src="./index_files/left-arrow.png" alt=""></div><div class="owl-next"><img src="./index_files/right-arrow.png" alt=""></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
                         <div class="slider-btm-box d-flex justify-content-around">
                             <div class="single-box mr-20">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/sb-1.png" alt="" class="img-fluid"></a>
+                                <a href=""><img src="./index_files/sb-1.png" alt="" class="img-fluid"></a>
                             </div>
                             <div class="single-box mr-20">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/sb-2.png" alt="" class="img-fluid"></a>
+                                <a href=""><img src="./index_files/sb-2.png" alt="" class="img-fluid"></a>
                             </div>
                             <div class="single-box">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/"><img src="./index_files/sb-3.png" alt="" class="img-fluid"></a>
+                                <a href=""><img src="./index_files/sb-3.png" alt="" class="img-fluid"></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
         <!-- End Slider Area -->
 
         <!-- Product Area-->
@@ -879,10 +696,10 @@
                                     <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-426px, 0px, 0px); transition: all 0s ease 0s; width: 1278px;"><div class="owl-item cloned" style="width: 213px;"><div class="bt-items">
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-1.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-1.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -898,10 +715,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -917,10 +734,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-3.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-3.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -936,10 +753,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -956,10 +773,10 @@
                                         </div></div><div class="owl-item cloned" style="width: 213px;"><div class="bt-items">
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -975,10 +792,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -994,10 +811,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-5.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-5.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1013,10 +830,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-1.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-1.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1033,10 +850,10 @@
                                         </div></div><div class="owl-item active" style="width: 213px;"><div class="bt-items">
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-1.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-1.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1052,10 +869,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1071,10 +888,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-3.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-3.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1090,10 +907,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1110,10 +927,10 @@
                                         </div></div><div class="owl-item" style="width: 213px;"><div class="bt-items">
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1129,10 +946,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1148,10 +965,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-5.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-5.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1167,87 +984,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-1.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-1.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div></div><div class="owl-item cloned" style="width: 213px;"><div class="bt-items">
-                                            <div class="bt-box d-flex">
-                                                <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-1.png" alt=""></a>
-                                                </div>
-                                                <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="bt-box d-flex">
-                                                <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
-                                                </div>
-                                                <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="bt-box d-flex">
-                                                <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-3.png" alt=""></a>
-                                                </div>
-                                                <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="bt-box d-flex">
-                                                <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
-                                                </div>
-                                                <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1264,10 +1004,10 @@
                                         </div></div><div class="owl-item cloned" style="width: 213px;"><div class="bt-items">
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-1.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1283,10 +1023,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1302,10 +1042,10 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-5.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-3.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1321,10 +1061,87 @@
                                             </div>
                                             <div class="bt-box d-flex">
                                                 <div class="bt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-1.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
                                                 </div>
                                                 <div class="bt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div></div><div class="owl-item cloned" style="width: 213px;"><div class="bt-items">
+                                            <div class="bt-box d-flex">
+                                                <div class="bt-img">
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                </div>
+                                                <div class="bt-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="bt-box d-flex">
+                                                <div class="bt-img">
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                </div>
+                                                <div class="bt-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="bt-box d-flex">
+                                                <div class="bt-img">
+                                                    <a href="#"><img src="./index_files/sbar-5.png" alt=""></a>
+                                                </div>
+                                                <div class="bt-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="bt-box d-flex">
+                                                <div class="bt-img">
+                                                    <a href="#"><img src="./index_files/sbar-1.png" alt=""></a>
+                                                </div>
+                                                <div class="bt-content">
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1351,7 +1168,7 @@
                                         
                                     <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-426px, 0px, 0px); transition: all 0s ease 0s; width: 1278px;"><div class="owl-item cloned" style="width: 213px;"><div class="ht-item">
                                             <div class="ht-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/tab-15.png" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/tab-15.png" alt="" class="img-fluid"></a>
                                                 <span>- 59%</span>
                                                 <ul class="list-unstyled list-inline counter-box">
                                                     <li class="list-inline-item">185 <p>Days</p></li>
@@ -1361,7 +1178,7 @@
                                                 </ul>
                                             </div>
                                             <div class="ht-content">
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                <p><a href="">Items Title Here</a></p>
                                                 <ul class="list-unstyled list-inline fav">
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1376,7 +1193,7 @@
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 213px;"><div class="ht-item">
                                             <div class="ht-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/tab-14.png" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/tab-14.png" alt="" class="img-fluid"></a>
                                                 <span>- 59%</span>
                                                 <ul class="list-unstyled list-inline counter-box">
                                                     <li class="list-inline-item">185 <p>Days</p></li>
@@ -1386,7 +1203,7 @@
                                                 </ul>
                                             </div>
                                             <div class="ht-content">
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                <p><a href="">Items Title Here</a></p>
                                                 <ul class="list-unstyled list-inline fav">
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1401,7 +1218,7 @@
                                             </div>
                                         </div></div><div class="owl-item active" style="width: 213px;"><div class="ht-item">
                                             <div class="ht-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/tab-15.png" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/tab-15.png" alt="" class="img-fluid"></a>
                                                 <span>- 59%</span>
                                                 <ul class="list-unstyled list-inline counter-box">
                                                     <li class="list-inline-item">185 <p>Days</p></li>
@@ -1411,7 +1228,7 @@
                                                 </ul>
                                             </div>
                                             <div class="ht-content">
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                <p><a href="">Items Title Here</a></p>
                                                 <ul class="list-unstyled list-inline fav">
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1426,7 +1243,7 @@
                                             </div>
                                         </div></div><div class="owl-item" style="width: 213px;"><div class="ht-item">
                                             <div class="ht-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/tab-14.png" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/tab-14.png" alt="" class="img-fluid"></a>
                                                 <span>- 59%</span>
                                                 <ul class="list-unstyled list-inline counter-box">
                                                     <li class="list-inline-item">185 <p>Days</p></li>
@@ -1436,7 +1253,7 @@
                                                 </ul>
                                             </div>
                                             <div class="ht-content">
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                <p><a href="">Items Title Here</a></p>
                                                 <ul class="list-unstyled list-inline fav">
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1451,7 +1268,7 @@
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 213px;"><div class="ht-item">
                                             <div class="ht-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/tab-15.png" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/tab-15.png" alt="" class="img-fluid"></a>
                                                 <span>- 59%</span>
                                                 <ul class="list-unstyled list-inline counter-box">
                                                     <li class="list-inline-item">185 <p>Days</p></li>
@@ -1461,7 +1278,7 @@
                                                 </ul>
                                             </div>
                                             <div class="ht-content">
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                <p><a href="">Items Title Here</a></p>
                                                 <ul class="list-unstyled list-inline fav">
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1476,7 +1293,7 @@
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 213px;"><div class="ht-item">
                                             <div class="ht-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/tab-14.png" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/tab-14.png" alt="" class="img-fluid"></a>
                                                 <span>- 59%</span>
                                                 <ul class="list-unstyled list-inline counter-box">
                                                     <li class="list-inline-item">185 <p>Days</p></li>
@@ -1486,7 +1303,7 @@
                                                 </ul>
                                             </div>
                                             <div class="ht-content">
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                <p><a href="">Items Title Here</a></p>
                                                 <ul class="list-unstyled list-inline fav">
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1551,10 +1368,10 @@
                                     <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-426px, 0px, 0px); transition: all 0s ease 0s; width: 1278px;"><div class="owl-item cloned" style="width: 213px;"><div class="rt-items">
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-6.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-6.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1570,10 +1387,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-7.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-7.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1589,10 +1406,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-8.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-8.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1608,10 +1425,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-9.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-9.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1628,10 +1445,10 @@
                                         </div></div><div class="owl-item cloned" style="width: 213px;"><div class="rt-items">
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-10.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1647,10 +1464,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-11.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-11.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1666,10 +1483,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-12.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1685,10 +1502,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-13.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1705,10 +1522,10 @@
                                         </div></div><div class="owl-item active" style="width: 213px;"><div class="rt-items">
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-6.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-6.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1724,10 +1541,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-7.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-7.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1743,10 +1560,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-8.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-8.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1762,10 +1579,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-9.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-9.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1782,10 +1599,10 @@
                                         </div></div><div class="owl-item" style="width: 213px;"><div class="rt-items">
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-10.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1801,10 +1618,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-11.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-11.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1820,10 +1637,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-12.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1839,87 +1656,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-13.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div></div><div class="owl-item cloned" style="width: 213px;"><div class="rt-items">
-                                            <div class="rt-box d-flex">
-                                                <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-6.png" alt=""></a>
-                                                </div>
-                                                <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="rt-box d-flex">
-                                                <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-7.png" alt=""></a>
-                                                </div>
-                                                <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="rt-box d-flex">
-                                                <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-8.png" alt=""></a>
-                                                </div>
-                                                <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="rt-box d-flex">
-                                                <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-9.png" alt=""></a>
-                                                </div>
-                                                <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1936,10 +1676,10 @@
                                         </div></div><div class="owl-item cloned" style="width: 213px;"><div class="rt-items">
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-6.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1955,10 +1695,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-11.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-7.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1974,10 +1714,10 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-8.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -1993,10 +1733,87 @@
                                             </div>
                                             <div class="rt-box d-flex">
                                                 <div class="rt-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-9.png" alt=""></a>
                                                 </div>
                                                 <div class="rt-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div></div><div class="owl-item cloned" style="width: 213px;"><div class="rt-items">
+                                            <div class="rt-box d-flex">
+                                                <div class="rt-img">
+                                                    <a href="#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                </div>
+                                                <div class="rt-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="rt-box d-flex">
+                                                <div class="rt-img">
+                                                    <a href="#"><img src="./index_files/sbar-11.png" alt=""></a>
+                                                </div>
+                                                <div class="rt-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="rt-box d-flex">
+                                                <div class="rt-img">
+                                                    <a href="#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                </div>
+                                                <div class="rt-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="rt-box d-flex">
+                                                <div class="rt-img">
+                                                    <a href="#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                </div>
+                                                <div class="rt-content">
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -2020,7 +1837,7 @@
                                     </div>
                                     <div class="nw-box">
                                         <p>Sign Up And Get Latest News, Updates, Offers &amp; Deals</p>
-                                        <form class="nw-form" action="http://www.thetahmid.com/themes/xemart-v1.0/#">
+                                        <form class="nw-form" action="#">
                                             <input type="text" name="email" placeholder="Email Here..." required="">
                                             <button type="submit" name="button">Subscribe</button>
                                         </form>
@@ -2040,16 +1857,16 @@
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" data-toggle="tab" href="http://www.thetahmid.com/themes/xemart-v1.0/#all">All</a>
+                                                <a class="nav-link active" data-toggle="tab" href="#all">All</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="http://www.thetahmid.com/themes/xemart-v1.0/#elec">Electronics</a>
+                                                <a class="nav-link" data-toggle="tab" href="#elec">Electronics</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="http://www.thetahmid.com/themes/xemart-v1.0/#smart">Smartphones</a>
+                                                <a class="nav-link" data-toggle="tab" href="#smart">Smartphones</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="http://www.thetahmid.com/themes/xemart-v1.0/#shoe">Shoes</a>
+                                                <a class="nav-link" data-toggle="tab" href="#shoe">Shoes</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -2064,18 +1881,18 @@
                                             <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-813px, 0px, 0px); transition: all 0s ease 0s; width: 2710px;"><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-2.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <span class="sale">Sale</span>
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2093,23 +1910,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-3.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2127,23 +1944,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-4.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2161,23 +1978,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-1.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2195,24 +2012,24 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-2.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <span class="sale">Sale</span>
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2230,23 +2047,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-3.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2264,23 +2081,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-4.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2298,23 +2115,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-1.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2332,24 +2149,24 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-2.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <span class="sale">Sale</span>
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2367,23 +2184,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-3.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2401,7 +2218,7 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div></div></div><div class="owl-nav"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
@@ -2415,17 +2232,17 @@
                                             <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;"><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-5.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2443,24 +2260,24 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-6.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <span class="new">New</span>
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2478,23 +2295,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-7.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2512,23 +2329,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-8.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2546,7 +2363,7 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div></div></div><div class="owl-nav"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
@@ -2560,17 +2377,17 @@
                                             <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;"><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-9.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2588,24 +2405,24 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-10.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <span class="sale">Sale</span>
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2623,23 +2440,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-11.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2657,23 +2474,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-12.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2691,7 +2508,7 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div></div></div><div class="owl-nav"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
@@ -2705,17 +2522,17 @@
                                             <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;"><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-13.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2733,24 +2550,24 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-14.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <span class="new">New</span>
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2768,23 +2585,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-15.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2802,23 +2619,23 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div><div class="owl-item"><div class="tab-item">
                                                     <div class="tab-heading">
                                                         <ul class="list-unstyled list-inline">
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                            <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                            <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                            <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                         </ul>
-                                                        <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                        <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                                     </div>
                                                     <div class="tab-img">
                                                         <img class="main-img img-fluid" src="./index_files/tab-9.png" alt="">
                                                         <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                         <div class="layer-box">
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                            <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                            <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="img-content d-flex justify-content-between">
@@ -2836,7 +2653,7 @@
                                                             </ul>
                                                         </div>
                                                         <div>
-                                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                         </div>
                                                     </div>
                                                 </div></div></div></div><div class="owl-nav"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
@@ -2848,12 +2665,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="banner">
-                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/banner-1.png" alt="" class="img-fluid"></a>
+                                            <a href="#"><img src="./index_files/banner-1.png" alt="" class="img-fluid"></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="banner">
-                                            <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/banner-2.png" alt="" class="img-fluid"></a>
+                                            <a href="#"><img src="./index_files/banner-2.png" alt="" class="img-fluid"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -2871,17 +2688,17 @@
                                     <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-813px, 0px, 0px); transition: all 0s ease 0s; width: 2710px;"><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-12.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -2899,23 +2716,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-13.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -2933,23 +2750,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-14.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -2967,23 +2784,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-11.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -3001,23 +2818,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-12.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -3035,23 +2852,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-13.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -3069,23 +2886,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-14.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -3103,23 +2920,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-11.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -3137,23 +2954,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-12.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -3171,23 +2988,23 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="new-item">
                                             <div class="tab-heading">
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Home Appliance,</a></li>
-                                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/#">Smart Led</a></li>
+                                                    <li class="list-inline-item"><a href="#">Home Appliance,</a></li>
+                                                    <li class="list-inline-item"><a href="#">Smart Led</a></li>
                                                 </ul>
-                                                <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Samsung Smart Led Tv 42"</a></p>
+                                                <p><a href="">Samsung Smart Led Tv 42"</a></p>
                                             </div>
                                             <div class="new-img">
                                                 <img class="main-img img-fluid" src="./index_files/tab-13.png" alt="">
                                                 <img class="sec-img img-fluid" src="./index_files/tab-16.png" alt="">
                                                 <div class="layer-box">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
+                                                    <a href="" class="it-comp" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><img src="./index_files/it-comp.png" alt=""></a>
+                                                    <a href="" class="it-fav" data-toggle="tooltip" data-placement="left" title="" data-original-title="Favourite"><img src="./index_files/it-fav.png" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="img-content d-flex justify-content-between">
@@ -3205,7 +3022,7 @@
                                                     </ul>
                                                 </div>
                                                 <div>
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
+                                                    <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><img src="./index_files/it-cart.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div></div></div></div><div class="owl-nav"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
@@ -3213,7 +3030,7 @@
                             </div>
                             <div class="col-md-12 padding-fix-l20">
                                 <div class="banner-two">
-                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/banner-3.png" alt="" class="img-fluid"></a>
+                                    <a href="#"><img src="./index_files/banner-3.png" alt="" class="img-fluid"></a>
                                 </div>
                             </div>
                             <div class="col-md-12 padding-fix-l20">
@@ -3229,10 +3046,10 @@
                                     <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-813px, 0px, 0px); transition: all 0s ease 0s; width: 2710px;"><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-9.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-9.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3248,10 +3065,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-10.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3267,68 +3084,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-11.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-11.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-12.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-13.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-14.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3345,10 +3104,10 @@
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-6.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-12.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3364,10 +3123,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-13.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3383,10 +3142,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-14.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3400,32 +3159,13 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="slr-items">
+                                        </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-6.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-6.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-7.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3441,30 +3181,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-8.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="slr-items">
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-9.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3480,29 +3200,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-11.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3519,10 +3220,10 @@
                                         </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="slr-items">
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-6.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3538,10 +3239,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-7.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3557,10 +3258,126 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-14.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-8.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="slr-items">
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-9.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-11.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div></div><div class="owl-item active" style="width: 251px; margin-right: 20px;"><div class="slr-items">
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-14.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3577,10 +3394,10 @@
                                         </div></div><div class="owl-item" style="width: 251px; margin-right: 20px;"><div class="slr-items">
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-6.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-6.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3596,10 +3413,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-4.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-4.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3615,68 +3432,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-2.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-2.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-6.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-7.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
-                                                    <ul class="list-unstyled list-inline fav">
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled list-inline price">
-                                                        <li class="list-inline-item">$120.00</li>
-                                                        <li class="list-inline-item">$150.00</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="slr-box d-flex">
-                                                <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-8.png" alt=""></a>
-                                                </div>
-                                                <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3693,10 +3452,10 @@
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-9.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-6.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3712,10 +3471,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-10.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-7.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3731,10 +3490,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-11.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-8.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3751,10 +3510,10 @@
                                         </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-9.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3770,10 +3529,10 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-10.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3789,10 +3548,68 @@
                                             </div>
                                             <div class="slr-box d-flex">
                                                 <div class="slr-img">
-                                                    <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/sbar-14.png" alt=""></a>
+                                                    <a href="#"><img src="./index_files/sbar-11.png" alt=""></a>
                                                 </div>
                                                 <div class="slr-content">
-                                                    <p><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Items Title Here</a></p>
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div></div><div class="owl-item cloned" style="width: 251px; margin-right: 20px;"><div class="slr-items">
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-12.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-13.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
+                                                    <ul class="list-unstyled list-inline fav">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                    <ul class="list-unstyled list-inline price">
+                                                        <li class="list-inline-item">$120.00</li>
+                                                        <li class="list-inline-item">$150.00</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="slr-box d-flex">
+                                                <div class="slr-img">
+                                                    <a href="#"><img src="./index_files/sbar-14.png" alt=""></a>
+                                                </div>
+                                                <div class="slr-content">
+                                                    <p><a href="">Items Title Here</a></p>
                                                     <ul class="list-unstyled list-inline fav">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -3821,120 +3638,120 @@
                                         
                                     <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-818px, 0px, 0px); transition: all 0s ease 0s; width: 2727px;"><div class="owl-item cloned" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-2.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-2.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Mar, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-3.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-3.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Jan, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-4.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-4.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Feb, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item active" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-1.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-1.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Feb, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item active" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-2.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-2.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Mar, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item active" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-3.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-3.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Jan, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-4.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-4.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Feb, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-1.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-1.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Feb, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-2.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-2.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Mar, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
                                             </div>
                                         </div></div><div class="owl-item cloned" style="width: 247.667px; margin-right: 25px;"><div class="blog-item">
                                             <div class="blog-img">
-                                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/news-3.jpg" alt="" class="img-fluid"></a>
+                                                <a href="#"><img src="./index_files/news-3.jpg" alt="" class="img-fluid"></a>
                                             </div>
                                             <div class="blog-content">
-                                                <h6><a href="http://www.thetahmid.com/themes/xemart-v1.0/">Sint eius inventore magni quod.</a></h6>
+                                                <h6><a href="">Sint eius inventore magni quod.</a></h6>
                                                 <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="http://www.thetahmid.com/themes/xemart-v1.0/">John</a></li>
+                                                    <li class="list-inline-item"><i class="fa fa-user-o"></i><a href="">John</a></li>
                                                     <li class="list-inline-item"><i class="fa fa-calendar"></i>12 Jan, 2020</li>
                                                 </ul>
                                                 <p>Lorem ipsum dolor sit amet, consectet adipisicing elit. Delectus, expedita dolorum tenetur soluta...</p>
@@ -3954,43 +3771,43 @@
                             
                             
                         <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1694px, 0px, 0px); transition: all 0.5s ease 0s; width: 3579px;"><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-02.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-02.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-03.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-03.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-04.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-04.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-05.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-05.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-06.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-06.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-07.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-07.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-01.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-01.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-02.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-02.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-03.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-03.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item active" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-04.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-04.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item active" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-05.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-05.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item active" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-06.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-06.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item active" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-07.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-07.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned active" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-01.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-01.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned active" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-02.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-02.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-03.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-03.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-04.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-04.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-05.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-05.png" alt="" class="img-fluid"></a>
                             </div></div><div class="owl-item cloned" style="width: 168.333px; margin-right: 20px;"><div class="bnd-items">
-                                <a href="http://www.thetahmid.com/themes/xemart-v1.0/#"><img src="./index_files/brand-06.png" alt="" class="img-fluid"></a>
+                                <a href="#"><img src="./index_files/brand-06.png" alt="" class="img-fluid"></a>
                             </div></div></div></div><div class="owl-nav disabled"><div class="owl-prev">prev</div><div class="owl-next">next</div></div><div class="owl-dots disabled"></div></div>
                     </div>
                 </div>
@@ -4022,11 +3839,11 @@
                             </div>
                             <div class="f-social">
                                 <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-linkedin"></i></a></li>
-                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="list-inline-item"><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-pinterest"></i></a></li>
+                                    <li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href=""><i class="fa fa-linkedin"></i></a></li>
+                                    <li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                    <li class="list-inline-item"><a href=""><i class="fa fa-pinterest"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -4035,13 +3852,13 @@
                         <div class="f-cat">
                             <h5>Categories</h5>
                             <ul class="list-unstyled">
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Clothing</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Electronics</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Smartphones &amp; Tablets</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Computer &amp; Office</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Home Appliances</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Leather &amp; Shoes</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Kids &amp; Babies</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Clothing</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Electronics</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Smartphones &amp; Tablets</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Computer &amp; Office</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Home Appliances</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Leather &amp; Shoes</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Kids &amp; Babies</a></li>
                             </ul>
                         </div>
                     </div>
@@ -4049,13 +3866,13 @@
                         <div class="f-link">
                             <h5>Quick Links</h5>
                             <ul class="list-unstyled">
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>My Account</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Shopping Cart</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>My Wishlist</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Checkout</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Order History</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Log In</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Our Locations</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>My Account</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Shopping Cart</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>My Wishlist</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Checkout</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Order History</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Log In</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Our Locations</a></li>
                             </ul>
                         </div>
                     </div>
@@ -4063,13 +3880,13 @@
                         <div class="f-sup">
                             <h5>Support</h5>
                             <ul class="list-unstyled">
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Contact Us</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Payment Policy</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Return Policy</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Privacy Policy</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Frequently asked questions</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Terms &amp; Condition</a></li>
-                                <li><a href="http://www.thetahmid.com/themes/xemart-v1.0/"><i class="fa fa-angle-right"></i>Delivery Info</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Contact Us</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Payment Policy</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Return Policy</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Privacy Policy</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Frequently asked questions</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Terms &amp; Condition</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i>Delivery Info</a></li>
                             </ul>
                         </div>
                     </div>
@@ -4080,7 +3897,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>Copyright © 2020 | Designed With <i class="fa fa-heart"></i> by <a href="http://www.thetahmid.com/themes/xemart-v1.0/#" target="_blank">SnazzyTheme</a></p>
+                        <p>Copyright © 2020 | Designed With <i class="fa fa-heart"></i> by <a href="#" target="_blank">SnazzyTheme</a></p>
                     </div>
                     <div class="col-md-6 text-right">
                         <img src="./index_files/payment.png" alt="" class="img-fluid">
