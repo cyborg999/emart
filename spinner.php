@@ -1,8 +1,18 @@
  <style type="text/css">
- 	.preloader .btn {
- 		display: block;
- 		margin: 20% auto 0;
- 	}
+ 	.preloader {
+		content: "";
+		width: 100%;
+		height: 100vh;
+		position: fixed;
+		left: 0;
+		top: 0;
+		background: rgba(255,255,255,.5);
+		z-index: 2000;
+	}
+	.preloader .btn {
+		display: block;
+		margin: 20% auto 0;
+	}
  </style>
  <div class="row  preloader hidden">
  	<div class="col-sm">

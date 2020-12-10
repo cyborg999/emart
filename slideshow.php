@@ -75,12 +75,12 @@
 						<div class="col-sm">
 							<form id="addSlider">
 								<input type="hidden" name="addSlider" value="true">
-								<div class="form-group">
+								<div class="form-group hidden">
 									<label>Title</label>
-									<input type="text"  id="title" required class="form-control" name="title" placeholder="Title...">
+									<input type="text"  id="title"  class="form-control" name="title" placeholder="Title...">
 								</div>
 								<div class="form-group">
-									<label>Subtext</label>
+									<label>Link</label>
 									<input type="text" id="subtext" class="form-control" name="subtext" placeholder="Subtext...">
 								</div>
 								<br>

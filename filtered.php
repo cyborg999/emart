@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0044) -->
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="eng">
     <?php include_once "./head.php"; ?>
     <body>
 
@@ -519,34 +519,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-0">
-                       <?php include "./topleft.php"; ?>
+                       <div class="row">
+                           <?php include "./topleft.php"; ?>
+                        </div>
                     </div>
                     <div class="col-lg-9 col-md-12 padding-fix-l20">
-                        <?php include "./indexslide.php"; ?>
+                       <div class="row products">
+                           <?php include "./indexproduct.php"; ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- End Slider Area -->
-
-        <!-- Product Area-->
-        <section class="product-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4">
-                        <div class="row">
-                           <?php include "./bottomleft.php"; ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-8">
-                       <div class="row products">
-                           <?php include "./indexproduct.php"; ?>
-                       </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Product Area -->
 
         <!-- Footer Area -->
    

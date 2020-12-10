@@ -178,6 +178,47 @@ class Model {
 		return $this;
 	}
 
+	public function getProductByName($name){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename'
+			FROM productt t1
+			LEFT JOIN media t2
+			ON t1.id = t2.productid
+			WHERE t2.active = 1
+			AND t1.name LIKE '%$name%'
+			LIMIT 100
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getProductByCategoryId($id){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename'
+			FROM productt t1
+			LEFT JOIN media t2
+			ON t1.id = t2.productid
+			WHERE t2.active = 1
+			AND t1.categoryid = $id
+			LIMIT 100
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getAllPublicProducts(){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename'
+			FROM productt t1
+			LEFT JOIN media t2
+			ON t1.id = t2.productid
+			WHERE t2.active = 1
+			LIMIT 100
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
 	public function getAllProducts(){
 		$sql = "
 			SELECT t1.*, t2.name as 'filename'
@@ -291,6 +332,17 @@ class Model {
 			SELECT *
 			FROM slides
 			WHERE type = '".(($news) ? "news" : "slider")."'
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getAllActiveSlides(){
+		$sql = "
+			SELECT *
+			FROM slides
+			WHERE type = 'slider'
+			AND status = 1
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -452,7 +504,7 @@ class Model {
 		if(isset($_POST['assetupload'])){
 			$merchantPath = 'uploads/merchant/'.$_SESSION['storeid']."/";
 			$logoPath = 'uploads/logo/'.$_SESSION['storeid']."/";
-
+			
 			if(!file_exists($logoPath)){
 				mkdir($logoPath, 0777, true);
 			}

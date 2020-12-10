@@ -12,7 +12,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-2 side">
-				<?php include "./adminsidenav.php";?>
+				<?php $active="user"; include "./adminsidenav.php";?>
 			</div>
 			<div class="col-sm-10">
 

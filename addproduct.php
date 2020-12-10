@@ -1,5 +1,6 @@
 <?php include "./dchead.php";?>
 <body>
+    <?php include "./spinner.php"; ?>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
@@ -76,6 +77,9 @@
 								<div class="form-group">
 									<label>Category</label>
 									<br>
+									<?php 
+									$categories = $model->getAllCategories();
+									 ?>
 									<select id="category" name="category">
 										<?php foreach($categories as $idx => $c): ?>
 										<option value="<?= $c['id'];?>"><?= $c['name'];?></option>
@@ -176,6 +180,7 @@
 					if(img.length == 0){
 						alert("Please select an image first.");
 					} else {
+						showPreloader();
 						$.ajax({
 							url : "ajax.php",
 							data : {
@@ -201,6 +206,8 @@
 					                $(".msg").removeClass("hidden");
 
 				                }
+
+				                hidePreloader();
 							}
 						});
 					}
