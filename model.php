@@ -60,6 +60,56 @@ class Model {
 		$this->addCategoryListener();
 		$this->deleteCategoryListener();
 		$this->updateCategoryStatus();
+		$this->addRatingListener();
+	}
+
+	public function getAllProductCommentsById($id){
+		$sql = "
+			SELECT * 
+			FROM rating
+			WHERE productid = $id
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getReviewCountByProductId($id){
+		$sql = "
+			SELECT count(*) as 'total'
+			FROM rating
+			WHERE productid = $id
+		";
+
+		$count = $this->db->query($sql)->fetch();
+
+		return $count['total'];
+	}
+
+	public function addRatingListener(){
+		if(isset($_POST['addRating'])){
+			$sql = "
+				INSERT INTO rating(productid,userid,rating,comment)
+				VALUES(?,?,?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['id'], $_SESSION['id'], $_POST['rating'], $_POST['comment']));
+
+			$count = $this->getReviewCountByProductId($_POST['id']);
+			die(json_encode(array($count)));
+		}
+	}
+
+	public function getProductById($id){
+		$sql = "
+			SELECT t1.*, t2.name as 'storename'
+			FROM productt t1 
+			LEFT JOIN  store t2
+			ON t1.storeid = t2.id
+			WHERE t1.id = $id
+			LIMIT 1
+		";
+
+		return $this->db->query($sql)->fetch();
 	}
 
 	public function updateCategoryStatus(){
@@ -136,6 +186,16 @@ class Model {
 			die(json_encode(array("error" => $this->errors)));
 		}
 
+	}
+
+	public function getMediaByProductId($id){
+		$sql = "
+			SELECT *
+			FROM media
+			WHERE productid = $id
+		";
+
+		return $this->db->query($sql)->fetchAll();
 	}
 
 	public function addMediaByProductId($id, $media, $active){

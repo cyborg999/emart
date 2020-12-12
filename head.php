@@ -20,8 +20,8 @@
         <link href="./index_files/css" rel="stylesheet">
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="./index_files/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" > -->
+        <!-- <link rel="stylesheet" href="./index_files/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
 
 		<!-- Fontawesome Icon -->
 
