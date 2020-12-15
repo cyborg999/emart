@@ -78,6 +78,10 @@
                     $product = $model->getProductById($_GET['id']);
                     $media = $model->getMediaByProductId($_GET['id']);
                     $total = $model->getReviewCountByProductId($_GET['id']);
+                    $comments  = $model->getAllProductCommentsById($_GET['id']);
+                    $average = $model->GetAvgCommentByProductId($_GET['id']);
+                    $related = $model->getRelatedProductsByCategoryId($product['categoryid']);
+
                     $activeMedia = "";
 
                     foreach($media as $idx => $m){
@@ -106,14 +110,16 @@
                     </div>
                     <div class="col-sm-6">
                         <h1><?= $product['name'];?></h1>
-                        <p>by: <a href=""><?= $product['storename'];?></a></p>
+                        <p>by: <a href="./store?id=<?= $product['storeid'];?>"><?= $product['storename'];?></a></p>
                         <figure class="star_rating"></figure>
                         <ul class="star_rating">
-                            <li><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#star-fill"/></svg></li>
-                            <li><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#star-half"/></svg></li>
-                            <li><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#star"/></svg></li>
-                            <li><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#star"/></svg></li>
-                            <li><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#star"/></svg></li>
+                            <?php for($i = 1;$i<=5;$i++) : ?>
+                                <?php if($i <= $average['average']): ?>
+                                    <li><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#star-fill"/></svg></li>
+                                <?php else : ?>
+                                    <li><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#star"/></svg></li>
+                                <?php endif ?>
+                            <?php endfor ?>
                         </ul>
                         <em class="price">₱<?= $product['price'];?></em>
                         <p><?= $product['description'];?></p>
@@ -247,9 +253,7 @@
                                 </style>
                                 <br>
                                 <div class="reviews row">
-                                    <?php 
-                                        $comments  = $model->getAllProductCommentsById($_GET['id']);
-                                    ?>
+                                    <span id="appendbefore"></span>
                                     <?php foreach($comments as $idx => $c): ?>
                                         <div class="box">
                                             <div class="box_left">
@@ -306,29 +310,34 @@
                     }
                 </style>
                 <div class="row related">
-                    <div class="col-sm">
-                        <a href=""><figure class="related_product"></figure></a>
-                    </div>
-                    <div class="col-sm">
-                        <a href=""><figure class="related_product"></figure></a>
-                    </div>
-                    <div class="col-sm">
-                        <a href=""><figure class="related_product"></figure></a>
-                    </div>
-                    <div class="col-sm">
-                        <a href=""><figure class="related_product"></figure></a>
-                    </div>
-                    <div class="col-sm">
-                        <a href=""><figure class="related_product"></figure></a>
-                    </div>
-                    <div class="col-sm">
-                        <a href=""><figure class="related_product"></figure></a>
-                    </div>
-                    
+                    <?php foreach($related as $idx => $r): ?>
+                        <div class="col-sm">
+                            <a href="./productdetail.php?id=<?= $r['id'];?>"><figure class="related_product" style="background-image: url(./uploads/merchant/<?= $r['storeid'];?>/<?= $r['id'];?>/<?= $r['filename'];?>);"></figure></a>
+                        </div>
+                    <?php endforeach ?>
                 </div>
+                <br>
+                <br>
             </article>
         </section>
     </main>
+
+    <!-- start tpl -->
+    <script type="text/html" id="tpl">
+         <div class="box">
+            <div class="box_left">
+                <img height="30" src="./node_modules/bootstrap-icons/icons/person-badge.svg">
+            </div>
+            <div class="box_right">
+                <div class="review_rating">
+                    [RATING]
+                </div>
+                <p>[COMMENT]</p>
+                <i>[DATE]</i>
+            </div>
+        </div>
+    </script>
+    <!-- end tpl -->
     <script src="./js/popper.min.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" ></script>
     <script type="text/javascript">
@@ -351,8 +360,9 @@
                     var rating = $("#rating .stars.active").length;
                     var comment = $("#comment").val();
 
-                    showPreloader();
                     if(comment != ""){
+                        showPreloader();
+
                         $.ajax({
                             url  : "ajax.php",
                             data : { addRating : true, comment : comment, id : me.data("id"), rating : rating},
@@ -360,10 +370,20 @@
                             dataType : "json",
                             success : function(response){
                                 $("#reviewCount").html(response);
-                                $("#comment").val("");
-                                $(".stars.active").removeClass("active");
+                               
 
                                 hidePreloader();
+
+                                var tplrating = $("#rating").html();
+                                var tpl = $("#tpl").html();
+
+                                tpl = tpl.replace("[COMMENT]", comment).
+                                    replace("[RATING]", tplrating).
+                                    replace("[DATE]", "a few seconds ago");
+
+                                $("#appendbefore").before(tpl);
+                                $("#comment").val("");
+                                $("#rating .stars.active").removeClass("active");
                             }
                         });
                     } else {
@@ -409,7 +429,14 @@
                     
                     var count = parseInt(qty.html());
                     var total = 0;
-                    var cartData = JSON.parse(localStorage.getItem("items"));
+                    var cartData = Array();
+                    cartData[0] = null;
+
+                    if(localStorage.getItem("items") == null){
+                        localStorage.setItem("items", JSON.stringify(cartData));
+                    }
+
+                   cartData = JSON.parse(localStorage.getItem("items"));
 
                     cartData[me.data("id")] = $("#qty").html();
 
@@ -439,7 +466,7 @@
                 $("#rating figure").on("click", function(){
                     var me = $(this);
 
-                    $(".stars").removeClass("active");
+                    $("#rating .stars").removeClass("active");
 
                     me.addClass("active");
                     me.prevAll(".stars").addClass("active");

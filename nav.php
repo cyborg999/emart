@@ -3,9 +3,19 @@
         <section class="top-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-sm-5">
+                        <a href="index.php">
+                            <img src="./images/logo.png" id="logo">
+                        </a>
+                    </div>
+                    <div class="col-sm-7">
                         <div class="top-right text-right">
                             <style type="text/css">
+                                #logo {
+                                    width: 60px;
+                                    height: auto;
+                                    margin-top: 10px;
+                                }
                                 .cart {
                                     position: relative;
                                 }
@@ -26,7 +36,7 @@
                             </style>
                             <ul class="list-unstyled list-inline headmenu">
                                 <!-- <li class="list-inline-item"><a href=""><img src="./index_files/user.png" alt="">My Account</a></li> -->
-                                <li class="list-inline-item"><a href="" class="cart"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#handbag"/></svg><span id="count">0</span></a></li>
+                                <li class="list-inline-item"><a href="cart.php" class="cart"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#handbag"/></svg><span id="count">0</span></a></li>
                                 <li class="list-inline-item"><a href="signup.php"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#clipboard"/></svg> SignUp</a></li>
                                 <li class="list-inline-item"><a href="login.php"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#lock"/></svg>Login</a></li>
                             </ul>

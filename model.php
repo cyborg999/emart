@@ -61,6 +61,66 @@ class Model {
 		$this->deleteCategoryListener();
 		$this->updateCategoryStatus();
 		$this->addRatingListener();
+		$this->updateUserTypeListener();
+		$this->getCartItemsListener();
+	}
+
+
+
+	public function getCartItemsListener(){
+		if(isset($_POST['getCartItems'])){
+			$products = $_POST['products'];
+			$products = str_replace("[", "", $products);
+			$products = str_replace("]", "", $products);
+			$products = explode(",", $products);
+		
+			$cartItems = array();
+
+			foreach($products as  $idx => $p){
+				if($p != "null"){
+					$sql = "
+						SELECT t1.*,t2.name as 'filename'
+						FROM productt t1
+						LEFT JOIN media t2
+						ON t1.id = t2.productid
+						WHERE t1.id = $idx
+						AND t2.active = 1
+						LIMIT 1
+					";
+					$detail = $this->db->query($sql)->fetch();
+
+					$cartItems[] = array(
+						"productId" => $idx, 
+						"detail" => $detail, 
+						"qty" => $p );
+
+				}
+			}
+
+			die(json_encode($cartItems));
+		}
+	}
+
+	public function getRelatedProductsByCategoryId($id){
+		$sql = "
+			SELECT t2.name as 'filename',t1.*
+			FROM productt t1
+			RIGHT JOIN media t2
+			ON t1.id = t2.productid
+			WHERE t1.categoryid = $id
+			AND t2.active =1
+			LIMIT 5
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function updateUserTypeListener(){
+		if(isset($_POST['updateUserType'])){
+			$_SESSION['setup']['usertype'] = $_POST['usertype'];
+
+			die(json_encode(array("added" => true)));
+		}
 	}
 
 	public function getAllProductCommentsById($id){
@@ -68,9 +128,21 @@ class Model {
 			SELECT * 
 			FROM rating
 			WHERE productid = $id
+			ORDER BY date_added DESC
 		";
 
 		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function GetAvgCommentByProductId($id){
+		$sql = "
+			SELECT AVG(rating) as 'average'
+			FROM rating
+			WHERE productid = $id
+			ORDER BY date_added DESC
+		";
+
+		return $this->db->query($sql)->fetch();
 	}
 
 	public function getReviewCountByProductId($id){
@@ -1155,7 +1227,7 @@ class Model {
 			$sql = "
 				SELECT *
 				FROM userinfo
-				WHERE userid = ".$_SESSION['id']."
+				WHERE userid = ".(isset($_SESSION['id']) ? $_SESSION['id'] : $_SESSION['lastinsertedid'])."
 				LIMIT 1
 			";
 
@@ -1568,13 +1640,15 @@ class Model {
 	public function addSubscriptionListener(){
 		if(isset($_POST['plan'])){
 			$this->addUser();
-			$this->addStore();
+
+			if($_SESSION['setup']['usertype'] != "client"){
+				$this->addStore();
+			}
 
 			$_POST['updateUserInfo'] = true;
 
 			$this->updateUserInfoListener();
 		
-
 			//wait for admin to verify this store
 			$data = array(
 				"added" => true,
@@ -1653,6 +1727,8 @@ class Model {
 
 				if($exists['usertype'] == "admin"){
 					header("Location:admindashboard.php");
+				} else if($exists['usertype'] == "client") {
+					header("Location:userdashboard.php");
 				} else {
 					header("Location:dashboard.php");
 				}
@@ -1698,11 +1774,20 @@ class Model {
 	}
 
 	public function addUser(){
-		$sql = "
-			INSERT INTO user(username,password)
-			VALUES(?,?)
-		";
-		$this->db->prepare($sql)->execute(array($_SESSION['setup']['username'], md5($_SESSION['setup']['password'])));
+		if($_SESSION['setup']['usertype'] == "client"){
+			$sql = "
+				INSERT INTO user(username,password,usertype)
+				VALUES(?,?,?)
+			";
+			$this->db->prepare($sql)->execute(array($_SESSION['setup']['username'], md5($_SESSION['setup']['password']), "client"));
+		} else {
+			$sql = "
+				INSERT INTO user(username,password)
+				VALUES(?,?)
+			";
+			$this->db->prepare($sql)->execute(array($_SESSION['setup']['username'], md5($_SESSION['setup']['password'])));			
+		}
+
 		
 		$_SESSION['lastinsertedid'] = $this->db->lastInsertId();
 

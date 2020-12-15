@@ -1,4 +1,4 @@
-<?php include "./head.php"; ?>
+<?php include "./head3.php"; ?>
 <body>
 	<div class="container-sm">
 	<?php include_once "./nav.php"; ?>
@@ -9,7 +9,7 @@
 			min-height: 80vh;
 		}	
 		.slider-container {
-			width: 300%;
+			width: 400%;
 			position: absolute;
 			min-height: 80vh;
 			background: white;
@@ -70,31 +70,47 @@
 					<br>
 					<div class="form-group col-lg-12">
 						<button class="btn btn-success btn-lg">Next </button>
-						<a href="" data-target=".store" data-left="-100%" class="disabled next hidden">Next</a>
+						<a href="" data-target=".usertype" data-left="-100%" class="disabled next hidden">Next</a>
 					</div>		
 				</form>
 				<br>
 			</div>
 
+			<div class="usertype slide col-sm">
+				<form method="post" class="form">
+					<div class="err"></div>
+					<h3>Are you a client or a merchant?</h3>
+					<br>
+					<input type="hidden" name="updateUserType" value="true"/>
+				    <div class="form-group col-lg-12">
+						<label for="client">Customer</label>
+						<input type="radio" class="form-control usertype" id="client" name="usertype" checked value="client"/>
+						<br>
+						<label for="merchant">Merchant</label>
+						<input type="radio" class="form-control usertype" id="merchant" name="usertype" value="merchant"/>
+				    </div>
+					<div class="form-group col-lg-12">
+						<a href="" data-target=".usertype"  data-left="0%" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
+
+						<button class="btn btn-success btn-lg">Next </button>
+						<a href="" data-target=".store" data-left="-200%"  class="typeNext disabled next hidden ">Next</a>
+					</div>	
+				</form>
+			</div>
 			<div class="store slide col-sm">
 				<form method="post" class="form">
 					<div class="err"></div>
-					<!-- <div class="usertype">
-						<h3>Please select user type:</h3>
-						<input type="radio" name="type" checked value="Customer"/>
-						<input type="radio" name="type" value="Merchant"/>
-					</div> -->
 					<input type="hidden" name="addstore" value="true">
 					<h3>Store Name</h3>
 					<br>
 					<input type="text" class="form-control" name="name" value="" placeholder="Store Name..." required/>
 					<br>
 					<br>
-					<a href="" data-target=".signup" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
+					<a href="" data-target=".usertype"  data-left="-100%" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
 
 					<button class="btn btn-success btn-lg float-right">Next</button>
 				</form>
-				<a href="" data-target=".plan" data-left="-200%"  data-target="store" class="disabled next hidden">Next</a>
+				<a href="" data-target=".plan" data-left="-300%"  data-target="store" class="disabled next hidden">Next</a>
 			</div>
 			
 			<div class="plan slide  col-sm final">
@@ -127,6 +143,8 @@
 					      		<input type="email" name="email" required class="form-control" value="" id="inputEmail4">
 						    </div>
 						  </div>
+						  	<a href="" id="planNext" data-target=".store"  data-left="-200%" class="next enabled "><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
+
 						  <button type="submit" class="btn btn-lg btn-success">Save</button>
 						</form>
 					</div>
@@ -160,6 +178,26 @@
 
 						var me = $(this);
 
+						if(me.hasClass("typeNext")){
+							var val = $(".usertype:checked").val();
+							var target = me.parents(".slide").find(".next");
+
+							if(val == "client"){
+								me.data("target", ".plan");
+								me.data("left", "-300%");
+
+								$("#planNext").data("target", ".usertype");
+								$("#planNext").data("left", "-100%");
+							} else {
+								me.data("target", ".store");
+								me.data("left", "-200%");
+
+								$("#planNext").data("target", ".usertype");
+								$("#planNext").data("left", "-200%");
+							}
+						}
+
+						console.log(me.data("left"));
 						$(".slider-container").stop().animate({
 							"left" : me.data("left")
 						});
@@ -174,6 +212,7 @@
 
 
 				__listen();
+
 
 				$(".card").on("click", function(){
 					var me = $(this);
@@ -191,7 +230,7 @@
 					var me = $(this);
 					var data = me.serialize();
 
-					showPreloader();
+					// showPreloader();
 
 					$("#err").html();
 

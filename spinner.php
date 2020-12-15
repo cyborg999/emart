@@ -27,10 +27,10 @@
  	function hidePreloader(){
  		setTimeout(function(){
 			$(".preloader").addClass("hidden");
-		}, 200);
- 	}
+			}, 200);
+	 	}
 
- 	function showPreloader(){
-		$(".preloader").removeClass("hidden");
- 	}
+	 	function showPreloader(){
+			$(".preloader").removeClass("hidden");
+	 	}
  </script>
