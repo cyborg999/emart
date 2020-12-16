@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2020 at 02:41 AM
+-- Generation Time: Dec 16, 2020 at 08:21 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `emart`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `shipping` float NOT NULL,
+  `tax` float NOT NULL,
+  `instruction` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `transactionid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52,6 +72,28 @@ INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `isactive`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fees`
+--
+
+CREATE TABLE `fees` (
+  `id` int(11) NOT NULL,
+  `storeid` int(11) NOT NULL,
+  `shipping` float NOT NULL,
+  `tax` float NOT NULL,
+  `productid` int(11) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fees`
+--
+
+INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_created`) VALUES
+(1, 35, 5, 10, NULL, '2020-12-15 14:01:55');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `media`
 --
 
@@ -79,7 +121,48 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (14, 'a13bc497d96a924a4a1e30f1cd33bd99.png', 30, '2020-12-05 07:07:34', 19, 1),
 (15, 'd323beda795bf2eb257cdb927519fe33.jpg', 30, '2020-12-05 07:08:42', 20, 1),
 (16, 'd323beda795bf2eb257cdb927519fe33.jpg', 30, '2020-12-05 09:01:55', 21, 1),
-(17, 'a13bc497d96a924a4a1e30f1cd33bd99.png', 30, '2020-12-05 17:14:15', 22, 1);
+(17, 'a13bc497d96a924a4a1e30f1cd33bd99.png', 30, '2020-12-05 17:14:15', 22, 1),
+(18, '64befa18637bf0cb5338cecd2e1b0d5c.png', 30, '2020-12-08 12:03:09', 23, 0),
+(19, '0ff0a3d73e6d6aa1d6deddaa9fdde263.png', 30, '2020-12-08 12:03:10', 23, 0),
+(20, 'cf5fd04d6ec622c04bd600dca8dbda5a.jpg', 30, '2020-12-08 12:03:10', 23, 1),
+(21, 'b1dd01812b22d34c373e011261ab5fb9.png', 30, '2020-12-08 12:04:14', 24, 0),
+(22, 'ad194cbe90a56f2011fab3605ef5af18.png', 30, '2020-12-08 12:04:14', 24, 0),
+(23, '886e30a9b6550441af714a7efac86cfd.png', 30, '2020-12-08 12:04:15', 24, 1),
+(24, 'b78af42860da3f09f83d28fc5a3b1845.png', 30, '2020-12-08 12:04:51', 25, 0),
+(25, '45f16d478734c0f03af662cd5f7b6455.png', 30, '2020-12-08 12:04:52', 25, 0),
+(26, '69a092cb9f65318156ea615836f13646.png', 30, '2020-12-08 12:04:52', 25, 1),
+(27, '0ff0a3d73e6d6aa1d6deddaa9fdde263.png', 30, '2020-12-08 12:05:50', 26, 0),
+(28, 'b1dd01812b22d34c373e011261ab5fb9.png', 30, '2020-12-08 12:05:50', 26, 0),
+(29, '64befa18637bf0cb5338cecd2e1b0d5c.png', 30, '2020-12-08 12:05:50', 26, 1),
+(30, 'b78af42860da3f09f83d28fc5a3b1845.png', 30, '2020-12-08 12:08:20', 27, 1),
+(31, '69a092cb9f65318156ea615836f13646.png', 30, '2020-12-08 12:08:20', 27, 0),
+(32, '45f16d478734c0f03af662cd5f7b6455.png', 30, '2020-12-08 12:08:20', 27, 0),
+(33, 'b1dd01812b22d34c373e011261ab5fb9.png', 30, '2020-12-08 12:13:52', 28, 1),
+(34, '45f16d478734c0f03af662cd5f7b6455.png', 30, '2020-12-08 12:13:52', 28, 0),
+(35, 'e260b9bc6e950293d73b0775d3548998.jpg', 30, '2020-12-12 18:03:52', 29, 0),
+(36, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 30, '2020-12-12 18:03:52', 29, 1),
+(37, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 30, '2020-12-12 18:03:52', 29, 0),
+(38, '4718599b5374d058571a331d43e2ab5f.jpg', 30, '2020-12-12 18:03:52', 29, 0),
+(39, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 35, '2020-12-13 06:38:57', 30, 0),
+(40, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-13 06:38:58', 30, 1),
+(41, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-13 06:38:58', 30, 0),
+(42, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-13 06:38:58', 30, 0),
+(43, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-13 06:50:35', 31, 0),
+(44, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 35, '2020-12-13 06:50:35', 31, 0),
+(45, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-13 06:50:35', 31, 0),
+(46, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-13 06:50:36', 31, 1),
+(47, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-13 06:50:56', 32, 1),
+(48, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 35, '2020-12-13 06:50:56', 32, 0),
+(49, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-13 06:50:56', 32, 0),
+(50, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-13 06:50:56', 32, 0),
+(51, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-13 06:51:03', 33, 0),
+(52, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 35, '2020-12-13 06:51:03', 33, 1),
+(53, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-13 06:51:03', 33, 0),
+(54, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-13 06:51:03', 33, 0),
+(55, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-13 06:51:17', 34, 0),
+(56, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 35, '2020-12-13 06:51:17', 34, 0),
+(57, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-13 06:51:17', 34, 1),
+(58, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-13 06:51:18', 34, 0);
 
 -- --------------------------------------------------------
 
@@ -158,16 +241,19 @@ CREATE TABLE `productt` (
   `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
   `storeid` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `cost` float NOT NULL
+  `cost` float NOT NULL,
+  `active` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `productt`
 --
 
-INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`, `rating`, `date_added`, `storeid`, `description`, `cost`) VALUES
-(19, 1, 'Keto Extreme Fat Burner1', 29.91, 'Keto1', 2221, 0, '2020-12-05 07:07:34', 30, 'Lorem1', 231),
-(21, 1, 'Reflux Inhibitor', 34, '34', 3, 0, '2020-12-05 09:01:55', 30, '35', 234);
+INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`, `rating`, `date_added`, `storeid`, `description`, `cost`, `active`) VALUES
+(31, 23, 'Black Polo', 78, 'Polo', 544, 0, '2020-12-13 06:50:35', 35, 'sadsadsa', 34, 1),
+(32, 23, 'Red Polo', 78, 'Polo', 544, 0, '2020-12-13 06:50:55', 35, 'sadsadsa', 34, 1),
+(33, 23, 'Blue Polo', 78, 'Polo', 544, 0, '2020-12-13 06:51:03', 35, 'sadsadsa', 34, 1),
+(34, 23, 'Gray Sweater', 78, 'Polo', 544, 0, '2020-12-13 06:51:17', 35, 'sadsadsa', 34, 1);
 
 -- --------------------------------------------------------
 
@@ -192,6 +278,45 @@ CREATE TABLE `purchase` (
 
 INSERT INTO `purchase` (`id`, `vendorid`, `materialid`, `date_purchased`, `type`, `qty`, `date_created`, `storeid`) VALUES
 (16, 1, 8, '2020-01-21', 'cash', 1, '2020-11-06 11:12:08', 21);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
+  `comment` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id`, `productid`, `userid`, `rating`, `date_added`, `comment`) VALUES
+(1, 29, 46, 5, '2020-12-12 18:42:12', 'sadas'),
+(2, 29, 46, 5, '2020-12-12 18:44:18', 'sadas'),
+(3, 29, 46, 5, '2020-12-12 18:44:34', 'sadas'),
+(4, 29, 46, 5, '2020-12-12 18:45:07', 'sadas'),
+(5, 29, 46, 5, '2020-12-12 18:45:19', 'sadas'),
+(6, 29, 46, 4, '2020-12-12 18:50:10', 'asd'),
+(7, 29, 46, 3, '2020-12-12 18:50:37', 'sdfds'),
+(8, 29, 46, 0, '2020-12-13 02:41:14', 'test'),
+(9, 29, 46, 0, '2020-12-13 02:42:25', 'test2'),
+(10, 29, 46, 0, '2020-12-13 02:44:04', 'test3'),
+(11, 29, 46, 3, '2020-12-13 02:44:39', 'asdasdsa'),
+(12, 29, 46, 3, '2020-12-13 02:45:08', 'asdasdsadsa32'),
+(13, 29, 46, 3, '2020-12-13 02:45:56', '34534543'),
+(14, 29, 46, 3, '2020-12-13 02:46:43', '3'),
+(15, 29, 46, 2, '2020-12-13 02:48:41', 'last'),
+(16, 29, 46, 2, '2020-12-13 02:50:33', 'FASDA'),
+(17, 29, 52, 5, '2020-12-13 06:08:40', 'asdsad'),
+(18, 33, 52, 3, '2020-12-16 18:10:56', 'test');
 
 -- --------------------------------------------------------
 
@@ -261,11 +386,7 @@ CREATE TABLE `slides` (
 --
 
 INSERT INTO `slides` (`id`, `title`, `content`, `status`, `photo`, `date_created`, `type`) VALUES
-(11, 'Promo #1', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, 'uploads/admin/banner1.jpg', '2020-11-08 12:06:34', 'news'),
-(12, 'Promo #2', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, 'uploads/admin/banner5.png', '2020-11-08 12:06:40', 'news'),
-(13, 'Promo #3', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, 'uploads/admin/banner4.jpg', '2020-11-08 12:06:45', 'news'),
-(14, 'Promo Optional', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 0, 'uploads/admin/banner2.jpg', '2020-11-08 12:06:59', 'news'),
-(15, 'test slider', 'test desc', 0, './uploads/merchant/20/bottle2.jpg', '2020-12-06 00:16:15', 'slider');
+(27, 'Banner 1', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, './uploads/merchant/20/banner1.jpg', '2020-12-10 15:11:13', 'slider');
 
 -- --------------------------------------------------------
 
@@ -300,7 +421,11 @@ INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid
 (28, 'user44', NULL, NULL, '2020-12-04 11:29:25', 44, NULL, NULL),
 (29, 'user45', NULL, NULL, '2020-12-04 11:31:04', 45, NULL, NULL),
 (30, 'Jojor', NULL, NULL, '2020-12-04 12:48:18', 46, NULL, NULL),
-(31, 'User5 Store', NULL, NULL, '2020-12-04 12:52:22', 47, NULL, NULL);
+(31, 'User5 Store', NULL, NULL, '2020-12-04 12:52:22', 47, NULL, NULL),
+(32, 'eMart', NULL, NULL, '2020-12-13 02:55:20', 48, NULL, NULL),
+(33, 'user6store', NULL, NULL, '2020-12-13 02:56:51', 49, NULL, NULL),
+(34, 'user7store', NULL, NULL, '2020-12-13 03:15:25', 50, NULL, NULL),
+(35, 'Merchant Store', NULL, NULL, '2020-12-13 06:36:50', 53, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -338,6 +463,19 @@ INSERT INTO `subscription` (`id`, `duration`, `cost`, `active`, `title`, `captio
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -345,7 +483,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `usertype` varchar(255) NOT NULL DEFAULT 'basic',
+  `usertype` varchar(255) NOT NULL DEFAULT 'merchant',
   `verified` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -356,9 +494,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_created`) VALUES
 (36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55'),
-(45, 'user4', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'basic', 0, '2020-12-04 11:31:04'),
-(46, 'matantei999', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'basic', 0, '2020-12-04 12:48:18'),
-(47, 'user5', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'basic', 0, '2020-12-04 12:52:21');
+(52, 'client1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2020-12-13 05:44:54'),
+(53, 'merchant1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2020-12-13 06:36:49');
 
 -- --------------------------------------------------------
 
@@ -383,9 +520,16 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`, `date_created`, `userid`, `photo`) VALUES
-(23, 'Jorjor', '234 asdasd', '234324', 'sad@mail.com', '0002-02-22', '2020-12-04 12:48:18', 46, NULL),
-(24, 'Jorjor', '234 asdasd', '234324', 'sad@mail.com', '0002-02-22', '2020-12-04 12:52:21', 47, NULL),
-(25, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '1111-11-11', '2020-12-05 19:12:46', 36, NULL);
+(23, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-04 12:48:18', 46, NULL),
+(24, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-04 12:52:21', 47, NULL),
+(25, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-05 19:12:46', 36, NULL),
+(26, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 02:55:20', 48, NULL),
+(27, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 02:56:51', 49, NULL),
+(28, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 03:15:25', 50, NULL),
+(29, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 05:34:25', 51, NULL),
+(30, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 05:43:18', 0, NULL),
+(31, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 05:44:54', 52, NULL),
+(32, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 06:36:50', 53, NULL);
 
 -- --------------------------------------------------------
 
@@ -415,9 +559,21 @@ INSERT INTO `vendor` (`id`, `name`, `address`, `contact`, `date_created`, `store
 --
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fees`
+--
+ALTER TABLE `fees`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -451,6 +607,12 @@ ALTER TABLE `purchase`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sales`
 --
 ALTER TABLE `sales`
@@ -481,6 +643,12 @@ ALTER TABLE `subscription`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -503,16 +671,28 @@ ALTER TABLE `vendor`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT for table `fees`
+--
+ALTER TABLE `fees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -530,13 +710,19 @@ ALTER TABLE `production`
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -554,13 +740,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `subscription`
@@ -569,16 +755,22 @@ ALTER TABLE `subscription`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `vendor`
