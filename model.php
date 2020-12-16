@@ -63,9 +63,41 @@ class Model {
 		$this->addRatingListener();
 		$this->updateUserTypeListener();
 		$this->getCartItemsListener();
+		$this->updateGlobalFeeListener();
+		$this->checkoutListener();
 	}
 
+	public function checkoutListener(){
+		if(isset($_POST['checkout'])){
+			$_SESSION['cart'] = $_POST;
 
+			die(json_encode(array("added")));
+		}
+	}
+
+	public function updateGlobalFeeListener(){
+		if(isset($_POST['updateGlobalFee'])){
+			if(!is_numeric($_POST['shipping'])){
+				$this->errors[] = "Shipping fee should be number.";
+			}
+			if(!is_numeric($_POST['tax'])){
+				$this->errors[] = "Tax fee should be number.";
+			}
+
+			if(!count($this->errors)){
+				$sql = "
+					INSERT INTO fees(storeid,shipping,tax)
+					VALUES(?,?,?)
+				";	
+
+				$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['shipping'],$_POST['tax']));
+
+				$this->success = "You have succesfully added this record";
+			}
+
+			return $this;
+		}
+	}
 
 	public function getCartItemsListener(){
 		if(isset($_POST['getCartItems'])){
@@ -79,10 +111,14 @@ class Model {
 			foreach($products as  $idx => $p){
 				if($p != "null"){
 					$sql = "
-						SELECT t1.*,t2.name as 'filename'
+						SELECT t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax
 						FROM productt t1
 						LEFT JOIN media t2
 						ON t1.id = t2.productid
+						LEFT JOIN category t3
+						ON t1.categoryid = t3.id
+						LEFT JOIN fees t4 
+						ON t4.storeid = t1.storeid
 						WHERE t1.id = $idx
 						AND t2.active = 1
 						LIMIT 1

@@ -40,12 +40,12 @@
                                     <p>+1 (111) 426 6573</p>
                                 </div>
                             </div>
-                            <div class="cart-box ml-auto text-center">
+                        <!--     <div class="cart-box ml-auto text-center">
                                 <a href="" class="cart-btn">
                                     <img src="./index_files/cart.png" alt="cart">
                                     <span>2</span>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
