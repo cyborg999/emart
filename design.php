@@ -16,4 +16,5 @@ add to notification if someone commented on product
 
 
 cart
-if added to cart then checkout,clear cart
+load pre saved profile data
+if not login redirect (cart/checkout)

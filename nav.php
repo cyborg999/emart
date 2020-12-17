@@ -37,8 +37,15 @@
                             <ul class="list-unstyled list-inline headmenu">
                                 <!-- <li class="list-inline-item"><a href=""><img src="./index_files/user.png" alt="">My Account</a></li> -->
                                 <li class="list-inline-item"><a href="cart.php" class="cart"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#handbag"/></svg><span id="count">0</span></a></li>
-                                <li class="list-inline-item"><a href="signup.php"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#clipboard"/></svg> SignUp</a></li>
-                                <li class="list-inline-item"><a href="login.php"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#lock"/></svg>Login</a></li>
+                                <?php if(isset($_SESSION['id'])): ?>
+                                    <li class="list-inline-item"><a href="logout.php">Logout</a></li>
+
+                                <?php else : ?>
+                                    <li class="list-inline-item"><a href="signup.php"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#clipboard"/></svg> SignUp</a></li>
+                                    <li class="list-inline-item"><a href="login.php"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#lock"/></svg>Login</a></li>
+                                <?php endif ?>
+
+                                
                             </ul>
                         </div>
                     </div>

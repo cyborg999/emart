@@ -189,10 +189,12 @@
                           __listen();
                       }
 
+                      grandTotal = total + shippingTotal + taxTotal;
+                      
                       $("#total").html("₱" + total);
                       $("#shipping").html("₱" + shippingTotal);
                       $("#tax").html("₱" + taxTotal);
-                      $("#grandTotal").html( "₱" + (total + shippingTotal + taxTotal));
+                      $("#grandTotal").html( "₱" + (grandTotal));
                       hidePreloader();
                     }
                   });

@@ -65,6 +65,54 @@ class Model {
 		$this->getCartItemsListener();
 		$this->updateGlobalFeeListener();
 		$this->checkoutListener();
+		$this->checkoutPayListener();
+	}
+
+	public function checkoutPayListener(){
+		if(isset($_POST['checkoutPay'])){
+
+			oppd();
+			$transactionId = $this->addTransaction();
+			$this->addCartDetails($transactionId);
+			$this->addCartProducts($transactionId);
+		}
+	}
+
+	protected function addCartProducts($transactionId){
+		if(isset($_SESSION['cart']['products'])){
+			foreach($_SESSION['cart']['products'] as $idx => $p){
+				$sql = "
+					INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid)
+					VALUES(?,?,?,?,?,?,?)	
+				";			
+				$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId));
+			}
+
+		}
+
+		return $this;
+	}
+
+	protected function addCartDetails($transactionId){
+		$sql = "
+			INSERT INTO cart_details(transactionid,userid,firstname,lastname,address,contact,email,instruction,total,tax_total,grand_total,shipping_total)
+			VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+		";
+
+		$this->db->prepare($sql)->execute(array($transactionId,$_SESSION['id'],$_POST['firstname'],$_POST['lastname'],$_POST['address'],$_POST['contact'],$_POST['email'],$_SESSION['cart']['instruction'],$_SESSION['cart']['total'],$_SESSION['cart']['taxTotal'],$_SESSION['cart']['grandTotal'],$_SESSION['cart']['shippingTotal']));
+
+		return $this;
+	}
+
+	protected function addTransaction(){
+		$sql = "
+			INSERT INTO transaction(userid,total)
+			VALUES(?,?)
+		";
+
+		$this->db->prepare($sql)->execute(array($_SESSION['id'], $_SESSION['cart']['total']));
+
+		return $this->db->lastInsertId();
 	}
 
 	public function checkoutListener(){
