@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <?php include_once "./head.php"; ?>
+<body>
+    <?php include_once "./nav.php"; ?>
+    <main>
+        <section class="sec1">
+            <article class="container">
+                <?php
+                    $store = $model->getStoreById($_GET['id']);
+                    $products = $model->getProductsByStoreId($_GET['id']);
+                    // op($store);
+                ?>
+                <style type="text/css">
+                    h1 {
+                        text-align: center;
+                        line-height: 1;
+                        padding: 0;
+                        margin: 0;
+                        font-weight: 700;
+                    }
+                    #storeLogo {
+                        width: auto;
+                        height: 100px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+                    i {
+                        text-align: center;
+                        font-size: 16px;
+                        display: block;
+                    }
+                
+                    .products {
+                          display: flex;
+                          flex-direction: row;
+                          justify-content: space-around;
+                      }
+                     .product {
+                      display: block;
+                      width: 20%;
+                      position: relative;
+                      background: #f6f6f6;
+                      padding: 0;
+                      margin: 5px 0px;
+                      box-sizing: border-box;
+                     }
+                     .product .img {
+                      height: auto;
+                      max-height: 250px;
+                      display: block;
+                      margin: 0 auto;
+                     }
+                    .product .content {
+                      position: absolute;
+                      display: none;
+                      width: 100%;
+                      height: 100%;
+                      bottom: 0;
+                      left: 0;
+                      background: rgba(0,0,0,.5);
+                     }
+                     .product:hover .content {
+                      display: block;
+                     }
+                     a.view {
+                      padding: 6px 0;
+                      color: white;
+                      text-decoration: none;
+                      border: 0;
+                      border-radius: 5px;
+                      font-size: 20px;
+                      text-transform: uppercase;
+                      font-weight: 600;
+                      text-align: center;
+                      background: #5677fc;
+                      display: block;
+                      width: 200px;
+                      margin: 42% auto 0;
+                     }
+                     .bottom-content {
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: space-around;
+                      padding: 5px;
+                      box-sizing: border-box;
+                      background: white;
+                      margin-bottom: 0px;
+                     }
+                     .bottom-content h4 {
+                          display: block;
+                          position: relative;
+                          overflow: hidden;
+                          line-height: 1;
+                          font-size: 18px;
+                          margin: 0;
+                          font-size: 20px;
+                     }
+                     .bottom-content em {
+                          font-size: 18px;
+                          font-style: normal;
+                          font-weight: 600;
+                          color: #5677fc;
+                          margin: 0;
+                          line-height: 1;
+                     }
+                     .rating {
+                      display: flex;
+                      width: 100px;
+                      margin: 10px auto;
+                      flex-direction: row;
+                      justify-content: space-around;
+                     }
+                     .rate {
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      width: 50%;
+                      text-align: center;
+                     }
+                     .rate a {
+                      display: block;
+                      margin: 0 auto;
+                      text-align: center;
+                     }
+                     .rate label {
+                      text-align: center;
+                      font-size: 16px;
+                      display: block;
+                      font-weight: 800;
+                     }
+                     .rate.active a {
+                      color: blue;
+                     }
+                </style>
+                <br>
+                <br>
+                <figure id="storeLogo" style="background-image:url(<?= ($store) ? $store['logo'] : '';?>);"></figure>
+                <h1><?= ($store) ? $store['name'] : '';?></h1>
+                <i><?= ($store) ? $store['description'] : '';?></i>
+                <br>
+                <div class="rating">
+                  <div class="rate active">
+                    <a href="" class=""><svg class="bi float-right gear" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-down"/></svg></a>
+                    <label>101</label>
+                  </div>
+                  <div class="rate">
+                    <a href="" class=""><svg class="bi float-right gear" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up"/></svg></a>
+                    <label>101</label>
+                  </div>
+                </div>
+                <hr>
+
+            </article>
+            <article class="container">
+                <div class="row products">
+                    <?php 
+                    // op($products);
+
+                    foreach($products as $idx => $p): ?>
+                      <div class="product">
+                          <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"/>
+                          <div class="content">
+                              <a href="productdetail.php?id=<?= $p['id'];?>" class="view">View Product</a>
+                          </div>
+                          <div class="bottom-content">
+                              <em><?= $p['name'];?></em>
+                              <h4>₱<?= $p['price'];?></h4>
+                          </div>
+                      </div>
+                     <?php endforeach ?>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- start tpl -->
+    <script type="text/html" id="tpl">
+ 
+    </script>
+    <?php include "./foot.php"; ?>
+    <script type="text/javascript">
+        (function($){
+            $(document).ready(function(){
+                
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>

@@ -110,7 +110,7 @@
                     </div>
                     <div class="col-sm-6">
                         <h1><?= $product['name'];?></h1>
-                        <p>by: <a href="./store?id=<?= $product['storeid'];?>"><?= $product['storename'];?></a></p>
+                        <p>by: <a href="./shop.php?id=<?= $product['storeid'];?>"><?= $product['storename'];?></a></p>
                         <figure class="star_rating"></figure>
                         <ul class="star_rating">
                             <?php for($i = 1;$i<=5;$i++) : ?>

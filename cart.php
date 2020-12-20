@@ -28,6 +28,13 @@
           th div {
             text-align: center;
           }
+          .please {
+            font-size: 16px;
+          }
+          .please a {
+            font-size: 16px;
+            color: #0072ff;
+          }
         </style>
 
         <div class="pb-5">
@@ -97,7 +104,13 @@
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
                       <h5 class="font-weight-bold" id="grandTotal">0.00</h5>
                     </li>
-                  </ul><a href="#" id="checkout" class="btn btn-warning rounded-pill py-2 btn-block">Proceed to checkout</a>
+                  </ul>
+                  <?php if(isset($_SESSION['id'])): ?>
+                    <a href="#" id="checkout" class="btn btn-warning rounded-pill py-2 btn-block">Proceed to checkout</a>
+                  <?php else: ?>
+                    <p class="please">Please <a href="./login.php">login</a> first to proceed to checkout.</p>
+                  <?php endif ?>
+
                 </div>
               </div>
             </div>

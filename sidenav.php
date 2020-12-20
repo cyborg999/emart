@@ -1,3 +1,12 @@
+<?php
+  //restrict acccess to page if not logged in
+  if(!isset($_SESSION['id'])){
+    header("Location:logout.php");
+  }
+  if($_SESSION['usertype'] != "merchant"){
+    header("Location:logout.php");
+  }
+?>
 <style type="text/css">
   .profile-pic {
     /*  background: url(./node_modules/bootstrap-icons/icons/person.svg);
@@ -56,7 +65,6 @@
   </div>
  -->
 
-
   <div class="card">
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
@@ -81,13 +89,40 @@
     </div>
   </div>
 
+<div class="card">
+    <div class="card-header" id="headingFive">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          <svg class="bi" width="15" height="15" fill="currentColor">
+            <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> 
+                    Orders
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseFive" class="collapse <?=($active =='order') ? 'show' : ''; ?>" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  <ul class="sublist">
+                    <li>
+                      <a href="globalfees.php">New</a>
+                    </li>
+                     <li>
+                      <a href="globalfees.php">Pending</a>
+                    </li>
+                    <li>
+                      <a href="globalfees.php">Completed</a>
+                    </li>
+                  </ul>
+                </div>
+        </div>
+      </div>
+      
 
   <div class="card">
     <div class="card-header" id="headingFour">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
           <svg class="bi" width="15" height="15" fill="currentColor">
-  <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> 
+            <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> 
           Settings
         </button>
       </h2>
@@ -96,12 +131,20 @@
       <div class="card-body">
         <ul class="sublist">
           <li>
+            <a href="store.php">Store</a>
+          </li>
+          <li>
             <a href="globalfees.php">Global Fee</a>
+          </li>
+           <li>
+            <a href="shipping.php">Shipping Details</a>
           </li>
         </ul>
       </div>
     </div>
   </div>
+
+  
 
 
 </div>

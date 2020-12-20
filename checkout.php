@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
     <?php include_once "./head.php"; ?>
+    <?php
+      if(!isset($_SESSION['cart'])){
+        header("Location:login.php");
+      }
+      if(!isset($_SESSION['id'])){
+        header("Location:login.php");
+      }
+    ?>
 <body>
     <?php include_once "./nav.php"; ?>
     <main>
@@ -8,10 +16,6 @@
     		<article class="container">
     			<div class="row">
     				<div class="col-sm">
-    					<?php
-    						// op($_SESSION['cart']);
-
-    					?>
           <form action="charge.php" method="post" id="payment-form">
           <!-- <form class="needs-validation" method="post"> -->
     					<div class="row">
@@ -93,12 +97,15 @@
                   </div>
                   <div class="col-md-7 order-md-1">
                     <br>
+                    <?php
+                      $profile = $model->getUserProfile();
+                    ?>
                     <h4 class="mb-3">Billing address</h4>
                       <input type="hidden" name="checkoutPay" value="true">
                       <div class="row">
                         <div class="col-md-6 mb-3">
                           <label for="firstName">First name</label>
-                          <input type="text" class="form-control" id="firstName" placeholder="" value="" name="firstname" required>
+                          <input type="text" class="form-control" id="firstName" placeholder="" value="<?= (isset($profile['fullname'])) ? $profile['fullname'] : ''; ?>" name="firstname" required>
                           <div class="invalid-feedback">
                             Valid first name is required.
                           </div>
@@ -113,21 +120,21 @@
                       </div>
                       <div class="mb-3">
                         <label for="address">Delivery Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required name="address">
+                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" value="<?= (isset($profile['address'])) ? $profile['address'] : ''; ?>" required name="address">
                         <div class="invalid-feedback">
                           Please enter your shipping address.
                         </div>
                       </div>
                       <div class="mb-3">
                         <label for="address">Contact #</label>
-                        <input type="text" class="form-control" id="contact" placeholder="Mobile #" required name="contact">
+                        <input type="text" class="form-control" id="contact" placeholder="Mobile #" required value="<?= (isset($profile['contact'])) ? $profile['contact'] : ''; ?>" name="contact">
                         <div class="invalid-feedback">
                           Please enter your shipping address.
                         </div>
                       </div>
                       <div class="mb-3">
                         <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email">
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com" value="<?= (isset($profile['email'])) ? $profile['email'] : ''; ?>" name="email">
                         <div class="invalid-feedback">
                           Please enter a valid email address for shipping updates.
                         </div>

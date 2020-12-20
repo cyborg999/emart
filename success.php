@@ -36,7 +36,7 @@
 			        		timer(counter);
 			        	} else {
 			        		clearTimeout(timer);
-			        		window.location = "account.php";
+			        		window.location = "pending.php";
 			        	}
 
 

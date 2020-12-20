@@ -92,7 +92,7 @@
 						data : { 
 							updateSlideStatus : true,
 							id : me.val(),
-							status : checked
+							status : (checked) ? 1 : 0
 						},
 						type : "post",
 						dataType : "json",

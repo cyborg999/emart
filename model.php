@@ -66,6 +66,59 @@ class Model {
 		$this->updateGlobalFeeListener();
 		$this->checkoutListener();
 		$this->checkoutPayListener();
+		$this->updateShippingDetailsListener();
+		$this->updateStoreListener();
+	}
+
+	public function updateStoreListener(){
+		if(isset($_POST['updateStore'])){
+			$files = $_FILES['storelogo']['tmp_name'];
+
+			if($files != ""){
+
+				//start
+				$merchantPath = 'uploads/merchant/'.$_SESSION['storeid']."/logo/";
+				
+			
+				if(!file_exists($merchantPath)){
+					mkdir($merchantPath,0777,true);
+				}
+
+				$folder_name = $merchantPath;
+
+				 $temp_file = $_FILES['storelogo']['tmp_name'];
+				 $ext = strtolower(pathinfo($_FILES["storelogo"]["name"],PATHINFO_EXTENSION));
+				 $newName = md5($_FILES['storelogo']['name']) .".".$ext;
+				 $location = $folder_name . $newName;
+
+				 if(move_uploaded_file($temp_file, $location)){
+				 	$sql = "
+						UPDATE store
+						SET description = ?, logo = ?
+						WHERE id = ?
+					";
+
+					$this->db->prepare($sql)->execute(array($_POST['description'], $location, $_SESSION['storeid']));
+
+					$this->success = "You have succesfully updated your store.";
+				}
+
+			} else {
+				$sql = "
+					UPDATE store
+					SET description = ?
+					WHERE id = ?
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['description'], $_SESSION['storeid']));
+
+				$this->success = "You have succesfully updated your store.";
+			}
+
+		}
+
+		return $this;
+
 	}
 
 	public function checkoutPayListener(){
@@ -123,6 +176,46 @@ class Model {
 		}
 	}
 
+	public function updateShippingDetailsListener() {
+		if(isset($_POST['updateShippingDetails'])){
+			$exists = $this->getGlobalFees();
+
+			if(!$exists){
+				$sql = "
+					INSERT INTO fees(storeid,shipping_details)
+					VALUES(?,?)
+				";	
+
+				$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['details']));
+
+				$this->success = "You have succesfully added this record";
+			} else {
+				$sql = "
+					UPDATE fees
+					SET shipping_details = ?
+					WHERE storeid = ?
+				";	
+
+				$this->db->prepare($sql)->execute(array($_POST['details'],$_SESSION['storeid']));
+
+				$this->success = "You have succesfully updated this record";
+			}
+
+			return $this;
+		}			
+	}
+
+	public function getGlobalFees(){
+		$sql = "
+			SELECT *
+			FROM fees
+			WHERE storeid = ".$_SESSION['storeid']."
+			LIMIT 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
 	public function updateGlobalFeeListener(){
 		if(isset($_POST['updateGlobalFee'])){
 			if(!is_numeric($_POST['shipping'])){
@@ -133,14 +226,29 @@ class Model {
 			}
 
 			if(!count($this->errors)){
-				$sql = "
-					INSERT INTO fees(storeid,shipping,tax)
-					VALUES(?,?,?)
-				";	
+				$exists = $this->getGlobalFees();
 
-				$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['shipping'],$_POST['tax']));
+				if(!$exists){
+					$sql = "
+						INSERT INTO fees(storeid,shipping,tax)
+						VALUES(?,?,?)
+					";	
 
-				$this->success = "You have succesfully added this record";
+					$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['shipping'],$_POST['tax']));
+
+					$this->success = "You have succesfully added this record";
+				} else {
+					$sql = "
+						UPDATE fees
+						SET shipping = ?, tax = ?
+						WHERE storeid = ?
+					";	
+
+					$this->db->prepare($sql)->execute(array($_POST['shipping'],$_POST['tax'],$_SESSION['storeid']));
+
+					$this->success = "You have succesfully updated this record";
+				}
+			
 			}
 
 			return $this;
@@ -253,6 +361,20 @@ class Model {
 			$count = $this->getReviewCountByProductId($_POST['id']);
 			die(json_encode(array($count)));
 		}
+	}
+
+	public function getProductsByStoreId($id){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename'
+			FROM productt t1
+			LEFT JOIN media t2
+			ON t1.id = t2.productid
+			WHERE t2.active = 1
+			AND t1.storeid = $id
+			LIMIT 100
+		";
+
+		return $this->db->query($sql)->fetchAll();
 	}
 
 	public function getProductById($id){
@@ -1281,6 +1403,89 @@ class Model {
 		}
 	}
 
+	public function getMediaById($id){
+		$sql = "
+			SELECT *
+			FROM media
+			WHERE productid = $id
+			AND active = 1 
+			LIMIT 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getCartDetailByTransactionId($id){
+		$sql = "
+			SELECT *
+			FROM cart_details
+			WHERE transactionid = $id
+			LIMIT 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getCartItemsByTransactionId($id){
+		$sql = "
+			SELECT t1.*, t3.storeid, t3.name as 'productname'
+			FROM cart t1
+			LEFT JOIN productt t3 
+			ON t1.productid = t3.id
+			WHERE t1.transactionid = $id
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getCartByTransactionId($id){
+		$sql = "
+			SELECT t1.*,t2.name as 'filename', t3.storeid, t3.name as 'productname'
+			FROM cart t1
+			LEFT JOIN media t2
+			ON t1.productid = t2.productid
+			LEFT JOIN productt t3 
+			ON t1.productid = t3.id
+			WHERE t1.transactionid = $id
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getUserTransaction($status){
+		$sql = "
+			SELECT t1.*
+			FROM transaction t1
+			WHERE t1.status = '$status'
+			AND t1.userid = ".$_SESSION['id']."
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getTransactionByStatus($status, $count = false){
+		if($count) {
+			$sql = "
+				SELECT count(t1.id) as 'total'
+				FROM transaction t1
+				WHERE t1.status = '$status'
+			";
+			return $this->db->query($sql)->fetch();
+		} else {
+			$sql = "
+				SELECT t1.*
+				FROM cart t1
+				LEFT JOIN transaction t2
+				ON t1.transactionid = t2.id
+				LEFT JOIN cart_details t3
+				ON t2.id = t3.transactionid
+				WHERE t2.status = '$status'
+			";
+
+			return $this->db->query($sql)->fetchAll();
+		}
+	}
+
 	public function getUserProfile(){
 		$sql = "
 			SELECT *
@@ -1678,6 +1883,17 @@ class Model {
 		$data = $this->db->query($sql)->fetch();
 
 		return $effectiveDate = date('Y-m-d', strtotime("+".$data['duration']." months", strtotime($data['captured_at'])));
+	}
+
+	public function getStoreById($id){
+		$sql = "
+			SELECT *
+			FROM store
+			WHERE id = $id
+			LIMIT 1
+		";
+
+		return $this->db->query($sql)->fetch();
 	}
 
 	public function checkIfPayed(){
