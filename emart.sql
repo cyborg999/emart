@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2020 at 08:21 PM
+-- Generation Time: Dec 26, 2020 at 01:38 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -35,10 +35,30 @@ CREATE TABLE `cart` (
   `quantity` int(11) NOT NULL,
   `shipping` float NOT NULL,
   `tax` float NOT NULL,
-  `instruction` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
   `transactionid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_details`
+--
+
+CREATE TABLE `cart_details` (
+  `id` int(11) NOT NULL,
+  `transactionid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `instruction` varchar(255) NOT NULL,
+  `total` float NOT NULL,
+  `tax_total` float NOT NULL,
+  `grand_total` float NOT NULL,
+  `shipping_total` float NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,7 +87,8 @@ INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `isactive`) VALUES
 (27, 'Kids & Babies', 'parent', 0, 1),
 (28, 'Health & Beauty', 'parent', 0, 1),
 (29, 'Automobiles', 'parent', 0, 1),
-(30, 'Sports', 'parent', 0, 1);
+(30, 'Sports', 'parent', 0, 1),
+(32, 'test', 'parent', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -81,15 +102,40 @@ CREATE TABLE `fees` (
   `shipping` float NOT NULL,
   `tax` float NOT NULL,
   `productid` int(11) DEFAULT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `shipping_details` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `fees`
 --
 
-INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_created`) VALUES
-(1, 35, 5, 10, NULL, '2020-12-15 14:01:55');
+INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_created`, `shipping_details`) VALUES
+(2, 37, 5, 12, NULL, '2020-12-19 03:02:27', NULL),
+(7, 35, 0, 0, NULL, '2020-12-19 23:37:57', '5 to 7 business days.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `storeid` int(11) NOT NULL,
+  `liked` int(11) NOT NULL DEFAULT 0,
+  `dislike` int(11) NOT NULL DEFAULT 0,
+  `userid` int(11) NOT NULL,
+  `date_created` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`id`, `storeid`, `liked`, `dislike`, `userid`, `date_created`) VALUES
+(2, 37, 1, 0, 52, '2020-12-22 10:45:22'),
+(3, 37, 0, 1, 53, '2020-12-22 10:45:22');
 
 -- --------------------------------------------------------
 
@@ -162,7 +208,23 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (55, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-13 06:51:17', 34, 0),
 (56, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 35, '2020-12-13 06:51:17', 34, 0),
 (57, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-13 06:51:17', 34, 1),
-(58, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-13 06:51:18', 34, 0);
+(58, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-13 06:51:18', 34, 0),
+(59, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 37, '2020-12-19 03:01:31', 35, 0),
+(60, 'e260b9bc6e950293d73b0775d3548998.jpg', 37, '2020-12-19 03:01:31', 35, 0),
+(61, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 37, '2020-12-19 03:01:31', 35, 1),
+(62, '4718599b5374d058571a331d43e2ab5f.jpg', 37, '2020-12-19 03:01:31', 35, 0),
+(63, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 37, '2020-12-19 03:01:31', 35, 0),
+(64, 'e260b9bc6e950293d73b0775d3548998.jpg', 37, '2020-12-19 03:02:56', 36, 0),
+(65, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 37, '2020-12-19 03:02:56', 36, 0),
+(66, '4718599b5374d058571a331d43e2ab5f.jpg', 37, '2020-12-19 03:02:56', 36, 0),
+(67, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 37, '2020-12-19 03:02:56', 36, 1),
+(68, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-19 12:30:23', 37, 0),
+(69, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-19 12:30:23', 37, 0),
+(70, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-19 12:30:24', 37, 1),
+(71, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 35, '2020-12-19 12:30:55', 38, 0),
+(72, 'e260b9bc6e950293d73b0775d3548998.jpg', 35, '2020-12-19 12:30:55', 38, 1),
+(73, '4718599b5374d058571a331d43e2ab5f.jpg', 35, '2020-12-19 12:30:56', 38, 0),
+(74, 'ccb25368f6e0c5f6f3930ff9f9bd6bb7.jpg', 35, '2020-12-19 12:30:56', 38, 0);
 
 -- --------------------------------------------------------
 
@@ -177,17 +239,9 @@ CREATE TABLE `payments` (
   `currency` varchar(255) NOT NULL,
   `payment_status` varchar(255) NOT NULL,
   `captured_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `userid` int(11) DEFAULT NULL
+  `userid` int(11) DEFAULT NULL,
+  `payment_for` varchar(255) DEFAULT 'ecommerce'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `payment_id`, `amount`, `currency`, `payment_status`, `captured_at`, `userid`) VALUES
-(11, 'ch_1HuBIbJmfnsrzK57UqMzcfqG', 1800.00, 'PHP', 'Captured', '2020-12-03 15:28:21', 37),
-(12, 'ch_1HuBMhJmfnsrzK5769NNWqzx', 1800.00, 'PHP', 'Captured', '2020-12-03 15:32:33', 37),
-(13, 'ch_1HuBTwJmfnsrzK573SpNZBoV', 3000.00, 'PHP', 'Captured', '2020-12-03 15:40:03', 37);
 
 -- --------------------------------------------------------
 
@@ -253,7 +307,10 @@ INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`
 (31, 23, 'Black Polo', 78, 'Polo', 544, 0, '2020-12-13 06:50:35', 35, 'sadsadsa', 34, 1),
 (32, 23, 'Red Polo', 78, 'Polo', 544, 0, '2020-12-13 06:50:55', 35, 'sadsadsa', 34, 1),
 (33, 23, 'Blue Polo', 78, 'Polo', 544, 0, '2020-12-13 06:51:03', 35, 'sadsadsa', 34, 1),
-(34, 23, 'Gray Sweater', 78, 'Polo', 544, 0, '2020-12-13 06:51:17', 35, 'sadsadsa', 34, 1);
+(34, 23, 'Gray Sweater', 78, 'Polo', 544, 0, '2020-12-13 06:51:17', 35, 'sadsadsa', 34, 1),
+(36, 23, 'test product', 786, 'brand', 34345, 0, '2020-12-19 03:02:55', 37, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor ', 45, 1),
+(37, 23, 'tst', 345, '46', 4, 0, '2020-12-19 12:30:22', 35, '54645', 453, 1),
+(38, 23, '45645', 456, '45', 46, 0, '2020-12-19 12:30:55', 35, '456', 65464, 1);
 
 -- --------------------------------------------------------
 
@@ -316,7 +373,8 @@ INSERT INTO `rating` (`id`, `productid`, `userid`, `rating`, `date_added`, `comm
 (15, 29, 46, 2, '2020-12-13 02:48:41', 'last'),
 (16, 29, 46, 2, '2020-12-13 02:50:33', 'FASDA'),
 (17, 29, 52, 5, '2020-12-13 06:08:40', 'asdsad'),
-(18, 33, 52, 3, '2020-12-16 18:10:56', 'test');
+(18, 33, 52, 3, '2020-12-16 18:10:56', 'test'),
+(19, 36, 56, 3, '2020-12-19 03:14:55', 'sadsadsad');
 
 -- --------------------------------------------------------
 
@@ -386,7 +444,8 @@ CREATE TABLE `slides` (
 --
 
 INSERT INTO `slides` (`id`, `title`, `content`, `status`, `photo`, `date_created`, `type`) VALUES
-(27, 'Banner 1', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, './uploads/merchant/20/banner1.jpg', '2020-12-10 15:11:13', 'slider');
+(27, 'Banner 1', 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen', 1, './uploads/merchant/20/banner1.jpg', '2020-12-10 15:11:13', 'slider'),
+(30, '', 'slide2', 1, './uploads/merchant/20/banner3.webp', '2020-12-19 03:11:07', 'slider');
 
 -- --------------------------------------------------------
 
@@ -425,7 +484,11 @@ INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid
 (32, 'eMart', NULL, NULL, '2020-12-13 02:55:20', 48, NULL, NULL),
 (33, 'user6store', NULL, NULL, '2020-12-13 02:56:51', 49, NULL, NULL),
 (34, 'user7store', NULL, NULL, '2020-12-13 03:15:25', 50, NULL, NULL),
-(35, 'Merchant Store', NULL, NULL, '2020-12-13 06:36:50', 53, NULL, NULL);
+(35, 'Merchant Store', 'test', 'uploads/merchant/35/logo/e5c2e11ebd34bfad91451c5d618f39eb.png', '2020-12-13 06:36:50', 53, NULL, NULL),
+(36, 'test stre', NULL, NULL, '2020-12-19 02:08:56', 54, NULL, NULL),
+(37, 'Lazada', NULL, NULL, '2020-12-19 02:59:52', 55, NULL, NULL),
+(38, 'Shopee', NULL, NULL, '2020-12-24 04:24:08', 58, 36, NULL),
+(39, 'store2', 'MRC toda moon', 'uploads/merchant/39/logo/b9fb9d37bdf15a699bc071ce49baea53.jpg', '2020-12-24 12:21:42', 59, 36, NULL);
 
 -- --------------------------------------------------------
 
@@ -454,11 +517,13 @@ INSERT INTO `subscription` (`id`, `duration`, `cost`, `active`, `title`, `captio
 (27, 23, 23, 1, 'q', '3', 1),
 (28, 234, 242, 1, '4', '2344', 1),
 (29, 234, 324, 1, '34', '42', 1),
-(30, 3, 600, 1, 'Plan #1', '3 Months', 0),
-(31, 1, 800, 1, 'Plan #2', '1 Month', 0),
-(32, 6, 500, 1, 'Plan #3', '6 Months', 0),
-(33, 12, 450, 0, 'Plan #4', '1 Year', 0),
-(34, 7, 550, 0, 'Plan #5', '7 Months', 0);
+(30, 3, 600, 1, 'Plan #1', '3 Months', 1),
+(31, 1, 800, 1, 'Plan #2', '1 Month', 1),
+(32, 6, 500, 1, 'Plan #3', '6 Months', 1),
+(33, 12, 450, 0, 'Plan #4', '1 Year', 1),
+(34, 7, 550, 0, 'Plan #5', '7 Months', 1),
+(35, 3, 100, 1, 'test', '3 months', 0),
+(36, 435, 678567, 1, 'dfsa', '45', 0);
 
 -- --------------------------------------------------------
 
@@ -470,7 +535,8 @@ CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `total` float NOT NULL
+  `total` float NOT NULL,
+  `status` varchar(255) DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -485,17 +551,24 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `usertype` varchar(255) NOT NULL DEFAULT 'merchant',
   `verified` tinyint(1) NOT NULL DEFAULT 0,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_created`) VALUES
-(36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55'),
-(52, 'client1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2020-12-13 05:44:54'),
-(53, 'merchant1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2020-12-13 06:36:49');
+INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_created`, `photo`) VALUES
+(36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55', 'uploads/user/20/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
+(52, 'client1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2020-12-13 05:44:54', 'uploads/user//profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
+(53, 'merchant1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2020-12-13 06:36:49', NULL),
+(54, 'test', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2020-12-19 02:08:55', NULL),
+(55, 'testuser1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2020-12-19 02:59:52', NULL),
+(56, 'customer2', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2020-12-19 03:03:50', NULL),
+(57, 'store1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2020-12-24 04:23:33', NULL),
+(58, 'store1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2020-12-24 04:24:08', NULL),
+(59, 'store2', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 1, '2020-12-24 12:21:41', 'uploads/user/39/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg');
 
 -- --------------------------------------------------------
 
@@ -520,16 +593,22 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`, `date_created`, `userid`, `photo`) VALUES
-(23, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-04 12:48:18', 46, NULL),
-(24, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-04 12:52:21', 47, NULL),
-(25, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-05 19:12:46', 36, NULL),
-(26, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 02:55:20', 48, NULL),
-(27, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 02:56:51', 49, NULL),
-(28, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 03:15:25', 50, NULL),
-(29, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 05:34:25', 51, NULL),
-(30, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 05:43:18', 0, NULL),
-(31, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 05:44:54', 52, NULL),
-(32, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '0111-11-11', '2020-12-13 06:36:50', 53, NULL);
+(23, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-04 12:48:18', 46, NULL),
+(24, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-04 12:52:21', 47, NULL),
+(25, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-05 19:12:46', 36, NULL),
+(26, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-13 02:55:20', 48, NULL),
+(27, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-13 02:56:51', 49, NULL),
+(28, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-13 03:15:25', 50, NULL),
+(29, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-13 05:34:25', 51, NULL),
+(30, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-13 05:43:18', 0, NULL),
+(31, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-13 05:44:54', 52, NULL),
+(32, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-13 06:36:50', 53, NULL),
+(33, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-19 02:08:56', 54, NULL),
+(34, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-19 02:59:52', 55, NULL),
+(35, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-19 03:03:50', 56, NULL),
+(36, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-24 04:23:33', 57, NULL),
+(37, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-24 04:24:08', 58, NULL),
+(38, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '111', 'sad@mail.com', '0111-11-11', '2020-12-24 12:21:42', 59, NULL);
 
 -- --------------------------------------------------------
 
@@ -565,6 +644,12 @@ ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cart_details`
+--
+ALTER TABLE `cart_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -574,6 +659,12 @@ ALTER TABLE `category`
 -- Indexes for table `fees`
 --
 ALTER TABLE `fees`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -674,31 +765,43 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `cart_details`
+--
+ALTER TABLE `cart_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `fees`
 --
 ALTER TABLE `fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `production`
@@ -710,7 +813,7 @@ ALTER TABLE `production`
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -722,7 +825,7 @@ ALTER TABLE `purchase`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -740,37 +843,37 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `subscription`
 --
 ALTER TABLE `subscription`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `vendor`
