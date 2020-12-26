@@ -14,7 +14,7 @@
 			        		unset($_SESSION['cart']);
 			        	}
 			        ?>
-			        <p>Payment was successful! You can check your order <a href="pending.php">here</a></p>
+			        <p>Payment was successful! You have succesfully verified your account.</p>
 			        <hr>
 			        <p id="redirect">Redirecting in <span>3</span>.....</p>
   				</div>
@@ -36,7 +36,7 @@
 			        		timer(counter);
 			        	} else {
 			        		clearTimeout(timer);
-			        		window.location = "pending.php";
+			        		window.location = "dashboard.php";
 			        	}
 
 

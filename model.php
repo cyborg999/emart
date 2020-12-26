@@ -68,6 +68,116 @@ class Model {
 		$this->checkoutPayListener();
 		$this->updateShippingDetailsListener();
 		$this->updateStoreListener();
+		$this->likeShopListener();
+		$this->addStoreSubscriptionListener();
+		$this->codPaymentListener();
+	}
+
+	public function codPaymentListener(){
+		if(isset($_POST['codPayment'])){
+			$sql = "INSERT INTO payments(payment_id, amount, currency, payment_status,userid) VALUES(?,?,?,?,?)
+                          ";
+
+          	$this->db->prepare($sql)->execute(array("COD", $_POST['amount'], 'PHP', 'Pending', $_SESSION['id']));
+
+          	//add transaction
+			$sql = "
+			  INSERT INTO transaction(userid,total)
+			  VALUES(?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_SESSION['id'], $_SESSION['cart']['total']));
+			$transactionId = $this->db->lastInsertId();
+
+			//add cart detail
+			$sql = "
+			  INSERT INTO cart_details(transactionid,userid,fullname,address,contact,email,instruction,total,tax_total,grand_total,shipping_total)
+			  VALUES(?,?,?,?,?,?,?,?,?,?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($transactionId,$_SESSION['id'],$_POST['fullname'],$_POST['address'],$_POST['contact'],$_POST['email'],$_SESSION['cart']['instruction'],$_SESSION['cart']['total'],$_SESSION['cart']['taxTotal'],$_SESSION['cart']['grandTotal'],$_SESSION['cart']['shippingTotal']));
+
+			//add cart products
+			if(isset($_SESSION['cart']['products'])){
+				foreach($_SESSION['cart']['products'] as $idx => $p){
+				  $sql = "
+				      INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid)
+				      VALUES(?,?,?,?,?,?,?)   
+				  ";          
+				  $this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId));
+				}
+			}
+
+			header("Location: success.php");
+		}
+	}
+
+	public function addStoreSubscriptionListener(){
+		if(isset($_POST['addStoreSubscription'])){
+			$_SESSION['setup']['subscriptionId'] = $_POST['subscriptionId'];
+			
+			die(json_encode(array("added" => true)));
+		}
+	}
+
+	public function likeShopListener(){
+		if(isset($_POST['likeShop'])){
+			// oppd();
+			$userid = $_POST['userid'];
+			$storeId = $_POST['storeid'];
+
+			$sql = "
+				SELECT *
+				FROM likes
+				WHERE userid = $userid
+				AND storeid = $storeId
+				LIMIT 1
+			";
+
+			$exists = $this->db->query($sql)->fetch();
+
+			if($exists){
+				if($_POST['like'] == "disliked"){
+					$sql = "
+						UPDATE likes
+						SET dislike = 1, liked = 0
+						WHERE userid = ?
+						AND storeid = ?
+					";
+				} else {
+					$sql = "
+						UPDATE likes
+						SET dislike = 0, liked = 1
+						WHERE userid = ?
+						AND storeid = ?
+					";
+				}
+
+				$this->db->prepare($sql)->execute(array($_POST['userid'], $_POST['storeid']));
+				
+			} else {
+				if($_POST['like'] == "disliked"){
+					$sql = "
+						INSERT INTO likes(storeid,liked,dislike,userid)
+						VALUES(?,?,?,?)
+					";
+					$this->db->prepare($sql)->execute(array($_POST['storeid'], 0, 1, $_POST['userid'], ));
+				} else {
+					$sql = "
+						INSERT INTO likes(storeid,liked,dislike,userid)
+						VALUES(?,?,?,?)
+					";
+					$this->db->prepare($sql)->execute(array($_POST['storeid'], 1, 0, $_POST['userid'], ));
+				}
+			}
+
+			$data = array(
+				"liked" => count($this->getLikesByStoreId($_POST['storeid'])),
+				"disliked" => count($this->getLikesByStoreId($_POST['storeid'],true))
+			);
+
+			die(json_encode(array($data)));
+		}
 	}
 
 	public function updateStoreListener(){
@@ -148,11 +258,11 @@ class Model {
 
 	protected function addCartDetails($transactionId){
 		$sql = "
-			INSERT INTO cart_details(transactionid,userid,firstname,lastname,address,contact,email,instruction,total,tax_total,grand_total,shipping_total)
-			VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+			INSERT INTO cart_details(transactionid,userid,fullname,address,contact,email,instruction,total,tax_total,grand_total,shipping_total)
+			VALUES(?,?,?,?,?,?,?,?,?,?,?)
 		";
 
-		$this->db->prepare($sql)->execute(array($transactionId,$_SESSION['id'],$_POST['firstname'],$_POST['lastname'],$_POST['address'],$_POST['contact'],$_POST['email'],$_SESSION['cart']['instruction'],$_SESSION['cart']['total'],$_SESSION['cart']['taxTotal'],$_SESSION['cart']['grandTotal'],$_SESSION['cart']['shippingTotal']));
+		$this->db->prepare($sql)->execute(array($transactionId,$_SESSION['id'],$_POST['fullname'],$_POST['address'],$_POST['contact'],$_POST['email'],$_SESSION['cart']['instruction'],$_SESSION['cart']['total'],$_SESSION['cart']['taxTotal'],$_SESSION['cart']['grandTotal'],$_SESSION['cart']['shippingTotal']));
 
 		return $this;
 	}
@@ -361,6 +471,53 @@ class Model {
 			$count = $this->getReviewCountByProductId($_POST['id']);
 			die(json_encode(array($count)));
 		}
+	}
+
+	public function getLikedIdByStoreId($id, $disliked = false){
+		$sql = "
+			SELECT userid
+			FROM likes 
+			WHERE storeid = $id
+			AND liked = 1
+		";
+
+		if($disliked){
+			$sql = "
+				SELECT userid
+		 		FROM likes 
+		 		WHERE storeid = $id
+		 		AND dislike = 1
+		 	";
+		}
+
+		$data = $this->db->query($sql)->fetchAll();
+		$ids = array();
+
+		foreach($data as $idx => $d){
+			$ids[] = $d['userid'];
+		}
+
+		return $ids;
+	}
+
+	public function getLikesByStoreId($id, $disliked = false){
+		$sql = "
+			SELECT userid
+			FROM likes 
+			WHERE storeid = $id
+			AND liked = 1
+		";
+
+		if($disliked){
+			$sql = "
+				SELECT userid
+		 		FROM likes 
+		 		WHERE storeid = $id
+		 		AND dislike = 1
+		 	";
+		}
+
+		return $this->db->query($sql)->fetchAll();
 	}
 
 	public function getProductsByStoreId($id){
@@ -1488,9 +1645,11 @@ class Model {
 
 	public function getUserProfile(){
 		$sql = "
-			SELECT *
-			FROM userinfo
-			WHERE userid = ".$_SESSION['id']."
+			SELECT t1.*,t2.photo as 'profilePicture'
+			FROM userinfo t1
+			LEFT JOIN user t2
+			ON t1.userid = t2.id
+			WHERE t1.userid = ".$_SESSION['id']."
 			LIMIT 1
 		";	
 		
@@ -1512,6 +1671,7 @@ class Model {
 
 	public function updateUserInfoListener(){
 		if(isset($_POST['updateUserInfo'])){
+			$this->updateUserProfile();
 			//check first
 			$sql = "
 				SELECT *
@@ -1521,7 +1681,6 @@ class Model {
 			";
 
 			$exists = $this->db->query($sql)->fetch();
-
 			if(!$exists){
 				//insert
 				$sql = "
@@ -1536,12 +1695,48 @@ class Model {
 				";
 
 				$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday']));
+
 			}
 
-			$this->success = "You have sucesfully updated your personal information.";
+			$this->success = "You have successfully updated your personal information.";
 
 			return $this;
 		}
+	}
+
+	public function updateUserProfile(){
+		$files = $_FILES['merchantProfilePicture']['tmp_name'];
+
+		if($files){
+
+			//start
+			$merchantPath = 'uploads/user/'.$_SESSION['storeid']."/profile/";
+			
+		
+			if(!file_exists($merchantPath)){
+				mkdir($merchantPath,0777,true);
+			}
+
+			$folder_name = $merchantPath;
+
+			 $temp_file = $_FILES['merchantProfilePicture']['tmp_name'];
+			 $ext = strtolower(pathinfo($_FILES["merchantProfilePicture"]["name"],PATHINFO_EXTENSION));
+			 $newName = md5($_FILES['merchantProfilePicture']['name']) .".".$ext;
+			 $location = $folder_name . $newName;
+
+			 if(move_uploaded_file($temp_file, $location)){
+			 	$sql = "
+					UPDATE user
+					SET photo = ?
+					WHERE id = ?
+				";
+
+
+				$this->db->prepare($sql)->execute(array($location, $_SESSION['id']));
+			}
+		} 
+
+		return $this;
 	}
 
 
@@ -1845,11 +2040,15 @@ class Model {
 	//for easy deletion of records
 	public function reset(){
 		$sql = array();
-		$sql[] = "delete from store";
-		$sql[] = "delete from user";
-		$sql[] = "delete from product";
-		$sql[] = "delete from material";
-		$sql[] = "delete from userinfo";
+		// $sql[] = "delete from store";
+		// $sql[] = "delete from user";
+		// $sql[] = "delete from product";
+		// $sql[] = "delete from material";
+		// $sql[] = "delete from userinfo";
+		$sql[] = "delete from cart";
+		$sql[] = "delete from cart_details";
+		$sql[] = "delete from payments";
+		$sql[] = "delete from transaction";
 
 		foreach ($sql as $key => $s) {
 			$this->db->query($s);
@@ -1882,6 +2081,14 @@ class Model {
 
 		$data = $this->db->query($sql)->fetch();
 
+		if(!$data){
+			return false;
+		} 
+		if($data['captured_at'] == ""){
+			return false;
+		} 
+		op($_SESSION);
+		op($data);
 		return $effectiveDate = date('Y-m-d', strtotime("+".$data['duration']." months", strtotime($data['captured_at'])));
 	}
 
@@ -1905,7 +2112,6 @@ class Model {
 		";
 
 		return $this->db->query($sql)->fetch();
-			$exists = $this->db->query($sql)->fetch();
 	}
 
 	public function showSuccessMessage(){
@@ -1989,11 +2195,11 @@ class Model {
 
 	public function addStore(){
 		$sql = "
-			INSERT INTO store(name,userid)
-			VALUES(?,?)
+			INSERT INTO store(name,userid,subscriptionid)
+			VALUES(?,?,?)
 		";
 
-		$this->db->prepare($sql)->execute(array($_SESSION['setup']['store'], $_SESSION['lastinsertedid']));
+		$this->db->prepare($sql)->execute(array($_SESSION['setup']['store'], $_SESSION['lastinsertedid'], $_SESSION['setup']['subscriptionId']));
 
 		$_SESSION['laststoreid'] = $this->db->lastInsertId();
 

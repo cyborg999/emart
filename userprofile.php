@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
-				<figure class="logo"></figure>
+				<a href="index.php"><figure class="logo"></figure></a>
 			</div>
 			<div class="col-sm-10">
 				<a href="logout.php"><svg class="bi float-right gear" width="20" height="20" fill="currentColor">
@@ -80,6 +80,10 @@
 						label {
 							margin-top: 10px;
 						}
+						#logo {
+							width: 100px;
+							height: auto;
+						}
 					</style>
 					<div class="col-sm banner hidden">
 						<div class="store-logo-container">
@@ -94,8 +98,16 @@
 					
 					<div class="col-sm">
 						<?php include_once "./error.php"; ?>
-						<form method="post">
+						<form method="post"   enctype="multipart/form-data">
 							<input type="hidden" name="updateUserInfo" value="true">
+							<div class="form-group">
+								<label>Profile Picture</label>
+								<br>
+								<img id="logo" src="<?= ($profile) ? $profile['profilePicture'] : '';?>">
+								<br>
+								<br>
+								<input type="file" name="merchantProfilePicture" />
+							</div>
 						  <div class="form-row">
 					  	 	<div class="form-group col-md-12">
 						      <label for="inputPassword4">Full Name</label>

@@ -5,8 +5,14 @@
   }
 </style>
 <div class="profile">
-	<div class="profile-pic"></div>
   <?php $profile = $model->getUserProfile(); ?>
+<style type="text/css">
+    .pic2 {
+      background-size: 43px; background-position: center;
+    }
+  </style>
+  <div class="profile-pic <?= ($profile['profilePicture'] !="") ? '' : 'pic2';?>" style="background-image:url(<?= ($profile['profilePicture'] !="") ? $profile['profilePicture'] : './node_modules/bootstrap-icons/icons/image-alt.svg';?>);"></div>
+  
 	<b><?= $profile['fullname'];?></b>
 	<i>Customer</i>
 </div>

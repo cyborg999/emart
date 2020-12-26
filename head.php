@@ -1,4 +1,7 @@
 <?php 
+if(isset($_POST['REDIRECT'])){
+    header("Location: success.php");
+}
     include_once "./model.php";
 
     $model = new Model();

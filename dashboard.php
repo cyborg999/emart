@@ -18,18 +18,17 @@
 
 				<div class="content">
 					<div class="jumbotron">
-						<div class="row">
-							<div class="col-sm">
-								<figure class="highcharts-figure">
-								    <div id="container"></div>
-								</figure>
-							</div>
-							<div class="col-sm">
-								<figure class="highcharts-figure">
-								    <div id="line"></div>
-								</figure>
-							</div>
-						</div>
+					<?php
+						$pending = $model->checkIfPayed();
+						$expiration = $model->getSubscriptionExpiration();  
+					?>
+				  	<?php if(!$_SESSION['verified']): ?>
+					    <?php if(!$pending): ?>
+					    	<p>Please verify your account <a href="activate.php">here</a> in order to list your product on our homepage</p>
+					    <?php endif ?>
+					<?php else: ?>
+						<p><i>Your account is valid till <?= $expiration;?></i></p>
+					<?php endif ?>			
 					</div>
 				</div>
 

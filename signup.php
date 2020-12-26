@@ -9,7 +9,7 @@
 			min-height: 80vh;
 		}	
 		.slider-container {
-			width: 400%;
+			width: 500%;
 			position: absolute;
 			min-height: 80vh;
 			background: white;
@@ -112,8 +112,42 @@
 				</form>
 				<a href="" data-target=".plan" data-left="-300%"  data-target="store" class="disabled next hidden">Next</a>
 			</div>
+			<div class="plan slide col-sm">
+				<form method="post" class="form">
+					<?php
+						$subscription = $model->getActiveSubscriptions();
+					?>
+					<div class="err"></div>
+					<input type="hidden" name="addStoreSubscription" value="true">
+					<input type="hidden" name="subscriptionId" id="subscriptionId" value="<?= ($subscription) ? $subscription[0]['id'] : 0;?>">
+					<h3>Choose Your Subscription Plan</h3>
+					<br>
+					<div class="row">
+						<?php 
+
+						foreach($subscription as $idx => $sub): ?>
+							<div class="col-sm-3 cardd">
+								<div class="card mb-3 subscription"   data-id="<?= $sub['id'];?>" style="max-width: 18rem;">
+								  <div class="card-header"><?= $sub['title'];?></div>
+								  <div class="card-body">
+								    <h5 class="card-title"><?= $sub['caption'];?></h5>
+								    <p class="card-text"><?= $sub['cost'];?>/<small>Month</small></p>
+								  </div>
+								</div>
+							</div>
+						<?php endforeach ?>
+					</div>
+
+					<br>
+					<br>
+					<a href="" data-target=".info"  data-left="-200%" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
+
+						<button class="btn btn-success btn-lg">Next </button>
+						<a href="" data-target=".info" data-left="-400%"  class=" disabled next hidden ">Next</a>
+				</form>
+			</div>
 			
-			<div class="plan slide  col-sm final">
+			<div class="info slide  col-sm final">
 				<div class="row">
 					<div class="col-sm">
 						<form method="post" class="form">
@@ -143,7 +177,7 @@
 					      		<input type="email" name="email" required class="form-control" value="" id="inputEmail4">
 						    </div>
 						  </div>
-						  	<a href="" id="planNext" data-target=".store"  data-left="-200%" class="next enabled "><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
+						  	<a href="" id="planNext" data-target=".store"  data-left="-400%" class="next enabled "><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
 
 						  <button type="submit" class="btn btn-lg btn-success">Save</button>
 						</form>
@@ -176,6 +210,7 @@
 					$(".enabled").off().on("click", function(e){
 						e.preventDefault();
 
+						console.log("d2");
 						var me = $(this);
 
 						if(me.hasClass("typeNext")){
@@ -183,8 +218,8 @@
 							var target = me.parents(".slide").find(".next");
 
 							if(val == "client"){
-								me.data("target", ".plan");
-								me.data("left", "-300%");
+								me.data("target", ".info");
+								me.data("left", "-400%");
 
 								$("#planNext").data("target", ".usertype");
 								$("#planNext").data("left", "-100%");
@@ -213,6 +248,13 @@
 
 				__listen();
 
+				$(".subscription").on("click", function(e){
+					e.preventDefault();
+
+					var me = $(this);
+
+					$("#subscriptionId").val(me.data("id"));
+				});
 
 				$(".card").on("click", function(){
 					var me = $(this);
@@ -246,7 +288,6 @@
 								me.parents(".slide").find(".next").removeClass("disabled").addClass("enabled");
 								var t = me.parents(".slide").find(".enabled");
 								me.find(".err").first().html("");
-								
 								__listen();
 
 								setTimeout(function(){

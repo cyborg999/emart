@@ -174,16 +174,7 @@
           <br>
           <br>
           <script src="https://js.stripe.com/v3/"></script>
-          <form id="cod-form" method="post" action="ajax.php">
-              <input type="hidden" name="amount" id="amount2" placeholder="Enter Amount" value="<?= $_SESSION['cart']['grandTotal'];?>" />
-            <input type="hidden" name="codPayment" value="1">
-            <div id="CardContainer">
-                <input type="text" id="fullname2" value="<?= (isset($profile['fullname'])) ? $profile['fullname'] : ''; ?>" name="fullname" >
-                <input type="text" id="address2"  value="<?= (isset($profile['address'])) ? $profile['address'] : ''; ?>"  name="address">
-                <input type="text" id="contact2" value="<?= (isset($profile['contact'])) ? $profile['contact'] : ''; ?>" name="contact">
-                <input type="email" id="email2" value="<?= (isset($profile['email'])) ? $profile['email'] : ''; ?>" name="email">
-
-              </div>
+          <form id="cod-form">
             <input type="submit" class="btn btn-primary btn-lg" value="Submit Order">
           </form>
           <form action="" method="post" id="payment-form" class="hidden">

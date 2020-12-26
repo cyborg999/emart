@@ -8,14 +8,21 @@
   }
 ?>
 <style type="text/css">
-  .profile-pic {
-    /*  background: url(./node_modules/bootstrap-icons/icons/person.svg);
-      background-size: contain;*/
+  #valid {
+    font-size: 9px;
   }
 </style>
 <div class="profile">
-	<div class="profile-pic"></div>
-  <?php $profile = $model->getUserProfile(); ?>
+  <?php $profile = $model->getUserProfile(); 
+  // op($profile);
+
+  ?>
+  <style type="text/css">
+    .pic2 {
+      background-size: 43px; background-position: center;
+    }
+  </style>
+	<div class="profile-pic <?= ($profile['profilePicture'] !="") ? '' : 'pic2';?>" style="background-image:url(<?= ($profile['profilePicture'] !="") ? $profile['profilePicture'] : './node_modules/bootstrap-icons/icons/image-alt.svg';?>);"></div>
 	<b><?= $profile['fullname'];?></b>
 	<i>Merchant</i>
 </div>
@@ -36,7 +43,16 @@
       <div class="card-body">
         <ul class="sublist">
         	<li><a href="profile.php">Personal</a></li>
-        	<li><a href="changepassword.php">Change Password</a></li>
+          <li><a href="changepassword.php">Change Password</a></li>
+
+          <?php
+            $pending = $model->checkIfPayed();
+            $expiration = $model->getSubscriptionExpiration();  ?>
+              <?php if(!$_SESSION['verified']): ?>
+                <?php if(!$pending): ?>
+                  <li><a href="activate.php">Verify Account</a></li>
+                <?php endif ?>
+            <?php endif ?>
         </ul>
       </div>
     </div>

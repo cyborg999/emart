@@ -10,7 +10,7 @@
 					<use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear-fill"/></svg> </a>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row"> 
 			<div class="col-sm-2 side">
 				<?php $active="user"; include "./sidenav.php";?>
 			</div>
@@ -20,8 +20,11 @@
 					<?php  include_once "./error.php"; ?>
 					<?php $profile = $model->getUserProfile(); ?>
 					<br>
-
 					<style type="text/css">
+						#logo {
+							width: 100px;
+							height: auto;
+						}
 						.banner {
 							background: #eee;
 							border-radius: 4px;
@@ -94,8 +97,20 @@
 					
 					<div class="col-sm">
 						<?php include_once "./error.php"; ?>
-						<form method="post">
+						<?php
+							// op($profile);
+						?>
+						<form method="post"  enctype="multipart/form-data">
 							<input type="hidden" name="updateUserInfo" value="true">
+							<div class="form-group">
+								<label>Profile Picture</label>
+								<br>
+								<img id="logo" src="<?= ($profile) ? $profile['profilePicture'] : '';?>">
+								<br>
+								<br>
+								<input type="file" name="merchantProfilePicture" />
+							</div>
+								<br>
 						  <div class="form-row">
 					  	 	<div class="form-group col-md-12">
 						      <label for="inputPassword4">Full Name</label>

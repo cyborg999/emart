@@ -136,18 +136,24 @@
                 </style>
                 <br>
                 <br>
-                <figure id="storeLogo" style="background-image:url(<?= ($store) ? $store['logo'] : '';?>);"></figure>
+                <figure id="storeLogo" style="background-image:url(<?= ($store['logo'] !="") ? $store['logo'] : './node_modules/bootstrap-icons/icons/image-alt.svg';?>);"></figure>
                 <h1><?= ($store) ? $store['name'] : '';?></h1>
                 <i><?= ($store) ? $store['description'] : '';?></i>
                 <br>
                 <div class="rating">
-                  <div class="rate active">
-                    <a href="" class=""><svg class="bi float-right gear" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-down"/></svg></a>
-                    <label>101</label>
+                  <?php
+                    $liked = $model->getLikesByStoreId($_GET['id']);
+                    $disliked = $model->getLikesByStoreId($_GET['id'],true);
+                    $likedIds = $model->getLikedIdByStoreId($_GET['id']);
+                    $dislikedIds = $model->getLikedIdByStoreId($_GET['id'], true);
+                  ?>
+                  <div class="rate <?= (in_array($_SESSION['id'], $dislikedIds)) ? 'active' : '';?>">
+                    <a href="" data-storeid="<?= $_GET['id'];?>"  data-userid="<?= (isset($_SESSION['id'])) ? $_SESSION['id'] : '0';?>" class="like disliked"><svg class="bi float-right gear" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-down"/></svg></a>
+                    <label id="dislike"><?= count($disliked);?></label>
                   </div>
-                  <div class="rate">
-                    <a href="" class=""><svg class="bi float-right gear" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up"/></svg></a>
-                    <label>101</label>
+                  <div class="rate <?= (in_array($_SESSION['id'], $likedIds)) ? 'active' : '';?>">
+                    <a href="" data-storeid="<?= $_GET['id'];?>" data-userid="<?= (isset($_SESSION['id'])) ? $_SESSION['id'] : '0';?>" class="liked like"><svg class="bi float-right gear" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#hand-thumbs-up"/></svg></a>
+                    <label id="like"><?= count($liked);?></label>
                   </div>
                 </div>
                 <hr>
@@ -156,8 +162,6 @@
             <article class="container">
                 <div class="row products">
                     <?php 
-                    // op($products);
-
                     foreach($products as $idx => $p): ?>
                       <div class="product">
                           <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"/>
@@ -183,7 +187,35 @@
     <script type="text/javascript">
         (function($){
             $(document).ready(function(){
-                
+                $(".like").on("click", function(e){
+                  e.preventDefault();
+
+                  var me = $(this);
+                  var id = me.data("userid");
+
+
+                  if(id){
+                    $(".active").removeClass("active");
+                    me.parents(".rate").addClass("active");
+
+                    $.ajax({
+                      url  : "ajax.php",
+                      data : {
+                        likeShop : true, 
+                        like : me.hasClass("liked") ? "liked" : "disliked",
+                        storeid : me.data("storeid"), 
+                        userid : id
+                      },
+                      type : "post",
+                      dataType : "json",
+                      success : function(response){
+                        console.log(response);
+                        $("#like").html(response[0].liked);
+                        $("#dislike").html(response[0].disliked);
+                      }
+                    });
+                  } 
+                });
             });
         })(jQuery);
     </script>

@@ -1,12 +1,14 @@
 <?php
 require_once "config.php";
 session_start();
-
+// oppd();
+// die('d2');
 if (isset($_POST['stripeToken']) && !empty($_POST['stripeToken'])) {
  
     try {
         $token = $_POST['stripeToken'];
-     
+        // op($token);
+        // opd($_POST);
         $response = $gateway->purchase([
             'amount' => $_POST['amount'],
             'currency' => 'PHP',
@@ -40,11 +42,11 @@ if (isset($_POST['stripeToken']) && !empty($_POST['stripeToken'])) {
 
                 //add cart detail
                 $sql = "
-                    INSERT INTO cart_details(transactionid,userid,firstname,lastname,address,contact,email,instruction,total,tax_total,grand_total,shipping_total)
-                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+                    INSERT INTO cart_details(transactionid,userid,fullname,address,contact,email,instruction,total,tax_total,grand_total,shipping_total)
+                    VALUES(?,?,?,?,?,?,?,?,?,?,?)
                 ";
 
-                $db->prepare($sql)->execute(array($transactionId,$_SESSION['id'],$_POST['firstname'],$_POST['lastname'],$_POST['address'],$_POST['contact'],$_POST['email'],$_SESSION['cart']['instruction'],$_SESSION['cart']['total'],$_SESSION['cart']['taxTotal'],$_SESSION['cart']['grandTotal'],$_SESSION['cart']['shippingTotal']));
+                $db->prepare($sql)->execute(array($transactionId,$_SESSION['id'],$_POST['fullname'],$_POST['address'],$_POST['contact'],$_POST['email'],$_SESSION['cart']['instruction'],$_SESSION['cart']['total'],$_SESSION['cart']['taxTotal'],$_SESSION['cart']['grandTotal'],$_SESSION['cart']['shippingTotal']));
 
                 //add cart products
                 if(isset($_SESSION['cart']['products'])){
@@ -65,6 +67,6 @@ if (isset($_POST['stripeToken']) && !empty($_POST['stripeToken'])) {
             echo ' <div class="alert alert-danger" role="alert">'.$response->getMessage().'</div>';
         }
     } catch(Exception $e) {
-            echo ' <div class="alert alert-danger" role="alert">'.$response->getMessage().'</div>';
+            echo ' <div class="alert alert-danger" role="alert">'.$e->getMessage().'</div>';
     }
 }
