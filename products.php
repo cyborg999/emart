@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-2">
-        <figure class="logo"></figure>
+        <a href="index.php"><figure class="logo"></figure></a>
       </div>
       <div class="col-sm-10">
         <a href="logout.php"><svg class="bi float-right gear" width="20" height="20" fill="currentColor">

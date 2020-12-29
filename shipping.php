@@ -27,6 +27,9 @@
 						<input type="hidden" name="updateShippingDetails">
 						<textarea name="details" class="form-control" placeholder="Shipping Details"><?= ($fees) ? $fees['shipping_details'] : "";?></textarea>
 						<br>
+						<label>Days</label>
+						<input type="number" class="form-control" name="ship_days" placeholder="Shipping Days..." value="<?= ($fees) ? $fees['shipping_day'] : "";?>" />
+						<br>
 						<button class="btn btn-lg btn-primary" id="save">Save</button>
 					</form>
 					

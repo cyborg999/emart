@@ -28,7 +28,7 @@
 				?>
 				<div class="content">
 					<form method="post" enctype="multipart/form-data">
-						<h3>Store Details</h3>
+						<h3><?= $store['name'];?>'s Details</h3>
 						<input type="hidden" name="updateStore" value="true">
 						<div class="form-group">
 							<label>Logo</label>

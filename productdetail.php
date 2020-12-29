@@ -81,7 +81,7 @@
                     $comments  = $model->getAllProductCommentsById($_GET['id']);
                     $average = $model->GetAvgCommentByProductId($_GET['id']);
                     $related = $model->getRelatedProductsByCategoryId($product['categoryid']);
-
+                    $fees = $model->getGlobalFeesByStoreId($_GET['id']);
                     $activeMedia = "";
 
                     foreach($media as $idx => $m){
@@ -124,8 +124,7 @@
                         <em class="price">₱<?= $product['price'];?></em>
                         <p><?= $product['description'];?></p>
                         <ul id="tags">
-                            <li><a href="">#shirts</a></li>
-                            <li><a href="">#denim</a></li>
+                            <li><a href="./filtered.php?category=<?= $product['categoryid'];?>"><?= $product['categoryname'];?></a></li>
                         </ul>
                         <nav aria-label="..." class="qty">
                           <ul class="pagination pagination-sm">
@@ -172,6 +171,9 @@
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                           <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                          </li>
+                           <li class="nav-item">
+                            <a class="nav-link" id="shipping-tab" data-toggle="tab" href="#shipping" role="tab" aria-controls="review" aria-selected="false">Shipping Details</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews(<span id="reviewCount"><?= $total; ?></span>)</a>
@@ -257,7 +259,7 @@
                                     <?php foreach($comments as $idx => $c): ?>
                                         <div class="box">
                                             <div class="box_left">
-                                                <img height="30" src="./node_modules/bootstrap-icons/icons/person-badge.svg">
+                                                <img height="30" src="<?= ($c['profilePicture'] !='') ? $c['profilePicture'] : './node_modules/bootstrap-icons/icons/person-badge.svg';?>">
                                             </div>
                                             <div class="box_right">
                                                 <div class="review_rating">
@@ -276,7 +278,13 @@
                                         </div>
                                     <?php endforeach ?>
                                 </div>
+                               
                             </div>
+                             <div class="tab-pane fade shosw actsive" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+                                    <div class="row">
+                                        <p><?= ($fees) ? $fees['shipping_details'] : '';?></p>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -326,7 +334,7 @@
     <script type="text/html" id="tpl">
          <div class="box">
             <div class="box_left">
-                <img height="30" src="./node_modules/bootstrap-icons/icons/person-badge.svg">
+                <img height="30" src="[PROFILE]">
             </div>
             <div class="box_right">
                 <div class="review_rating">
@@ -369,16 +377,16 @@
                             type : "post",
                             dataType : "json",
                             success : function(response){
-                                $("#reviewCount").html(response);
+                                $("#reviewCount").html(response.count);
                                
-
                                 hidePreloader();
 
                                 var tplrating = $("#rating").html();
                                 var tpl = $("#tpl").html();
-
+                                var profile = response.profile;
                                 tpl = tpl.replace("[COMMENT]", comment).
                                     replace("[RATING]", tplrating).
+                                    replace("[PROFILE]", ( profile.profilePicture !=null) ? profile.profilePicture : './node_modules/bootstrap-icons/icons/person-badge.svg').
                                     replace("[DATE]", "a few seconds ago");
 
                                 $("#appendbefore").before(tpl);

@@ -71,6 +71,45 @@ class Model {
 		$this->likeShopListener();
 		$this->addStoreSubscriptionListener();
 		$this->codPaymentListener();
+		$this->updateOrderStatusListener();
+	}
+
+	public function updateOrderStatusListener(){
+		if(isset($_POST['updateOrderStatus'])){
+			if($_POST['status'] == "processed"){
+				//update delivery date
+				$sql = "
+					select *
+					from fees
+					where storeid = ".$_POST['storeid']."
+					limit 1
+				";
+
+				$fees = $this->db->query($sql)->fetch();
+
+				$shippingDays = ($fees) ? ($fees['shipping_day'] == "") ? 1 : $fees['shipping_day'] : 1;
+
+				$deliveryDate = date('Y-m-d', strtotime("+".$shippingDays." days", strtotime($_POST['date_added'])));
+
+				$sql = "
+					UPDATE cart
+					set status = ?, delivery_date = ?
+					where id = ?
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['status'], $deliveryDate, $_POST['id']));
+			} else {
+				$sql = "
+					UPDATE cart
+					set status = ?
+					where id = ?
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['status'], $_POST['id']));
+			}
+
+			die(json_encode("updated"));
+		}
 	}
 
 	public function codPaymentListener(){
@@ -99,17 +138,33 @@ class Model {
 
 			//add cart products
 			if(isset($_SESSION['cart']['products'])){
-				foreach($_SESSION['cart']['products'] as $idx => $p){
-				  $sql = "
-				      INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid)
-				      VALUES(?,?,?,?,?,?,?)   
-				  ";          
-				  $this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId));
-				}
+				foreach($_SESSION['cart']['products'] as $idx0 => $i){
+                    foreach($i['products'] as $idx => $p){
+						$sql = "
+						  INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status)
+						  VALUES(?,?,?,?,?,?,?,?,?)   
+						";          
+						$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId, $p['detail']['storeid'], 'pending'));
+
+						$this->updateProductQuantityById($p['productId'], $p['detail']['quantity']);
+                    }
+                }
 			}
 
 			header("Location: success.php");
 		}
+	}
+
+	public function updateProductQuantityById($id, $qty){
+		$sql = "
+			update productt
+			set quantity = quantity-?
+			where id = ?
+		";
+
+		$this->db->prepare($sql)->execute(array($qty, $id));
+
+		return $this;
 	}
 
 	public function addStoreSubscriptionListener(){
@@ -292,27 +347,40 @@ class Model {
 
 			if(!$exists){
 				$sql = "
-					INSERT INTO fees(storeid,shipping_details)
-					VALUES(?,?)
+					INSERT INTO fees(storeid,shipping_details,shipping_day)
+					VALUES(?,?,?)
 				";	
 
-				$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['details']));
+				$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['details'],$_POST['ship_days']));
 
 				$this->success = "You have succesfully added this record";
 			} else {
 				$sql = "
 					UPDATE fees
-					SET shipping_details = ?
+					SET shipping_details = ?, shipping_day=?
 					WHERE storeid = ?
 				";	
 
-				$this->db->prepare($sql)->execute(array($_POST['details'],$_SESSION['storeid']));
+				$this->db->prepare($sql)->execute(array($_POST['details'],$_POST['ship_days'],$_SESSION['storeid']));
 
 				$this->success = "You have succesfully updated this record";
 			}
 
 			return $this;
 		}			
+	}
+
+	public function getGlobalFeesByStoreId($id){
+		$sql = "
+			SELECT *
+			FROM fees
+			WHERE storeid = $id
+			LIMIT 1
+		";
+
+		 // PDO::FETCH_ASSOC
+		return $this->db->query($sql)->fetch();
+		
 	}
 
 	public function getGlobalFees(){
@@ -323,7 +391,16 @@ class Model {
 			LIMIT 1
 		";
 
-		return $this->db->query($sql)->fetch();
+	// PDO::FETCH_ASSO
+		$fees = $this->db->query($sql);
+		return $fees->fetch();
+		if($fees){
+			return $fees->fetch();
+
+		} else {
+			
+			return false;
+		}
 	}
 
 	public function updateGlobalFeeListener(){
@@ -377,7 +454,7 @@ class Model {
 			foreach($products as  $idx => $p){
 				if($p != "null"){
 					$sql = "
-						SELECT t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax
+						SELECT t5.name as 'storename', t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax
 						FROM productt t1
 						LEFT JOIN media t2
 						ON t1.id = t2.productid
@@ -385,13 +462,18 @@ class Model {
 						ON t1.categoryid = t3.id
 						LEFT JOIN fees t4 
 						ON t4.storeid = t1.storeid
+						LEFT JOIN store t5
+						ON t5.id = t1.storeid
 						WHERE t1.id = $idx
 						AND t2.active = 1
 						LIMIT 1
 					";
 					$detail = $this->db->query($sql)->fetch();
-
-					$cartItems[] = array(
+					// op($_POST['products']);
+					// opd($detail);
+					$cartItems[$detail['storeid']]['storename'] = $detail['storename'];
+					$cartItems[$detail['storeid']]['storelogo'] = ($detail['storelogo']!="") ? $detail['storelogo'] : './node_modules/bootstrap-icons/icons/image-alt.svg';
+					$cartItems[$detail['storeid']]['products'][] = array(
 						"productId" => $idx, 
 						"detail" => $detail, 
 						"qty" => $p );
@@ -409,8 +491,13 @@ class Model {
 			FROM productt t1
 			RIGHT JOIN media t2
 			ON t1.id = t2.productid
+			LEFT JOIN store t3
+			ON t3.id = t1.storeid
+			LEFT JOIN user t4
+			ON t4.id = t3.userid
 			WHERE t1.categoryid = $id
 			AND t2.active =1
+			AND t4.verified = 1
 			LIMIT 5
 		";
 
@@ -427,10 +514,12 @@ class Model {
 
 	public function getAllProductCommentsById($id){
 		$sql = "
-			SELECT * 
-			FROM rating
-			WHERE productid = $id
-			ORDER BY date_added DESC
+			SELECT t1.*, t2.photo as 'profilePicture' 
+			FROM rating t1
+			LEFT JOIN user t2
+			ON t2.id = t1.userid
+			WHERE t1.productid = $id
+			ORDER BY t1.date_added DESC
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -469,7 +558,9 @@ class Model {
 			$this->db->prepare($sql)->execute(array($_POST['id'], $_SESSION['id'], $_POST['rating'], $_POST['comment']));
 
 			$count = $this->getReviewCountByProductId($_POST['id']);
-			die(json_encode(array($count)));
+			$profile = $this->getUserProfile();
+
+			die(json_encode(array("count" => $count, "profile" => $profile)));
 		}
 	}
 
@@ -536,10 +627,12 @@ class Model {
 
 	public function getProductById($id){
 		$sql = "
-			SELECT t1.*, t2.name as 'storename'
+			SELECT t1.*, t2.name as 'storename',t3.name  as 'categoryname'
 			FROM productt t1 
 			LEFT JOIN  store t2
 			ON t1.storeid = t2.id
+			left join category t3
+			on t1.categoryid = t3.id
 			WHERE t1.id = $id
 			LIMIT 1
 		";
@@ -679,8 +772,13 @@ class Model {
 			FROM productt t1
 			LEFT JOIN media t2
 			ON t1.id = t2.productid
+			LEFT JOIN store t3
+			ON t3.id = t1.storeid
+			LEFT JOIN user t4
+			ON t4.id = t3.userid
 			WHERE t2.active = 1
 			AND t1.name LIKE '%$name%'
+			AND t4.verified = 1
 			LIMIT 100
 		";
 
@@ -693,8 +791,13 @@ class Model {
 			FROM productt t1
 			LEFT JOIN media t2
 			ON t1.id = t2.productid
+			LEFT JOIN store t3
+			ON t3.id = t1.storeid
+			LEFT JOIN user t4
+			ON t4.id = t3.userid
 			WHERE t2.active = 1
 			AND t1.categoryid = $id
+			AND t4.verified = 1
 			LIMIT 100
 		";
 
@@ -707,7 +810,12 @@ class Model {
 			FROM productt t1
 			LEFT JOIN media t2
 			ON t1.id = t2.productid
+			LEFT JOIN store t3
+			ON t3.id = t1.storeid
+			LEFT JOIN user t4
+			ON t4.id = t3.userid
 			WHERE t2.active = 1
+			AND t4.verified = 1
 			LIMIT 100
 		";
 
@@ -1478,10 +1586,12 @@ class Model {
 	public function searchMaterialListener(){
 		if(isset($_POST['searchMaterial'])) {
 			$sql = "
-				SELECT *
-				FROM productt
-				WHERE name LIKE '%".$_POST['txt']."%'
-				AND storeid = '".$_SESSION['storeid']."'
+				SELECT t1.*,t2.name as 'filename'
+				FROM productt t1
+				LEFT JOIN media t2
+				ON t1.id = t2.productid
+				WHERE t1.name LIKE '%".$_POST['txt']."%'
+				AND t1.storeid = '".$_SESSION['storeid']."'
 				LIMIT 20
 			";
 
@@ -1562,10 +1672,10 @@ class Model {
 
 	public function getMediaById($id){
 		$sql = "
-			SELECT *
-			FROM media
-			WHERE productid = $id
-			AND active = 1 
+			SELECT t1.*
+			FROM media t1
+			WHERE t1.productid = $id
+			AND t1.active = 1 
 			LIMIT 1
 		";
 
@@ -1583,13 +1693,14 @@ class Model {
 		return $this->db->query($sql)->fetch();
 	}
 
-	public function getCartItemsByTransactionId($id){
+	public function getCartItemsByTransactionId($id, $storeid){
 		$sql = "
 			SELECT t1.*, t3.storeid, t3.name as 'productname'
 			FROM cart t1
 			LEFT JOIN productt t3 
 			ON t1.productid = t3.id
 			WHERE t1.transactionid = $id
+			AND t3.storeid = $storeid
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -1606,26 +1717,41 @@ class Model {
 			WHERE t1.transactionid = $id
 		";
 
+		// opd($sql);
 		return $this->db->query($sql)->fetchAll();
 	}
 
 	public function getUserTransaction($status){
 		$sql = "
-			SELECT t1.*
-			FROM transaction t1
-			WHERE t1.status = '$status'
-			AND t1.userid = ".$_SESSION['id']."
+			select t1.*
+			from cart t1
+			left join transaction t2
+			on t1.transactionid = t2.id
+			where t1.status = '$status'
+			and t1.userid = ".$_SESSION['id']."
 		";
 
-		return $this->db->query($sql)->fetchAll();
+		$data = $this->db->query($sql)->fetchAll();
+		$groupedData = array();
+
+		foreach($data as $idx => $d){
+			$groupedData[$d['transactionid']][] = $d;
+		}
+
+		return $groupedData;
 	}
 
 	public function getTransactionByStatus($status, $count = false){
 		if($count) {
 			$sql = "
 				SELECT count(t1.id) as 'total'
-				FROM transaction t1
+				FROM cart t1
+				LEFT JOIN transaction t2
+				ON t1.transactionid = t2.id
+				LEFT JOIN cart_details t3
+				ON t2.id = t3.transactionid
 				WHERE t1.status = '$status'
+				and t1.userid =".$_SESSION['id']."
 			";
 			return $this->db->query($sql)->fetch();
 		} else {
@@ -1636,7 +1762,8 @@ class Model {
 				ON t1.transactionid = t2.id
 				LEFT JOIN cart_details t3
 				ON t2.id = t3.transactionid
-				WHERE t2.status = '$status'
+				WHERE t1.status = '$status'
+				and t1.userid =".$_SESSION['id']."
 			";
 
 			return $this->db->query($sql)->fetchAll();
@@ -1657,11 +1784,38 @@ class Model {
 		return $this->db->query($sql)->fetch();
 	}
 
+
 	public function getUserById($id){
 		$sql = "
 			SELECT *
 			FROM user
 			WHERE id = ".$id."
+			LIMIT 1
+		";	
+		
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getStoreOwnerDetailsById($id){
+		$sql = "
+			SELECT t1.name as 'store', t1.logo,t2.contact, t2.email
+			FROM store t1
+			left join userinfo t2
+			on t2.userid = t1.userid
+			WHERE t1.id = ".$id."
+			LIMIT 1
+		";	
+		
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getUserInfoByUserid($id){
+		$sql = "
+			SELECT *
+			FROM userinfo
+			WHERE userid = ".$id."
 			LIMIT 1
 		";	
 		
@@ -1705,6 +1859,10 @@ class Model {
 	}
 
 	public function updateUserProfile(){
+		if(!isset($_FILES['merchantProfilePicture'])){
+			return $this;
+		}
+
 		$files = $_FILES['merchantProfilePicture']['tmp_name'];
 
 		if($files){
@@ -2037,14 +2195,48 @@ class Model {
 		}
 	}
 
+	public function getPendingOrdersByStatus($status, $count = false){
+		if($count){
+			$sql = "
+				select count(t1.id) as 'total'
+				from cart t1
+				left join transaction t2
+				on t1.transactionid = t2.id
+				where t1.status = '$status'
+				and t1.storeid = ".$_SESSION['storeid']."
+			";
+
+			return $this->db->query($sql)->fetch();
+		}
+
+		$sql = "
+			select t1.*
+			from cart t1
+			left join transaction t2
+			on t1.transactionid = t2.id
+			where t1.status = '$status'
+			and t1.storeid = ".$_SESSION['storeid']."
+		";
+
+		$data = $this->db->query($sql)->fetchAll();
+
+		$groupedData = array();
+
+		foreach($data as $idx => $d){
+			$groupedData[$d['transactionid']][] = $d;
+		}
+
+		return $groupedData;
+	}
+
 	//for easy deletion of records
 	public function reset(){
 		$sql = array();
 		// $sql[] = "delete from store";
-		// $sql[] = "delete from user";
-		// $sql[] = "delete from product";
+		// $sql[] = "delete from user where usertype !='admin'";
+		$sql[] = "delete from productt";
 		// $sql[] = "delete from material";
-		// $sql[] = "delete from userinfo";
+		// $sql[] = "delete from userinfo where userid !=36";
 		$sql[] = "delete from cart";
 		$sql[] = "delete from cart_details";
 		$sql[] = "delete from payments";
@@ -2087,8 +2279,7 @@ class Model {
 		if($data['captured_at'] == ""){
 			return false;
 		} 
-		op($_SESSION);
-		op($data);
+
 		return $effectiveDate = date('Y-m-d', strtotime("+".$data['duration']." months", strtotime($data['captured_at'])));
 	}
 

@@ -17,7 +17,7 @@
                           <div class="carousel-inner">
                             <?php foreach($slides as $idx => $s): ?>
                             <div class="carousel-item img-fluid <?=($idx==0) ? 'active' : ''; ?>">
-                                <figure style="background:url(<?= $s['photo'];?>);width: 100%; height: 290px; background-size: 100%; margin: 0; padding: 0; background-position: top center;background-repeat: no-repeat;"></figure>
+                                <figure style="background:url(<?= $s['photo'];?>);width: 100%; height: 290px; background-size: cover; margin: 0; padding: 0; background-position: top center;background-repeat: no-repeat;"></figure>
                             </div>
                             <?php endforeach ?>
                           </div>

@@ -54,15 +54,23 @@
       <div class="card-body">
         <?php
           $pending = $model->getTransactionByStatus("pending", true);
-          $completed = $model->getTransactionByStatus("completed", true);
+          $processed = $model->getTransactionByStatus("processed", true);
+          $completed = $model->getTransactionByStatus("delivered", true);
+          $returned = $model->getTransactionByStatus("returned", true);
 
         ?>
         <ul class="sublist">
           <li>
             <a href="pending.php">Pending (<?= $pending['total'];?>)</a>
           </li>
+           <li>
+            <a href="processed.php">Processed (<?= $processed['total'];?>)</a>
+          </li>
           <li>
-            <a href="completed.php">Completed (<?= $completed['total'];?>)</a>
+            <a href="completed.php">Delivered (<?= $completed['total'];?>)</a>
+          </li>
+          <li>
+            <a href="returned.php">Returned (<?= $returned['total'];?>)</a>
           </li>
         </ul>
       </div>

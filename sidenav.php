@@ -104,34 +104,65 @@
       </div>
     </div>
   </div>
-
+<style type="text/css">
+  sup {
+    color: green;
+    font-weight: 900;
+  }
+</style>
 <div class="card">
     <div class="card-header" id="headingFive">
       <h2 class="mb-0">
+         <?php
+          $pendingTotal = $model->getPendingOrdersByStatus("pending", true);
+          $processedTotal = $model->getPendingOrdersByStatus("processed", true);
+          $completedTotal = $model->getPendingOrdersByStatus("delivered", true);
+        ?>
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
           <svg class="bi" width="15" height="15" fill="currentColor">
-            <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> 
-                    Orders
+            <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#card-checklist"/></svg> 
+                    Orders <sup>(<?= $pendingTotal['total']; ?>)</sup>
                   </button>
                 </h2>
               </div>
               <div id="collapseFive" class="collapse <?=($active =='order') ? 'show' : ''; ?>" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
+                 
                   <ul class="sublist">
                     <li>
-                      <a href="globalfees.php">New</a>
-                    </li>
-                     <li>
-                      <a href="globalfees.php">Pending</a>
+                      <a href="neworder.php">Pending (<b><?= $pendingTotal['total']; ?></b>)</a>
                     </li>
                     <li>
-                      <a href="globalfees.php">Completed</a>
+                      <a href="processedorder.php">Processed (<b><?= $processedTotal['total']; ?></b>)</a>
+                    </li>
+                    <li>
+                      <a href="deliveredorder.php">Delivered (<b><?= $completedTotal['total']; ?></b>)</a>
                     </li>
                   </ul>
                 </div>
         </div>
       </div>
-      
+
+     <div class="card">
+        <div class="card-header" id="headingFour">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsePOS" aria-expanded="false" aria-controls="collapsePOS">
+              <svg class="bi" width="15" height="15" fill="currentColor">
+                <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> POS
+            </button>
+          </h2>
+        </div>
+        <div id="collapsePOS" class="collapse <?=($active =='pos') ? 'show' : ''; ?>" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <ul class="sublist">
+              <li>
+                <a href="pos.php">View</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+       
 
   <div class="card">
     <div class="card-header" id="headingFour">

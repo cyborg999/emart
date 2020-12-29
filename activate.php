@@ -151,11 +151,20 @@ $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;", $username, $p
 						            $isPaymentExist = $db->query("SELECT * FROM payments WHERE payment_id = '".$payment_id."'")->fetch();
 
 						            if(!$isPaymentExist) { 
-						                $sql = "INSERT INTO payments(payment_id, amount, currency, payment_status,userid) VALUES(?,?,?,?,?)
+						                $sql = "INSERT INTO payments(payment_id, amount, currency, payment_status,userid,payment_for) VALUES(?,?,?,?,?,?)
 						                ";
 
-						                $db->prepare($sql)->execute(array($payment_id, $amount, 'PHP', 'Captured', $_SESSION['id']));
+						                $db->prepare($sql)->execute(array($payment_id, $amount, 'PHP', 'Captured', $_SESSION['id'], "subscription"));
 
+						                //update storeid
+						                $sql = "
+						                	UPDATE store
+						                	SET last_payment_id = ?
+						                	WHERE userid = ?
+						                ";
+
+						                $db->prepare($sql)->execute(array($payment_id, $_SESSION['id']));
+						                
 						                //auto verify
 						                $sql = "
 						                	UPDATE user

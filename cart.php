@@ -44,28 +44,6 @@
                 <!-- Shopping cart table -->
                 <div class="table-responsive">
                   <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col" class="border-0 bg-light">
-                          <div class="p-2 px-3 text-uppercase">Product</div>
-                        </th>
-                        <th scope="col" class="border-0 bg-light">
-                          <div class="py-2 text-uppercase">Price</div>
-                        </th>
-                        <th scope="col" class="border-0 bg-light">
-                          <div class="py-2 text-uppercase">Quantity</div>
-                        </th>
-                        <th scope="col" class="border-0 bg-light">
-                          <div class="py-2 text-uppercase">Shipping</div>
-                        </th>
-                         <th scope="col" class="border-0 bg-light">
-                          <div class="py-2 text-uppercase">Tax</div>
-                        </th>
-                        <th scope="col" class="border-0 bg-light">
-                          <div class="py-2 text-uppercase">Remove</div>
-                        </th>
-                      </tr>
-                    </thead>
                     <tbody>
                    
                     </tbody>
@@ -120,15 +98,65 @@
       </div>
       </section>
     </main>
-  <script type="text/html" id="tpl">
+    <style type="text/css">
+      .logo {
+        height: 30px;
+        width: auto;
+      }
+      .store b {
+        padding: 30px;
+        display: block;
+      }
+    </style>
+  <script type="text/html" id="store">
     <tr>
-      <th scope="row">
-        <div class="p-2">
-          <img src="./uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]"" alt="" width="70" class="img-fluid rounded shadow-sm">
-          <div class="ml-3 d-inline-block align-middle">
-            <h5 class="mb-0"> <a href="./productdetail.php?id=[ID]"  target="_blank" class="text-dark d-inline-block">[NAME]</a></h5><span class="text-muted font-weight-normal font-italic">Category: [CATEGORY]</span>
-          </div>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+   <tr>
+        <th colspan="7" scope="col" class="store align-middle border-0 bg-light">
+          <b>[STORE]</b>
+        </th>
+    
+      </tr>
+    
+     <tr>
+        <th scope="col" class="border-0 bg-light">
+          <div class="p-2 px-3 text-uppercase">Product</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="p-2 px-3 text-uppercase">Name</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Price</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Quantity</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Shipping</div>
+        </th>
+         <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Tax</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Remove</div>
+        </th>
+      </tr>
+  </script>
+  <script type="text/html" id="tpl">
+    [STORE]
+    <tr>
+      <td><img src="./uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]"" alt="" width="70" class="img-fluid rounded shadow-sm"></td>
+      <td><div class="ml-3 d-inline-block align-middle">
+          <h5 class="mb-0" style="max-width: 100%;"><a href="./productdetail.php?id=[ID]"  target="_blank" class="text-dark d-inline-block">[NAME]</a></h5><span class="text-muted font-weight-normal font-italic">Category: [CATEGORY]</span>
         </div>
+      </td>
         <td class="align-middle"><strong>₱[PRICE]</strong></td>
         <td class="align-middle"><strong>[QTY]</strong></td>
         <td class="align-middle"><strong>[SHIPPING]</strong></td>
@@ -166,43 +194,65 @@
                     type : "post",
                     dataType : "json",
                     success : function(response){
+                      var orders = "";
                       lastProducts = response;
 
-                      var counter = 0;
+                      for(var r in response){
+                        var store = response[r];
+                        var products = store.products;
+                        var storeTpl = $("#store").html();
+                        var counter = 0;
 
-                      for(var i in response){
-                        var data = response[i];
-                        var detail = data.detail;
-                        var tpl = $("#tpl").html();
-                        var qty = data.qty.replace('"', '');
-                        qty = qty.replace('"', '');
+                        storeTpl = storeTpl.replace("[STORE]", store.storename).
+                          replace("[LOGO]", store.storelogo);
 
-                       var tax = (detail.tax /100 ) * (detail.price * qty);
-                        total += qty * detail.price;
-                        shippingTotal += qty * detail.shipping;
-                        taxTotal += tax;
+                        orders = orders + storeTpl;
 
-                        tpl = tpl.replace("[STOREID]", detail.storeid).
-                          replace("[PRODUCTID]", data.productId).
-                          replace("[FILENAME]", detail.filename).
-                          replace("[NAME]", detail.name).
-                          replace("[PRICE]", detail.price).
-                          replace("[CATEGORY]", detail.category).
-                          replace("[SHIPPING]", "₱" + qty * detail.shipping + " <sup>(₱" + detail.shipping + ")</sup>").
-                          replace("[TAX]", "₱" + Math.round(tax) + " <sup>(" + (Math.round(detail.tax) + "%)</sup>")).
-                          replace("[QTY]", qty).
-                          replace("[ID]", detail.id).
-                          replace("[ID]", detail.id).
-                          replace("[ID]", detail.id);
-                         
+                        for(var i in products){
+                          console.log(products[i]);
+                          var data = products[i];
+                          var detail = data.detail;
+                          var tpl = $("#tpl").html();
+                          var qty = data.qty.replace('"', '');
+                          qty = qty.replace('"', '');
 
-                          $("tbody").append(tpl);
+                         var tax = (detail.tax /100 ) * (detail.price * qty);
 
-                          counter++;
-                          __listen();
+                          if(detail.shipping == null){
+                            detail.shipping = 0;
+                          }
+                          if(detail.shipping == ""){
+                            detail.shipping = 0;
+                          }
+
+                          total += qty * detail.price;
+                          shippingTotal += qty * detail.shipping;
+                          taxTotal += tax;
+
+                          tpl = tpl.replace("[STOREID]", detail.storeid).
+                            replace("[PRODUCTID]", data.productId).
+                            replace("[FILENAME]", detail.filename).
+                            replace("[NAME]", detail.name).
+                            replace("[PRICE]", detail.price).
+                            replace("[CATEGORY]", detail.category).
+                            replace("[SHIPPING]", "₱" + qty * detail.shipping + " <sup>(₱" + detail.shipping + ")</sup>").
+                            replace("[TAX]", "₱" + Math.round(tax) + " <sup>(" + (Math.round(detail.tax) + "%)</sup>")).
+                            replace("[QTY]", qty).
+                            replace("[ID]", detail.id).
+                            replace("[ID]", detail.id).
+                            replace("[ID]", detail.id);
+
+                            orders = orders + tpl
+
+                            counter++;
+                        }
+                        
+                        grandTotal = total + shippingTotal + taxTotal;
                       }
 
-                      grandTotal = total + shippingTotal + taxTotal;
+                      $("tbody").append(orders);
+                      __listen();
+
                       
                       $("#total").html("₱" + total);
                       $("#shipping").html("₱" + shippingTotal);

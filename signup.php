@@ -126,7 +126,7 @@
 						<?php 
 
 						foreach($subscription as $idx => $sub): ?>
-							<div class="col-sm-3 cardd">
+							<div class="col-sm-4 cardd">
 								<div class="card mb-3 subscription"   data-id="<?= $sub['id'];?>" style="max-width: 18rem;">
 								  <div class="card-header"><?= $sub['title'];?></div>
 								  <div class="card-body">

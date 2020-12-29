@@ -13,9 +13,9 @@
     $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;", $username, $password);
     ?>
     <?php
-      // if(!isset($_SESSION['cart'])){
-      //   header("Location:login.php");
-      // }
+      if(!isset($_SESSION['cart'])){
+        header("Location:login.php");
+      }
       if(!isset($_SESSION['id'])){
         header("Location:login.php");
       }
@@ -177,7 +177,7 @@
           <form id="cod-form" method="post" action="ajax.php">
               <input type="hidden" name="amount" id="amount2" placeholder="Enter Amount" value="<?= $_SESSION['cart']['grandTotal'];?>" />
             <input type="hidden" name="codPayment" value="1">
-            <div id="CardContainer">
+            <div id="CardContainer" class="hidden">
                 <input type="text" id="fullname2" value="<?= (isset($profile['fullname'])) ? $profile['fullname'] : ''; ?>" name="fullname" >
                 <input type="text" id="address2"  value="<?= (isset($profile['address'])) ? $profile['address'] : ''; ?>"  name="address">
                 <input type="text" id="contact2" value="<?= (isset($profile['contact'])) ? $profile['contact'] : ''; ?>" name="contact">
@@ -188,7 +188,7 @@
           </form>
           <form action="" method="post" id="payment-form" class="hidden">
               <input type="text" name="amount" id="amount" placeholder="Enter Amount" value="<?= $_SESSION['cart']['grandTotal'];?>" />
-              <div id="CardContainer">
+              <div id="CardContainer" class="hidden">
                 <input type="text" id="fullname2" value="<?= (isset($profile['fullname'])) ? $profile['fullname'] : ''; ?>" name="fullname" >
                 <input type="text" id="address2"  value="<?= (isset($profile['address'])) ? $profile['address'] : ''; ?>"  name="address">
                 <input type="text" id="contact2" value="<?= (isset($profile['contact'])) ? $profile['contact'] : ''; ?>" name="contact">
@@ -203,7 +203,7 @@
               <div id="card-errors" class="alert alert-danger" role="alert"></div>
             <button  id="submitpayment" class="btn btn-lg btn-primary">Submit Payment</button>
           </form>
-        <?php 
+        <?php                
           if (isset($_POST['stripeToken']) && !empty($_POST['stripeToken'])) {
             
 
@@ -254,17 +254,20 @@
 
                           //add cart products
                           if(isset($_SESSION['cart']['products'])){
-                              foreach($_SESSION['cart']['products'] as $idx => $p){
+                            foreach($_SESSION['cart']['products'] as $idx0 => $i){
+                                foreach($i['products'] as $idx => $p){
                                   $sql = "
-                                      INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid)
-                                      VALUES(?,?,?,?,?,?,?)   
+                                      INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status)
+                                      VALUES(?,?,?,?,?,?,?,?,?)   
                                   ";          
-                                  $db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId));
-                              }
+                                  $db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId,$p['detail']['storeid'], 'pending'));
+                                }
 
+                              }
                           }
                       } 
 
+                      $_SESSION['PENDINGREDIRECT'] = TRUE;
                       echo '<div class="alert alert-success" role="alert">
                           <h4 class="alert-heading">Well done!</h4>
                           <p>Payment was successful! You can check your order <a href="pending.php">here</a></p>
