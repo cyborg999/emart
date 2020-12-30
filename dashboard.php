@@ -15,20 +15,94 @@
 				<?php $active = "user"; include "./sidenav.php";?>
 			</div>
 			<div class="col-sm-10">
+				<div class="content row">
+					<style type="text/css">
+						.pending {
+							text-align: center;
+						}
+					</style>
+					<div class="col-sm">
+						<h5>Dashboard</h5>
+						<?php
+							$pending = $model->checkIfPayed();
+							$expiration = $model->getSubscriptionExpiration();  
+						?>
+					  	<?php if(!$_SESSION['verified']): ?>
+						    <?php if(!$pending): ?>
+						    	<p>Please verify your account <a href="activate.php">here</a> in order to list your product on our homepage</p>
+						    <?php endif ?>
+						<?php else: ?>
+							<small><i>Your account is valid till <?= $expiration;?></i></small>
+						<?php endif ?>
+					</div>
+					<div class="row">
+						<?php
+							$ecom = $model->getStoreMonthlyEarnings();
+							$pos = $model->getStoreMonthlyEarnings("pos");
+          					$pendingTotal = $model->getPendingOrdersByStatus("pending", true);
+          					$processedTotal = $model->getPendingOrdersByStatus("processed", true);
+          					$percent = ($processedTotal['total'] / ($processedTotal['total'] + $pendingTotal['total'])) *100;
 
+          					op($percent);
+
+						?>
+							<div class="col-sm">
+								<div class="card  text-white bg-primary  mb-3" style="max-width: 18rem;">
+								  <div class="card-header">Earnings (Ecommerce)</div>
+								  <div class="card-body">
+								    <h5 class="card-title">₱ <?= $ecom; ?></h5>
+								  </div>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="card bg-info text-white mb-3" style="max-width: 18rem;">
+								  <div class="card-header">Earnings (POS)</div>
+								  <div class="card-body">
+								    <h5 class="card-title">₱ <?= $pos; ?></h5>
+								  </div>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="card bg-light  mb-3" style="max-width: 18rem;">
+								  <div class="card-header">Pending Orders</div>
+								  <div class="card-body">
+								    <h5 class="card-title pending"><?= $pendingTotal['total']; ?></h5>
+								  </div>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="card bg-light  mb-3" style="max-width: 18rem;">
+								  <div class="card-header">Processed Orders (<?= $processedTotal['total']; ?><)</div>
+								  <div class="card-body">
+								  	<div class="progress">
+									  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								  </div>
+								</div>
+							</div>
+						</div>
+				</div>
 				<div class="content">
 					<div class="jumbotron">
-					<?php
-						$pending = $model->checkIfPayed();
-						$expiration = $model->getSubscriptionExpiration();  
-					?>
-				  	<?php if(!$_SESSION['verified']): ?>
-					    <?php if(!$pending): ?>
-					    	<p>Please verify your account <a href="activate.php">here</a> in order to list your product on our homepage</p>
-					    <?php endif ?>
-					<?php else: ?>
-						<p><i>Your account is valid till <?= $expiration;?></i></p>
-					<?php endif ?>			
+						<div class="row">
+							<div class="col-sm-8">
+								<div class="card">
+								  <h5 class="card-header">Annual Sale</h5>
+								  <div class="card-body">
+									<canvas id="monthlyChart" width="100" height="100" aria-label="Hello ARIA World" role="img"></canvas>		
+								  </div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="card">
+								  <h5 class="card-header">Ecommerce vs POS Sale</h5>
+								  <div class="card-body">
+									<canvas id="myChart" width="100" height="100" aria-label="Hello ARIA World" role="img"></canvas>		
+								  </div>
+								</div>
+							</div>
+							
+						</div>
 					</div>
 				</div>
 
@@ -37,5 +111,64 @@
 		</div>
 	</div>
 	<?php include "./foot.php"; ?>
+	<script src="./node_modules/chart.js/dist/Chart.min.js"></script>
+	<script>
+		var data = {
+		        labels: ['POS', 'Ecommerce'],
+		        datasets: [{
+		            label: 'POS vs Ecommerce Sale',
+		            data: [12, 19],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.5)',
+		                'rgba(255, 159, 64, 0.5)'
+		            ],
+		            borderColor: [
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(255, 159, 64, 1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    };
+
+		    var options = {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero: true
+		                }
+		            }]
+		        }
+		    }
+
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var myDoughnutChart = new Chart(ctx, {
+		    type: 'doughnut',
+		    data: data,
+		    options: options
+		});
+
+		var annualData = {
+		        labels: ['POS', 'Ecommerce'],
+		        datasets: [{
+		            label: 'POS vs Ecommerce Sale',
+		            data: [12, 19],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.5)',
+		                'rgba(255, 159, 64, 0.5)'
+		            ],
+		            borderColor: [
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(255, 159, 64, 1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    };
+		var monthlyChart = document.getElementById('monthlyChart').getContext('2d');
+		var myChart = new Chart(monthlyChart, {
+		    type: 'bar',
+		    data: annualData,
+		    options: options
+		});
+		</script>
 </body>
 </html>

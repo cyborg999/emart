@@ -72,6 +72,32 @@ class Model {
 		$this->addStoreSubscriptionListener();
 		$this->codPaymentListener();
 		$this->updateOrderStatusListener();
+		$this->payListener();
+	}
+
+	public function payListener(){
+		if(isset($_POST['pay'])){
+			//insert transaction
+			$sql = "
+				INSERT INTO transaction(userid,total,status)
+				VALUES(?,?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_SESSION['id'], $_POST['grandTotal'], "pos"));
+
+			$transactionId = $this->db->lastInsertId();
+
+			foreach($_POST['products'] as $idx => $p){
+				$sql = "
+					INSERT INTO pos(userid,productid,qty,price,storeid,tax,transaction_id)
+					VALUES(?,?,?,?,?,?,?)
+				";
+
+				$this->db->prepare($sql)->execute(array($_SESSION['id'], $p[2], $p[0], $p[1], $_SESSION['storeid'], $_POST['tax'], $transactionId));
+			}
+
+			die(json_encode("added"));
+		}
 	}
 
 	public function updateOrderStatusListener(){
@@ -144,15 +170,51 @@ class Model {
 						  INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status)
 						  VALUES(?,?,?,?,?,?,?,?,?)   
 						";          
-						$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId, $p['detail']['storeid'], 'pending'));
+						$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['qty'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId, $p['detail']['storeid'], 'pending'));
 
-						$this->updateProductQuantityById($p['productId'], $p['detail']['quantity']);
+						$this->updateProductQuantityById($p['productId'], $p['qty']);
                     }
                 }
 			}
 
 			header("Location: success.php");
 		}
+	}
+
+	public function getStoreMonthlyEarnings($type = "ecom"){
+		$total = 0;
+		$storeid = $_SESSION['storeid'];
+		$status = "delivered";
+		$month = "todo";
+
+		if($type == "pos"){
+			$sql = "
+				select *
+				from pos
+				where storeid = $storeid
+			";
+			
+			$record = $this->db->query($sql)->fetchAll();
+
+			foreach($record as $idx => $r){
+				$total += ((($r['price'] * $r['qty']) * ($r['tax']/100)) + ($r['price'] * $r['qty'])) ;
+			}
+		} else {
+			$sql = "
+				select *
+				from cart
+				where storeid = $storeid
+				and status = '$status'
+			";
+			$record = $this->db->query($sql)->fetchAll();
+
+			foreach($record as $idx => $r){
+				$total += ((($r['price'] * $r['quantity']) * ($r['tax']/100)) + ($r['price'] * $r['quantity'])) + $r['shipping'];
+			}
+		}
+
+		return $total;
+
 	}
 
 	public function updateProductQuantityById($id, $qty){
@@ -448,7 +510,7 @@ class Model {
 			$products = str_replace("[", "", $products);
 			$products = str_replace("]", "", $products);
 			$products = explode(",", $products);
-		
+
 			$cartItems = array();
 
 			foreach($products as  $idx => $p){
@@ -469,8 +531,11 @@ class Model {
 						LIMIT 1
 					";
 					$detail = $this->db->query($sql)->fetch();
-					// op($_POST['products']);
-					// opd($detail);
+
+					if(!$detail){
+						die(json_encode($cartItems));
+					}
+
 					$cartItems[$detail['storeid']]['storename'] = $detail['storename'];
 					$cartItems[$detail['storeid']]['storelogo'] = ($detail['storelogo']!="") ? $detail['storelogo'] : './node_modules/bootstrap-icons/icons/image-alt.svg';
 					$cartItems[$detail['storeid']]['products'][] = array(
@@ -2234,7 +2299,7 @@ class Model {
 		$sql = array();
 		// $sql[] = "delete from store";
 		// $sql[] = "delete from user where usertype !='admin'";
-		$sql[] = "delete from productt";
+		// $sql[] = "delete from productt";
 		// $sql[] = "delete from material";
 		// $sql[] = "delete from userinfo where userid !=36";
 		$sql[] = "delete from cart";

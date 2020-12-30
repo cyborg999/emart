@@ -113,7 +113,7 @@
 			                                <td>₱<?= $p['price'];?></td>
 			                                <td><?= $p['quantity'];?></td>
 			                                <td>₱<?= $p['shipping'];?></td>
-			                                <td>₱<?= $p['tax'];?></td>
+			                                <td><?= $p['tax'];?>%</td>
 			                              </tr>
 			                              <?php endforeach ?>
 			                              <tr>

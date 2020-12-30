@@ -18,3 +18,13 @@ reduce item quantity if purchased
 merchant
 remove extra design sa homepage
 add in stock out of stock
+receipt preview
+
+pos
+receipt,barcode
+fix duplicate
+
+
+install
+https://github.com/mike42/escpos-php
+composer require mike42/escpos-php

@@ -260,7 +260,16 @@
                                       INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status)
                                       VALUES(?,?,?,?,?,?,?,?,?)   
                                   ";          
-                                  $db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['detail']['quantity'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId,$p['detail']['storeid'], 'pending'));
+                                  $db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['qty'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId,$p['detail']['storeid'], 'pending'));
+
+                                  //update remaining qty
+                                  $sql = "
+                                    update productt
+                                    set quantity = quantity-?
+                                    where id = ?
+                                  ";
+
+                                  $db->prepare($sql)->execute(array($p['qty'], $p['productId']));
                                 }
 
                               }

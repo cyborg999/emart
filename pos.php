@@ -45,7 +45,9 @@
 				padding: 10px;
 			}
 			.table-result {
-				max-height: 500px;
+				position: relative;
+				overflow: auto;
+				max-height: 400px;
 			}
 		</style>
 		<div class="row">
@@ -54,6 +56,9 @@
 			</div>
 			<div class="col-sm-10"  id="fs">
 				<div class="content row board">
+					<?php
+						$fees = $model->getGlobalFees();
+					?>
 					<div class="col-sm-8 left">
 						<div class="row">
 							<div class="form-group">
@@ -109,18 +114,20 @@
 								margin: 0 auto;
 								box-sizing: border-box;
 							}
+
 						</style>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-8">
-						< back
-					</div>
-					<div class="col-sm-4">
-							<div class="row">
+						<div class="row">
 								<div class="grandtotal col-sm">
+
 									<div class="row">
-										<div class="col-sm">
+										<div class="col-sm-4">
+											<a href="dashboard.php" class="float-left">< Back</a>
+										</div>
+										<div class="col-sm-8">
 											<table class="table">
 												<tbody>
 													<tr>
@@ -129,20 +136,23 @@
 													</tr>
 													<tr>
 														<th>Tax: </th>
-														<td>P <span id="tax">12</span>% (<span id="insideTax">0.00</span>)</td>
+														<td><span id="tax"><?= ($fees) ? $fees['tax'] : "0";?></span>% (P<span id="insideTax">0.00</span>)</td>
 													</tr>
 												</tbody>
 											</table>
-										</div>
-										<div class="col-sm">
-											<h5>Balance Due: <br>P <span class="grandTotal">0.00</span></h5>
+											<div class="col-sm">
+												<h5>Balance Due: P<span class="grandTotal">0.00</span></h5>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+					</div>
+					<div class="col-sm-4">
+							
 							<div class="row">
 								<div class="button">
-									<a href="" class="btn btn-primary btn-lg">Accept Payment P<span class="grandTotal">0.00</span></a>
+									<a href="" id="pay" class="btn btn-primary btn-lg">Accept Payment P<span class="grandTotal">0.00</span></a>
 								</div>
 							</div>
 					</div>
@@ -154,16 +164,19 @@
 		.name {
 			max-width: 180px;
 		}
+		#tbody tr {
+			cursor: pointer;
+		}
 	</style>
 	<script type="text/html" id="itemTPL">
-		<tr>
+		<tr data-id="[PRODUCTID]">
 			<td>
 				<span class="qty">[QTY]</span>
 			</td>
 			<td>
 				<p class="name">[NAME]</p>
 			</td>
-			<td>P [PRICE]</td>
+			<td>P <span class="perPrice">[PRICE]</span></td>
 			<td><span class="price">P [TOTAL]</span></td>
 		</tr>
 	</script>
@@ -176,7 +189,7 @@
           <td class="editbrand">[BRAND]</td>
           <td class="editqty"><input type="number" value="1" class="form-control quantity" name=""></td>
           <td>
-            <a href="" data-qty="[QTY]" data-expiry="[EXPIRY]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" class="btn btn-sm add"  ><svg class="bi" width="40" height="40" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#check"/></svg> </a>
+            <a href="" data-qty="[QTY]"  data-expiry="[EXPIRY]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" class="btn btn-sm add"  ><svg class="bi" width="40" height="40" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#check"/></svg> </a>
           </td>
         </tr>
 	</script>
@@ -184,9 +197,56 @@
 	<?php include "./foot.php"; ?>
 	<script type="text/javascript">
 		(function($){
-			var globalTotal = 0;
-			var tax = $("#tax").html();
+			var products = Array();
+
+			function getProducts(){
+				products = Array();
+				var globalTotal = 0;
+				var insideTax = 0;
+				var grandTotal = 0;
+				var tax = $("#tax").html();
+
+				$("#tbody tr").each(function(x, me){
+					var tr = $(me);
+					var data = Array();
+					var productId = tr.data("id");
+					var qty = parseInt(tr.find(".qty").html());
+					var price = parseFloat(tr.find(".perPrice").html());
+					var total = price* qty;
+
+					globalTotal += total;
+
+					insideTax = (globalTotal*(tax/100));
+					grandTotal = insideTax+globalTotal;
+
+					insideTax = financial(insideTax);
+					grandTotal = financial(grandTotal);
+					grandTotal = financial(grandTotal);
+
+					products.push(Array(qty,price, productId));
+				});
+
+				$("#insideTax").html( insideTax);
+				$("#subTotal").html( globalTotal);
+				$(".grandTotal").html( grandTotal );
+
+				__listen();
+			}
+
+			function financial(x) {
+			  return Number.parseFloat(x).toFixed(2);
+			}
+
 			var __listen = function(){
+				$("#tbody tr").off().on("click", function(e){
+					e.preventDefault();
+
+					var me = $(this);
+
+					me.remove();
+					getProducts();
+				});
+
 				$(".add").off().on("click", function(e){
 					e.preventDefault();
 
@@ -195,27 +255,48 @@
 					var name = tr.find(".editname").html();
 					var price = tr.find(".editprice").html();
 					var qty = tr.find(".quantity").val();
+					var productId = me.data("id");
 					var trTpl = $("#itemTPL").html();
-					var total = price* parseInt(qty);
 
 					trTpl = trTpl.replace("[QTY]", qty).
+						replace("[PRODUCTID]", productId).
 						replace("[NAME]", name).
 						replace("[PRICE]", price).
 						replace("[TOTAL]", price* parseInt(qty));
 
-					globalTotal += total;
-
-					var insideTax = (globalTotal*(tax/100));
-
 					$("#tbody").append(trTpl);
 
-					$("#insideTax").html( insideTax);
-					$("#subTotal").html( globalTotal);
-					$(".grandTotal").html( insideTax+globalTotal);
+					getProducts();
+
 				});
 			}
 
 			__listen();
+
+			function reset(){
+				$("#tbody tr").remove();
+				$("#searchName").val("");
+				$("#searchName").trigger("keyup");
+				
+				getProducts();
+			}
+
+			$("#pay").on("click", function(e){
+				e.preventDefault();
+
+				var tax = $("#tax").html();
+				var total = $(".grandTotal").first().html();
+
+				$.ajax({
+					url : "ajax.php",
+					data : { pay : true, grandTotal : total, tax : tax, products : products},
+					type : "post",
+					dataType : "json",
+					success : function(response){
+						reset();
+					}
+				});
+			});
 
 	        const debounce = (func, wait) => {
 	          let timeout;

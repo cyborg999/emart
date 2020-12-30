@@ -446,7 +446,7 @@
 
                    cartData = JSON.parse(localStorage.getItem("items"));
 
-                    cartData[me.data("id")] = $("#qty").html();
+                    cartData[me.data("id")] = parseInt($("#qty").html());
 
                     localStorage.setItem("items", JSON.stringify(cartData));
 
