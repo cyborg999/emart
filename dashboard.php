@@ -24,6 +24,7 @@
 					<div class="col-sm">
 						<h5>Dashboard</h5>
 						<?php
+							$annual = $model->getCurrentYearAnnualEarnings();
 							$pending = $model->checkIfPayed();
 							$expiration = $model->getSubscriptionExpiration();  
 						?>
@@ -37,13 +38,16 @@
 					</div>
 					<div class="row">
 						<?php
-							$ecom = $model->getStoreMonthlyEarnings();
-							$pos = $model->getStoreMonthlyEarnings("pos");
+							$ecom = $model->getStoreMonthlyEarnings("ecom", true);
+							$pos = $model->getStoreMonthlyEarnings("pos", true);
           					$pendingTotal = $model->getPendingOrdersByStatus("pending", true);
           					$processedTotal = $model->getPendingOrdersByStatus("processed", true);
-          					$percent = ($processedTotal['total'] / ($processedTotal['total'] + $pendingTotal['total'])) *100;
+          					if( ($processedTotal['total'] == 0) && ($pendingTotal['total'] == 0)){
 
-          					op($percent);
+          						$percent = 0;
+          					} else {
+          						$percent = ($processedTotal['total'] / ($processedTotal['total'] + $pendingTotal['total']) ) * 100;
+          					}
 
 						?>
 							<div class="col-sm">
@@ -72,10 +76,10 @@
 							</div>
 							<div class="col-sm">
 								<div class="card bg-light  mb-3" style="max-width: 18rem;">
-								  <div class="card-header">Processed Orders (<?= $processedTotal['total']; ?><)</div>
+								  <div class="card-header">Processed Orders (<?= $processedTotal['total']; ?>/<?= $processedTotal['total'] + $pendingTotal['total'];?>)</div>
 								  <div class="card-body">
 								  	<div class="progress">
-									  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+									  <div class="progress-bar" role="progressbar" style="width: <?= $percent; ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								  </div>
 								</div>
@@ -85,17 +89,17 @@
 				<div class="content">
 					<div class="jumbotron">
 						<div class="row">
-							<div class="col-sm-8">
+							<div class="col-sm-6">
 								<div class="card">
-								  <h5 class="card-header">Annual Sale</h5>
+								  <h5 class="card-header">Ecommerce Annual Earnings </h5>
 								  <div class="card-body">
 									<canvas id="monthlyChart" width="100" height="100" aria-label="Hello ARIA World" role="img"></canvas>		
 								  </div>
 								</div>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-6">
 								<div class="card">
-								  <h5 class="card-header">Ecommerce vs POS Sale</h5>
+								  <h5 class="card-header">Monthly Earnings</h5>
 								  <div class="card-body">
 									<canvas id="myChart" width="100" height="100" aria-label="Hello ARIA World" role="img"></canvas>		
 								  </div>
@@ -117,7 +121,7 @@
 		        labels: ['POS', 'Ecommerce'],
 		        datasets: [{
 		            label: 'POS vs Ecommerce Sale',
-		            data: [12, 19],
+		            data: [<?= $pos; ?>, <?= $ecom; ?>],
 		            backgroundColor: [
 		                'rgba(255, 99, 132, 0.5)',
 		                'rgba(255, 159, 64, 0.5)'
@@ -147,11 +151,14 @@
 		    options: options
 		});
 
+		var d = new Date();
+		var year = d.getFullYear();
+
 		var annualData = {
-		        labels: ['POS', 'Ecommerce'],
+		        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		        datasets: [{
-		            label: 'POS vs Ecommerce Sale',
-		            data: [12, 19],
+		            label: 'Annual Sale ' + year,
+		            data: <?= $annual; ?>,
 		            backgroundColor: [
 		                'rgba(255, 99, 132, 0.5)',
 		                'rgba(255, 159, 64, 0.5)'

@@ -181,7 +181,50 @@ class Model {
 		}
 	}
 
-	public function getStoreMonthlyEarnings($type = "ecom"){
+	public function getCurrentYearAnnualEarnings($type = "ecom"){
+		$storeid = $_SESSION['storeid'];
+		$status = "delivered";
+		$month = "todo";
+		$record = null;
+		$months = array(
+			"Jan" => 0,
+			"Feb" => 0,
+			"Mar" => 0,
+			"Apr" => 0,
+			"May" => 0,
+			"Jun" => 0,
+			"Jul" => 0,
+			"Aug" => 0,
+			"Sep" => 0,
+			"Oct" => 0,
+			"Nov" => 0,
+			"Dec" => 0
+		);
+
+		$sql = "
+			select *
+			from cart
+			where storeid = $storeid
+			and status = '$status'
+			and YEAR(date_created) = YEAR(CURDATE())
+		";
+
+		$record = $this->db->query($sql)->fetchAll();
+
+		foreach($record as $idx => $r){
+			$total = ((($r['price'] * $r['quantity']) * ($r['tax']/100)) + ($r['price'] * $r['quantity'])) + $r['shipping'];
+			$m = date_format(date_create($r['date_created']), "M");
+			$y = date_format(date_create($r['date_created']), "Y");
+
+			$months[$m] += $total;
+		}
+
+		$totalOnly = json_encode(array_values($months));
+
+		return $totalOnly;
+	}
+
+	public function getStoreMonthlyEarnings($type = "ecom", $getTotal = false){
 		$total = 0;
 		$storeid = $_SESSION['storeid'];
 		$status = "delivered";
@@ -192,8 +235,9 @@ class Model {
 				select *
 				from pos
 				where storeid = $storeid
+				and MONTH(date_created) = MONTH(CURDATE())
 			";
-			
+
 			$record = $this->db->query($sql)->fetchAll();
 
 			foreach($record as $idx => $r){
@@ -205,6 +249,7 @@ class Model {
 				from cart
 				where storeid = $storeid
 				and status = '$status'
+				and MONTH(date_created) = MONTH(CURDATE())
 			";
 			$record = $this->db->query($sql)->fetchAll();
 
@@ -213,7 +258,9 @@ class Model {
 			}
 		}
 
-		return $total;
+		if($getTotal){
+			return $total;
+		}
 
 	}
 
