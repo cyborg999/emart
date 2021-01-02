@@ -138,7 +138,7 @@
 
 <script type="text/html" id="productTPL">
       <tr class="result" id="edit[ID]">
-         <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/<?= $_SESSION['storeid'];?>/<?= $product['id']; ?>/<?= $product['filename']; ?>" /></td>
+         <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]" /></td>
           <td class="editname">[NAME]</td>
           <td class="editprice">[PRICE]</td>
           <td class="editcost">[COST]</td>
@@ -281,9 +281,14 @@
                 for(var i in response){
                   console.log(response[i].name);
                   var tpl = $("#productTPL").html();
+         // <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]" /></td>
 
-                  tpl = tpl.replace("[ID]", response[i].id).replace("[ID]", response[i].id).replace("[ID]", response[i].id).replace("[NAME]", response[i].name).replace("[NAME]", response[i].name)
-                  .replace("[PRICE]", response[i].price).replace("[PRICE]", response[i].price).replace("[COST]", response[i].cost).replace("[QUANTITY]", response[i].quantity).replace("[QUANTITY]", response[i].quantity).replace("[BRAND]", response[i].brand).replace("[BRAND]", response[i].brand);
+                  tpl = tpl.replace("[ID]", response[i].id).replace("[ID]", response[i].id).replace("[ID]", response[i].id).replace("[NAME]", response[i].name).replace("[NAME]", response[i].name).
+                  replace("[PRICE]", response[i].price).
+                  replace("[STOREID]", response[i].storeid).
+                  replace("[PRODUCTID]", response[i].id).
+                  replace("[FILENAME]", response[i].filename).
+                  replace("[PRICE]", response[i].price).replace("[COST]", response[i].cost).replace("[QUANTITY]", response[i].quantity).replace("[QUANTITY]", response[i].quantity).replace("[BRAND]", response[i].brand).replace("[BRAND]", response[i].brand);
 
                   $("#search").after(tpl);
                 }

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="./node_modules/dropzone/dist/min/dropzone.min.css">
     <link rel="stylesheet" href="./node_modules/chosen-js/chosen.min.css" >
     <script src="./node_modules/dropzone/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./node_modules/chart.js/dist/Chart.min.css">
     <title>eMart</title>
   </head>
 <body>

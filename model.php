@@ -258,6 +258,28 @@ class Model {
 		}
 	}
 
+	public function loadAnnualUsersListener(){
+		$sql = "
+			select year(date_created) as 'year', count(t1.id) as 'total'
+			from user t1
+			group by year(date_created)
+		";
+
+		$record = $this->db->query($sql)->fetchAll();
+
+
+		$labels = array();
+		$items = array();
+
+		foreach($record as $idx => $p){
+			$labels[] = $p['year'];
+			$items[] = $p['total'];
+		}
+
+		$data =  array("total" => $items,  "labels"=> $labels, "record" => $record);
+
+		return $data;
+	}
 
 	public function loadInventoryListener(){
 		if(isset($_POST['loadInventory'])){
@@ -1842,6 +1864,7 @@ class Model {
 				ON t1.id = t2.productid
 				WHERE t1.name LIKE '%".$_POST['txt']."%'
 				AND t1.storeid = '".$_SESSION['storeid']."'
+				group by t1.id
 				LIMIT 20
 			";
 
