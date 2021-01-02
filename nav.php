@@ -1,6 +1,14 @@
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <?php include "./spinner.php"; ?>
-        <section class="top-bar">
+    <style type="text/css">
+            .fixed {
+                position: sticky;
+                top: 0px;
+                z-index: 999;
+                background: white;
+            }
+        </style>
+        <section class="top-bar fixed">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-5">

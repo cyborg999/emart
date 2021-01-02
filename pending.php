@@ -82,11 +82,13 @@
                             <img src="./uploads/merchant/<?= $o['storeid'];?>/<?= $o['productid']; ?>/<?= $preview['name']; ?>">
                           </li>
                       </td>
-                      <td class="status"><?= $o['status'];?></td>
+                      <td class="status">
+                        <?= $o['status'];?>
+                      </td>
                       <td><?= $o['date_created'];?></td>
                       <td>
                         <a href="" class="btn btn-primary view">view</a>
-                        <a href="" data-id="<?= $o['id'];?>" class="btn btn-warning cancel">cancel</a>
+                        <a href="" data-id="<?= $o['id'];?>" data-productid="<?= $o['productid'];?>" data-qty="<?= $o['quantity'];?>" class="btn btn-warning cancel">cancel</a>
                       </td>
                     </tr>
                   <!--   <tr>
@@ -192,7 +194,13 @@
         showPreloader();
         $.ajax({
           url : "ajax.php",
-          data : { updateOrderStatus : true, id: me.data("id"), status : "cancelled"  },
+          data : { 
+            updateOrderStatus : true, 
+            productid : me.data("productid"),
+            id: me.data("id"), 
+            qty: me.data("qty"), 
+            status : "cancelled"  
+          },
           type : "post",
           dataType : "json",
           success : function(response){

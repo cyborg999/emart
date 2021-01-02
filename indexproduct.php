@@ -85,7 +85,13 @@ if(isset($_GET['category'])){
           margin: 0;
           line-height: 1;
      }
+     .slider-area .menu-widget ul li a {
+      text-decoration: none;
+     }
  </style>
+ <?php if(!count($products)): ?>
+    <h5>No product found.</h5>
+ <?php endif ?>
  <?php foreach($products as $idx => $p): ?>
   <div class="product">
       <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"/>

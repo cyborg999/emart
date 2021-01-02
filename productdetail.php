@@ -81,6 +81,8 @@
                     $comments  = $model->getAllProductCommentsById($_GET['id']);
                     $average = $model->GetAvgCommentByProductId($_GET['id']);
                     $related = $model->getRelatedProductsByCategoryId($product['categoryid']);
+
+
                     $fees = $model->getGlobalFeesByStoreId($_GET['id']);
                     $activeMedia = "";
 
@@ -112,6 +114,19 @@
                         <h1><?= $product['name'];?></h1>
                         <p>by: <a href="./shop.php?id=<?= $product['storeid'];?>"><?= $product['storename'];?></a></p>
                         <figure class="star_rating"></figure>
+                        <style type="text/css">
+                            .star_rating {
+                                float: left;
+                                margin: 0 10px 0 0;
+                            }
+                            .instock {
+                                color: green;
+                            }
+                            .instock span {
+                                color: black;
+                                font-weight: normal;
+                            }
+                        </style>
                         <ul class="star_rating">
                             <?php for($i = 1;$i<=5;$i++) : ?>
                                 <?php if($i <= $average['average']): ?>
@@ -121,18 +136,23 @@
                                 <?php endif ?>
                             <?php endfor ?>
                         </ul>
+                        <?php if($product['quantity'] > 0):?>
+                            <b class="instock">In Stock (<span><?= $product['quantity'];?></span>)</b>
+                        <?php else : ?>
+                            <b style="color: red; line-height: 2;">Out of Stock</b>
+                        <?php endif ?>
                         <em class="price">₱<?= $product['price'];?></em>
                         <p><?= $product['description'];?></p>
                         <ul id="tags">
                             <li><a href="./filtered.php?category=<?= $product['categoryid'];?>"><?= $product['categoryname'];?></a></li>
                         </ul>
-                        <nav aria-label="..." class="qty">
+                        <nav aria-label="..." id="maxQty" data-max="<?= $product['quantity'];?>" class="qty">
                           <ul class="pagination pagination-sm">
                             <li class="page-item"><a class="page-link count" data-action="minus" href="#">
                                 <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#dash"/></svg>
                             </a></li>
                             <li  class="page-item">
-                                <button class="btn  page-link" id="qty">1</button>
+                                <button class="btn  page-link" id="qty"><?=($product['quantity'] >0) ? 1 : 0;?></button>
                             </li>
                             <li class="page-item"><a class="page-link count" data-action="plus" href="#">
                                 <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#plus"/></svg>
@@ -417,9 +437,12 @@
                     var me = $(this);
                     var action = me.data("action");
                     var current = qty.html();
+                    var max = $("#maxQty").data("max");
 
                     if(action == "plus"){
-                        qty.html(parseInt(current) + 1);
+                        if(parseInt(current) < max){
+                            qty.html(parseInt(current) + 1);
+                        }
                     } else {
                         if(parseInt(current) > 1){
                             qty.html(parseInt(current) - 1);

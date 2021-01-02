@@ -73,6 +73,9 @@ class Model {
 		$this->codPaymentListener();
 		$this->updateOrderStatusListener();
 		$this->payListener();
+		$this->loadSalesReportListener();
+		$this->loadMonthlyListener();
+		$this->loadInventoryListener();
 	}
 
 	public function payListener(){
@@ -134,8 +137,30 @@ class Model {
 				$this->db->prepare($sql)->execute(array($_POST['status'], $_POST['id']));
 			}
 
+			if($_POST['status'] == "cancelled"){
+				$this->updateProductQuantityById($_POST['productid'], $_POST['qty'], true);
+			}
+
 			die(json_encode("updated"));
 		}
+	}
+
+	public function getBestSeller(){
+		$sql = "
+			SELECT  t2.*, t3.name as 'filename'
+			FROM cart t1
+			left join productt t2
+			on t1.productid = t2.id
+			left join media t3
+			on t3.productid = t2.id
+			where t1.status = 'delivered'
+			and month(t1.delivery_date) = month(CURRENT_DATE()) 
+			GROUP BY t1.productid
+			ORDER BY SUM(t1.quantity) DESC
+			limit 10
+		";
+
+		return $this->db->query($sql)->fetchAll();
 	}
 
 	public function codPaymentListener(){
@@ -181,7 +206,97 @@ class Model {
 		}
 	}
 
-	public function getCurrentYearAnnualEarnings($type = "ecom"){
+	public function loadSalesReportListener(){
+		if(isset($_POST['loadSalesReport'])){
+			$data = $this->getCurrentYearAnnualEarnings("ecom", $_POST['year']);
+
+			die($data);
+		}
+	}
+
+	public function loadMonthlyListener(){
+		if(isset($_POST['loadMonthly'])){
+			$storeid = $_SESSION['storeid'];
+			$status = "delivered";
+			$month = $_POST['month'];
+			$products = array();
+
+			$sql = "
+				select t1.*,t2.name as 'product'
+				from cart t1
+				left join productt t2
+				on t2.id = t1.productid
+				where t1.storeid = $storeid
+				and  t1.status = '$status'
+				and MONTH( t1.date_created) = '$month'
+				and YEAR( t1.date_created) = YEAR(CURDATE())
+			";
+
+			$_SESSION['lastQuery'] = $sql;
+
+			$record = $this->db->query($sql)->fetchAll();
+
+			foreach($record as $idx => $r){
+				$total = ((($r['price'] * $r['quantity']) * ($r['tax']/100)) + ($r['price'] * $r['quantity'])) + $r['shipping'];
+
+				// $months[$m] += $total;
+				$products[$r['productid']]['name'] = $r['product'];
+				@$products[$r['productid']]['total'] += $total;
+			}
+
+			$labels = array();
+			$items = array();
+
+			foreach($products as $idx => $p){
+				$labels[] = $p['name'];
+				$items[] = $p['total'];
+			}
+
+			$data =  json_encode(array("total" => $items,  "labels"=> $labels, "record" => $record));
+
+			die($data);
+		}
+	}
+
+
+	public function loadInventoryListener(){
+		if(isset($_POST['loadInventory'])){
+			$storeid = $_SESSION['storeid'];
+			$products = array();
+			$filter = $_POST['filter'];
+			$txt = $_POST['txt'];
+			$and = "";
+
+			if($filter == "name"){
+				$and = "and t1.name like '%$txt%'";
+			} else if($filter == "brand"){
+				$and = "and t1.brand like '%$txt%'";
+			} else if($filter == "qty"){
+				$and = "and t1.quantity <= $txt";
+			}  else {
+				$and = "and t3.name like '%$txt%'";
+			} 
+
+			$sql = "
+				select t1.*, t3.name as 'category'
+				from productt t1
+				left join category t3
+				on t3.id = t1.categoryid
+				where t1.storeid = $storeid
+				$and
+
+			";
+
+			$_SESSION['lastQuery'] = $sql;
+			// op($sql);
+			// oppd();
+			$record = $this->db->query($sql)->fetchAll();
+
+			die(json_encode(array("record" => $record)));
+		}
+	}
+
+	public function getCurrentYearAnnualEarnings($type = "ecom", $year = false){
 		$storeid = $_SESSION['storeid'];
 		$status = "delivered";
 		$month = "todo";
@@ -201,13 +316,28 @@ class Model {
 			"Dec" => 0
 		);
 
-		$sql = "
-			select *
-			from cart
-			where storeid = $storeid
-			and status = '$status'
-			and YEAR(date_created) = YEAR(CURDATE())
-		";
+		if($year){
+			$sql = "
+				select t1.*,t2.name as 'product'
+				from cart t1
+				left join productt t2
+				on t2.id = t1.productid
+				where t1.storeid = $storeid
+				and  t1.status = '$status'
+				and YEAR( t1.date_created) = $year
+			";
+
+		} else {
+			$sql = "
+				select *
+				from cart
+				where storeid = $storeid
+				and status = '$status'
+				and YEAR(date_created) = YEAR(CURDATE())
+			";
+		}
+		
+		$_SESSION['lastQuery'] = $sql;
 
 		$record = $this->db->query($sql)->fetchAll();
 
@@ -219,9 +349,9 @@ class Model {
 			$months[$m] += $total;
 		}
 
-		$totalOnly = json_encode(array_values($months));
+		$totalOnly = array_values($months);
 
-		return $totalOnly;
+		return json_encode(array("total" => $totalOnly, "record" => $record));
 	}
 
 	public function getStoreMonthlyEarnings($type = "ecom", $getTotal = false){
@@ -264,12 +394,20 @@ class Model {
 
 	}
 
-	public function updateProductQuantityById($id, $qty){
+	public function updateProductQuantityById($id, $qty, $add = false){
 		$sql = "
 			update productt
 			set quantity = quantity-?
 			where id = ?
 		";
+
+		if($add){
+			$sql = "
+				update productt
+				set quantity = quantity+?
+				where id = ?
+			";
+		}
 
 		$this->db->prepare($sql)->execute(array($qty, $id));
 
@@ -1346,21 +1484,21 @@ class Model {
 	}
 	
 	public function exportPurchaseReportListener(){
-		if(isset($_GET['purchase'])){
+		if(isset($_GET['salesreport'])){
 			// output headers so that the file is downloaded rather than displayed
 			header('Content-Type: text/csv; charset=utf-8');
-			header('Content-Disposition: attachment; filename=Purchase_Report.csv');
+			header('Content-Disposition: attachment; filename=Sales_Report.csv');
 
 			// create a file pointer connected to the output stream
 			$output = fopen('php://output', 'w');
 
 			// output the column headings
-			fputcsv($output, array('Purchase Type', 'Material', 'Vendor', "Date Purchased", "Quantity"));
+			fputcsv($output, array('Product', 'Price', 'Quantity', "Shipping Fee", "Tax","Date Purchased", "Date Delivered"));
 
 			$records = $this->db->query($_SESSION['lastQuery'])->fetchAll();
-			
+
 			foreach($records as $idx => $r){
-				$data = array($r['type'],$r['materialname'],$r['vendorname'],$r['date_purchased'],$r['qty'],);
+				$data = array($r['product'],$r['price'],$r['quantity'],$r['shipping'],$r['tax'],$r['date_created'],$r['delivery_date'],);
 				fputcsv($output, $data);
 			}
 

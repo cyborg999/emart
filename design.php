@@ -8,22 +8,22 @@ add to notification if someone commented on product
 
 
 cart
-userdashboard
 flag dummy client that dont pay cod
 discontinued product
 print receipt para ididikit sa package
 reduce item quantity if purchased
 
+user
+userdashboard
 
 merchant
+link to dashboard
 remove extra design sa homepage
-add in stock out of stock
 receipt preview
 
 pos
 receipt,barcode
 fix duplicate
-
 
 install
 https://github.com/mike42/escpos-php

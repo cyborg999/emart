@@ -163,6 +163,26 @@
         </div>
       </div>
        
+     <div class="card">
+        <div class="card-header" id="headingFour">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseReport" aria-expanded="false" aria-controls="collapseReport">
+              <svg class="bi" width="15" height="15" fill="currentColor">
+                <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> Reports
+            </button>
+          </h2>
+        </div>
+        <div id="collapseReport" class="collapse <?=($active =='reports') ? 'show' : ''; ?>" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <ul class="sublist">
+              <li>
+                <a href="salesreport.php">Sales Report</a>
+                <a href="inventoryreport.php">Inventory Report</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
   <div class="card">
     <div class="card-header" id="headingFour">

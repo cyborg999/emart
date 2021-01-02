@@ -3,7 +3,7 @@
 <html class="no-js" lang="eng">
     <?php include_once "./head.php"; ?>
     <body>
-
+      
         <!-- Preloader -->
         <div class="preloader" style="display: none;">
             <div class="load-list">
@@ -29,7 +29,7 @@
                     <div class="col-md-5 padding-fix">
                         <?php  include "./search.php"; ?>
                     </div>
-                    <div class="col-md-4">
+               <!--      <div class="col-md-4">
                         <div class="carts-area d-flex">
                             <div class="call-box d-flex">
                                 <div class="call-ico">
@@ -47,7 +47,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -522,6 +522,7 @@
                        <div class="row">
                            <?php include "./topleft.php"; ?>
                         </div>
+
                     </div>
                     <div class="col-lg-9 col-md-12 padding-fix-l20">
                        <div class="row products">
