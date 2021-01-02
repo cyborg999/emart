@@ -26,5 +26,8 @@ receipt,barcode
 fix duplicate
 
 install
+composer require league/omnipay omnipay/stripe
+
+
 https://github.com/mike42/escpos-php
 composer require mike42/escpos-php
