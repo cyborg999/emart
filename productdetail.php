@@ -112,7 +112,7 @@
                     </div>
                     <div class="col-sm-6">
                         <h1><?= $product['name'];?></h1>
-                        <p>by: <a href="./shop.php?id=<?= $product['storeid'];?>"><?= $product['storename'];?></a></p>
+                        <p>by: <a target="_blank" href="./shop.php?id=<?= $product['storeid'];?>"><?= $product['storename'];?></a></p>
                         <figure class="star_rating"></figure>
                         <style type="text/css">
                             .star_rating {

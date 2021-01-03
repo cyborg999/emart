@@ -1,8 +1,17 @@
+
 <!DOCTYPE html>
 <html>
     <?php include_once "./head.php"; ?>
+        <?php
+      if(isset($_SESSION['usertype'])){
+        if($_SESSION['usertype'] !="client"){
+          header("Location:useronly.php");
+        }
+      }
+    ?>
 <body>
     <?php include_once "./nav.php"; ?>
+
     <main>
       <section class="sec1">
       <div class="px-4 px-lg-0">

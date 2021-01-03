@@ -18,7 +18,7 @@
 
         <div class="content">
           <h3>Welcome back!</h3>
-          <p>You have 24 new messages and 5 new notifications.</p>
+          <!-- <p>You have 24 new messages and 5 new notifications.</p> -->
         </div>
 
 

@@ -97,6 +97,8 @@ class Model {
 				";
 
 				$this->db->prepare($sql)->execute(array($_SESSION['id'], $p[2], $p[0], $p[1], $_SESSION['storeid'], $_POST['tax'], $transactionId));
+
+				$this->updateProductQuantityById($p[2],$p[0]);
 			}
 
 			die(json_encode("added"));
@@ -154,9 +156,8 @@ class Model {
 			left join media t3
 			on t3.productid = t2.id
 			where t1.status = 'delivered'
-			and month(t1.delivery_date) = month(CURRENT_DATE()) 
+			and t3.active = 1
 			GROUP BY t1.productid
-			ORDER BY SUM(t1.quantity) DESC
 			limit 10
 		";
 
@@ -318,7 +319,7 @@ class Model {
 		}
 	}
 
-	public function getCurrentYearAnnualEarnings($type = "ecom", $year = false){
+	public function getCurrentYearAnnualEarnings($type = "ecom", $year = false, $json = true){
 		$storeid = $_SESSION['storeid'];
 		$status = "delivered";
 		$month = "todo";
@@ -372,6 +373,11 @@ class Model {
 		}
 
 		$totalOnly = array_values($months);
+
+		if(!$json){
+			return array("total" => $totalOnly, "record" => $record);
+
+		}
 
 		return json_encode(array("total" => $totalOnly, "record" => $record));
 	}
@@ -430,7 +436,7 @@ class Model {
 				where id = ?
 			";
 		}
-
+		
 		$this->db->prepare($sql)->execute(array($qty, $id));
 
 		return $this;
@@ -1864,6 +1870,7 @@ class Model {
 				ON t1.id = t2.productid
 				WHERE t1.name LIKE '%".$_POST['txt']."%'
 				AND t1.storeid = '".$_SESSION['storeid']."'
+				AND t2.active = 1
 				group by t1.id
 				LIMIT 20
 			";
@@ -2505,11 +2512,11 @@ class Model {
 	//for easy deletion of records
 	public function reset(){
 		$sql = array();
-		// $sql[] = "delete from store";
-		// $sql[] = "delete from user where usertype !='admin'";
-		// $sql[] = "delete from productt";
-		// $sql[] = "delete from material";
-		// $sql[] = "delete from userinfo where userid !=36";
+		$sql[] = "delete from store";
+		$sql[] = "delete from user where usertype !='admin'";
+		$sql[] = "delete from productt";
+		$sql[] = "delete from material";
+		$sql[] = "delete from userinfo where userid !=36";
 		$sql[] = "delete from cart";
 		$sql[] = "delete from cart_details";
 		$sql[] = "delete from payments";

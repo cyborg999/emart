@@ -23,8 +23,12 @@
 
 						// op($data['total']);
 					?>
-					<canvas id="monthlyChart" width="100" height="30" aria-label="Hello ARIA World" role="img"></canvas>		
 
+				</div>
+				<div class="row content ">
+					<div class="col-sm ">
+						<canvas id="monthlyChart" width="100" height="40" aria-label="Hello ARIA World" role="img"></canvas>		
+					</div>
 				</div>
 
 
@@ -53,7 +57,7 @@
 		var annualData = {
 		        labels: <?= json_encode($data['labels']);?>,
 		        datasets: [{
-		            label: 'Annual Number of Users for year ' + year,
+		            label: 'Annual Number of Users',
 		            data: <?= json_encode($data['total']);?>,
 		            backgroundColor: [
 		                'rgba(99, 161, 249, 0.5)',

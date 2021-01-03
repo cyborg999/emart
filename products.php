@@ -145,7 +145,7 @@
           <td class="editqty">[QUANTITY]</td>
           <td class="editbrand">[BRAND]</td>
           <td>
-            <a href="" data-qty="[QTY]" data-expiry="[EXPIRY]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" class="btn btn-sm edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
+            <a href="" data-quantity="[QTY]" data-expiry="[EXPIRY]" data-cost="[COST]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" data-brand="[BRAND]" data-description="[DESCRIPTION]" class="btn btn-sm edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
             <a href="" data-id="[ID]" class="btn btn-sm  delete" alt="Delete Product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
           </td>
         </tr>
@@ -217,6 +217,8 @@
             $("#editid").val(data.id);
             $("#editbrand").attr("value", data.brand);
             $("#editdescription").html(data.description);
+
+            console.log(data);
             $(".msg").addClass("hidden");
           });
 
@@ -281,11 +283,19 @@
                 for(var i in response){
                   console.log(response[i].name);
                   var tpl = $("#productTPL").html();
-         // <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]" /></td>
+         
 
                   tpl = tpl.replace("[ID]", response[i].id).replace("[ID]", response[i].id).replace("[ID]", response[i].id).replace("[NAME]", response[i].name).replace("[NAME]", response[i].name).
                   replace("[PRICE]", response[i].price).
+                  replace("[SRP]", response[i].price).
+                  replace("[DESCRIPTION]", response[i].description).
+                  replace("[NAME]", response[i].name).
+                  replace("[BRAND]", response[i].brand).
                   replace("[STOREID]", response[i].storeid).
+                  replace("[EXPIRY]", response[i].id).
+                  replace("[QTY]", response[i].quantity).
+                  replace("[PRICE]", response[i].price).
+                  replace("[COST]", response[i].cost).
                   replace("[PRODUCTID]", response[i].id).
                   replace("[FILENAME]", response[i].filename).
                   replace("[PRICE]", response[i].price).replace("[COST]", response[i].cost).replace("[QUANTITY]", response[i].quantity).replace("[QUANTITY]", response[i].quantity).replace("[BRAND]", response[i].brand).replace("[BRAND]", response[i].brand);

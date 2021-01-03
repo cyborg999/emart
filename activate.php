@@ -159,11 +159,11 @@ $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;", $username, $p
 						                //update storeid
 						                $sql = "
 						                	UPDATE store
-						                	SET last_payment_id = ?
+						                	SET last_payment_id = ?, subscriptionid = ?
 						                	WHERE userid = ?
 						                ";
 
-						                $db->prepare($sql)->execute(array($payment_id, $_SESSION['id']));
+						                $db->prepare($sql)->execute(array($payment_id, $_POST['subscriptionid'], $_SESSION['id']));
 						                
 						                //auto verify
 						                $sql = "

@@ -124,6 +124,12 @@
                             <tbody>
                               <?php foreach($cartItems as $idx3 => $p): ?>
                               <tr>
+                               <!--  <td>
+                                    <?php
+                                      op($o);
+                                    ?>
+
+                                </td> -->
                                 <td><?= $p['productname'];?></td>
                                 <td>₱<?= $p['price'];?></td>
                                 <td><?= $p['quantity'];?></td>

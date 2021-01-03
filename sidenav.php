@@ -31,9 +31,22 @@
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <a  href="dashboard.php" class="btn btn-link btn-block text-left">
         	<svg class="bi" width="15" height="15" fill="currentColor">
-	<use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-person"/></svg> 
+	<use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#house-door"/></svg> 
+          Dashboard
+        </a>
+      </h2>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <svg class="bi" width="15" height="15" fill="currentColor">
+  <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#file-earmark-person"/></svg> 
           Profile
         </button>
       </h2>
@@ -42,7 +55,7 @@
     <div id="collapseOne" class="collapse <?=($active =='user') ? 'show' : ''; ?>" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <ul class="sublist">
-        	<li><a href="profile.php">Personal</a></li>
+          <li><a href="profile.php">Personal</a></li>
           <li><a href="changepassword.php">Change Password</a></li>
 
           <?php
@@ -57,7 +70,6 @@
       </div>
     </div>
   </div>
-
 
 <!-- 
   <div class="card">
@@ -148,7 +160,7 @@
           <h2 class="mb-0">
             <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsePOS" aria-expanded="false" aria-controls="collapsePOS">
               <svg class="bi" width="15" height="15" fill="currentColor">
-                <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> POS
+                <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#card-list"/></svg> POS
             </button>
           </h2>
         </div>
@@ -168,7 +180,7 @@
           <h2 class="mb-0">
             <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseReport" aria-expanded="false" aria-controls="collapseReport">
               <svg class="bi" width="15" height="15" fill="currentColor">
-                <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear"/></svg> Reports
+                <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#bar-chart-line"/></svg> Reports
             </button>
           </h2>
         </div>

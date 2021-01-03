@@ -25,6 +25,8 @@
                         background-size: contain;
                         background-repeat: no-repeat;
                         background-position: center;
+                        margin: 0 auto;
+                        max-width: 400px;
                     }
                     i {
                         text-align: center;

@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
-				<figure class="logo"></figure>
+				<a href="index.php"><figure class="logo"></figure></a>
 			</div>
 			<div class="col-sm-10">
 				<a href="logout.php"><svg class="bi float-right gear" width="20" height="20" fill="currentColor">
@@ -69,7 +69,7 @@
 		<tr>
 			<td>[NAME]</td>
 			<td>
-				<input type="checkbox" data-id="[ID]" class="status" name="status" [STATUS]>
+				<input type="checkbox" data-id="[ID]" checked class="status" name="status" [STATUS]>
 			</td>
 			<td>
 				<a href="" data-id="[ID]" class="delete sv">
@@ -119,6 +119,7 @@
 			$(".add").off().on("click", function(e){
 				e.preventDefault();
 
+				var me = $(this);
 				var name = $("#name").val();
 				var status = $("#status").is(":checked");
 
@@ -137,8 +138,7 @@
 							replace("[ID]", response).
 							replace("[ID]", response);
 
-						$("#tbody").append(tpl);
-
+						me.parents("tr").after(tpl);
 						__listen();
 						console.log(response);
 					}

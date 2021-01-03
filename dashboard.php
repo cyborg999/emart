@@ -12,7 +12,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-2 side">
-				<?php $active = "user"; include "./sidenav.php";?>
+				<?php $active = "dashboard"; include "./sidenav.php";?>
 			</div>
 			<div class="col-sm-10">
 				<div class="content row">
@@ -24,7 +24,9 @@
 					<div class="col-sm">
 						<h5>Dashboard</h5>
 						<?php
-							$annual = $model->getCurrentYearAnnualEarnings();
+							$annual = $model->getCurrentYearAnnualEarnings("ecom", false , false);
+
+							// opd($annual);
 							$pending = $model->checkIfPayed();
 							$expiration = $model->getSubscriptionExpiration();  
 						?>
@@ -158,7 +160,7 @@
 		        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		        datasets: [{
 		            label: 'Annual Sale ' + year,
-		            data: <?= $annual; ?>,
+		            data: <?= json_encode($annual['total']); ?>,
 		            backgroundColor: [
 		                'rgba(99, 161, 249, 0.5)',
 		                'rgba(99, 161, 249, 0.5)',
