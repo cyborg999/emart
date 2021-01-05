@@ -104,11 +104,22 @@ class Model {
 			die(json_encode("added"));
 		}
 	}
+	
+	public function sendMail($email){
+		$msg = "Your order:product has been processed. Expected delivery is on :";
+		$msg = wordwrap($msg,70);
+
+		mail($email,"eMart - Delivery Notice",$msg);
+
+		return $this;
+	}
 
 	public function updateOrderStatusListener(){
 		if(isset($_POST['updateOrderStatus'])){
 			if($_POST['status'] == "processed"){
 				//update delivery date
+				// $orderDetail = $this->getProductById($_POST['id']);
+
 				$sql = "
 					select *
 					from fees
@@ -749,6 +760,8 @@ class Model {
 						die(json_encode($cartItems));
 					}
 
+					$cartItems[$detail['storeid']]['storetax'] = $detail['tax'];
+					$cartItems[$detail['storeid']]['storeshipping'] = $detail['shipping'];
 					$cartItems[$detail['storeid']]['storename'] = $detail['storename'];
 					$cartItems[$detail['storeid']]['storelogo'] = ($detail['storelogo']!="") ? $detail['storelogo'] : './node_modules/bootstrap-icons/icons/image-alt.svg';
 					$cartItems[$detail['storeid']]['products'][] = array(
@@ -905,16 +918,17 @@ class Model {
 
 	public function getProductById($id){
 		$sql = "
-			SELECT t1.*, t2.name as 'storename',t3.name  as 'categoryname'
+			SELECT t1.*, t2.name as 'storename',t3.name  as 'categoryname', t4.shipping_day
 			FROM productt t1 
 			LEFT JOIN  store t2
 			ON t1.storeid = t2.id
 			left join category t3
 			on t1.categoryid = t3.id
+			left join fees t4
+			on t4.storeid = t2.id
 			WHERE t1.id = $id
 			LIMIT 1
 		";
-
 		return $this->db->query($sql)->fetch();
 	}
 

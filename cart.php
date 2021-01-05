@@ -86,7 +86,7 @@
                   <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
                   <ul class="list-unstyled mb-4">
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong id="total">0</strong></li>
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong id="shipping">0.00</strong></li>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and Handling</strong><strong id="shipping">0.00</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong id="tax">0.00</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
                       <h5 class="font-weight-bold" id="grandTotal">0.00</h5>
@@ -125,10 +125,9 @@
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
     </tr>
    <tr>
-        <th colspan="7" scope="col" class="store align-middle border-0 bg-light">
+        <th colspan="6" scope="col" class="store align-middle border-0 bg-light">
           <b>[STORE]</b>
         </th>
     
@@ -147,9 +146,9 @@
         <th scope="col" class="border-0 bg-light">
           <div class="py-2 text-uppercase">Quantity</div>
         </th>
-        <th scope="col" class="border-0 bg-light">
+   <!--      <th scope="col" class="border-0 bg-light">
           <div class="py-2 text-uppercase">Shipping</div>
-        </th>
+        </th> -->
          <th scope="col" class="border-0 bg-light">
           <div class="py-2 text-uppercase">Tax</div>
         </th>
@@ -157,6 +156,14 @@
           <div class="py-2 text-uppercase">Remove</div>
         </th>
       </tr>
+  </script>
+  <script type="text/html" id="tFoot">
+    <tr>
+      <td colspan="4">
+      <td colspan="2">
+        <b>Shipping : ₱ [SHIPPING]</b>
+      </td>
+    </tr>
   </script>
   <script type="text/html" id="tpl">
     [STORE]
@@ -168,7 +175,7 @@
       </td>
         <td class="align-middle"><strong>₱[PRICE]</strong></td>
         <td class="align-middle"><strong>[QTY]</strong></td>
-        <td class="align-middle"><strong>[SHIPPING]</strong></td>
+        <!-- <td class="align-middle"><strong>[SHIPPING]</strong></td> -->
         <td class="align-middle"><strong>[TAX]</strong></td>
         <td class="align-middle"><a href="#" data-id="[ID]" class="remove text-dark"><svg class="bi" width="25" height="25" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
         </td>
@@ -204,21 +211,28 @@
                     dataType : "json",
                     success : function(response){
                       var orders = "";
+                      var storeShipping = 0;
+
                       lastProducts = response;
 
+
+                      console.log(response);
                       for(var r in response){
                         var store = response[r];
                         var products = store.products;
                         var storeTpl = $("#store").html();
+                        var tFoot = $("#tFoot").html();
                         var counter = 0;
 
                         storeTpl = storeTpl.replace("[STORE]", store.storename).
                           replace("[LOGO]", store.storelogo);
+                        tFoot = tFoot.replace("[SHIPPING]", store.storeshipping);
 
                         orders = orders + storeTpl;
+                        storeShipping += parseFloat(store.storeshipping);
 
                         for(var i in products){
-                          console.log(products[i]);
+                          // console.log(products[i]);
                           var data = products[i];
                           var detail = data.detail;
                           var tpl = $("#tpl").html();
@@ -235,7 +249,6 @@
                           }
 
                           total += qty * detail.price;
-                          shippingTotal += qty * detail.shipping;
                           taxTotal += tax;
 
                           tpl = tpl.replace("[STOREID]", detail.storeid).
@@ -244,29 +257,32 @@
                             replace("[NAME]", detail.name).
                             replace("[PRICE]", detail.price).
                             replace("[CATEGORY]", detail.category).
-                            replace("[SHIPPING]", "₱" + qty * detail.shipping + " <sup>(₱" + detail.shipping + ")</sup>").
+                            // replace("[SHIPPING]", "₱" + qty * detail.shipping + " <sup>(₱" + detail.shipping + ")</sup>").
                             replace("[TAX]", "₱" + Math.round(tax) + " <sup>(" + (Math.round(detail.tax) + "%)</sup>")).
                             replace("[QTY]", qty).
                             replace("[ID]", detail.id).
                             replace("[ID]", detail.id).
                             replace("[ID]", detail.id);
 
-                            orders = orders + tpl
+                            orders = orders + tpl;
 
                             counter++;
                         }
                         
-                        grandTotal = total + shippingTotal + taxTotal;
+                        orders = orders + tFoot;
+                        grandTotal = total + storeShipping + taxTotal;
                       }
 
                       $("tbody").append(orders);
                       __listen();
 
+                      shippingTotal = storeShipping;
                       
                       $("#total").html("₱" + total);
-                      $("#shipping").html("₱" + shippingTotal);
+                      $("#shipping").html("₱" + storeShipping);
                       $("#tax").html("₱" + taxTotal);
                       $("#grandTotal").html( "₱" + (grandTotal));
+
                       hidePreloader();
                     }
                   });

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2021 at 06:36 AM
+-- Generation Time: Jan 05, 2021 at 02:30 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -47,11 +47,12 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `userid`, `productid`, `price`, `quantity`, `shipping`, `tax`, `date_created`, `delivery_date`, `transactionid`, `storeid`, `status`) VALUES
-(51, 66, 45, 90, 1, 0, 12, '2021-01-30 11:31:24', '2021-01-03', 62, 45, 'delivered'),
-(52, 66, 45, 90, 1, 0, 12, '2019-01-30 11:37:31', '2021-01-03', 63, 45, 'delivered'),
-(53, 66, 45, 90, 1, 0, 12, '2021-11-30 11:38:12', NULL, 64, 45, 'delivered'),
-(54, 66, 45, 90, 1, 0, 12, '2021-01-10 11:31:24', '2021-03-03', 62, 45, 'delivered'),
-(55, 65, 44, 67, 1, 0, 12, '2021-01-02 02:20:19', NULL, 65, 45, 'cancelled');
+(57, 71, 46, 250, 1, 0, 0, '2021-01-02 22:26:46', NULL, 67, 49, 'cancelled'),
+(58, 71, 47, 100, 2, 0, 0, '2021-01-02 22:26:46', '2021-01-04', 67, 49, 'delivered'),
+(59, 71, 46, 250, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 49, 'delivered'),
+(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 50, 'delivered'),
+(61, 73, 46, 250, 1, 0, 0, '2021-01-03 05:45:47', '2021-01-04', 79, 49, 'delivered'),
+(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'processed');
 
 -- --------------------------------------------------------
 
@@ -80,10 +81,10 @@ CREATE TABLE `cart_details` (
 --
 
 INSERT INTO `cart_details` (`id`, `transactionid`, `userid`, `fullname`, `address`, `contact`, `email`, `instruction`, `total`, `tax_total`, `grand_total`, `shipping_total`, `date_created`) VALUES
-(47, 62, 66, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '', 90, 10.8, 100.8, 0, '2020-12-30 11:31:24'),
-(48, 63, 66, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '', 90, 10.8, 100.8, 0, '2020-12-30 11:37:31'),
-(49, 64, 66, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '', 90, 10.8, 100.8, 0, '2020-12-30 11:38:12'),
-(50, 65, 65, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '', 67, 8.04, 75.04, 0, '2021-01-02 02:20:18');
+(52, 67, 71, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', 'sa may court', 450, 0, 450, 0, '2021-01-02 22:26:46'),
+(53, 68, 71, 'Dennis Uy', '1852 Sandejas Pasay City', '1111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '', 390, 0, 390, 0, '2021-01-02 23:47:04'),
+(54, 79, 73, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '1111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', 'sa court', 250, 0, 250, 0, '2021-01-03 05:45:47'),
+(55, 81, 71, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '', 280, 33.6, 413.6, 100, '2021-01-05 04:55:45');
 
 -- --------------------------------------------------------
 
@@ -107,12 +108,16 @@ INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `isactive`) VALUES
 (23, 'Men\'s Clothing', 'parent', 0, 1),
 (24, 'Women\'s Clothing', 'parent', 0, 1),
 (25, 'Electronics', 'parent', 0, 1),
-(26, 'Home Appliances', 'parent', 0, 1),
-(27, 'Kids & Babies', 'parent', 0, 1),
-(28, 'Health & Beauty', 'parent', 0, 1),
-(29, 'Automobiles', 'parent', 0, 1),
+(26, 'Home Appliances', 'parent', 0, 0),
+(27, 'Kids & Babies', 'parent', 0, 0),
+(28, 'Health & Beauty', 'parent', 0, 0),
+(29, 'Automobiles', 'parent', 0, 0),
 (30, 'Sports', 'parent', 0, 1),
-(32, 'test', 'parent', 0, 1);
+(33, 'Baby Care', 'parent', 0, 1),
+(34, 'Beauty & Hygiene', 'parent', 0, 1),
+(35, 'Food Grain', 'parent', 0, 1),
+(36, 'Fruits & Vegetables', 'parent', 0, 1),
+(40, 'bago', 'parent', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -153,7 +158,9 @@ INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_creat
 (2, 37, 5, 12, NULL, '2020-12-19 03:02:27', NULL, NULL),
 (7, 35, 0, 0, NULL, '2020-12-19 23:37:57', '5 to 7 business days.', NULL),
 (8, 44, 0, 0, NULL, '2020-12-26 01:15:52', '<blockquote><ul><li>5 to 7 working days</li></ul></blockquote>', NULL),
-(9, 45, 0, 12, NULL, '2020-12-27 22:27:05', '2 to 3 business days.', 4);
+(9, 45, 0, 12, NULL, '2020-12-27 22:27:05', '2 to 3 business days.', 4),
+(10, 50, 50, 12, NULL, '2021-01-03 05:56:58', '5- 3 working days', 8),
+(11, 49, 30, 12, NULL, '2021-01-05 11:53:23', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -179,7 +186,9 @@ INSERT INTO `likes` (`id`, `storeid`, `liked`, `dislike`, `userid`, `date_create
 (3, 37, 0, 1, 53, '2020-12-22 10:45:22'),
 (4, 44, 1, 0, 64, '2020-12-26 01:56:31'),
 (5, 45, 0, 1, 66, '2020-12-27 06:09:22'),
-(6, 45, 1, 0, 65, '2020-12-28 22:56:02');
+(6, 45, 1, 0, 65, '2020-12-28 22:56:02'),
+(7, 49, 1, 0, 36, '2021-01-02 22:15:35'),
+(8, 50, 1, 0, 70, '2021-01-03 00:56:54');
 
 -- --------------------------------------------------------
 
@@ -284,7 +293,28 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (87, '5ebecc232998e9ad9aa73567f75ac2a3.webp', 45, '2020-12-29 20:36:46', 44, 1),
 (88, '627b18b8013527a8bef8cadca6223791.webp', 45, '2020-12-29 20:36:46', 44, 0),
 (89, '86ecad0cfb6691263b54b2b233d7e10e.webp', 45, '2020-12-29 20:39:10', 45, 0),
-(90, 'd0e4a7a2a23264bbc60fc45f2f07dc14.webp', 45, '2020-12-29 20:39:10', 45, 1);
+(90, 'd0e4a7a2a23264bbc60fc45f2f07dc14.webp', 45, '2020-12-29 20:39:10', 45, 1),
+(91, '5197bd9341aaa8d4cb996387e1ecd98a.webp', 49, '2021-01-02 22:02:02', 46, 1),
+(92, 'e5f42d066d9cbf1ab979ee47603e4a9c.webp', 49, '2021-01-02 22:04:59', 47, 1),
+(93, 'c5135b4dc9c8bd480e31ae18631206ef.webp', 49, '2021-01-02 22:05:00', 47, 0),
+(94, 'd3c6f24a33dfbe7c2389e562f0ddbb4b.webp', 49, '2021-01-02 22:05:00', 47, 0),
+(95, 'a8b3ac24afc94e7979225b0f4aee5f0a.webp', 49, '2021-01-02 22:05:00', 47, 0),
+(96, '8d2edcd1e9573b8f7b852b9bbb4e35e8.webp', 49, '2021-01-02 22:08:01', 48, 1),
+(97, '2d6e94a4b27bbac8615beea9f90aec7b.webp', 49, '2021-01-02 22:08:01', 48, 0),
+(98, '817d54c5e62d477de7d81a772d5635fd.webp', 49, '2021-01-02 22:08:01', 48, 0),
+(99, 'd3a6ee3328bb1b85068cb98d7752017f.webp', 50, '2021-01-02 23:28:17', 49, 1),
+(100, '77795125c8e6732c66a5bdb6bc272af0.webp', 50, '2021-01-02 23:28:17', 49, 0),
+(101, '8d2801ca027958992cea2fe7cb9262b5.webp', 50, '2021-01-02 23:28:17', 49, 0),
+(102, '644f299d8bcee76ec42d15a22fcfe15a.webp', 50, '2021-01-02 23:31:20', 50, 0),
+(103, '36f690d6ac67a8947445f3db0278b256.webp', 50, '2021-01-02 23:31:20', 50, 1),
+(104, '3af78334f915ec9e3ffb73204a44de59.webp', 50, '2021-01-02 23:31:21', 50, 0),
+(105, '46748fc44903d48a3a3092c0ef89c81f.webp', 50, '2021-01-02 23:44:21', 51, 0),
+(106, 'a597b33302b9049a1f5c478998b62074.webp', 50, '2021-01-02 23:44:22', 51, 1),
+(107, '52f37ad9ce6382fba255238073cee5bf.webp', 50, '2021-01-02 23:44:22', 51, 0),
+(108, '860207a547ed0cd8bd627c69a0260bb2.webp', 50, '2021-01-02 23:44:22', 51, 0),
+(109, '46748fc44903d48a3a3092c0ef89c81f.webp', 49, '2021-01-03 05:51:19', 52, 1),
+(110, 'a597b33302b9049a1f5c478998b62074.webp', 49, '2021-01-03 05:51:19', 52, 0),
+(111, '52f37ad9ce6382fba255238073cee5bf.webp', 49, '2021-01-03 05:51:19', 52, 0);
 
 -- --------------------------------------------------------
 
@@ -308,10 +338,13 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `payment_id`, `amount`, `currency`, `payment_status`, `captured_at`, `userid`, `payment_for`) VALUES
-(55, 'COD', 100.80, 'PHP', 'Pending', '2020-12-30 20:31:23', 66, 'ecommerce'),
-(56, 'ch_1I42zbJmfnsrzK57di1BCKRF', 100.80, 'PHP', 'Captured', '2020-12-30 20:37:31', 66, 'ecommerce'),
-(57, 'ch_1I430HJmfnsrzK57ySN9cTBM', 100.80, 'PHP', 'Captured', '2020-12-30 20:38:12', 66, 'ecommerce'),
-(58, 'COD', 75.04, 'PHP', 'Pending', '2021-01-02 11:20:18', 65, 'ecommerce');
+(63, 'ch_1I5Hx7JmfnsrzK572OVG6CZg', 3000.00, 'PHP', 'Captured', '2021-01-03 06:48:02', 70, 'subscription'),
+(64, 'ch_1I5IYZJmfnsrzK57d09qyGCI', 450.00, 'PHP', 'Captured', '2021-01-03 07:26:45', 71, 'ecommerce'),
+(65, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl', 4800.00, 'PHP', 'Captured', '2021-01-03 08:18:53', 72, 'subscription'),
+(66, 'COD', 390.00, 'PHP', 'Pending', '2021-01-03 08:47:03', 71, 'ecommerce'),
+(67, 'ch_1I5PPUJmfnsrzK57o79m4UnY', 250.00, 'PHP', 'Captured', '2021-01-03 14:45:47', 73, 'ecommerce'),
+(68, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ', 3000.00, 'PHP', 'Captured', '2021-01-03 14:47:48', 74, 'subscription'),
+(69, 'COD', 413.60, 'PHP', 'Pending', '2021-01-05 13:55:44', 71, 'ecommerce');
 
 -- --------------------------------------------------------
 
@@ -346,7 +379,18 @@ INSERT INTO `pos` (`id`, `userid`, `productid`, `qty`, `price`, `date_created`, 
 (19, 66, 45, 1, 90, '2020-12-30 10:21:22', NULL, 45, 12, 58),
 (20, 66, 45, 1, 90, '2020-12-30 10:21:22', NULL, 45, 12, 58),
 (21, 66, 45, 1, 90, '2020-12-30 10:21:22', NULL, 45, 12, 58),
-(22, 66, 45, 1, 90, '2020-12-30 10:22:01', NULL, 45, 12, 59);
+(22, 66, 45, 1, 90, '2020-12-30 10:22:01', NULL, 45, 12, 59),
+(23, 70, 46, 1, 250, '2021-01-02 23:49:56', NULL, 49, 0, 69),
+(24, 70, 46, 1, 250, '2021-01-02 23:50:19', NULL, 49, 0, 70),
+(25, 70, 46, 1, 250, '2021-01-02 23:51:53', NULL, 49, 0, 71),
+(26, 70, 46, 1, 250, '2021-01-02 23:52:47', NULL, 49, 0, 72),
+(27, 70, 46, 1, 250, '2021-01-02 23:53:10', NULL, 49, 0, 73),
+(28, 70, 46, 1, 250, '2021-01-02 23:57:07', NULL, 49, 0, 78),
+(29, 72, 51, 1, 150, '2021-01-03 05:54:05', NULL, 50, 0, 80),
+(30, 72, 51, 1, 150, '2021-01-03 05:54:05', NULL, 50, 0, 80),
+(31, 72, 51, 1, 150, '2021-01-03 05:54:05', NULL, 50, 0, 80),
+(32, 72, 51, 1, 150, '2021-01-03 05:54:05', NULL, 50, 0, 80),
+(33, 72, 51, 1, 150, '2021-01-03 05:54:05', NULL, 50, 0, 80);
 
 -- --------------------------------------------------------
 
@@ -361,27 +405,9 @@ CREATE TABLE `production` (
   `quantity` int(11) NOT NULL,
   `date_produced` date NOT NULL,
   `storeid` int(11) NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `credit_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `production`
---
-
-INSERT INTO `production` (`id`, `productid`, `batchnumber`, `quantity`, `date_produced`, `storeid`, `date_created`) VALUES
-(6, 11, '23', 24, '2020-01-01', 21, '2020-11-06 11:14:26'),
-(7, 11, '23', 23, '2020-01-22', 21, '2020-11-06 11:25:54'),
-(8, 11, '23', 23, '2020-02-21', 21, '2020-11-06 11:27:24'),
-(9, 12, '23', 23, '2020-02-21', 21, '2020-11-06 11:27:40'),
-(10, 11, '23', 23, '2020-01-21', 21, '2020-11-06 11:27:47'),
-(11, 12, '23', 23, '2020-01-21', 21, '2020-11-06 11:28:12'),
-(12, 11, '23', 23, '2021-01-21', 21, '2020-11-06 13:09:40'),
-(13, 12, '23', 23, '2021-01-21', 21, '2020-11-06 13:09:56'),
-(14, 11, '23', 100, '2020-11-11', 21, '2020-11-06 15:15:46'),
-(15, 11, '23', 120, '2020-12-11', 21, '2020-11-06 15:23:35'),
-(16, 12, '23', 120, '2020-12-11', 21, '2020-11-06 15:23:38'),
-(17, 12, '23', 120, '2020-11-11', 21, '2020-11-06 15:23:46'),
-(18, 11, '23', 420, '2020-11-11', 21, '2020-11-06 15:23:57');
 
 -- --------------------------------------------------------
 
@@ -409,9 +435,13 @@ CREATE TABLE `productt` (
 --
 
 INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`, `rating`, `date_added`, `storeid`, `description`, `cost`, `active`) VALUES
-(43, 30, 'Fresho Tomato - Local, Organically Grown, 500 g', 78, 'Vegetables', 0, 0, '2020-12-29 20:34:18', 45, 'asdsad', 45, 1),
-(44, 23, 'Fresho Orange - Nagpur, Regular (End Of Season), 1 kg (Approx. 6 - 7 pcs)', 67, 'Storename', 12, 0, '2020-12-29 20:36:45', 45, '<p>Freshly picked directly from Nagpur farms, Fresho Nagpur oranges are sweet and bursting with juice. These are simple to peel and section. Treat your taste buds with this mouth-watering fruit that is sweet and has a distinctive flavour.</p>', 43, 1),
-(45, 23, 'Fresho Papaya - Organically Grown, 1 pc', 90, 'Store', 99, 0, '2020-12-29 20:39:10', 45, '\nPapayas are large and pear shaped with green to butter yellow skin colour when ripe. The flesh is pale orange with numerous small, black, sticky seeds at the center. They have a musky taste and buttery consistency. We selectively pick organically grown p', 54, 1);
+(46, 36, 'Fresho Onion - Organically Grown, 1 kg', 250, 'MerryMart', 97, 0, '2021-01-02 22:02:02', 49, '<p>It is organically grown and handpicked from farm </p>\n<p>\nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.</p>', 200, 1),
+(47, 36, 'Fresho Sweet Corn, 2 pcs', 100, 'MerryMart', 98, 0, '2021-01-02 22:04:59', 49, 'Wrapped in lime coloured husks with silk, sweet corn contains numerous yellow succulent kernels that have a starchy and doughy consistency. The skin pops out as you bite into it. ', 80, 1),
+(48, 36, 'Fresho Bitter Gourd - Organically Grown, 250 g', 60, 'MerryMart', 100, 0, '2021-01-02 22:08:01', 49, 'Fresho Organic products are organically grown and handpicked by expert. \nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.', 50, 1),
+(49, 35, 'Fresho Organic Cow Ghee Desi (450 g), 500 ml', 129, 'Fresho', 100, 0, '2021-01-02 23:28:17', 50, '1)Fresho! Organic Ghee is manufactured in a safe, hygienic facility. 2)Our rich flavored ghee is made from traditional churned butter; which in turn is processed from curd. A slow boiling method is applied to retain the rich flavour and traditional aroma.', 99, 1),
+(50, 35, 'Kapiva Ayurveda A2 Desi Ghee, 500 ml', 140, 'Pure Ghee', 97, 0, '2021-01-02 23:31:20', 50, 'PURE GHEE SOURCED FROM THE LAND OF THE THARPARKAR COWS: Our Desi Cow A2 Ghee is procured from the milk of the Tharparkar cows - which are a cow breed indigenous to the Thar Desert of India. These cows are grass-fed and are not factory-farmed and are free ', 100, 1),
+(51, 35, 'Gowardhan Ghee, 500 ml Bottle', 150, 'Gowardhan', 95, 0, '2021-01-02 23:44:21', 50, 'Gowardhan Premium Ghee is completely processed using modern machines and has the enormous taste of 100% pure cow\'s milk. Gowardhan Premium Ghee great in flavor and are broadly demanded by our clients across the nation.', 129, 1),
+(52, 35, 'test product', 120, 'testbrand', 100, 0, '2021-01-03 05:51:19', 49, 'lorem ipsum', 99, 1);
 
 -- --------------------------------------------------------
 
@@ -486,7 +516,9 @@ INSERT INTO `rating` (`id`, `productid`, `userid`, `rating`, `date_added`, `comm
 (27, 42, 66, 0, '2020-12-28 23:42:54', 'sdfdsf'),
 (28, 44, 65, 4, '2021-01-02 02:11:19', 'test'),
 (29, 44, 65, 5, '2021-01-02 02:12:36', 'sdfsdfsd'),
-(30, 44, 65, 0, '2021-01-02 02:12:50', 'asd');
+(30, 44, 65, 0, '2021-01-02 02:12:50', 'asd'),
+(31, 47, 36, 2, '2021-01-02 22:16:57', 'test rev'),
+(32, 46, 73, 3, '2021-01-03 05:45:02', 'test');
 
 -- --------------------------------------------------------
 
@@ -582,8 +614,9 @@ CREATE TABLE `store` (
 --
 
 INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`) VALUES
-(44, 'Store1', NULL, NULL, '2020-12-26 01:05:53', 64, 35, 'ch_1I2RErJmfnsrzK57KpEjnXHm'),
-(45, 'Store 2', '', 'uploads/merchant/45/logo/b9fb9d37bdf15a699bc071ce49baea53.jpg', '2020-12-26 05:37:22', 66, 35, 'ch_1I2VTUJmfnsrzK57jFHcVVAn');
+(49, 'MerryMart', '<p>MerryMart Consumer Corp. (“MM”) is an emerging consumer focused retail company principally engaged in the operation of retail stores in the supermarket and household essentials category. MM through its subsidiary, MerryMart Grocery Centers Inc. (“MMGC”', 'uploads/merchant/49/logo/10bafd33a788e2b82aaefb891c0e8b86.jpg', '2021-01-02 21:46:35', 70, 37, 'ch_1I5Hx7JmfnsrzK572OVG6CZg'),
+(50, 'Pure Gold', '<p>Puregold Price Club, Inc. (“Puregold” or “the Company”) was incorporated on September 8, 1998 and opened its first Puregold hypermarket store in Mandaluyong City in December of the same year. In 2001, it began its expansion by building 2 additional hyp', 'uploads/merchant/50/logo/de42dd6728605d39be5e5dde12452c0b.jpg', '2021-01-02 23:18:27', 72, 38, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl'),
+(51, 'lazada', NULL, NULL, '2021-01-03 05:46:49', 74, 37, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ');
 
 -- --------------------------------------------------------
 
@@ -618,7 +651,11 @@ INSERT INTO `subscription` (`id`, `duration`, `cost`, `active`, `title`, `captio
 (33, 12, 450, 0, 'Plan #4', '1 Year', 1),
 (34, 7, 550, 0, 'Plan #5', '7 Months', 1),
 (35, 3, 100, 1, 'test', '3 months', 0),
-(36, 435, 678567, 1, 'dfsa', '45', 0);
+(36, 435, 678567, 0, 'dfsa', '45', 0),
+(37, 6, 500, 0, 'Plan #2', '6 Months', 0),
+(38, 12, 400, 0, 'Plan #3', '1 Year', 0),
+(39, 3, 800, 0, 'Plan #1', '3 Months', 0),
+(40, 1, 1000, 1, 'Plan #5', '1 Month', 0);
 
 -- --------------------------------------------------------
 
@@ -639,10 +676,21 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id`, `userid`, `date_created`, `total`, `status`) VALUES
-(62, 66, '2020-12-30 11:31:24', 90, 'pending'),
-(63, 66, '2020-12-30 11:37:31', 90, 'pending'),
-(64, 66, '2020-12-30 11:38:12', 90, 'pending'),
-(65, 65, '2021-01-02 02:20:18', 67, 'pending');
+(67, 71, '2021-01-02 22:26:46', 450, 'pending'),
+(68, 71, '2021-01-02 23:47:03', 390, 'pending'),
+(69, 70, '2021-01-02 23:49:56', 250, 'pos'),
+(70, 70, '2021-01-02 23:50:18', 250, 'pos'),
+(71, 70, '2021-01-02 23:51:53', 250, 'pos'),
+(72, 70, '2021-01-02 23:52:46', 250, 'pos'),
+(73, 70, '2021-01-02 23:53:10', 250, 'pos'),
+(74, 70, '2021-01-02 23:54:01', 250, 'pos'),
+(75, 70, '2021-01-02 23:54:16', 250, 'pos'),
+(76, 70, '2021-01-02 23:54:38', 250, 'pos'),
+(77, 70, '2021-01-02 23:54:42', 500, 'pos'),
+(78, 70, '2021-01-02 23:57:07', 250, 'pos'),
+(79, 73, '2021-01-03 05:45:47', 250, 'pending'),
+(80, 72, '2021-01-03 05:54:04', 750, 'pos'),
+(81, 71, '2021-01-05 04:55:44', 280, 'pending');
 
 -- --------------------------------------------------------
 
@@ -666,9 +714,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_created`, `photo`) VALUES
 (36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55', 'uploads/user/20/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(64, 'store1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 1, '2020-12-26 01:05:52', 'uploads/user/44/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(65, 'client1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2020-12-26 03:55:03', 'uploads/user//profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(66, 'store2', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 1, '2020-12-26 05:37:22', NULL);
+(70, 'store1', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 21:46:35', 'uploads/user/49/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
+(71, 'client1', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-02 22:24:19', 'uploads/user//profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
+(72, 'store2', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 23:18:27', NULL),
+(73, 'user2', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-03 05:44:11', NULL),
+(74, 'store3', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-03 05:46:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -693,10 +743,12 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`, `date_created`, `userid`, `photo`) VALUES
-(25, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '1111-11-11', '2020-12-05 19:12:46', 36, NULL),
-(43, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '1111-11-11', '2020-12-26 01:05:53', 64, NULL),
-(44, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '1111-11-11', '2020-12-26 03:55:03', 65, NULL),
-(45, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'sad@mail.com', '1111-11-11', '2020-12-26 05:37:22', 66, NULL);
+(25, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2020-12-05 19:12:46', 36, NULL),
+(49, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-02 21:46:35', 70, NULL),
+(50, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-02 22:24:19', 71, NULL),
+(51, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-02 23:18:27', 72, NULL),
+(52, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-03 05:44:11', 73, NULL),
+(53, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-03 05:46:49', 74, NULL);
 
 -- --------------------------------------------------------
 
@@ -859,49 +911,49 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `fees`
 --
 ALTER TABLE `fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `pos`
 --
 ALTER TABLE `pos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `production`
@@ -913,7 +965,7 @@ ALTER TABLE `production`
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -925,7 +977,7 @@ ALTER TABLE `purchase`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -949,31 +1001,31 @@ ALTER TABLE `slides`
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `subscription`
 --
 ALTER TABLE `subscription`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `vendor`
