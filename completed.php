@@ -236,7 +236,7 @@
         var me = $(this);
 
         last = me;
-
+        $("#reason").val("");
         $("#send").data("id", me.data("id"));
       });
 
@@ -256,8 +256,9 @@
           dataType : "json",
           success : function(response){
             hidePreloader();
-            last.parents("tr").find(".status").html("return requested");
-            $("#close").trigger("click");
+            window.location.href = "completed.php";
+            // last.parents("tr").find(".status").html("return requested");
+            // $("#close").trigger("click");
           }
         });
        });

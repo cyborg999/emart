@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2021 at 02:30 PM
+-- Generation Time: Jan 07, 2021 at 04:05 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -39,20 +39,21 @@ CREATE TABLE `cart` (
   `delivery_date` date DEFAULT NULL,
   `transactionid` int(11) NOT NULL,
   `storeid` int(11) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL
+  `status` varchar(255) DEFAULT NULL,
+  `reason` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `userid`, `productid`, `price`, `quantity`, `shipping`, `tax`, `date_created`, `delivery_date`, `transactionid`, `storeid`, `status`) VALUES
-(57, 71, 46, 250, 1, 0, 0, '2021-01-02 22:26:46', NULL, 67, 49, 'cancelled'),
-(58, 71, 47, 100, 2, 0, 0, '2021-01-02 22:26:46', '2021-01-04', 67, 49, 'delivered'),
-(59, 71, 46, 250, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 49, 'delivered'),
-(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 50, 'delivered'),
-(61, 73, 46, 250, 1, 0, 0, '2021-01-03 05:45:47', '2021-01-04', 79, 49, 'delivered'),
-(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'processed');
+INSERT INTO `cart` (`id`, `userid`, `productid`, `price`, `quantity`, `shipping`, `tax`, `date_created`, `delivery_date`, `transactionid`, `storeid`, `status`, `reason`) VALUES
+(57, 71, 46, 250, 1, 0, 0, '2021-01-02 22:26:46', NULL, 67, 49, 'cancelled', NULL),
+(58, 71, 47, 100, 2, 0, 0, '2021-01-02 22:26:46', '2021-01-04', 67, 49, 'returned', 'bulok'),
+(59, 71, 46, 250, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 49, 'delivered', NULL),
+(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 50, 'delivered', NULL),
+(61, 73, 46, 250, 1, 0, 0, '2021-01-03 05:45:47', '2021-01-04', 79, 49, 'returned', NULL),
+(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'delivered', NULL);
 
 -- --------------------------------------------------------
 
@@ -716,8 +717,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_
 (36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55', 'uploads/user/20/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
 (70, 'store1', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 21:46:35', 'uploads/user/49/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
 (71, 'client1', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-02 22:24:19', 'uploads/user//profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(72, 'store2', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 23:18:27', NULL),
-(73, 'user2', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-03 05:44:11', NULL),
+(72, 'store2', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 23:18:27', 'uploads/user/50/profile/079e667b0c7f01c37a21c1e736b4a6e0.png'),
+(73, 'user2', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-03 05:44:11', 'uploads/user//profile/4cc4b036737170bd9eb963d24f549a31.png'),
 (74, 'store3', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-03 05:46:49', NULL);
 
 -- --------------------------------------------------------
@@ -743,12 +744,12 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`, `date_created`, `userid`, `photo`) VALUES
-(25, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2020-12-05 19:12:46', 36, NULL),
-(49, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-02 21:46:35', 70, NULL),
-(50, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-02 22:24:19', 71, NULL),
-(51, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-02 23:18:27', 72, NULL),
-(52, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-03 05:44:11', 73, NULL),
-(53, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '1111-11-11', '2021-01-03 05:46:49', 74, NULL);
+(25, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2020-12-05 19:12:46', 36, NULL),
+(49, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 21:46:35', 70, NULL),
+(50, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 22:24:19', 71, NULL),
+(51, 'Jordan Sadiwauser1test', '1852 Sandejas Pasay Cityuser1test', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 23:18:27', 72, NULL),
+(52, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:44:11', 73, NULL),
+(53, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:46:49', 74, NULL);
 
 -- --------------------------------------------------------
 

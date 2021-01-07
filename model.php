@@ -114,12 +114,12 @@ class Model {
 		return $this;
 	}
 
+
 	public function updateOrderStatusListener(){
 		if(isset($_POST['updateOrderStatus'])){
 			if($_POST['status'] == "processed"){
 				//update delivery date
 				// $orderDetail = $this->getProductById($_POST['id']);
-
 				$sql = "
 					select *
 					from fees
@@ -141,13 +141,24 @@ class Model {
 
 				$this->db->prepare($sql)->execute(array($_POST['status'], $deliveryDate, $_POST['id']));
 			} else {
-				$sql = "
-					UPDATE cart
-					set status = ?
-					where id = ?
-				";
+				if($_POST['status'] == "returned"){
+					$sql = "
+						UPDATE cart
+						set status = ?, reason = ?
+						where id = ?
+					";
 
-				$this->db->prepare($sql)->execute(array($_POST['status'], $_POST['id']));
+					$this->db->prepare($sql)->execute(array($_POST['status'], $_POST['reason'], $_POST['id']));
+
+				} else {
+					$sql = "
+						UPDATE cart
+						set status = ?
+						where id = ?
+					";
+
+					$this->db->prepare($sql)->execute(array($_POST['status'], $_POST['id']));
+				}
 			}
 
 			if($_POST['status'] == "cancelled"){
@@ -2119,6 +2130,8 @@ class Model {
 
 	public function updateUserInfoListener(){
 		if(isset($_POST['updateUserInfo'])){
+			$id = $_SESSION['id'];
+
 			$this->updateUserProfile();
 			//check first
 			$sql = "
@@ -2140,6 +2153,7 @@ class Model {
 				$sql = "
 					UPDATE userinfo
 					SET fullname = ?, address = ?, contact = ?, email = ?, bday = ?
+					where userid = $id
 				";
 
 				$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday']));
