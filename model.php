@@ -2130,7 +2130,6 @@ class Model {
 
 	public function updateUserInfoListener(){
 		if(isset($_POST['updateUserInfo'])){
-			$id = $_SESSION['id'];
 
 			$this->updateUserProfile();
 			//check first
@@ -2150,6 +2149,9 @@ class Model {
 				";
 				$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday'], $_SESSION['id']));
 			} else {
+
+				$id = (isset($_SESSION['id']) ? $_SESSION['id'] : $_SESSION['lastinsertedid']);
+
 				$sql = "
 					UPDATE userinfo
 					SET fullname = ?, address = ?, contact = ?, email = ?, bday = ?
