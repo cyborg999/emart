@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2021 at 04:05 AM
+-- Generation Time: Jan 10, 2021 at 05:23 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -48,12 +48,12 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `userid`, `productid`, `price`, `quantity`, `shipping`, `tax`, `date_created`, `delivery_date`, `transactionid`, `storeid`, `status`, `reason`) VALUES
-(57, 71, 46, 250, 1, 0, 0, '2021-01-02 22:26:46', NULL, 67, 49, 'cancelled', NULL),
+(57, 71, 46, 250, 1, 0, 0, '2021-01-02 22:26:46', '2021-01-04', 67, 49, 'delivered', NULL),
 (58, 71, 47, 100, 2, 0, 0, '2021-01-02 22:26:46', '2021-01-04', 67, 49, 'returned', 'bulok'),
-(59, 71, 46, 250, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 49, 'delivered', NULL),
-(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 50, 'delivered', NULL),
+(59, 71, 46, 250, 1, 0, 0, '2021-01-02 23:47:04', '2021-01-04', 68, 49, 'delivered', NULL),
+(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 50, 'pending', 'asd'),
 (61, 73, 46, 250, 1, 0, 0, '2021-01-03 05:45:47', '2021-01-04', 79, 49, 'returned', NULL),
-(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'delivered', NULL);
+(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'returned', 'test return');
 
 -- --------------------------------------------------------
 
@@ -719,7 +719,13 @@ INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_
 (71, 'client1', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-02 22:24:19', 'uploads/user//profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
 (72, 'store2', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 23:18:27', 'uploads/user/50/profile/079e667b0c7f01c37a21c1e736b4a6e0.png'),
 (73, 'user2', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-03 05:44:11', 'uploads/user//profile/4cc4b036737170bd9eb963d24f549a31.png'),
-(74, 'store3', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-03 05:46:49', NULL);
+(74, 'store3', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-03 05:46:49', NULL),
+(75, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:39:08', NULL),
+(76, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:39:14', NULL),
+(77, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:39:43', NULL),
+(78, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:43:22', NULL),
+(79, 'loki999', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2021-01-08 04:44:42', NULL),
+(80, 'lok999', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2021-01-08 04:45:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -748,8 +754,14 @@ INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`,
 (49, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 21:46:35', 70, NULL),
 (50, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 22:24:19', 71, NULL),
 (51, 'Jordan Sadiwauser1test', '1852 Sandejas Pasay Cityuser1test', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 23:18:27', 72, NULL),
-(52, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:44:11', 73, NULL),
-(53, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:46:49', 74, NULL);
+(52, 'Update Fullname', 'Updated address', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:44:11', 73, NULL),
+(53, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:46:49', 74, NULL),
+(54, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:39:09', 75, NULL),
+(55, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:39:15', 76, NULL),
+(56, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:39:43', 77, NULL),
+(57, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:43:23', 78, NULL),
+(58, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:44:42', 79, NULL),
+(59, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11', 'sad@mail.com', '0111-11-11', '2021-01-08 04:45:55', 80, NULL);
 
 -- --------------------------------------------------------
 
@@ -1020,13 +1032,13 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `vendor`

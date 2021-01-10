@@ -129,6 +129,7 @@
           $pendingTotal = $model->getPendingOrdersByStatus("pending", true);
           $processedTotal = $model->getPendingOrdersByStatus("processed", true);
           $completedTotal = $model->getPendingOrdersByStatus("delivered", true);
+          $returned = $model->getPendingOrdersByStatus("returned", true);
         ?>
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
           <svg class="bi" width="15" height="15" fill="currentColor">
@@ -149,6 +150,9 @@
                     </li>
                     <li>
                       <a href="deliveredorder.php">Delivered (<b><?= $completedTotal['total']; ?></b>)</a>
+                    </li>
+                     <li>
+                      <a href="returnedorder.php">Returned (<?= $returned['total'];?>)</a>
                     </li>
                   </ul>
                 </div>

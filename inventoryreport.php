@@ -58,7 +58,7 @@
 				<div class="content jumbotron">
 					<div class="row">
 						<div class="col-sm">
-							<a href="ajax.php?salesreport=true">Export CSV</a>
+							<a href="ajax.php?export=true&inventory=1">Export CSV</a>
 							<br>
 							<br>
 							<div class="table-responsive">

@@ -53,7 +53,7 @@
                 <!-- Shopping cart table -->
                 <div class="table-responsive">
                   <table class="table">
-                    <tbody>
+                    <tbody id="tbody">
                    
                     </tbody>
                   </table>
@@ -116,6 +116,15 @@
         padding: 30px;
         display: block;
       }
+      .qty {
+        width: 50px;
+        text-align: center;
+        color: black;
+        height: 30px;
+      }
+      .pagination-sm a.page-link {
+        height: 31px;
+      }
     </style>
   <script type="text/html" id="store">
     <tr>
@@ -161,20 +170,34 @@
     <tr>
       <td colspan="4">
       <td colspan="2">
-        <b>Shipping : ₱ [SHIPPING]</b>
+        <b>Shipping : ₱ <span class="shipping">[SHIPPING]</span></b>
       </td>
     </tr>
   </script>
   <script type="text/html" id="tpl">
     [STORE]
-    <tr>
+    <tr class="tr" data-shipping="[SHIPPING]" data-baseprice="[PRICE]">
       <td><img src="./uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]"" alt="" width="70" class="img-fluid rounded shadow-sm"></td>
       <td><div class="ml-3 d-inline-block align-middle">
           <h5 class="mb-0" style="max-width: 100%;"><a href="./productdetail.php?id=[ID]"  target="_blank" class="text-dark d-inline-block">[NAME]</a></h5><span class="text-muted font-weight-normal font-italic">Category: [CATEGORY]</span>
         </div>
       </td>
-        <td class="align-middle"><strong>₱[PRICE]</strong></td>
-        <td class="align-middle"><strong>[QTY]</strong></td>
+        <td class="align-middle"><strong>₱ <span class="price">[PRICE]</span></strong></td>
+        <td class="align-middle">
+          <nav aria-label="..." class="maxQty" data-id="[PRODUCTID]" data-max="100" class="qty">
+            <ul class="pagination pagination-sm">
+              <li class="page-item"><a class="page-link count" data-action="minus" href="#">
+                  <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#dash"/></svg>
+              </a></li>
+              <li  class="page-item">
+                <input type="number" class="form-control page-link qty" value="[QTY]" name="">
+              </li>
+              <li class="page-item"><a class="page-link count" data-action="plus" href="#">
+                  <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#plus"/></svg>
+              </a></li>
+            </ul>
+          </nav>
+        </td>
         <!-- <td class="align-middle"><strong>[SHIPPING]</strong></td> -->
         <td class="align-middle"><strong>[TAX]</strong></td>
         <td class="align-middle"><a href="#" data-id="[ID]" class="remove text-dark"><svg class="bi" width="25" height="25" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
@@ -192,6 +215,52 @@
               var shippingTotal = 0;
               var taxTotal = 0;
               var grandTotal = 0;
+              var modifiedTotal = Array();
+
+              function getQty(){
+                var data = Array();
+
+                $(".maxQty").each(function(){
+                  var me = $(this);
+                  var qty = parseInt(me.find(".qty").val());
+                  var productId = me.data("id");
+
+                  data[productId] = qty;
+                });
+
+                return data;
+              }
+
+              function calculateFinalPrice(){
+                var subTotal = 0;
+                var shippingTotalInner = 0;
+                var taxTotalInner = 0;
+                var grandTotalInner = 0;
+
+                $("#tbody .tr").each(function(x,y){
+                  var me = $(this);
+
+                  var price = parseFloat(me.find(".price").html());
+                  var tax = parseFloat(me.find(".taxedPrice").html());
+                  var shipping = parseFloat(me.data("shipping"));
+
+                  subTotal += price;
+                  shippingTotalInner += shipping;
+                  taxTotalInner += tax;
+                });
+
+                grandTotalInner = subTotal + shippingTotalInner + taxTotalInner;
+
+                total = subTotal;
+                taxTotal = taxTotalInner;
+                grandTotal = grandTotalInner;
+                shippingTotal = shippingTotalInner;
+
+                $("#total").html("₱"+subTotal);
+                $("#shipping").html("₱"+shippingTotalInner);
+                $("#tax").html("₱"+taxTotal);
+                $("#grandTotal").html("₱"+grandTotalInner);
+              }
 
               function loadData() {
                   showPreloader();
@@ -215,8 +284,7 @@
 
                       lastProducts = response;
 
-
-                      console.log(response);
+                      // console.log(response);
                       for(var r in response){
                         var store = response[r];
                         var products = store.products;
@@ -253,12 +321,15 @@
 
                           tpl = tpl.replace("[STOREID]", detail.storeid).
                             replace("[PRODUCTID]", data.productId).
+                            replace("[PRODUCTID]", data.productId).
                             replace("[FILENAME]", detail.filename).
                             replace("[NAME]", detail.name).
                             replace("[PRICE]", detail.price).
+                            replace("[SHIPPING]", detail.shipping).
+                            replace("[PRICE]", detail.price).
                             replace("[CATEGORY]", detail.category).
                             // replace("[SHIPPING]", "₱" + qty * detail.shipping + " <sup>(₱" + detail.shipping + ")</sup>").
-                            replace("[TAX]", "₱" + Math.round(tax) + " <sup>(" + (Math.round(detail.tax) + "%)</sup>")).
+                            replace("[TAX]", "₱<span class='taxedPrice'>" + Math.round(tax) + "</span> <sup>(<span class='tax'>" + (Math.round(detail.tax) + "</span>%)</sup>")).
                             replace("[QTY]", qty).
                             replace("[ID]", detail.id).
                             replace("[ID]", detail.id).
@@ -289,6 +360,44 @@
               }
 
               var __listen = function(){
+                $(".count").off().on("click", function(e){
+                    e.preventDefault();
+
+                    var me = $(this);
+                    var action = me.data("action");
+                    var max = $(".maxQty").data("max");
+                    var qty = me.parents(".pagination").find(".qty");
+                    var current = parseInt(qty.val());
+
+                    if(action == "plus"){
+                        // if(parseInt(current) < max){
+                          current +=1;
+                          qty.val(current);
+                        // }
+                    } else {
+                        if(parseInt(current) > 1){
+                          current -=1;
+                          qty.val(current);
+                        }
+                    }
+
+                    var price = me.parents("tr").find(".price");
+                    var basePrice = me.parents("tr").data("baseprice");
+                    var taxedPrice = me.parents("tr").find(".taxedPrice");
+                    var tax = me.parents("tr").find(".tax");
+                    var qtyPrice = parseFloat(basePrice*current);
+                        
+                    price.html(qtyPrice);
+
+                    var finalPrice = (parseFloat(tax.html()) /100 ) * (basePrice * current);
+
+                    finalPrice = finalPrice.toFixed(2);
+
+                    taxedPrice.html(finalPrice);
+
+                    calculateFinalPrice();
+                });
+
                 $(".remove").off().on("click", function(e){
                   e.preventDefault();
 
@@ -329,6 +438,7 @@
                   url  : "ajax.php",
                   data : { 
                     checkout : true , 
+                    modifiedQty : getQty(),
                     products : lastProducts ,
                     instruction : $("#instruction").val() ,
                     total : total ,

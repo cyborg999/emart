@@ -76,6 +76,31 @@ class Model {
 		$this->loadSalesReportListener();
 		$this->loadMonthlyListener();
 		$this->loadInventoryListener();
+		$this->exportListener();
+	}
+
+	public function exportListener(){
+		if(isset($_GET['export'])){
+			if(isset($_GET['inventory'])){
+				// output headers so that the file is downloaded rather than displayed
+				header('Content-Type: text/csv; charset=utf-8');
+				header('Content-Disposition: attachment; filename=InventoryReport.csv');
+
+				// create a file pointer connected to the output stream
+				$output = fopen('php://output', 'w');
+
+				// output the column headings
+				fputcsv($output, array('Product', 'Price', 'Quantity', "Brand", "Category"));
+
+				$records = $this->db->query($_SESSION['lastQuery'])->fetchAll();
+
+				foreach($records as $idx => $r){
+					$data = array($r['name'],$r['price'],$r['quantity'],$r['brand'],$r['category']);
+					fputcsv($output, $data);
+				}
+
+			}
+		}
 	}
 
 	public function payListener(){
@@ -117,7 +142,7 @@ class Model {
 
 	public function updateOrderStatusListener(){
 		if(isset($_POST['updateOrderStatus'])){
-			if($_POST['status'] == "processed"){
+			if($_POST['status'] == "processed" || $_POST['status'] == "delivered"){
 				//update delivery date
 				// $orderDetail = $this->getProductById($_POST['id']);
 				$sql = "
@@ -632,6 +657,19 @@ class Model {
 
 	public function checkoutListener(){
 		if(isset($_POST['checkout'])){
+			$products = $_POST['products'];
+			$modifiedQty = $_POST['modifiedQty'];
+
+			foreach($products as $idx => &$p){
+				foreach($p['products'] as $idx2 => &$pp ){
+					$pId = $pp['productId'];
+					$qty = $pp['qty'];
+					$pp['qty'] = $modifiedQty[$pp['productId']];
+				}
+			}
+
+			$_POST['products'] = $products;
+
 			$_SESSION['cart'] = $_POST;
 
 			die(json_encode(array("added")));
@@ -747,9 +785,9 @@ class Model {
 			$products = explode(",", $products);
 
 			$cartItems = array();
-
 			foreach($products as  $idx => $p){
 				if($p != "null"){
+
 					$sql = "
 						SELECT t5.name as 'storename', t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax
 						FROM productt t1
