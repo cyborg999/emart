@@ -70,7 +70,7 @@
 			                      </td>
 			                      <td>
 			                      	<br>
-			                      	<select class="status" data-id="<?= $o['id'];?>">
+			                      	<select data-storeid="<?= $o['storeid'];?>" data-date="<?= $o['date_created'];?>" class="status" data-id="<?= $o['id'];?>">
 			                      		<option value="pending" <?= ($o['status'] == "pending") ? 'selected' : ''; ?>>Pending</option>
 			                      		<option value="processed" <?= ($o['status'] == "processed") ? 'selected' : ''; ?>>Processed</option>
 			                      		<option value="delivered" <?= ($o['status'] == "delivered") ? 'selected' : ''; ?>>Delivered</option>
@@ -151,7 +151,8 @@
     		showPreloader();
     		$.ajax({
     			url : "ajax.php",
-    			data : { updateOrderStatus : true, id : me.data("id"), status : me.val()},
+    			data : { updateOrderStatus : true, id : me.data("id"),storeid : me.data("storeid"), date_added : me.data("date"), status : me.val()},
+    			// data : { updateOrderStatus : true, id : me.data("id"), status : me.val()},
     			type : "post",
     			dataType : "json",
     			success : function(){

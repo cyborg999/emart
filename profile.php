@@ -110,7 +110,7 @@
 								<br>
 								<input type="file" name="merchantProfilePicture" />
 							</div>
-								<br>
+							<br>
 						  <div class="form-row">
 					  	 	<div class="form-group col-md-12">
 						      <label for="inputPassword4">Full Name</label>

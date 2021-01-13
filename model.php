@@ -148,9 +148,10 @@ class Model {
 				$sql = "
 					select *
 					from fees
-					where storeid = ".$_POST['storeid']."
+					where storeid = ".$_SESSION['storeid']."
 					limit 1
 				";
+				// oppd();
 
 				$fees = $this->db->query($sql)->fetch();
 
