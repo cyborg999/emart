@@ -66,6 +66,25 @@
                   }
                   .next {
                   }
+                  .reviews {
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: space-around;
+                  }
+                  .box {
+                       display: flex;
+                      flex-direction: row;
+                      justify-content: left;
+                      margin: 10px 0;
+                  }
+                  .box_left {
+                      display: block;
+                      width: 100px;
+                      height: 100px;
+                  }
+                  .box_right {
+                      display: block;
+                  }
                 </style>
                 <?php foreach($order as $idx => $i): ?>
                   <?php foreach($i as $idx2 => $o): ?>
@@ -123,10 +142,10 @@
                               <?php foreach($cartItems as $idx3 => $p): ?>
                               <tr>
                                 <td><?= $p['productname'];?></td>
-                                <td>₱<?= $p['price'];?></td>
+                                <td>₱<?= number_format($p['price'],2);?></td>
                                 <td><?= $p['quantity'];?></td>
-                                <td>₱<?= $p['shipping'];?></td>
-                                <td><?= $p['tax'];?>%</td>
+                                <td>₱<?= number_format($p['shipping'],2);?></td>
+                                <td><?= number_format($p['tax'],2);?>%</td>
                               </tr>
                          <!--      <tr>
                                 <td colspan="5">
@@ -156,6 +175,94 @@
                                 <td></td>
                               </tr>
                             </tbody>
+                            <tfoot>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <th colspan="5">Review</th>
+                              </tr>
+                              <tr>
+                                <td colspan="5">
+                                    <style type="text/css">
+                                        .review_rating,
+                                        #rating {
+                                            display: flex;
+                                            flex-direction: row;
+                                            justify-content: space-around;
+                                            width: 150px;
+                                        }
+                                        .review_rating  figure.active,
+                                        #rating figure.active {
+                                            background: url(./node_modules/bootstrap-icons/icons/star-fill.svg);
+                                            background-size: contain;
+                                            background-repeat: no-repeat;
+                                            width: 15px;
+                                            height: 15px;
+                                            margin: 0;
+                                        }
+                                        .review_rating  figure,
+                                        #rating figure {
+                                            background: url(./node_modules/bootstrap-icons/icons/star.svg);
+                                            background-size: contain;
+                                            background-repeat: no-repeat;
+                                            width: 15px;
+                                            margin: 0;
+                                            height: 15px;
+                                            display: block;
+                                            cursor: pointer;
+                                        }
+                                    </style>
+                                    <label>Rating</label>
+                                     <div id="rating">
+                                        <figure class="stars"></figure>
+                                        <figure class="stars"></figure>
+                                        <figure class="stars"></figure>
+                                        <figure class="stars"></figure>
+                                        <figure class="stars"></figure>
+                                    </div>
+                                    <br>
+                                    <label>Comment</label>
+                                    <textarea class="form-control textarea" id="comment" placeholder="type here..."></textarea>
+                                    <br>
+                                    <input data-id="<?= $o['productid'];?>" type="submit" id="addRating" class="btn  btn-primary" name="">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="5">
+                                    <div class="reviews row">
+                                      <span id="appendbefore"></span>
+                                      <?php 
+                                        $comments  = $model->getAllProductCommentsById($o['productid']);
+                                      foreach($comments as $idx => $c): ?>
+                                          <div class="box">
+                                              <div class="box_left">
+                                                  <img height="30" src="<?= ($c['profilePicture'] !='') ? $c['profilePicture'] : './node_modules/bootstrap-icons/icons/person-badge.svg';?>">
+                                              </div>
+                                              <div class="box_right">
+                                                  <div class="review_rating">
+                                                      <?php for($i = 1;$i<=5;$i++) : ?>
+                                                          <?php if($i <= $c['rating']): ?>
+                                                              <figure class="stars active"></figure>
+                                                          <?php else : ?>
+                                                              <figure class="stars"></figure>
+                                                          <?php endif ?>
+                                                      <?php endfor ?>
+                                                      
+                                                  </div>
+                                                  <p><?= $c['comment'];?></p>
+                                                  <i><?= $c['date_added'];?></i>
+                                              </div>
+                                          </div>
+                                      <?php endforeach ?>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tfoot>
                           </table>
                         </div>
                       
@@ -190,26 +297,94 @@
           <div class="col-sm msg hidden"></div>
         </div>
         <div class="row">
-
+          <form method="post"   enctype="multipart/form-data">
+              <input type="hidden" name="returnItem" id="cartId" value="true">
           <div class="col-sm">
             <h5>Reason:</h5>
-            <textarea class="form-control" rows="3" id="reason" placeholder="Why do you want to cancel the order..."></textarea>
+            <textarea class="form-control" rows="3" id="reason" name="reason" placeholder="Why do you want to cancel the order..."></textarea>
+            <br>
+            <h5>Upload Proof</h5>
+            <input type="file" name="proof">
           </div>
+            <br>
+           <button type="submit" class="btn btn-primary" id="send">Send</button>
+          </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="send">Send</button>
         <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-
+<!-- start tpl -->
+  <script type="text/html" id="tpl">
+       <div class="box">
+          <div class="box_left">
+              <img height="30" src="[PROFILE]">
+          </div>
+          <div class="box_right">
+              <div class="review_rating">
+                  [RATING]
+              </div>
+              <p>[COMMENT]</p>
+              <i>[DATE]</i>
+          </div>
+      </div>
+  </script>
+  <!-- end tpl -->
 
   <?php include "./foot.php"; ?>
   <script type="text/javascript">
     (function($){
+       $("#rating figure").on("click", function(){
+            var me = $(this);
+
+            $("#rating .stars").removeClass("active");
+
+            me.addClass("active");
+            me.prevAll(".stars").addClass("active");
+
+        });
+
+        $("#addRating").on("click", function(e){
+            e.preventDefault();
+
+            var me = $(this);
+            var rating = $("#rating .stars.active").length;
+            var comment = $("#comment").val();
+
+            if(comment != ""){
+                showPreloader();
+
+                $.ajax({
+                    url  : "ajax.php",
+                    data : { addRating : true, comment : comment, id : me.data("id"), rating : rating},
+                    type : "post",
+                    dataType : "json",
+                    success : function(response){
+                        hidePreloader();
+
+                        var tplrating = $("#rating").html();
+                        var tpl = $("#tpl").html();
+                        var profile = response.profile;
+                        tpl = tpl.replace("[COMMENT]", comment).
+                            replace("[RATING]", tplrating).
+                            replace("[PROFILE]", ( profile.profilePicture !=null) ? profile.profilePicture : './node_modules/bootstrap-icons/icons/person-badge.svg').
+                            replace("[DATE]", "a few seconds ago");
+
+                        $("#appendbefore").before(tpl);
+                        $("#comment").val("");
+                        $("#rating .stars.active").removeClass("active");
+                    }
+                });
+            } else {
+                alert("Please enter a comment");
+            }
+            console.log(comment, rating);
+        }); 
+
       function clearCart(){
         var cart = $("#cartClearer");
 
@@ -237,31 +412,31 @@
 
         last = me;
         $("#reason").val("");
-        $("#send").data("id", me.data("id"));
+        $("#cartId").val(me.data("id"));
       });
 
-       $("#send").on("click", function(e){
-        e.preventDefault();
+       // $("#send").on("click", function(e){
+       //  e.preventDefault();
 
-        var me = $(this);
-        var id = me.data("id");
-        var reason = $("#reason").val();
+       //  var me = $(this);
+       //  var id = me.data("id");
+       //  var reason = $("#reason").val();
 
-        showPreloader();
+       //  showPreloader();
 
-        $.ajax({
-          url : "ajax.php",
-          data : { updateOrderStatus : true, id: id, status : "returned", reason : reason  },
-          type : "post",
-          dataType : "json",
-          success : function(response){
-            hidePreloader();
-            window.location.href = "completed.php";
-            // last.parents("tr").find(".status").html("return requested");
-            // $("#close").trigger("click");
-          }
-        });
-       });
+       //  $.ajax({
+       //    url : "ajax.php",
+       //    data : { updateOrderStatus : true, id: id, status : "returned", reason : reason  },
+       //    type : "post",
+       //    dataType : "json",
+       //    success : function(response){
+       //      hidePreloader();
+       //      window.location.href = "completed.php";
+       //      // last.parents("tr").find(".status").html("return requested");
+       //      // $("#close").trigger("click");
+       //    }
+       //  });
+       // });
     })(jQuery);
   </script>
 </body>

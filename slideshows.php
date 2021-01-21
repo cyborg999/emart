@@ -1,9 +1,9 @@
-<?php include "./adminhead.php";?>
+<?php include "./head2.php";?>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
-				<figure class="logo"></figure>
+				<a href="index.php"><figure class="logo"></figure></a>
 			</div>
 			<div class="col-sm-10">
 				<a href="logout.php"><svg class="bi float-right gear" width="20" height="20" fill="currentColor">
@@ -12,16 +12,16 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-2 side">
-				<?php  $active = "settings"; include "./adminsidenav.php"; ?>
+				<?php  $active = "settings"; include "./sidenav.php"; ?>
 			</div>
 			<div class="col-sm-10">
 
 				<div class="content">
 					<?php  include_once "./error.php"; ?>
 					<br>
-					<h5>All Slides</h5>
+					<h5 class="float-left">All Slides</h5>
 					<?php
-						$slides = $model->getAllSlides();
+						$slides = $model->getStoreSlides();
 					?>
 					<style type="text/css">
 						.img {

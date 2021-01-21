@@ -34,7 +34,7 @@
 
         <div class="content row">
           <div class="col-sm">
-            <h3>Processed Orders</h3>
+            <h3>Returned Orders</h3>
             <?php
               $order = $model->getUserTransaction("returned");
 
@@ -82,7 +82,7 @@
                             <img src="./uploads/merchant/<?= $o['storeid'];?>/<?= $o['productid']; ?>/<?= $preview['name']; ?>">
                           </li>
                       </td>
-                      <td><?= $o['status'];?></td>
+                      <td><?= $o['return_status']; ?></td>
                       <td><?= $o['date_created'];?></td>
                       <td>
                         <a href="" class="btn btn-primary view">view</a>
@@ -122,10 +122,10 @@
                               <?php foreach($cartItems as $idx3 => $p): ?>
                               <tr>
                                 <td><?= $p['productname'];?></td>
-                                <td>₱<?= $p['price'];?></td>
+                                <td>₱<?= number_format($p['price'],2);?></td>
                                 <td><?= $p['quantity'];?></td>
-                                <td>₱<?= $p['shipping'];?></td>
-                                <td><?= $p['tax'];?>%</td>
+                                <td>₱<?= number_format($p['shipping'],2);?></td>
+                                <td><?= number_format($p['tax'],2);?>%</td>
                               </tr>
                          <!--      <tr>
                                 <td colspan="5">

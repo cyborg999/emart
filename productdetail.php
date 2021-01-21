@@ -141,7 +141,7 @@
                         <?php else : ?>
                             <b style="color: red; line-height: 2;">Out of Stock</b>
                         <?php endif ?>
-                        <em class="price">₱<?= $product['price'];?></em>
+                        <em class="price">₱<?= number_format($product['price'],2);?></em>
                         <p><?= $product['description'];?></p>
                         <ul id="tags">
                             <li><a href="./filtered.php?category=<?= $product['categoryid'];?>"><?= $product['categoryname'];?></a></li>

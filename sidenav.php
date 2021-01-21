@@ -222,6 +222,12 @@
            <li>
             <a href="shipping.php">Shipping Details</a>
           </li>
+          <li>
+            <a href="slideshow.php">Add Slide</a>
+          </li>
+          <li>
+            <a href="slideshows.php">Slideshow</a>
+          </li>
         </ul>
       </div>
     </div>

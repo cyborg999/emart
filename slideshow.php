@@ -1,4 +1,4 @@
-<?php include "./adminhead.php";?>
+<?php include "./head2.php";?>
 <body>
 	<div class="container">
 		<div class="row">
@@ -12,7 +12,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-2 side">
-				<?php  $active = "settings"; include "./adminsidenav.php";
+				<?php  $active = "settings"; include "./sidenav.php";
 				$assets = $model->getAdminAssets();
 				?>
 			</div>

@@ -100,7 +100,7 @@ if(isset($_GET['category'])){
       </div>
       <div class="bottom-content">
           <em><?= $p['name'];?></em>
-          <h4>₱<?= $p['price'];?></h4>
+          <h4>₱<?= number_format($p['price'],2);?></h4>
       </div>
   </div>
  <?php endforeach ?>

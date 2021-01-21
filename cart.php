@@ -93,7 +93,7 @@
                     </li>
                   </ul>
                   <?php if(isset($_SESSION['id'])): ?>
-                    <a href="#" id="checkout" class="btn btn-warning rounded-pill py-2 btn-block">Proceed to checkout</a>
+                    <a href="#" data-toggle="modal" data-target="#confirmationModal" class="btn btn-warning rounded-pill py-2 btn-block">Proceed to checkout</a>
                   <?php else: ?>
                     <p class="please">Please <a href="./login.php">login</a> first to proceed to checkout.</p>
                   <?php endif ?>
@@ -166,6 +166,37 @@
         </th>
       </tr>
   </script>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmationModal" data-id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Proceed to checkout?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm">
+            <h5>Are you sure you want to proceed to checkout?</h5>
+            <br>
+            <a href="" id="checkout" class="btn btn-lg btn-success">Proceed</a>
+            <a href="" class="btn btn-lg btn-danger" data-dismiss="modal">Cancel</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <script type="text/html" id="tFoot">
     <tr>
       <td colspan="4">
@@ -256,10 +287,10 @@
                 grandTotal = grandTotalInner;
                 shippingTotal = shippingTotalInner;
 
-                $("#total").html("₱"+subTotal);
-                $("#shipping").html("₱"+shippingTotalInner);
-                $("#tax").html("₱"+taxTotal);
-                $("#grandTotal").html("₱"+grandTotalInner);
+                $("#total").html("₱"+subTotal.toFixed(2));
+                $("#shipping").html("₱"+shippingTotalInner.toFixed(2));
+                $("#tax").html("₱"+taxTotal.toFixed(2));
+                $("#grandTotal").html("₱"+grandTotalInner.toFixed(2));
               }
 
               function loadData() {
@@ -349,10 +380,10 @@
 
                       shippingTotal = storeShipping;
                       
-                      $("#total").html("₱" + total);
-                      $("#shipping").html("₱" + storeShipping);
-                      $("#tax").html("₱" + taxTotal);
-                      $("#grandTotal").html( "₱" + (grandTotal));
+                      $("#total").html("₱" + total.toFixed(2));
+                      $("#shipping").html("₱" + storeShipping.toFixed(2));
+                      $("#tax").html("₱" + taxTotal.toFixed(2));
+                      $("#grandTotal").html( "₱" + (grandTotal.toFixed(2)));
 
                       hidePreloader();
                     }

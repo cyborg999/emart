@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" type="text/css" href="./node_modules/chart.js/dist/Chart.min.css">
+
+
+
+    <link rel="stylesheet" href="./node_modules/dropzone/dist/min/dropzone.min.css">
+    <link rel="stylesheet" href="./node_modules/chosen-js/chosen.min.css" >
+    <script src="./node_modules/dropzone/dist/min/dropzone.min.js"></script>
     <title>eMart</title>
   </head>
 <body>

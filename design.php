@@ -31,3 +31,37 @@ composer require league/omnipay omnipay/stripe
 
 https://github.com/mike42/escpos-php
 composer require mike42/escpos-php
+
+
+
+
+
+
+
+
+
+
+
+todo
+* cost price < retail price (addproduct.php, products.php)
+* merchant = grocery owner (signup.php)
+* expiration date (addproduct.php, products.php)
+* review ng product right after ma deliver(no need to go  to store)
+* confirm muna ng merchant yung return, dapat may proof
+* another confirmation before checkout ng poduct
+* decimal places
+* add slide ay dapat sa merchant
+* may minimum purchase (globalfees.php, dito ako nag stop, d pa applied sa checkout page)
+
+
+
+
+* low stock notification
+* notification every status ng product
+* shipping per municipality
+* pick up option
+* update quanty pag nag add ulit sa product detail
+* 12/150 na inventory
+*delivery receipt
+* batch # per product
+* dapat makikita dun sa by batch kung saan nababawas yung item na nabenta

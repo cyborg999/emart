@@ -103,6 +103,10 @@
 									<input required type="text" id="quantity" name="quantity" class="form-control" placeholder="Quantity">
 								</div>
 								<div class="form-group">
+									<label>Expiration Date</label>
+									<input  type="date" id="expiration" name="expiration" class="form-control" required placeholder="Date Expire"/>
+								</div>
+								<div class="form-group">
 									<label>Description</label>
 									<textarea class="form-control" id="desc" name="desc"></textarea>
 								</div>
@@ -138,7 +142,7 @@
 	</script>
 	<script type="text/html" id="error">
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Error!!</strong> Product Name already exists
+        <strong>Error!!</strong> [ERROR]
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -190,6 +194,7 @@
 								price : $("#price").val(),
 								brand : $("#brand").val(),
 								quantity : $("#quantity").val(),
+								date_expire : $("#expiration").val(),
 								desc : $("#desc").val(),
 								active : img.data("src"),
 								src : imgs,
@@ -199,7 +204,10 @@
 							dataType : "json",
 							success : function(response){
 				                if(response.error.length > 0){
-				                	$(".msg").append($("#error").html());
+				                	var tpl = $("#error").html();
+
+				                	tpl = tpl.replace("[ERROR]", response.error[0]);
+				                	$(".msg").append(tpl);
 					                $(".msg").removeClass("hidden");
 				                } else {
 				                	$(".msg").append($("#success").html());

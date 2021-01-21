@@ -79,12 +79,12 @@
 				    <div id="collapseTwo" class="<?= ($active == "settings") ? "show" : ""; ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 				      <div class="card-body">
 				      	<ul class="list-group list-group-flush">
-				         <li class="list-group-item">
+				      <!--    <li class="list-group-item">
 						  	<a href="slideshow.php" class="black">Add Slide</a>
 						  </li>
 						   <li class="list-group-item">
 						  	<a href="slideshows.php" class="black">All Slides</a>
-						  </li>
+						  </li> -->
 						  <li class="list-group-item">
 						  	<a href="categories.php" class="black">Categories</a>
 						  </li>

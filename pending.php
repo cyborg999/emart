@@ -131,10 +131,10 @@
 
                                 </td> -->
                                 <td><?= $p['productname'];?></td>
-                                <td>₱<?= $p['price'];?></td>
+                                <td>₱<?= number_format($p['price'],2);?></td>
                                 <td><?= $p['quantity'];?></td>
-                                <td>₱<?= $p['shipping'];?></td>
-                                <td><?= $p['tax'];?>%</td>
+                                <td>₱<?= number_format($p['shipping'],2);?></td>
+                                <td><?= number_format($p['tax'],2);?>%</td>
                               </tr>
                          <!--      <tr>
                                 <td colspan="5">

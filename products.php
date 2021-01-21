@@ -50,7 +50,7 @@
                 <td class="editbrand"><?= $product['brand']; ?></td>
                 <td>
 
-                  <a href="" data-quantity="<?= $product['quantity']; ?>" data-description="<?= $product['description']; ?>" data-brand="<?= $product['brand']; ?>" data-price="<?= $product['price']; ?>" data-cost="<?= $product['cost']; ?>" data-id="<?= $product['id']; ?>" data-name="<?= $product['name']; ?>" class="btn btn-sm  edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
+                  <a href="" data-expiration="<?= $product['expiration']; ?>" data-quantity="<?= $product['quantity']; ?>" data-description="<?= $product['description']; ?>" data-brand="<?= $product['brand']; ?>" data-price="<?= $product['price']; ?>" data-cost="<?= $product['cost']; ?>" data-id="<?= $product['id']; ?>" data-name="<?= $product['name']; ?>" class="btn btn-sm  edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
                   <a href="" data-id="<?= $product['id']; ?>" class="btn btn-sm  delete" alt="Delete Product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
                 </td>
               </tr>
@@ -105,6 +105,11 @@
                       <input type="text" id="editcost" required class="form-control" name="cost" placeholder="Cost..."/>
                     </label>
                   </div>
+                  <div class="form-group">
+                    <label>Expiration Date:
+                      <input type="date" id="editexpiration" required class="form-control" name="expiration" placeholder="Expiration Date..."/>
+                    </label>
+                  </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
@@ -145,7 +150,7 @@
           <td class="editqty">[QUANTITY]</td>
           <td class="editbrand">[BRAND]</td>
           <td>
-            <a href="" data-quantity="[QTY]" data-expiry="[EXPIRY]" data-cost="[COST]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" data-brand="[BRAND]" data-description="[DESCRIPTION]" class="btn btn-sm edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
+            <a href="" data-expiration="[EXPIRATION]"  data-quantity="[QTY]" data-expiry="[EXPIRY]" data-cost="[COST]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" data-brand="[BRAND]" data-description="[DESCRIPTION]" class="btn btn-sm edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
             <a href="" data-id="[ID]" class="btn btn-sm  delete" alt="Delete Product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
           </td>
         </tr>
@@ -181,6 +186,14 @@
             e.stopPropagation();
 
             var me = $(this);
+            var cost = $("#editcost").val();
+            var price = $("#editprice").val();
+
+            if(parseFloat(cost) >= parseFloat(price)){
+              alert("Cost Price should be less than Retail Price");
+
+              return;
+            }
 
             $.ajax({
               url : "ajax.php",
@@ -215,6 +228,7 @@
             $("#editcost").attr("value", data.cost);
             $("#editqty").attr("value", data.quantity);
             $("#editid").val(data.id);
+            $("#editexpiration").val(data.expiration);
             $("#editbrand").attr("value", data.brand);
             $("#editdescription").html(data.description);
 
@@ -295,6 +309,7 @@
                   replace("[EXPIRY]", response[i].id).
                   replace("[QTY]", response[i].quantity).
                   replace("[PRICE]", response[i].price).
+                  replace("[EXPIRATION]", response[i].expiration).
                   replace("[COST]", response[i].cost).
                   replace("[PRODUCTID]", response[i].id).
                   replace("[FILENAME]", response[i].filename).

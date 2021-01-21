@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2021 at 05:23 AM
+-- Generation Time: Jan 21, 2021 at 05:20 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -40,20 +40,21 @@ CREATE TABLE `cart` (
   `transactionid` int(11) NOT NULL,
   `storeid` int(11) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
-  `reason` varchar(255) DEFAULT NULL
+  `reason` varchar(255) DEFAULT NULL,
+  `proof` varchar(255) DEFAULT NULL,
+  `return_status` varchar(255) DEFAULT 'For Review'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `userid`, `productid`, `price`, `quantity`, `shipping`, `tax`, `date_created`, `delivery_date`, `transactionid`, `storeid`, `status`, `reason`) VALUES
-(57, 71, 46, 250, 1, 0, 0, '2021-01-02 22:26:46', '2021-01-04', 67, 49, 'delivered', NULL),
-(58, 71, 47, 100, 2, 0, 0, '2021-01-02 22:26:46', '2021-01-04', 67, 49, 'returned', 'bulok'),
-(59, 71, 46, 250, 1, 0, 0, '2021-01-02 23:47:04', '2021-01-04', 68, 49, 'delivered', NULL),
-(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', NULL, 68, 50, 'pending', 'asd'),
-(61, 73, 46, 250, 1, 0, 0, '2021-01-03 05:45:47', '2021-01-04', 79, 49, 'returned', NULL),
-(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'returned', 'test return');
+INSERT INTO `cart` (`id`, `userid`, `productid`, `price`, `quantity`, `shipping`, `tax`, `date_created`, `delivery_date`, `transactionid`, `storeid`, `status`, `reason`, `proof`, `return_status`) VALUES
+(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', '1970-01-09', 68, 50, 'returned', 'test', 'uploads/user/71/profile/97e994858d56148a6d6c30b275e77bf7.png', 'Approved'),
+(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'returned', 'test2', 'uploads/user/71/profile/05d0e7b29d64e56dc46ac86ef0afb3d7.jpg', 'Approved'),
+(63, 71, 49, 129, 1, 50, 12, '2021-01-21 02:13:34', '2021-01-29', 82, 50, 'returned', 'asdadsa', 'uploads/user/71/profile/431ba5fa4670c279c47011f5e37ba038.jpg', 'For Review'),
+(64, 71, 46, 250, 1, 30, 12, '2021-01-21 02:32:12', '2021-01-22', 83, 49, 'delivered', NULL, NULL, 'For Review'),
+(65, 71, 46, 250, 1, 30, 12, '2021-01-21 03:02:14', NULL, 84, 49, 'pending', NULL, NULL, 'For Review');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,10 @@ INSERT INTO `cart_details` (`id`, `transactionid`, `userid`, `fullname`, `addres
 (52, 67, 71, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', 'sa may court', 450, 0, 450, 0, '2021-01-02 22:26:46'),
 (53, 68, 71, 'Dennis Uy', '1852 Sandejas Pasay City', '1111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', '', 390, 0, 390, 0, '2021-01-02 23:47:04'),
 (54, 79, 73, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '1111', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO', 'sa court', 250, 0, 250, 0, '2021-01-03 05:45:47'),
-(55, 81, 71, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '', 280, 33.6, 413.6, 100, '2021-01-05 04:55:45');
+(55, 81, 71, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '', 280, 33.6, 413.6, 100, '2021-01-05 04:55:45'),
+(56, 82, 71, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 129, 15.48, 194.48, 50, '2021-01-21 02:13:34'),
+(57, 83, 71, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 250, 30, 310, 30, '2021-01-21 02:32:12'),
+(58, 84, 71, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 250, 30, 310, 30, '2021-01-21 03:02:14');
 
 -- --------------------------------------------------------
 
@@ -148,20 +152,21 @@ CREATE TABLE `fees` (
   `productid` int(11) DEFAULT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
   `shipping_details` varchar(255) DEFAULT NULL,
-  `shipping_day` int(11) DEFAULT NULL
+  `shipping_day` int(11) DEFAULT NULL,
+  `minimum` float DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `fees`
 --
 
-INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_created`, `shipping_details`, `shipping_day`) VALUES
-(2, 37, 5, 12, NULL, '2020-12-19 03:02:27', NULL, NULL),
-(7, 35, 0, 0, NULL, '2020-12-19 23:37:57', '5 to 7 business days.', NULL),
-(8, 44, 0, 0, NULL, '2020-12-26 01:15:52', '<blockquote><ul><li>5 to 7 working days</li></ul></blockquote>', NULL),
-(9, 45, 0, 12, NULL, '2020-12-27 22:27:05', '2 to 3 business days.', 4),
-(10, 50, 50, 12, NULL, '2021-01-03 05:56:58', '5- 3 working days', 8),
-(11, 49, 30, 12, NULL, '2021-01-05 11:53:23', NULL, NULL);
+INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_created`, `shipping_details`, `shipping_day`, `minimum`) VALUES
+(2, 37, 5, 12, NULL, '2020-12-19 03:02:27', NULL, NULL, 1),
+(7, 35, 0, 0, NULL, '2020-12-19 23:37:57', '5 to 7 business days.', NULL, 1),
+(8, 44, 0, 0, NULL, '2020-12-26 01:15:52', '<blockquote><ul><li>5 to 7 working days</li></ul></blockquote>', NULL, 1),
+(9, 45, 0, 12, NULL, '2020-12-27 22:27:05', '2 to 3 business days.', 4, 1),
+(10, 50, 50, 12, NULL, '2021-01-03 05:56:58', '5- 3 working days', 8, 1),
+(11, 49, 30, 12, NULL, '2021-01-05 11:53:23', NULL, NULL, 122);
 
 -- --------------------------------------------------------
 
@@ -315,7 +320,9 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (108, '860207a547ed0cd8bd627c69a0260bb2.webp', 50, '2021-01-02 23:44:22', 51, 0),
 (109, '46748fc44903d48a3a3092c0ef89c81f.webp', 49, '2021-01-03 05:51:19', 52, 1),
 (110, 'a597b33302b9049a1f5c478998b62074.webp', 49, '2021-01-03 05:51:19', 52, 0),
-(111, '52f37ad9ce6382fba255238073cee5bf.webp', 49, '2021-01-03 05:51:19', 52, 0);
+(111, '52f37ad9ce6382fba255238073cee5bf.webp', 49, '2021-01-03 05:51:19', 52, 0),
+(112, '431ba5fa4670c279c47011f5e37ba038.jpg', 49, '2021-01-20 23:06:30', 53, 1),
+(113, '431ba5fa4670c279c47011f5e37ba038.jpg', 49, '2021-01-20 23:12:18', 54, 1);
 
 -- --------------------------------------------------------
 
@@ -345,7 +352,10 @@ INSERT INTO `payments` (`id`, `payment_id`, `amount`, `currency`, `payment_statu
 (66, 'COD', 390.00, 'PHP', 'Pending', '2021-01-03 08:47:03', 71, 'ecommerce'),
 (67, 'ch_1I5PPUJmfnsrzK57o79m4UnY', 250.00, 'PHP', 'Captured', '2021-01-03 14:45:47', 73, 'ecommerce'),
 (68, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ', 3000.00, 'PHP', 'Captured', '2021-01-03 14:47:48', 74, 'subscription'),
-(69, 'COD', 413.60, 'PHP', 'Pending', '2021-01-05 13:55:44', 71, 'ecommerce');
+(69, 'COD', 413.60, 'PHP', 'Pending', '2021-01-05 13:55:44', 71, 'ecommerce'),
+(70, 'COD', 194.48, 'PHP', 'Pending', '2021-01-21 11:13:33', 71, 'ecommerce'),
+(71, 'COD', 310.00, 'PHP', 'Pending', '2021-01-21 11:32:11', 71, 'ecommerce'),
+(72, 'COD', 310.00, 'PHP', 'Pending', '2021-01-21 12:02:14', 71, 'ecommerce');
 
 -- --------------------------------------------------------
 
@@ -428,21 +438,24 @@ CREATE TABLE `productt` (
   `storeid` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `cost` float NOT NULL,
-  `active` int(11) DEFAULT 1
+  `active` int(11) DEFAULT 1,
+  `expiration` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `productt`
 --
 
-INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`, `rating`, `date_added`, `storeid`, `description`, `cost`, `active`) VALUES
-(46, 36, 'Fresho Onion - Organically Grown, 1 kg', 250, 'MerryMart', 97, 0, '2021-01-02 22:02:02', 49, '<p>It is organically grown and handpicked from farm </p>\n<p>\nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.</p>', 200, 1),
-(47, 36, 'Fresho Sweet Corn, 2 pcs', 100, 'MerryMart', 98, 0, '2021-01-02 22:04:59', 49, 'Wrapped in lime coloured husks with silk, sweet corn contains numerous yellow succulent kernels that have a starchy and doughy consistency. The skin pops out as you bite into it. ', 80, 1),
-(48, 36, 'Fresho Bitter Gourd - Organically Grown, 250 g', 60, 'MerryMart', 100, 0, '2021-01-02 22:08:01', 49, 'Fresho Organic products are organically grown and handpicked by expert. \nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.', 50, 1),
-(49, 35, 'Fresho Organic Cow Ghee Desi (450 g), 500 ml', 129, 'Fresho', 100, 0, '2021-01-02 23:28:17', 50, '1)Fresho! Organic Ghee is manufactured in a safe, hygienic facility. 2)Our rich flavored ghee is made from traditional churned butter; which in turn is processed from curd. A slow boiling method is applied to retain the rich flavour and traditional aroma.', 99, 1),
-(50, 35, 'Kapiva Ayurveda A2 Desi Ghee, 500 ml', 140, 'Pure Ghee', 97, 0, '2021-01-02 23:31:20', 50, 'PURE GHEE SOURCED FROM THE LAND OF THE THARPARKAR COWS: Our Desi Cow A2 Ghee is procured from the milk of the Tharparkar cows - which are a cow breed indigenous to the Thar Desert of India. These cows are grass-fed and are not factory-farmed and are free ', 100, 1),
-(51, 35, 'Gowardhan Ghee, 500 ml Bottle', 150, 'Gowardhan', 95, 0, '2021-01-02 23:44:21', 50, 'Gowardhan Premium Ghee is completely processed using modern machines and has the enormous taste of 100% pure cow\'s milk. Gowardhan Premium Ghee great in flavor and are broadly demanded by our clients across the nation.', 129, 1),
-(52, 35, 'test product', 120, 'testbrand', 100, 0, '2021-01-03 05:51:19', 49, 'lorem ipsum', 99, 1);
+INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`, `rating`, `date_added`, `storeid`, `description`, `cost`, `active`, `expiration`) VALUES
+(46, 36, 'Fresho Onion - Organically Grown, 1 kg', 250, 'MerryMart', 95, 0, '2021-01-02 22:02:02', 49, '<p>It is organically grown and handpicked from farm </p>\n<p>\nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.</p>', 200, 1, NULL),
+(47, 36, 'Fresho Sweet Corn, 2 pcs', 100, 'MerryMart', 98, 0, '2021-01-02 22:04:59', 49, 'Wrapped in lime coloured husks with silk, sweet corn contains numerous yellow succulent kernels that have a starchy and doughy consistency. The skin pops out as you bite into it. ', 80, 1, NULL),
+(48, 36, 'Fresho Bitter Gourd - Organically Grown, 250 g', 60, 'MerryMart', 100, 0, '2021-01-02 22:08:01', 49, 'Fresho Organic products are organically grown and handpicked by expert. \nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.', 50, 1, NULL),
+(49, 35, 'Fresho Organic Cow Ghee Desi (450 g), 500 ml', 129, 'Fresho', 99, 0, '2021-01-02 23:28:17', 50, '1)Fresho! Organic Ghee is manufactured in a safe, hygienic facility. 2)Our rich flavored ghee is made from traditional churned butter; which in turn is processed from curd. A slow boiling method is applied to retain the rich flavour and traditional aroma.', 99, 1, NULL),
+(50, 35, 'Kapiva Ayurveda A2 Desi Ghee, 500 ml', 140, 'Pure Ghee', 97, 0, '2021-01-02 23:31:20', 50, 'PURE GHEE SOURCED FROM THE LAND OF THE THARPARKAR COWS: Our Desi Cow A2 Ghee is procured from the milk of the Tharparkar cows - which are a cow breed indigenous to the Thar Desert of India. These cows are grass-fed and are not factory-farmed and are free ', 100, 1, NULL),
+(51, 35, 'Gowardhan Ghee, 500 ml Bottle', 150, 'Gowardhan', 95, 0, '2021-01-02 23:44:21', 50, 'Gowardhan Premium Ghee is completely processed using modern machines and has the enormous taste of 100% pure cow\'s milk. Gowardhan Premium Ghee great in flavor and are broadly demanded by our clients across the nation.', 129, 1, NULL),
+(52, 35, 'test product', 120, 'testbrand', 100, 0, '2021-01-03 05:51:19', 49, 'lorem ipsum', 99, 1, NULL),
+(53, 23, '66745DSF', 16, '345', 345, 0, '2021-01-20 23:06:30', 49, 'SDFASD', 4, 1, '2021-01-21'),
+(54, 23, '456', 6, '345', 345, 0, '2021-01-20 23:12:18', 49, 'asdsa', 3, 1, '2021-01-21');
 
 -- --------------------------------------------------------
 
@@ -519,7 +532,9 @@ INSERT INTO `rating` (`id`, `productid`, `userid`, `rating`, `date_added`, `comm
 (29, 44, 65, 5, '2021-01-02 02:12:36', 'sdfsdfsd'),
 (30, 44, 65, 0, '2021-01-02 02:12:50', 'asd'),
 (31, 47, 36, 2, '2021-01-02 22:16:57', 'test rev'),
-(32, 46, 73, 3, '2021-01-03 05:45:02', 'test');
+(32, 46, 73, 3, '2021-01-03 05:45:02', 'test'),
+(33, 46, 71, 3, '2021-01-21 02:41:15', 'test rating'),
+(34, 46, 71, 2, '2021-01-21 02:46:58', 'test');
 
 -- --------------------------------------------------------
 
@@ -581,17 +596,16 @@ CREATE TABLE `slides` (
   `status` int(11) NOT NULL DEFAULT 1,
   `photo` varchar(255) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `type` varchar(255) NOT NULL DEFAULT 'slide'
+  `type` varchar(255) NOT NULL DEFAULT 'slide',
+  `storeid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `slides`
 --
 
-INSERT INTO `slides` (`id`, `title`, `content`, `status`, `photo`, `date_created`, `type`) VALUES
-(31, '', '', 1, './uploads/merchant//b1.webp', '2020-12-29 20:39:53', 'slider'),
-(32, '', '', 1, './uploads/merchant//b2.webp', '2020-12-29 20:40:01', 'slider'),
-(33, '', '', 1, './uploads/merchant//b3.webp', '2020-12-29 20:40:10', 'slider');
+INSERT INTO `slides` (`id`, `title`, `content`, `status`, `photo`, `date_created`, `type`, `storeid`) VALUES
+(36, '', '234234', 1, './uploads/merchant/49/ingredients.jpg', '2021-01-21 03:58:55', 'slider', 49);
 
 -- --------------------------------------------------------
 
@@ -691,7 +705,10 @@ INSERT INTO `transaction` (`id`, `userid`, `date_created`, `total`, `status`) VA
 (78, 70, '2021-01-02 23:57:07', 250, 'pos'),
 (79, 73, '2021-01-03 05:45:47', 250, 'pending'),
 (80, 72, '2021-01-03 05:54:04', 750, 'pos'),
-(81, 71, '2021-01-05 04:55:44', 280, 'pending');
+(81, 71, '2021-01-05 04:55:44', 280, 'pending'),
+(82, 71, '2021-01-21 02:13:34', 129, 'pending'),
+(83, 71, '2021-01-21 02:32:12', 250, 'pending'),
+(84, 71, '2021-01-21 03:02:14', 250, 'pending');
 
 -- --------------------------------------------------------
 
@@ -924,13 +941,13 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -954,13 +971,13 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `pos`
@@ -978,7 +995,7 @@ ALTER TABLE `production`
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -990,7 +1007,7 @@ ALTER TABLE `purchase`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -1008,7 +1025,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `store`
@@ -1026,7 +1043,7 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `user`

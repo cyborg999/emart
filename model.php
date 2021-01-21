@@ -77,6 +77,69 @@ class Model {
 		$this->loadMonthlyListener();
 		$this->loadInventoryListener();
 		$this->exportListener();
+		$this->returnItemListener();
+		$this->updateProofStatusListener();
+	}
+
+	public function updateProofStatusListener(){
+		if(isset($_POST['updateProofStatus'])){
+			$sql = "
+				update cart
+				set return_status = ?
+				where id = ?
+			";
+
+			$this->db->prepare($sql)->execute(array( $_POST['status'],$_POST['id']));
+
+			die(json_encode(array("updated")));
+		}
+	}
+
+	public function returnItemListener(){
+		if(isset($_POST['returnItem'])){
+			$this->addPurchaseProof($_POST['returnItem']);
+
+			return $this;
+		}
+	}
+
+	public function addPurchaseProof($cartId){
+		if(!isset($_FILES['proof'])){
+			return $this;
+		}
+
+		$files = $_FILES['proof']['tmp_name'];
+
+		if($files){
+
+			//start
+
+			$merchantPath = 'uploads/user/'.$_SESSION['id']."/profile/";
+			
+		
+			if(!file_exists($merchantPath)){
+				mkdir($merchantPath,0777,true);
+			}
+
+			$folder_name = $merchantPath;
+
+			 $temp_file = $_FILES['proof']['tmp_name'];
+			 $ext = strtolower(pathinfo($_FILES["proof"]["name"],PATHINFO_EXTENSION));
+			 $newName = md5($_FILES['proof']['name']) .".".$ext;
+			 $location = $folder_name . $newName;
+
+			 if(move_uploaded_file($temp_file, $location)){
+			 	$sql = "
+					UPDATE cart
+					SET proof = ?, reason = ?, status = 'returned'
+					WHERE id = ?
+				";
+
+				$this->db->prepare($sql)->execute(array($location, $_POST['reason'], $cartId));
+			}
+		} 
+
+		return $this;
 	}
 
 	public function exportListener(){
@@ -753,21 +816,21 @@ class Model {
 
 				if(!$exists){
 					$sql = "
-						INSERT INTO fees(storeid,shipping,tax)
-						VALUES(?,?,?)
+						INSERT INTO fees(storeid,shipping,tax, minimum)
+						VALUES(?,?,?,?)
 					";	
 
-					$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['shipping'],$_POST['tax']));
+					$this->db->prepare($sql)->execute(array($_SESSION['storeid'],$_POST['shipping'],$_POST['tax'],$_POST['minimum']));
 
 					$this->success = "You have succesfully added this record";
 				} else {
 					$sql = "
 						UPDATE fees
-						SET shipping = ?, tax = ?
+						SET shipping = ?, tax = ?, minimum = ?
 						WHERE storeid = ?
 					";	
 
-					$this->db->prepare($sql)->execute(array($_POST['shipping'],$_POST['tax'],$_SESSION['storeid']));
+					$this->db->prepare($sql)->execute(array($_POST['shipping'],$_POST['tax'],$_POST['minimum'],$_SESSION['storeid']));
 
 					$this->success = "You have succesfully updated this record";
 				}
@@ -1037,12 +1100,18 @@ class Model {
 			$exists = $this->db->query($sql)->fetch();
 	
 			if(!$exists){
+				if($_POST['cost'] >= $_POST['price']){
+					$this->errors[] = "Cost Price should be less than Retail Price";
+
+					die(json_encode(array("error" => $this->errors)));
+				}
+
 				$sql = "
-					INSERT INTO productt(name,categoryid,price,brand,quantity,cost,description,storeid)
-					VALUES(?,?,?,?,?,?,?,?)
+					INSERT INTO productt(name,categoryid,price,brand,quantity,cost,description,storeid, expiration)
+					VALUES(?,?,?,?,?,?,?,?, ?)
 				";
 
-				$this->db->prepare($sql)->execute(array($_POST['title'], $_POST['category'],$_POST['price'],$_POST['brand'],$_POST['quantity'],$_POST['cost'],$_POST['desc'],$_SESSION['storeid']));
+				$this->db->prepare($sql)->execute(array($_POST['title'], $_POST['category'],$_POST['price'],$_POST['brand'],$_POST['quantity'],$_POST['cost'],$_POST['desc'],$_SESSION['storeid'], $_POST['date_expire']));
 
 				$this->success = "You have sucesfully added this product.";
 
@@ -1282,6 +1351,17 @@ class Model {
 		return $this->db->query($sql)->fetchAll();
 	}
 
+	public function getStoreSlides(){
+		$sql = "
+			SELECT *
+			FROM slides
+			WHERE type = 'slider'
+			and storeid = ".$_SESSION['storeid']."
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
 	public function getAllActiveSlides(){
 		$sql = "
 			SELECT *
@@ -1316,13 +1396,13 @@ class Model {
 	public function addSliderListener(){
 		if(isset($_POST['addSlider'])){
 			$sql = "
-				INSERT INTO slides(title,content,photo,type)
-				VALUES(?,?,?,?)
+				INSERT INTO slides(title,content,photo,type, storeid)
+				VALUES(?,?,?,?,?)
 			";
 
 			$type = (isset($_POST['addNews'])) ? "news" : "slider";
 
-			$this->db->prepare($sql)->execute(array($_POST['title'],$_POST['subtext'],$_POST['photo'], $type));
+			$this->db->prepare($sql)->execute(array($_POST['title'],$_POST['subtext'],$_POST['photo'], $type, $_SESSION['storeid']));
 
 			die(json_encode(array("added")));
 		}
@@ -2390,11 +2470,11 @@ class Model {
 		if(isset($_POST['editmaterial'])){
 			$sql = "
 				UPDATE productt
-				SET name = ?, price = ?, cost = ?, quantity = ?, brand = ?, description = ?
+				SET name = ?, price = ?, cost = ?, quantity = ?, brand = ?, description = ?, expiration = ?
 				WHERE id = ?
 			";
 
-			$this->db->prepare($sql)->execute(array($_POST['name'], $_POST['price'], $_POST['cost'], $_POST['quantity'], $_POST['brand'], $_POST['description'], $_POST['editmaterial']));
+			$this->db->prepare($sql)->execute(array($_POST['name'], $_POST['price'], $_POST['cost'], $_POST['quantity'], $_POST['brand'], $_POST['description'], $_POST['expiration'], $_POST['editmaterial']));
 
 			die(json_encode($_POST));
 		}

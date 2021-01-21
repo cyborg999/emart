@@ -30,6 +30,9 @@
 						<h5>Tax</h5>
 						<input type="text" value="<?= ($fees) ? $fees['tax'] : "";?>" class="form-control" placeholder="Tax" required name="tax">
 						<br>
+						<h5>Minimum Purchase Total</h5>
+						<input type="text" min="1" value="<?= ($fees) ? $fees['minimum'] : "1";?>" class="form-control" placeholder="Minimum Purchase" required name="minimum">
+						<br>
 						<button class="btn btn-lg btn-primary" id="save">Save</button>
 					</form>
 					

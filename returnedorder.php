@@ -31,7 +31,9 @@
 			                <tr>
 			                  <th>Products</th>
 			                  <th>Status</th>
+			                  <th>Return Status</th>
 			                  <th>Reason</th>
+			                  <th>Proof</th>
 			                  <th>Date Purchase</th>
 			                  <th>Action</th>
 			                </tr>
@@ -70,7 +72,13 @@
 			                          </li>
 			                      </td>
 			                      <td><?= $o['status'];?></td>
+			                      <td class="returnstatus">
+			                      	<?= $o['return_status'];?>
+		                      		</td>
 			                      <td><?= $o['reason'];?></td>
+			                      <td>
+			                      	<a href="" class="view-proof" data-id="<?= $o['id'];?>" data-toggle="modal" data-target="#proofApprovals"><img width="50" class="img-responsive" src="./<?= $o['proof'];?>"></a>
+			                      </td>
 			                      <td><?= $o['date_created'];?></td>
 			                      <td>
 			                        <a href="" class="btn btn-primary view">view</a>
@@ -135,6 +143,55 @@
 			</div>
 		</div>
 	</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="proofApprovals" data-id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Proof Preview</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row  ">
+          <div class="col-sm msg hidden"></div>
+        </div>
+        <div class="row">
+
+          <div class="col-sm">
+            <form method="post" id="editform">
+            <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                  	<style type="text/css">
+                  		#bigimg {
+                  			max-width: 100%;
+                  			display: block;
+                  			margin: 0 auto;
+                  		}
+                  	</style>
+                   	<img id="bigimg" src="">
+                  </div>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      	<a href="" class="btn btn-success updateProofStatus" data-val="Approved">Approve</a>
+      	<a href="" class="btn btn-danger updateProofStatus" data-val="Not Approve">Not Approve</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 	<?php include "./foot.php"; ?>
   	<script type="text/javascript">
     (function($){
@@ -150,6 +207,54 @@
     			type : "post",
     			dataType : "json",
     			success : function(){
+    				hidePreloader();
+    			}
+    		});
+    	});
+
+    	var last = null;
+
+    	$(".view-proof").on("click", function(e){
+    		e.preventDefault();
+
+    		var me = $(this);
+    		var imgSrc = me.find("img").attr("src");
+
+    		$("#bigimg").attr("src", imgSrc);
+    		$("#bigimg").data("id", me.data("id"));
+
+    		last = me.parents("tr").find(".returnstatus");
+    	});
+
+    	$(".updateProofStatus").on("click", function(e){
+    		e.preventDefault();
+
+    		var me = $(this);
+    		var cartId = $("#bigimg").data("id");
+    		var status = me.data("val");
+    		var returnStatus = "";
+
+    		if(status == "Approved"){
+    			returnStatus = "Approved";
+
+    			me.html(returnStatus);
+    		} else {
+    			returnStatus = "Not Approved";
+
+    			me.html(returnStatus);
+    		}
+
+    		console.log(cartId, status);
+    		showPreloader();
+    		$.ajax({
+    			url  : "ajax.php",
+    			data : { updateProofStatus : true, id : cartId, status : status},
+    			type : "post",
+    			dataType : "json",
+    			success  : function(response){
+    				last.html(returnStatus);
+    			}
+    			, complete : function(){
     				hidePreloader();
     			}
     		});

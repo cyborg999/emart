@@ -79,14 +79,14 @@
 			<div class="usertype slide col-sm">
 				<form method="post" class="form">
 					<div class="err"></div>
-					<h3>Are you a client or a merchant?</h3>
+					<h3>Are you a client or a Grocery Owner?</h3>
 					<br>
 					<input type="hidden" name="updateUserType" value="true"/>
 				    <div class="form-group col-lg-12">
 						<label for="client">Customer</label>
 						<input type="radio" class="form-control usertype" id="client" name="usertype" checked value="client"/>
 						<br>
-						<label for="merchant">Merchant</label>
+						<label for="merchant">Owner</label>
 						<input type="radio" class="form-control usertype" id="merchant" name="usertype" value="merchant"/>
 				    </div>
 					<div class="form-group col-lg-12">

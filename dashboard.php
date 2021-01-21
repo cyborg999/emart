@@ -56,7 +56,7 @@
 								<div class="card  text-white bg-primary  mb-3" style="max-width: 18rem;">
 								  <div class="card-header">Earnings (Ecommerce)</div>
 								  <div class="card-body">
-								    <h5 class="card-title">₱ <?= $ecom; ?></h5>
+								    <h5 class="card-title">₱ <?= number_format($ecom,2); ?></h5>
 								  </div>
 								</div>
 							</div>
@@ -64,7 +64,7 @@
 								<div class="card bg-info text-white mb-3" style="max-width: 18rem;">
 								  <div class="card-header">Earnings (POS)</div>
 								  <div class="card-body">
-								    <h5 class="card-title">₱ <?= $pos; ?></h5>
+								    <h5 class="card-title">₱ <?= number_format($pos,2); ?></h5>
 								  </div>
 								</div>
 							</div>
