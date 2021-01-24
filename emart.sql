@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2021 at 05:20 AM
+-- Generation Time: Jan 24, 2021 at 09:12 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -50,11 +50,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `userid`, `productid`, `price`, `quantity`, `shipping`, `tax`, `date_created`, `delivery_date`, `transactionid`, `storeid`, `status`, `reason`, `proof`, `return_status`) VALUES
-(60, 71, 50, 140, 1, 0, 0, '2021-01-02 23:47:04', '1970-01-09', 68, 50, 'returned', 'test', 'uploads/user/71/profile/97e994858d56148a6d6c30b275e77bf7.png', 'Approved'),
-(62, 71, 50, 140, 2, 50, 12, '2021-01-05 04:55:45', '2021-01-13', 81, 50, 'returned', 'test2', 'uploads/user/71/profile/05d0e7b29d64e56dc46ac86ef0afb3d7.jpg', 'Approved'),
-(63, 71, 49, 129, 1, 50, 12, '2021-01-21 02:13:34', '2021-01-29', 82, 50, 'returned', 'asdadsa', 'uploads/user/71/profile/431ba5fa4670c279c47011f5e37ba038.jpg', 'For Review'),
-(64, 71, 46, 250, 1, 30, 12, '2021-01-21 02:32:12', '2021-01-22', 83, 49, 'delivered', NULL, NULL, 'For Review'),
-(65, 71, 46, 250, 1, 30, 12, '2021-01-21 03:02:14', NULL, 84, 49, 'pending', NULL, NULL, 'For Review');
+(69, 71, 55, 12, 1, 50, 12, '2021-01-24 20:00:56', '2021-02-02', 86, 50, 'processed', NULL, NULL, 'For Review');
 
 -- --------------------------------------------------------
 
@@ -89,7 +85,9 @@ INSERT INTO `cart_details` (`id`, `transactionid`, `userid`, `fullname`, `addres
 (55, 81, 71, 'Jordan Sadiwa1', '1852 Sandejas Pasay City1', '1112', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1', '', 280, 33.6, 413.6, 100, '2021-01-05 04:55:45'),
 (56, 82, 71, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 129, 15.48, 194.48, 50, '2021-01-21 02:13:34'),
 (57, 83, 71, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 250, 30, 310, 30, '2021-01-21 02:32:12'),
-(58, 84, 71, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 250, 30, 310, 30, '2021-01-21 03:02:14');
+(58, 84, 71, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 250, 30, 310, 30, '2021-01-21 03:02:14'),
+(59, 85, 71, 'Jordan Sadiwauser1test2', 'Pili,Boac,Marinqueu', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 157, 18.84, 250.84, 75, '2021-01-24 19:59:01'),
+(60, 86, 71, 'Jordan Sadiwauser1test2', 'Pili,Boac,Marinqueu', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '', 12, 1.44, 33.44, 20, '2021-01-24 20:00:56');
 
 -- --------------------------------------------------------
 
@@ -141,6 +139,30 @@ CREATE TABLE `chat` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `delivery_fee`
+--
+
+CREATE TABLE `delivery_fee` (
+  `id` int(11) NOT NULL,
+  `storeid` int(11) NOT NULL,
+  `municipality` varchar(255) NOT NULL,
+  `fee` float NOT NULL,
+  `date_added` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `delivery_fee`
+--
+
+INSERT INTO `delivery_fee` (`id`, `storeid`, `municipality`, `fee`, `date_added`) VALUES
+(2, 49, 'Mogpog', 56, '2021-01-23 13:29:46'),
+(3, 49, 'Boac', 55, '2021-01-23 13:32:23'),
+(6, 50, 'Mogpog', 30, '2021-01-24 03:31:06'),
+(7, 50, 'Boac', 20, '2021-01-24 09:14:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fees`
 --
 
@@ -165,7 +187,7 @@ INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_creat
 (7, 35, 0, 0, NULL, '2020-12-19 23:37:57', '5 to 7 business days.', NULL, 1),
 (8, 44, 0, 0, NULL, '2020-12-26 01:15:52', '<blockquote><ul><li>5 to 7 working days</li></ul></blockquote>', NULL, 1),
 (9, 45, 0, 12, NULL, '2020-12-27 22:27:05', '2 to 3 business days.', 4, 1),
-(10, 50, 50, 12, NULL, '2021-01-03 05:56:58', '5- 3 working days', 8, 1),
+(10, 50, 50, 12, NULL, '2021-01-03 05:56:58', '5- 3 working days', 8, 120),
 (11, 49, 30, 12, NULL, '2021-01-05 11:53:23', NULL, NULL, 122);
 
 -- --------------------------------------------------------
@@ -322,7 +344,33 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (110, 'a597b33302b9049a1f5c478998b62074.webp', 49, '2021-01-03 05:51:19', 52, 0),
 (111, '52f37ad9ce6382fba255238073cee5bf.webp', 49, '2021-01-03 05:51:19', 52, 0),
 (112, '431ba5fa4670c279c47011f5e37ba038.jpg', 49, '2021-01-20 23:06:30', 53, 1),
-(113, '431ba5fa4670c279c47011f5e37ba038.jpg', 49, '2021-01-20 23:12:18', 54, 1);
+(113, '431ba5fa4670c279c47011f5e37ba038.jpg', 49, '2021-01-20 23:12:18', 54, 1),
+(114, 'ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', 50, '2021-01-24 04:27:55', 55, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `body` text NOT NULL,
+  `seen` int(11) NOT NULL DEFAULT 0,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
+  `storeid` int(11) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  `type` varchar(255) DEFAULT 'Order'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`id`, `title`, `body`, `seen`, `date_added`, `storeid`, `userid`, `type`) VALUES
+(132, 'New Orders', '<p>You have (1) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 1, '2021-01-24 20:01:21', 50, NULL, 'Order'),
+(133, 'Order Update', '\r\n					<p>You order <a href=\'productdetail.php?id=55\'>test</a> has been processed.</p>\r\n				', 1, '2021-01-24 20:01:35', 50, 71, 'forUser');
 
 -- --------------------------------------------------------
 
@@ -355,7 +403,9 @@ INSERT INTO `payments` (`id`, `payment_id`, `amount`, `currency`, `payment_statu
 (69, 'COD', 413.60, 'PHP', 'Pending', '2021-01-05 13:55:44', 71, 'ecommerce'),
 (70, 'COD', 194.48, 'PHP', 'Pending', '2021-01-21 11:13:33', 71, 'ecommerce'),
 (71, 'COD', 310.00, 'PHP', 'Pending', '2021-01-21 11:32:11', 71, 'ecommerce'),
-(72, 'COD', 310.00, 'PHP', 'Pending', '2021-01-21 12:02:14', 71, 'ecommerce');
+(72, 'COD', 310.00, 'PHP', 'Pending', '2021-01-21 12:02:14', 71, 'ecommerce'),
+(73, 'COD', 250.84, 'PHP', 'Pending', '2021-01-25 04:59:01', 71, 'ecommerce'),
+(74, 'COD', 33.44, 'PHP', 'Pending', '2021-01-25 05:00:56', 71, 'ecommerce');
 
 -- --------------------------------------------------------
 
@@ -450,12 +500,13 @@ INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`
 (46, 36, 'Fresho Onion - Organically Grown, 1 kg', 250, 'MerryMart', 95, 0, '2021-01-02 22:02:02', 49, '<p>It is organically grown and handpicked from farm </p>\n<p>\nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.</p>', 200, 1, NULL),
 (47, 36, 'Fresho Sweet Corn, 2 pcs', 100, 'MerryMart', 98, 0, '2021-01-02 22:04:59', 49, 'Wrapped in lime coloured husks with silk, sweet corn contains numerous yellow succulent kernels that have a starchy and doughy consistency. The skin pops out as you bite into it. ', 80, 1, NULL),
 (48, 36, 'Fresho Bitter Gourd - Organically Grown, 250 g', 60, 'MerryMart', 100, 0, '2021-01-02 22:08:01', 49, 'Fresho Organic products are organically grown and handpicked by expert. \nProduct image shown is for representation purpose only, the actually product may vary based on season, produce & availability.', 50, 1, NULL),
-(49, 35, 'Fresho Organic Cow Ghee Desi (450 g), 500 ml', 129, 'Fresho', 99, 0, '2021-01-02 23:28:17', 50, '1)Fresho! Organic Ghee is manufactured in a safe, hygienic facility. 2)Our rich flavored ghee is made from traditional churned butter; which in turn is processed from curd. A slow boiling method is applied to retain the rich flavour and traditional aroma.', 99, 1, NULL),
+(49, 35, 'Fresho Organic Cow Ghee Desi (450 g), 500 ml', 129, 'Fresho', 98, 0, '2021-01-02 23:28:17', 50, '1)Fresho! Organic Ghee is manufactured in a safe, hygienic facility. 2)Our rich flavored ghee is made from traditional churned butter; which in turn is processed from curd. A slow boiling method is applied to retain the rich flavour and traditional aroma.', 99, 1, NULL),
 (50, 35, 'Kapiva Ayurveda A2 Desi Ghee, 500 ml', 140, 'Pure Ghee', 97, 0, '2021-01-02 23:31:20', 50, 'PURE GHEE SOURCED FROM THE LAND OF THE THARPARKAR COWS: Our Desi Cow A2 Ghee is procured from the milk of the Tharparkar cows - which are a cow breed indigenous to the Thar Desert of India. These cows are grass-fed and are not factory-farmed and are free ', 100, 1, NULL),
 (51, 35, 'Gowardhan Ghee, 500 ml Bottle', 150, 'Gowardhan', 95, 0, '2021-01-02 23:44:21', 50, 'Gowardhan Premium Ghee is completely processed using modern machines and has the enormous taste of 100% pure cow\'s milk. Gowardhan Premium Ghee great in flavor and are broadly demanded by our clients across the nation.', 129, 1, NULL),
 (52, 35, 'test product', 120, 'testbrand', 100, 0, '2021-01-03 05:51:19', 49, 'lorem ipsum', 99, 1, NULL),
 (53, 23, '66745DSF', 16, '345', 345, 0, '2021-01-20 23:06:30', 49, 'SDFASD', 4, 1, '2021-01-21'),
-(54, 23, '456', 6, '345', 345, 0, '2021-01-20 23:12:18', 49, 'asdsa', 3, 1, '2021-01-21');
+(54, 23, '456', 6, '345', 345, 0, '2021-01-20 23:12:18', 49, 'asdsa', 3, 1, '2021-01-21'),
+(55, 23, 'test', 12, '43', 109, 0, '2021-01-24 04:27:55', 50, 'sdas', 11, 1, '2021-01-06');
 
 -- --------------------------------------------------------
 
@@ -534,7 +585,13 @@ INSERT INTO `rating` (`id`, `productid`, `userid`, `rating`, `date_added`, `comm
 (31, 47, 36, 2, '2021-01-02 22:16:57', 'test rev'),
 (32, 46, 73, 3, '2021-01-03 05:45:02', 'test'),
 (33, 46, 71, 3, '2021-01-21 02:41:15', 'test rating'),
-(34, 46, 71, 2, '2021-01-21 02:46:58', 'test');
+(34, 46, 71, 2, '2021-01-21 02:46:58', 'test'),
+(35, 50, 71, 3, '2021-01-24 17:24:48', 'test'),
+(36, 50, 71, 0, '2021-01-24 17:26:11', 'test2'),
+(37, 50, 71, 0, '2021-01-24 17:26:40', 'test3'),
+(38, 50, 71, 0, '2021-01-24 17:28:17', 'test4'),
+(39, 50, 71, 0, '2021-01-24 17:38:43', 'test'),
+(40, 50, 72, 0, '2021-01-24 18:01:31', 'tesy');
 
 -- --------------------------------------------------------
 
@@ -621,17 +678,19 @@ CREATE TABLE `store` (
   `date_creaed` timestamp NULL DEFAULT current_timestamp(),
   `userid` int(11) NOT NULL,
   `subscriptionid` int(255) DEFAULT NULL,
-  `last_payment_id` varchar(255) DEFAULT NULL
+  `last_payment_id` varchar(255) DEFAULT NULL,
+  `allow_pickup` int(11) DEFAULT 0,
+  `pickup_location` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `store`
 --
 
-INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`) VALUES
-(49, 'MerryMart', '<p>MerryMart Consumer Corp. (“MM”) is an emerging consumer focused retail company principally engaged in the operation of retail stores in the supermarket and household essentials category. MM through its subsidiary, MerryMart Grocery Centers Inc. (“MMGC”', 'uploads/merchant/49/logo/10bafd33a788e2b82aaefb891c0e8b86.jpg', '2021-01-02 21:46:35', 70, 37, 'ch_1I5Hx7JmfnsrzK572OVG6CZg'),
-(50, 'Pure Gold', '<p>Puregold Price Club, Inc. (“Puregold” or “the Company”) was incorporated on September 8, 1998 and opened its first Puregold hypermarket store in Mandaluyong City in December of the same year. In 2001, it began its expansion by building 2 additional hyp', 'uploads/merchant/50/logo/de42dd6728605d39be5e5dde12452c0b.jpg', '2021-01-02 23:18:27', 72, 38, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl'),
-(51, 'lazada', NULL, NULL, '2021-01-03 05:46:49', 74, 37, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ');
+INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`, `allow_pickup`, `pickup_location`) VALUES
+(49, 'MerryMart', '<p>MerryMart Consumer Corp. (“MM”) is an emerging consumer focused retail company principally engaged in the operation of retail stores in the supermarket and household essentials category. MM through its subsidiary, MerryMart Grocery Centers Inc. (“MMGC”', 'uploads/merchant/49/logo/97e994858d56148a6d6c30b275e77bf7.png', '2021-01-02 21:46:35', 70, 37, 'ch_1I5Hx7JmfnsrzK572OVG6CZg', 1, 'Pili, Boac, Marinduque'),
+(50, 'Pure Gold', '<p>Puregold Price Club, Inc. (“Puregold” or “the Company”) was incorporated on September 8, 1998 and opened its first Puregold hypermarket store in Mandaluyong City in December of the same year. In 2001, it began its expansion by building 2 additional hyp', 'uploads/merchant/50/logo/de42dd6728605d39be5e5dde12452c0b.jpg', '2021-01-02 23:18:27', 72, 38, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl', 1, 'Tabi'),
+(51, 'lazada', NULL, NULL, '2021-01-03 05:46:49', 74, 37, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -708,7 +767,9 @@ INSERT INTO `transaction` (`id`, `userid`, `date_created`, `total`, `status`) VA
 (81, 71, '2021-01-05 04:55:44', 280, 'pending'),
 (82, 71, '2021-01-21 02:13:34', 129, 'pending'),
 (83, 71, '2021-01-21 02:32:12', 250, 'pending'),
-(84, 71, '2021-01-21 03:02:14', 250, 'pending');
+(84, 71, '2021-01-21 03:02:14', 250, 'pending'),
+(85, 71, '2021-01-24 19:59:01', 157, 'pending'),
+(86, 71, '2021-01-24 20:00:56', 12, 'pending');
 
 -- --------------------------------------------------------
 
@@ -769,7 +830,7 @@ CREATE TABLE `userinfo` (
 INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`, `date_created`, `userid`, `photo`) VALUES
 (25, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2020-12-05 19:12:46', 36, NULL),
 (49, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 21:46:35', 70, NULL),
-(50, 'Jordan Sadiwauser1test2', '1852 Sandejas Pasay Cityuser1test2', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 22:24:19', 71, NULL),
+(50, 'Jordan Sadiwauser1test2', 'Pili,Boac,Marinqueu', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 22:24:19', 71, NULL),
 (51, 'Jordan Sadiwauser1test', '1852 Sandejas Pasay Cityuser1test', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 23:18:27', 72, NULL),
 (52, 'Update Fullname', 'Updated address', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:44:11', 73, NULL),
 (53, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:46:49', 74, NULL),
@@ -826,6 +887,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `delivery_fee`
+--
+ALTER TABLE `delivery_fee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `fees`
 --
 ALTER TABLE `fees`
@@ -841,6 +908,12 @@ ALTER TABLE `likes`
 -- Indexes for table `media`
 --
 ALTER TABLE `media`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -941,19 +1014,25 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `delivery_fee`
+--
+ALTER TABLE `delivery_fee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `fees`
@@ -971,13 +1050,19 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `pos`
@@ -995,7 +1080,7 @@ ALTER TABLE `production`
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -1007,7 +1092,7 @@ ALTER TABLE `purchase`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -1043,7 +1128,7 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `user`

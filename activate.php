@@ -1,26 +1,11 @@
-<?php include "./dchead.php";
+<?php include "./stripehead.php";
 
-require_once "vendor/autoload.php";
-use Omnipay\Omnipay;
-$check = $model->preventReaccessIfPayed();
-$host = "localhost";
-$dbname = "emart";
-$username = "root";
-$password = "";
-$charset = "utf8";
 
-$db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;", $username, $password);
 ?>
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-2">
-				<figure class="logo"></figure>
-			</div>
-			<div class="col-sm-10">
-				<a href="logout.php"><svg class="bi float-right gear" width="20" height="20" fill="currentColor">
-					<use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear-fill"/></svg> </a>
-			</div>
+			<br>
 		</div>
 		<div class="row">
 			<div class="col-sm-2 side">
@@ -31,7 +16,7 @@ $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;", $username, $p
 					<?php  include_once "./error.php"; ?>
 					<br>
 				<h3>Activate your account</h3>
-				<div class="row">
+				<div class="row ">
 					<?php 					
 					$store = $model->getUserStore();
 					$amount = $store['cost'] * $store['duration'];
@@ -111,88 +96,91 @@ $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;", $username, $p
 						}
 					</style>
 					<script src="https://js.stripe.com/v3/"></script>
-					<form action="" method="post" id="payment-form">
-					    <div class="form-row">
-					        <input type="hidden" name="subscriptionid" id="subscriptionid" value="<?= $store['subscriptionid'];?>" />
-					        <input type="text" name="amount" id="amount" placeholder="Enter Amount" value="<?= $amount;?>" />
-					        <label for="card-element">Credit/Debit Card</label>
-					        <div id="card-element">
-					        <!-- A Stripe Element will be inserted here. -->
-					        </div>
-					 
-					        <!-- Used to display form errors. -->
-					        <div id="card-errors" class="alert alert-danger" role="alert"></div>
-					    </div>
-					    <button  id="submitpayment">Submit Payment</button>
-					</form>
-					<?php 
-						if (isset($_POST['stripeToken']) && !empty($_POST['stripeToken'])) {
-							
-
-							$gateway = Omnipay::create('Stripe');
-							$gateway->setApiKey('sk_test_51HsSJeJmfnsrzK571DnyysUarPcyEeRilLEVowF17n6MU5aJ5Vj9VBCaEEBm5bhuPPblYs2JjdAYanLq4iQI0dfz00VN23qHFc');
-
-						    try {
-						        $token = $_POST['stripeToken'];
-						     
-						        $response = $gateway->purchase([
-						            'amount' => $_POST['amount'],
-						            'currency' => 'PHP',
-						            'token' => $token,
-						        ])->send();
-						     
-						        if ($response->isSuccessful()) {
-						            // payment was successful: update database
-						            $arr_payment_data = $response->getData();
-						            $payment_id = $arr_payment_data['id'];
-						            $amount = $_POST['amount'];
+					<div class="col-sm">
+						<form action="" method="post" id="payment-form">
+						    <div class="form-row">
+						        <input type="hidden" name="subscriptionid" id="subscriptionid" value="<?= $store['subscriptionid'];?>" />
+						        <input type="text" name="amount" id="amount" placeholder="Enter Amount" value="<?= $amount;?>" />
+						        <label for="card-element">Credit/Debit Card</label>
+						        <div id="card-element">
+						        <!-- A Stripe Element will be inserted here. -->
+						        </div>
 						 
-						            // Insert transaction data into the database
-						            $isPaymentExist = $db->query("SELECT * FROM payments WHERE payment_id = '".$payment_id."'")->fetch();
+						        <!-- Used to display form errors. -->
+						        <div id="card-errors" class="alert alert-danger" role="alert"></div>
+						    </div>
+						    <button  id="submitpayment">Submit Payment</button>
+						</form>
+						<?php 
+							if (isset($_POST['stripeToken']) && !empty($_POST['stripeToken'])) {
+								
 
-						            if(!$isPaymentExist) { 
-						                $sql = "INSERT INTO payments(payment_id, amount, currency, payment_status,userid,payment_for) VALUES(?,?,?,?,?,?)
-						                ";
+								$gateway = Omnipay::create('Stripe');
+								$gateway->setApiKey('sk_test_51HsSJeJmfnsrzK571DnyysUarPcyEeRilLEVowF17n6MU5aJ5Vj9VBCaEEBm5bhuPPblYs2JjdAYanLq4iQI0dfz00VN23qHFc');
 
-						                $db->prepare($sql)->execute(array($payment_id, $amount, 'PHP', 'Captured', $_SESSION['id'], "subscription"));
+							    try {
+							        $token = $_POST['stripeToken'];
+							     
+							        $response = $gateway->purchase([
+							            'amount' => $_POST['amount'],
+							            'currency' => 'PHP',
+							            'token' => $token,
+							        ])->send();
+							     
+							        if ($response->isSuccessful()) {
+							            // payment was successful: update database
+							            $arr_payment_data = $response->getData();
+							            $payment_id = $arr_payment_data['id'];
+							            $amount = $_POST['amount'];
+							 
+							            // Insert transaction data into the database
+							            $isPaymentExist = $db->query("SELECT * FROM payments WHERE payment_id = '".$payment_id."'")->fetch();
 
-						                //update storeid
-						                $sql = "
-						                	UPDATE store
-						                	SET last_payment_id = ?, subscriptionid = ?
-						                	WHERE userid = ?
-						                ";
+							            if(!$isPaymentExist) { 
+							                $sql = "INSERT INTO payments(payment_id, amount, currency, payment_status,userid,payment_for) VALUES(?,?,?,?,?,?)
+							                ";
 
-						                $db->prepare($sql)->execute(array($payment_id, $_POST['subscriptionid'], $_SESSION['id']));
-						                
-						                //auto verify
-						                $sql = "
-						                	UPDATE user
-						                	SET verified = 1
-						                	WHERE id = ?
-						                ";	
+							                $db->prepare($sql)->execute(array($payment_id, $amount, 'PHP', 'Captured', $_SESSION['id'], "subscription"));
 
-						                $db->prepare($sql)->execute(array($_SESSION['id']));
+							                //update storeid
+							                $sql = "
+							                	UPDATE store
+							                	SET last_payment_id = ?, subscriptionid = ?
+							                	WHERE userid = ?
+							                ";
 
-						                $_SESSION['verified'] = 1;
-						            } 
+							                $db->prepare($sql)->execute(array($payment_id, $_POST['subscriptionid'], $_SESSION['id']));
+							                
+							                //auto verify
+							                $sql = "
+							                	UPDATE user
+							                	SET verified = 1
+							                	WHERE id = ?
+							                ";	
 
-						            echo '<div class="alert alert-success" role="alert">
-									        <h4 class="alert-heading">Well done!</h4>
-									        
-									        <p>Payment was successful! You have verified your account.</p>
-									        <p>Click <a href="dashboard.php">here</a> to redirect to dashboard.</p>
-									        <hr>
-						  				</div>';
-						        } else {
-						            // payment failed: display message to customer
-						            echo ' <br/><div class="alert alert-danger" role="alert">'.$response->getMessage().'</div>';
-						        }
-						    } catch(Exception $e) {
-						            echo ' <br/><div class="alert alert-danger" role="alert">'.$response->getMessage().'</div>';
-						    }
-						}
-					 ?>
+							                $db->prepare($sql)->execute(array($_SESSION['id']));
+
+							                $_SESSION['verified'] = 1;
+							            } 
+
+							            echo '<div class="alert alert-success" role="alert">
+										        <h4 class="alert-heading">Well done!</h4>
+										        
+										        <p>Payment was successful! You have verified your account.</p>
+										        <p>Click <a href="dashboard.php">here</a> to redirect to dashboard.</p>
+										        <hr>
+							  				</div>';
+							        } else {
+							            // payment failed: display message to customer
+							            echo ' <br/><div class="alert alert-danger" role="alert">'.$response->getMessage().'</div>';
+							        }
+							    } catch(Exception $e) {
+							            echo ' <br/><div class="alert alert-danger" role="alert">'.$response->getMessage().'</div>';
+							    }
+							}
+						 ?>
+					</div>
+				
 				</div>
 				</div>
 			</div>

@@ -77,7 +77,8 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="address">Delivery Address</label>
+              <label for="address">Delivery Address
+              </label>
               <input type="text" data-target="#address2" class="copy form-control" id="address" placeholder="1234 Main St" value="<?= (isset($profile['address'])) ? $profile['address'] : ''; ?>" required name="address">
               <div class="invalid-feedback">
                 Please enter your shipping address.
@@ -302,7 +303,6 @@
   <script type="text/javascript">
       (function($){
         $(document).ready(function(){
-
           $(".copy").on("keyup", function(){
             var me = $(this);
 

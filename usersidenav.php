@@ -78,6 +78,31 @@
   </div>
 
 
+<div class="card">
+   <?php
+          $notif = $model->getUserNotification();
+
+        ?>
+    <div class="card-header" id="headingNotifications">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseNotif" aria-expanded="false" aria-controls="collapseNotif">
+          <svg class="bi" width="15" height="15" fill="currentColor">
+  <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#bell-fill"/></svg> 
+          Notifications
+        </button>
+      </h2>
+    </div>
+    <div id="collapseNotif" class="collapse <?=($active =='notif') ? 'show' : ''; ?>" aria-labelledby="headingNotifications" data-parent="#accordionExample">
+      <div class="card-body">
+       
+        <ul class="sublist">
+          <li>
+            <a href="usernotification.php">View(<?= count($notif);?>)</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 
 </div>

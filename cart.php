@@ -88,7 +88,7 @@
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong id="total">0</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and Handling</strong><strong id="shipping">0.00</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong id="tax">0.00</strong></li>
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total <small>(minimum order 100)</small></strong>
                       <h5 class="font-weight-bold" id="grandTotal">0.00</h5>
                     </li>
                   </ul>
@@ -196,18 +196,52 @@
   </div>
 </div>
 
-
+<style type="text/css">
+  .location b,
+  .location i,
+  .location p {
+    text-align: left;
+    display: block;
+  }
+  .minimumTotal.active {
+    font-weight: 700;
+    color: red;
+    line-height: 1;
+  }
+  .tfoot td * {
+    text-align: left;
+  }
+</style>
   <script type="text/html" id="tFoot">
-    <tr>
-      <td colspan="4">
+    <tr class="tfoot">
+      <td>
+        <label class="[ALLOW_PICKUP]">Pick Up?
+          <input type="checkbox" class="pickup" name="">
+        </label>
+      </td>
+      <td colspan="3">
+        <div class="location hidden">
+          <b>Pick up location:</b>
+          <i ><p class="pickuplocation">[PICKUP_LOCATION]</p></i>
+        </div>
+      </td>
       <td colspan="2">
-        <b>Shipping : ₱ <span class="shipping">[SHIPPING]</span></b>
+        <b style="display: block;">Total : ₱ <span class="storeTotal" data-val="[STORETOTAL]">[STORETOTAL]</span></b>
+        <small class="minimumTotal active">(Minimum Total ₱ <span class="minTotal">[MINTOTAL]</span>)</small>
+        <b style="display: block;">Shipping : ₱ <span class="shipping" data-val="[SHIPPING]">[SHIPPING]</span></b>
+      </td>
+    </tr>
+  </script>
+  <script type="text/html" id="tplContainer">
+    <tr>
+      <td>
+        []
       </td>
     </tr>
   </script>
   <script type="text/html" id="tpl">
     [STORE]
-    <tr class="tr" data-shipping="[SHIPPING]" data-baseprice="[PRICE]">
+    <tr class="tr" data-shipping="[SHIPPING]" data-baseprice="[PRICE]" data-store="[STORENAME]">
       <td><img src="./uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]"" alt="" width="70" class="img-fluid rounded shadow-sm"></td>
       <td><div class="ml-3 d-inline-block align-middle">
           <h5 class="mb-0" style="max-width: 100%;"><a href="./productdetail.php?id=[ID]"  target="_blank" class="text-dark d-inline-block">[NAME]</a></h5><span class="text-muted font-weight-normal font-italic">Category: [CATEGORY]</span>
@@ -221,7 +255,7 @@
                   <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#dash"/></svg>
               </a></li>
               <li  class="page-item">
-                <input type="number" class="form-control page-link qty" value="[QTY]" name="">
+                <input type="number" class="count form-control page-link qty" value="[QTY]" name="">
               </li>
               <li class="page-item"><a class="page-link count" data-action="plus" href="#">
                   <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#plus"/></svg>
@@ -274,10 +308,27 @@
                   var price = parseFloat(me.find(".price").html());
                   var tax = parseFloat(me.find(".taxedPrice").html());
                   var shipping = parseFloat(me.data("shipping"));
+                  var tFoot = trTfoot.closest("tr").next(".tfoot");
 
                   subTotal += price;
                   shippingTotalInner += shipping;
                   taxTotalInner += tax;
+  
+                  if(tFoot.html() != undefined){
+                    var storeTotal = tFoot.find(".storeTotal");
+                    var sTotal = parseFloat(price)+parseFloat(tax);
+                    var minTotal = tFoot.find(".minTotal");
+                    
+                    console.log(sTotal, parseFloat(minTotal.html()));
+                    if(sTotal < parseFloat(minTotal.html())){
+                      minTotal.addClass("active");
+                    } else {
+                      minTotal.removeClass("active");
+                    }
+
+                    storeTotal.html(sTotal.toFixed(2));
+
+                  }
                 });
 
                 grandTotalInner = subTotal + shippingTotalInner + taxTotalInner;
@@ -323,10 +374,13 @@
                         var tFoot = $("#tFoot").html();
                         var counter = 0;
 
-                        storeTpl = storeTpl.replace("[STORE]", store.storename).
+                        storeTpl = storeTpl.replace("[STORENAME]", store.storename).
                           replace("[LOGO]", store.storelogo);
-                        tFoot = tFoot.replace("[SHIPPING]", store.storeshipping);
-
+                        tFoot = tFoot.replace("[SHIPPING]", store.storeshipping).
+                          replace("[ALLOW_PICKUP]", (store.allow_pickup == 1) ? '' : 'hidden').
+                          replace("[PICKUP_LOCATION]", store.pickup_location).
+                          replace("[MINTOTAL]", store.minimum).
+                          replace("[SHIPPING]", store.storeshipping);
                         orders = orders + storeTpl;
                         storeShipping += parseFloat(store.storeshipping);
 
@@ -336,6 +390,7 @@
                           var detail = data.detail;
                           var tpl = $("#tpl").html();
                           var qty = data.qty.replace('"', '');
+
                           qty = qty.replace('"', '');
 
                          var tax = (detail.tax /100 ) * (detail.price * qty);
@@ -353,9 +408,11 @@
                           tpl = tpl.replace("[STOREID]", detail.storeid).
                             replace("[PRODUCTID]", data.productId).
                             replace("[PRODUCTID]", data.productId).
+                            replace("[STORENAME]", store.storename).
                             replace("[FILENAME]", detail.filename).
                             replace("[NAME]", detail.name).
                             replace("[PRICE]", detail.price).
+                            replace("[SHIPPING]", detail.shipping).
                             replace("[SHIPPING]", detail.shipping).
                             replace("[PRICE]", detail.price).
                             replace("[CATEGORY]", detail.category).
@@ -366,6 +423,7 @@
                             replace("[ID]", detail.id).
                             replace("[ID]", detail.id);
 
+                            orders = orders.replace("[STORE]", store.storename);
                             orders = orders + tpl;
 
                             counter++;
@@ -386,12 +444,33 @@
                       $("#grandTotal").html( "₱" + (grandTotal.toFixed(2)));
 
                       hidePreloader();
+                      calculateFinalPrice();
                     }
                   });
               }
 
               var __listen = function(){
-                $(".count").off().on("click", function(e){
+                $(".pickup").on("click", function(){
+                  var me = $(this);
+                  var selected = me.is(":checked");
+                  var shipping = me.parents("tr").find(".shipping");
+
+                  shipping.data("prevVal")
+                  if(selected ===  true){
+                    shipping.html(0.00);
+                    me.parents("tr").prev("tr").data("shipping", 0);
+                  
+                  }  else {
+                    shipping.html(shipping.data("val"));
+                    me.parents("tr").prev("tr").data("shipping", shipping.data("val"));
+                  }
+
+                  calculateFinalPrice();
+
+                  me.parents("tr").find(".location").toggleClass("hidden");
+                });
+
+                $(".count").off().on("click keyup", function(e){
                     e.preventDefault();
 
                     var me = $(this);

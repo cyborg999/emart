@@ -79,6 +79,227 @@ class Model {
 		$this->exportListener();
 		$this->returnItemListener();
 		$this->updateProofStatusListener();
+		$this->addMunicipalFeeListener();
+		$this->deleteDeliveryFeeListener();
+		$this->updateSeenListener();
+
+		// $this->getStoreNotifications();
+	}
+
+public function updateSeenListener(){
+		if(isset($_POST['updateSeen'])){
+			$sql = "
+				update notification
+				set seen = 1
+				where id = ?
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['id']));
+
+			die(json_encode(array("updated")));
+		}
+	}
+
+	public function getUnreadNotifications(){
+		$sql = "
+			select *
+			from notification
+			where storeid = ".$_SESSION['storeid']."
+			and seen = 0
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getNotificationsByType($type, $showAll = false){
+		$sql = "
+			select *
+			from notification
+			where storeid = ".$_SESSION['storeid']."
+			and type = '$type'
+			and seen = 0
+		";
+
+		if($showAll){
+			$sql = "
+				select *
+				from notification
+				where storeid = ".$_SESSION['storeid']."
+				and type = '$type'
+			";
+
+		}
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function addNotification($title, $body, $type, $userid = false){
+		if($userid){
+			$sql = "
+				insert into notification(title,body,storeid, type, userid)
+				values(?,?,?, ?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($title, $body, $_SESSION['storeid'], $type, $userid));
+		} else {
+			$sql = "
+				insert into notification(title,body,storeid, type)
+				values(?,?,?, ?)
+			";
+
+			$this->db->prepare($sql)->execute(array($title, $body, $_SESSION['storeid'], $type));
+		}
+		
+
+
+		return $this;
+	}
+
+	public function addNotificationFromUser($title, $body, $storeId, $type){
+		$sql = "
+			insert into notification(title,body,storeid, type)
+			values(?,?,?, ?)
+		";
+
+		$this->db->prepare($sql)->execute(array($title, $body, $storeId, $type));
+
+
+		return $this;
+	}
+
+	public function getStoreNotifications(){
+		//sa login, sa procure or sell
+		$notifications = array();
+
+		//new order
+		//returned
+
+		// $this->getStoreCreditDeadlineNotifications($notifications);
+		// $this->checkSubscriptionDueDate($notifications);
+		// $this->getLowStockProductNotification($notifications);
+		// $this->getLowStockMaterialNotification($notifications);
+		// $this->getExpiredMaterialNotification($notifications);
+		$this->getPendingNotification($notifications);
+
+		return $this;
+	}
+
+	public function getUserNotification($showAll = false){
+		$sql = "
+			select *
+			from notification
+			where userid = ".$_SESSION['id']."
+			and seen = 0
+		";
+
+		if($showAll){
+			$sql = "
+				select *
+				from notification
+				where userid = ".$_SESSION['id']."
+			";
+		}
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function checkNotificationByDate(){
+		$sql = "
+			select *
+			from notification
+			where storeid = ".$_SESSION['storeid']."
+			and date(date_added) = date(current_date)
+			and type = 'Order'
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getPendingNotification(&$notifications){
+		$pending = $this->getStoreOrderByStatus("pending");
+		$updatedToday = $this->checkNotificationByDate();
+
+		if(!$updatedToday){
+			if($pending){
+				$body = "<p>You have (".count($pending).") new order(s).</p>
+				<p>Click <a href='neworder.php'>here</a> to process them.</p>";
+
+				$title = "New Orders";
+
+				$this->addNotification($title, $body, "Order");
+			}
+
+			$returned = $this->getStoreOrderByStatus("returned");
+			
+			if($returned){
+				$body = "<p>You have (".count($returned).") returned order(s).</p>
+				<p>Click <a href='returnedorder.php'>here</a> to process them.</p>";
+
+				$title = "Returned Orders";
+
+				$this->addNotification($title, $body, "Order");
+			}
+		}
+
+		return $this;
+	}
+
+	public function getStoreOrderByStatus($status){
+		$sql = "
+			select t1.*
+			from cart t1
+			where t1.storeid = ".$_SESSION['storeid']."
+			and t1.status = '$status'
+		";
+
+		if($status == "returned"){
+			$sql = "
+				select t1.*
+				from cart t1
+				where t1.storeid = ".$_SESSION['storeid']."
+				and t1.status = '$status'
+				and t1.return_status = 'For Review'
+			";
+		}
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function deleteDeliveryFeeListener(){
+		if(isset($_POST['deleteDeliveryFee'])){
+			$sql = "
+				delete from delivery_fee
+				where id = ?
+			";	
+
+			$this->db->prepare($sql)->execute(array($_POST['id']));
+
+			added();
+		}
+	}
+
+	public function getDeliverFee(){
+		$sql = "
+			select *
+			from delivery_fee
+			where storeid = ".$_SESSION['storeid']."
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function addMunicipalFeeListener(){
+		if(isset($_POST['addMunicipalFee'])){
+			$sql = "
+				insert into delivery_fee(municipality, fee,storeid)
+				values(?,?, ?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['muni'], $_POST['fee'], $_SESSION['storeid']));
+
+			die(json_encode(array($this->db->lastInsertId())));
+		}
 	}
 
 	public function updateProofStatusListener(){
@@ -207,7 +428,6 @@ class Model {
 		if(isset($_POST['updateOrderStatus'])){
 			if($_POST['status'] == "processed" || $_POST['status'] == "delivered"){
 				//update delivery date
-				// $orderDetail = $this->getProductById($_POST['id']);
 				$sql = "
 					select *
 					from fees
@@ -229,6 +449,15 @@ class Model {
 				";
 
 				$this->db->prepare($sql)->execute(array($_POST['status'], $deliveryDate, $_POST['id']));
+
+				//add notification
+				$product = $this->getCartById($_POST['id']);
+				$title = "Order Update";
+				$body = "
+					<p>You order <a href='processed.php'>".$product['name']."</a> has been processed.</p>
+				";
+
+				$this->addNotification($title, $body, "forUser", $product['userid']);
 			} else {
 				if($_POST['status'] == "returned"){
 					$sql = "
@@ -624,7 +853,7 @@ class Model {
 	public function updateStoreListener(){
 		if(isset($_POST['updateStore'])){
 			$files = $_FILES['storelogo']['tmp_name'];
-
+			
 			if($files != ""){
 
 				//start
@@ -643,25 +872,48 @@ class Model {
 				 $location = $folder_name . $newName;
 
 				 if(move_uploaded_file($temp_file, $location)){
-				 	$sql = "
-						UPDATE store
-						SET description = ?, logo = ?
-						WHERE id = ?
-					";
+					if(isset($_POST['allow_pickup'])){
+						$sql = "
+							UPDATE store
+							SET description = ?, logo = ?, allow_pickup = ?, pickup_location = ?
+							WHERE id = ?
+						";
 
-					$this->db->prepare($sql)->execute(array($_POST['description'], $location, $_SESSION['storeid']));
+						$this->db->prepare($sql)->execute(array($_POST['description'], $location, 1, $_POST['pickup_location'], $_SESSION['storeid']));
+					} else {
+						$sql = "
+							UPDATE store
+							SET description = ?, logo = ?, allow_pickup = ?
+							WHERE id = ?
+						";
+
+						$this->db->prepare($sql)->execute(array($_POST['description'], $location, 0, $_SESSION['storeid']));
+					}
+				 	
 
 					$this->success = "You have succesfully updated your store.";
 				}
 
 			} else {
-				$sql = "
-					UPDATE store
-					SET description = ?
-					WHERE id = ?
-				";
+				if(isset($_POST['allow_pickup'])){
+					$sql = "
+						UPDATE store
+						SET description = ?, allow_pickup = ?, pickup_location = ?
+						WHERE id = ?
+					";
 
-				$this->db->prepare($sql)->execute(array($_POST['description'], $_SESSION['storeid']));
+					$this->db->prepare($sql)->execute(array($_POST['description'], 1, $_POST['pickup_location'], $_SESSION['storeid']));
+				} else {
+					$sql = "
+						UPDATE store
+						SET description = ?, allow_pickup = ?
+						WHERE id = ?
+					";
+
+					$this->db->prepare($sql)->execute(array($_POST['description'], 0, $_SESSION['storeid']));
+				}
+
+				
 
 				$this->success = "You have succesfully updated your store.";
 			}
@@ -841,19 +1093,54 @@ class Model {
 		}
 	}
 
+	public function getUserDeliveryAddress(){
+		$sql = "
+			select address
+			from userinfo
+			where userid  = ".$_SESSION['id']."
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
+	}
+
+	public function getFeeByStoreIdandUseraAddress($storeid, $address){
+		$sql = "
+			select *
+			from delivery_fee
+			where storeid = $storeid
+		";
+		$municipality =  $this->db->query($sql)->fetchAll();
+
+		if($municipality){
+			foreach($municipality as $idx => $m){
+				$pos = strpos($address, $m['municipality']);
+				
+				if($pos > -1){
+					return $m['fee'];
+
+					break;
+				}
+
+			}
+		} else {
+			return false;
+		}
+		
+		return false;
+	}
+
 	public function getCartItemsListener(){
 		if(isset($_POST['getCartItems'])){
 			$products = $_POST['products'];
 			$products = str_replace("[", "", $products);
 			$products = str_replace("]", "", $products);
 			$products = explode(",", $products);
-
 			$cartItems = array();
 			foreach($products as  $idx => $p){
 				if($p != "null"){
-
 					$sql = "
-						SELECT t5.name as 'storename', t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax
+						SELECT t5.name as 'storename', t4.minimum, t5.allow_pickup, t5.pickup_location, t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax
 						FROM productt t1
 						LEFT JOIN media t2
 						ON t1.id = t2.productid
@@ -868,13 +1155,24 @@ class Model {
 						LIMIT 1
 					";
 					$detail = $this->db->query($sql)->fetch();
+					$shippingFee = $detail['shipping'];
+					//determine shiping fee
+					if(isset($_SESSION['id'])){
+						$address = $this->getUserDeliveryAddress();
+						$storeFee = $this->getFeeByStoreIdandUseraAddress($detail['storeid'], $address['address']);
+
+						$shippingFee = ($storeFee) ? $storeFee : $shippingFee;
+					} 
 
 					if(!$detail){
 						die(json_encode($cartItems));
 					}
 
-					$cartItems[$detail['storeid']]['storetax'] = $detail['tax'];
-					$cartItems[$detail['storeid']]['storeshipping'] = $detail['shipping'];
+					$cartItems[$detail['storeid']]['storetax'] = number_format($detail['tax'],2);
+					$cartItems[$detail['storeid']]['allow_pickup'] = $detail['allow_pickup'];
+					$cartItems[$detail['storeid']]['minimum'] = number_format($detail['minimum'],2);
+					$cartItems[$detail['storeid']]['pickup_location'] = $detail['pickup_location'];
+					$cartItems[$detail['storeid']]['storeshipping'] = number_format($shippingFee,2);
 					$cartItems[$detail['storeid']]['storename'] = $detail['storename'];
 					$cartItems[$detail['storeid']]['storelogo'] = ($detail['storelogo']!="") ? $detail['storelogo'] : './node_modules/bootstrap-icons/icons/image-alt.svg';
 					$cartItems[$detail['storeid']]['products'][] = array(
@@ -884,7 +1182,6 @@ class Model {
 
 				}
 			}
-
 			die(json_encode($cartItems));
 		}
 	}
@@ -954,6 +1251,8 @@ class Model {
 
 	public function addRatingListener(){
 		if(isset($_POST['addRating'])){
+			$product = $this->getProductById($_POST['id']);
+
 			$sql = "
 				INSERT INTO rating(productid,userid,rating,comment)
 				VALUES(?,?,?,?)
@@ -963,6 +1262,14 @@ class Model {
 
 			$count = $this->getReviewCountByProductId($_POST['id']);
 			$profile = $this->getUserProfile();
+
+			$title = "Product Review";
+
+			$body = "
+				<p>".$_SESSION['username']." reviewed one of your product.(<a href='productdetail.php?id=".$product['id']."'>".$product['name']."</a>)</p>
+			";
+
+			$this->addNotificationFromUser($title, $body, $product['storeid'], "UserReview");
 
 			die(json_encode(array("count" => $count, "profile" => $profile)));
 		}
@@ -1040,6 +1347,18 @@ class Model {
 			left join fees t4
 			on t4.storeid = t2.id
 			WHERE t1.id = $id
+			LIMIT 1
+		";
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getCartById($id){
+		$sql = "
+			select t1.*,t2.name
+			from cart t1
+			left join productt t2
+			on t1.productid = t2.id
+			where t1.id = $id
 			LIMIT 1
 		";
 		return $this->db->query($sql)->fetch();
@@ -2661,15 +2980,16 @@ class Model {
 	//for easy deletion of records
 	public function reset(){
 		$sql = array();
-		$sql[] = "delete from store";
-		$sql[] = "delete from user where usertype !='admin'";
-		$sql[] = "delete from productt";
-		$sql[] = "delete from material";
-		$sql[] = "delete from userinfo where userid !=36";
-		$sql[] = "delete from cart";
-		$sql[] = "delete from cart_details";
-		$sql[] = "delete from payments";
-		$sql[] = "delete from transaction";
+		// $sql[] = "delete from store";
+		// $sql[] = "delete from user where usertype !='admin'";
+		// $sql[] = "delete from productt";
+		// $sql[] = "delete from material";
+		// $sql[] = "delete from userinfo where userid !=36";
+		// $sql[] = "delete from cart";
+		// $sql[] = "delete from cart_details";
+		// $sql[] = "delete from payments";
+		// $sql[] = "delete from transaction";
+		$sql[] = "delete from notification";
 
 		foreach ($sql as $key => $s) {
 			$this->db->query($s);
@@ -2854,8 +3174,11 @@ class Model {
 				if($exists['usertype'] == "admin"){
 					header("Location:admindashboard.php");
 				} else if($exists['usertype'] == "client") {
+
 					header("Location:userdashboard.php");
 				} else {
+					$this->getStoreNotifications();
+
 					header("Location:dashboard.php");
 				}
 			}

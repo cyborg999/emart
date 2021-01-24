@@ -29,6 +29,11 @@ body {
 	line-height: 1;
 	display: block;
 	margin: 5px 0 0px;
+	    max-width: 200px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    padding: 3px;
 }
 .profile i {
 	font-size: 9px;
@@ -153,4 +158,9 @@ label {
 	color: black;
 	cursor: not-allowed;
 	text-decoration: none;
+}
+
+h4 {
+	padding: 20px;
+	background: orange;
 }

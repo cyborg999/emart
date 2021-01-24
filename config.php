@@ -33,3 +33,7 @@ $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;", $username, $p
 		opp();
 		die();
 	}
+
+	function added(){
+		die(json_encode(array("added")));
+	}

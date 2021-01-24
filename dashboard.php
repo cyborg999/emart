@@ -2,20 +2,14 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-2">
-				<a href="index.php"><figure class="logo"></figure></a>
-			</div>
-			<div class="col-sm-10">
-				<a href="logout.php"><svg class="bi float-right gear" width="20" height="20" fill="currentColor">
-					<use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#gear-fill"/></svg> </a>
-			</div>
+			<br>
 		</div>
 		<div class="row">
 			<div class="col-sm-2 side">
 				<?php $active = "dashboard"; include "./sidenav.php";?>
 			</div>
 			<div class="col-sm-10">
-				<div class="content row">
+				<div class="row content">
 					<style type="text/css">
 						.pending {
 							text-align: center;
@@ -38,6 +32,10 @@
 							<small><i>Your account is valid till <?= $expiration;?></i></small>
 						<?php endif ?>
 					</div>
+					<br>
+				</div>
+				<div class="content row">
+					
 					<div class="row">
 						<?php
 							$ecom = $model->getStoreMonthlyEarnings("ecom", true);

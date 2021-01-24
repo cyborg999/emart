@@ -52,16 +52,24 @@ todo
 * decimal places
 * add slide ay dapat sa merchant
 * may minimum purchase (globalfees.php, dito ako nag stop, d pa applied sa checkout page)
+* shipping per municipality
+* pick up option
 
 
 
 
 * low stock notification
 * notification every status ng product
-* shipping per municipality
-* pick up option
+(store : pending,returned,review)
+user: processed,delivered,
+
 * update quanty pag nag add ulit sa product detail
 * 12/150 na inventory
+
 *delivery receipt
+
 * batch # per product
 * dapat makikita dun sa by batch kung saan nababawas yung item na nabenta
+
+
+bugs
