@@ -271,6 +271,27 @@
                                   ";
 
                                   $db->prepare($sql)->execute(array($p['qty'], $p['productId']));
+
+                                  //product production
+                                  $sql = "
+                                    select t1.*
+                                    from production t1
+                                    where t1.remaining_qty > 0
+                                    and t1.productid = ".$p['productId']." 
+                                    and date(t1.expiry_date) > date(CURRENT_DATE) 
+                                    and t1.deducted = 0
+                                    order by t1.expiry_date asc
+                                    limit 1
+                                  ";
+
+                                  $pRecord = $db->query($sql)->fetch();
+                                  $productId = ($pRecord['id']) ? $pRecord['id'] : 0;
+                                  $sql = "
+                                    update production
+                                    set remaining_qty = remaining_qty-?
+                                    where id = ?
+                                  ";
+                                  $db->prepare($sql)->execute(array($p['qty'], $productId));
                                 }
 
                               }

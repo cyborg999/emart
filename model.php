@@ -82,11 +82,42 @@ class Model {
 		$this->addMunicipalFeeListener();
 		$this->deleteDeliveryFeeListener();
 		$this->updateSeenListener();
+		$this->addBatchListener();
+		$this->searchAllProductListener();
 
 		// $this->getStoreNotifications();
 	}
 
-public function updateSeenListener(){
+	public function addBatchListener(){
+		if(isset($_POST['addBatch'])){
+			$sql = "
+				insert into production(productid,batchnumber,remaining_qty,expiry_date,qty,price,cost)
+				values(?,?,?,?,?,?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['products'], $_POST['batch'],$_POST['qty'],$_POST['expiration'],$_POST['qty'],$_POST['retail'],$_POST['cost']));
+
+			$id = $this->db->lastInsertId();
+
+			$this->updateProductInventoryById($_POST['products'], $_POST['qty']);
+
+			die(json_encode(array($id)));
+		}
+	}
+
+	public function updateProductInventoryById($productId, $qty){
+		$sql = "
+			update productt
+			set quantity = quantity + ? , remaining_qty = remaining_qty + ?
+			where id = ?
+		";
+
+		$this->db->prepare($sql)->execute(array($qty, $qty, $productId));
+
+		return $this;
+	}
+
+	public function updateSeenListener(){
 		if(isset($_POST['updateSeen'])){
 			$sql = "
 				update notification
@@ -220,7 +251,7 @@ public function updateSeenListener(){
 		$pending = $this->getStoreOrderByStatus("pending");
 		$updatedToday = $this->checkNotificationByDate();
 
-		if(!$updatedToday){
+		// if(!$updatedToday){
 			if($pending){
 				$body = "<p>You have (".count($pending).") new order(s).</p>
 				<p>Click <a href='neworder.php'>here</a> to process them.</p>";
@@ -240,7 +271,7 @@ public function updateSeenListener(){
 
 				$this->addNotification($title, $body, "Order");
 			}
-		}
+		// }
 
 		return $this;
 	}
@@ -778,6 +809,46 @@ public function updateSeenListener(){
 		}
 		
 		$this->db->prepare($sql)->execute(array($qty, $id));
+
+		$this->updateProductionQuantityById($id, $qty, $add);
+
+		return $this;
+	}
+
+	public function getNextProduction($productId){
+		$sql = "
+			select t1.*
+			from production t1
+			where t1.remaining_qty > 0
+			and t1.productid = ".$productId." 
+			and date(t1.expiry_date) > date(CURRENT_DATE) 
+			and t1.deducted = 0
+			order by t1.expiry_date asc
+			limit 1
+		";
+		$record = $this->db->query($sql)->fetch();
+
+		return ($record['id']) ? $record['id'] : 0;
+
+	}
+
+	public function updateProductionQuantityById($id, $qty, $add = false){
+		$productId = $this->getNextProduction($id);
+		$sql = "
+			update production
+			set remaining_qty = remaining_qty-?
+			where id = ?
+		";
+
+		if($add){
+			$sql = "
+				update production
+				set remaining_qty = remaining_qty+?
+				where id = ?
+			";
+		}
+		
+		$this->db->prepare($sql)->execute(array($qty, $productId));
 
 		return $this;
 	}
@@ -1407,6 +1478,56 @@ public function updateSeenListener(){
 		}
 	}
 
+	public function searchAllProductListener(){
+		if(isset($_POST['searchAllProduct'])) {
+			$sql = "
+				SELECT t1.*, t2.name as 'filename', t3.name , t3.brand, t3.storeid, t3.cost
+				FROM production t1
+				LEFT JOIN media t2
+				ON t1.productid = t2.productid
+				left join productt t3
+				on t1.productid = t3.id
+				WHERE t3.storeid = ".$_SESSION['storeid']."
+				AND t3.name LIKE '%".$_POST['txt']."%'
+				AND t2.active = 1
+				limit 20
+			";
+
+			$data = $this->db->query($sql)->fetchAll();
+
+			die(json_encode($data));
+		}
+	}
+
+	public function getNextBatch(){
+		$sql = "
+			select t1.id
+			from production t1
+			left join productt t2 
+			on t1.productid = t2.id
+			where t2.storeid = ".$_SESSION['storeid']."
+			order by t1.id desc
+			limit 1
+		";
+
+		$record = $this->db->query($sql)->fetch();
+		$date = date("ymd");
+
+		return ($record) ? "{$date}" . ++$record['id'] : "{$date}1";
+	}
+
+	public function addToProduction($productId){
+		$sql = "
+				INSERT INTO production(productid,batchnumber,remaining_qty,qty,expiry_date,price, cost)
+				VALUES(?,?,?,?,?,?,?)
+			";
+
+		$this->db->prepare($sql)->execute(array($productId, $_POST['batch'],$_POST['quantity'],$_POST['quantity'],$_POST['date_expire'],$_POST['price'],$_POST['cost']));
+
+		return $this;
+
+	}
+
 	public function addProductListener(){
 		if(isset($_POST['addProduct'])){
 			$sql = "
@@ -1426,15 +1547,17 @@ public function updateSeenListener(){
 				}
 
 				$sql = "
-					INSERT INTO productt(name,categoryid,price,brand,quantity,cost,description,storeid, expiration)
-					VALUES(?,?,?,?,?,?,?,?, ?)
+					INSERT INTO productt(name,categoryid,price,brand,quantity,cost,description,storeid, expiration,remaining_qty)
+					VALUES(?,?,?,?,?,?,?,?, ?,?)
 				";
 
-				$this->db->prepare($sql)->execute(array($_POST['title'], $_POST['category'],$_POST['price'],$_POST['brand'],$_POST['quantity'],$_POST['cost'],$_POST['desc'],$_SESSION['storeid'], $_POST['date_expire']));
+				$this->db->prepare($sql)->execute(array($_POST['title'], $_POST['category'],$_POST['price'],$_POST['brand'],$_POST['quantity'],$_POST['cost'],$_POST['desc'],$_SESSION['storeid'], $_POST['date_expire'],$_POST['quantity']));
 
 				$this->success = "You have sucesfully added this product.";
 
 				$id = $this->db->lastInsertId();
+
+				$this->addToProduction($id);
 				$this->addMediaByProductId($id, $_POST['src'], $_POST['active']);
 
 			} else {
@@ -1534,6 +1657,16 @@ public function updateSeenListener(){
 		return $this->db->query($sql)->fetchAll();
 	}
 
+	public function getStoreProducts(){
+		$sql = "
+			select t1.*
+			from productt t1
+			where t1.storeid = ".$_SESSION['storeid']."
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
 	public function getAllPublicProducts(){
 		$sql = "
 			SELECT t1.*, t2.name as 'filename'
@@ -1547,6 +1680,21 @@ public function updateSeenListener(){
 			WHERE t2.active = 1
 			AND t4.verified = 1
 			LIMIT 100
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getStoreAllProducts(){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename', t3.name , t3.brand
+			FROM production t1
+			LEFT JOIN media t2
+			ON t1.productid = t2.productid
+			left join productt t3
+			on t1.productid = t3.id
+			WHERE t3.storeid = ".$_SESSION['storeid']."
+			AND t2.active = 1
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -2982,11 +3130,12 @@ public function updateSeenListener(){
 		$sql = array();
 		// $sql[] = "delete from store";
 		// $sql[] = "delete from user where usertype !='admin'";
-		// $sql[] = "delete from productt";
+		$sql[] = "delete from productt";
+		$sql[] = "delete from production";
 		// $sql[] = "delete from material";
 		// $sql[] = "delete from userinfo where userid !=36";
-		// $sql[] = "delete from cart";
-		// $sql[] = "delete from cart_details";
+		$sql[] = "delete from cart";
+		$sql[] = "delete from cart_details";
 		// $sql[] = "delete from payments";
 		// $sql[] = "delete from transaction";
 		$sql[] = "delete from notification";
@@ -3149,7 +3298,7 @@ public function updateSeenListener(){
 	public function loginListener(){
 		if(isset($_POST['login'])){
 			$sql = "
-				SELECT t1.*, t2.id as 'storeId'
+				SELECT t1.*, t2.id as 'storeId',t2.name as 'storeName'
 				FROM user t1
 				LEFT JOIN store t2
 				ON t1.id = t2.userid
@@ -3177,6 +3326,8 @@ public function updateSeenListener(){
 
 					header("Location:userdashboard.php");
 				} else {
+					$_SESSION['storeName'] = $exists['storeName'];
+
 					$this->getStoreNotifications();
 
 					header("Location:dashboard.php");

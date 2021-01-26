@@ -68,7 +68,8 @@
 		                      	</td>
 			                      <td><?= $o['date_created'];?></td>
 			                      <td>
-			                        <a href="" class="btn btn-primary view">view</a>
+			                        <a href="" class="btn btn-link view"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#eye-fill"/></svg></a>
+			                        <a href="" class="btn btn-link print" data-store="<?= $_SESSION['storeName'];?>"><svg class="bi" width="20" height="20" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#printer-fill"/></svg> </a>
 			                      </td>
 			                    </tr>
 			                    <tr class="hidden next">
@@ -131,8 +132,33 @@
 		</div>
 	</div>
 	<?php include "./foot.php"; ?>
+	<script type="text/javascript" src="./js/print.js"></script>
   	<script type="text/javascript">
     (function($){
+    	$(".print").on("click", function(e){
+    		e.preventDefault();
+
+    		var me = $(this);
+    		var target = me.parents("tr").next(".next");
+    		target.print({
+                //Use Global styles
+                globalStyles : false,
+                //Add link with attrbute media=print
+                mediaPrint : false,
+                //Custom stylesheet
+                stylesheet : "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                //Print in a hidden iframe
+                // iframe : false,
+                //Don't print this
+                // noPrintSelector : ".avoid-this",
+                //Add this at top
+                prepend : me.data("store")+":",
+                //Add this on bottom
+                append : "Thank you for your purchase!",
+                //Log to console when printing is done via a deffered callback
+                deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+            });
+    	});
     	$(".status").on("change", function(){
     		var me = $(this);
 

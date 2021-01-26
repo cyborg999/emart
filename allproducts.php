@@ -11,13 +11,18 @@
       <div class="col-sm-10">
 
         <div class="content row">
-          <h5>Product Inventory</h5>
+          <h5>Products</h5>
         </div>
         <div class="content row">
            <?php
-            $products = $model->getAllProducts();
+            $products = $model->getStoreAllProducts();
           ?>
 
+          <style type="text/css">
+            tr.searched {
+              background: #eaf2fd;
+            }
+          </style>
           <table class="table">
             <thead>
               <tr>
@@ -27,7 +32,7 @@
                 <th scope="col">Cost</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Brand</th>
-                <th scope="col">Action</th>
+                <th scope="col">Date Expired</th>
               </tr>
             </thead>
             <tbody>
@@ -38,18 +43,19 @@
               </tr>
               <?php foreach($products as $idx => $product): ?>
 
-              <tr class="result" id="edit<?= $product['id']; ?>">
-                <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/<?= $_SESSION['storeid'];?>/<?= $product['id']; ?>/<?= $product['filename']; ?>" /></td>
+              <tr class="result <?= ($_GET['id'] == $product['id']) ? 'searched' : '';?>" id="edit<?= $product['id']; ?>">
+                <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/<?= $_SESSION['storeid'];?>/<?= $product['productid']; ?>/<?= $product['filename']; ?>" /></td>
                 <td class="editname"><?= $product['name']; ?></td>
                 <td class="editprice"><?= $product['price']; ?></td>
                 <td class="editcost"><?= $product['cost']; ?></td>
-                <td class="editqty"><?= $product['quantity']; ?></td>
+                <td class="editqty"><?= $product['remaining_qty']; ?>/<?= $product['qty']; ?></td>
                 <td class="editbrand"><?= $product['brand']; ?></td>
-                <td>
+                <td class="editbrand"><?= $product['expiry_date']; ?></td>
+        <!--         <td>
 
-                  <a href="" data-expiration="<?= $product['expiration']; ?>" data-quantity="<?= $product['quantity']; ?>" data-description="<?= $product['description']; ?>" data-brand="<?= $product['brand']; ?>" data-price="<?= $product['price']; ?>" data-cost="<?= $product['cost']; ?>" data-id="<?= $product['id']; ?>" data-name="<?= $product['name']; ?>" class="btn btn-sm  edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
+                  <a href="" data-expiration="<?= $product['expiration']; ?>" data-quantity="<?= $product['qty']; ?>" data-description="<?= $product['description']; ?>" data-brand="<?= $product['brand']; ?>" data-price="<?= $product['price']; ?>" data-cost="<?= $product['cost']; ?>" data-id="<?= $product['id']; ?>" data-name="<?= $product['name']; ?>" class="btn btn-sm  edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
                   <a href="" data-id="<?= $product['id']; ?>" class="btn btn-sm  delete" alt="Delete Product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
-                </td>
+                </td> -->
               </tr>
               <?php endforeach ?>
              
@@ -146,10 +152,10 @@
           <td class="editcost">[COST]</td>
           <td class="editqty">[REM]/[QUANTITY]</td>
           <td class="editbrand">[BRAND]</td>
-          <td>
+    <!--       <td>
             <a href="" data-expiration="[EXPIRATION]"  data-quantity="[QTY]" data-expiry="[EXPIRY]" data-cost="[COST]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" data-brand="[BRAND]" data-description="[DESCRIPTION]" class="btn btn-sm edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
             <a href="" data-id="[ID]" class="btn btn-sm  delete" alt="Delete Product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
-          </td>
+          </td> -->
         </tr>
 </script>
 <script type="text/html" id="mats">
@@ -285,7 +291,7 @@
 
            $.ajax({
               url : "ajax.php"
-              , data : { searchMaterial : true, txt : txt }
+              , data : { searchAllProduct : true, txt : txt }
               , type : "post"
               , dataType : "json"
               , success : function(response){
@@ -304,14 +310,14 @@
                   replace("[BRAND]", response[i].brand).
                   replace("[STOREID]", response[i].storeid).
                   replace("[EXPIRY]", response[i].id).
-                  replace("[QTY]", response[i].quantity).
                   replace("[REM]", response[i].remaining_qty).
+                  replace("[QTY]", response[i].qty).
                   replace("[PRICE]", response[i].price).
                   replace("[EXPIRATION]", response[i].expiration).
                   replace("[COST]", response[i].cost).
-                  replace("[PRODUCTID]", response[i].id).
+                  replace("[PRODUCTID]", response[i].productid).
                   replace("[FILENAME]", response[i].filename).
-                  replace("[PRICE]", response[i].price).replace("[COST]", response[i].cost).replace("[QUANTITY]", response[i].quantity).replace("[QUANTITY]", response[i].quantity).replace("[BRAND]", response[i].brand).replace("[BRAND]", response[i].brand);
+                  replace("[PRICE]", response[i].price).replace("[COST]", response[i].cost).replace("[QUANTITY]", response[i].qty).replace("[QUANTITY]", response[i].qty).replace("[BRAND]", response[i].brand).replace("[BRAND]", response[i].brand);
 
                   $("#search").after(tpl);
                 }

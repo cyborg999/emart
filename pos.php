@@ -50,9 +50,12 @@
 					?>
 					<div class="col-sm-8 left">
 						<div class="row">
-							<div class="form-group">
-								<input type="text" id="searchName" class="form-control" placeholder="search product..."/>
+							<div class="col-sm">
+								<div class="form-group">
+									<input type="text" id="searchName" class="form-control" placeholder="search product..."/>
+								</div>
 							</div>
+							
 						</div>
 						<div class="row table-result">
 							<br>

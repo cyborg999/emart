@@ -110,7 +110,10 @@
             <a href="addproduct.php">Add Product</a>
           </li>
           <li>
-            <a href="products.php">All Products</a>
+            <a href="products.php">Inventory</a>
+          </li>
+          <li>
+            <a href="allproducts.php">All Products</a>
           </li>
         </ul>
       </div>

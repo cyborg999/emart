@@ -88,7 +88,7 @@
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong id="total">0</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and Handling</strong><strong id="shipping">0.00</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong id="tax">0.00</strong></li>
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total <small>(minimum order 100)</small></strong>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
                       <h5 class="font-weight-bold" id="grandTotal">0.00</h5>
                     </li>
                   </ul>
@@ -226,8 +226,8 @@
         </div>
       </td>
       <td colspan="2">
-        <b style="display: block;">Total : ₱ <span class="storeTotal" data-val="[STORETOTAL]">[STORETOTAL]</span></b>
-        <small class="minimumTotal active">(Minimum Total ₱ <span class="minTotal">[MINTOTAL]</span>)</small>
+       <!--  <b style="display: block;">Total : ₱ <span class="storeTotal" data-val="[STORETOTAL]">[STORETOTAL]</span></b>
+        <small class="minimumTotal active">(Minimum Total ₱ <span class="minTotal">[MINTOTAL]</span>)</small> -->
         <b style="display: block;">Shipping : ₱ <span class="shipping" data-val="[SHIPPING]">[SHIPPING]</span></b>
       </td>
     </tr>
