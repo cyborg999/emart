@@ -59,21 +59,21 @@ todo
 user: processed,delivered,
 *delivery receipt
 * batch # per product
-
-
-
+* update quanty pag nag add ulit sa product detail
+* 12/150 na inventory (priority yung malapit mag expired, if expired na, d na nababawasan)
+* dapat makikita dun sa by batch kung saan nababawas yung item na nabenta
 * low stock notification
 
 
-* update quanty pag nag add ulit sa product detail
-* 12/150 na inventory
 
 
-* dapat makikita dun sa by batch kung saan nababawas yung item na nabenta
+
+
+
 
 
 bugs
 show sa order page if pickuponly, d padin narerecord sa db
 max order
 
-
+if expired na product, deduct

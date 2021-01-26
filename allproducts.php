@@ -22,6 +22,10 @@
             tr.searched {
               background: #eaf2fd;
             }
+            .expired {
+              color: red;
+              font-weight: 500;
+            }
           </style>
           <table class="table">
             <thead>
@@ -50,7 +54,7 @@
                 <td class="editcost"><?= $product['cost']; ?></td>
                 <td class="editqty"><?= $product['remaining_qty']; ?>/<?= $product['qty']; ?></td>
                 <td class="editbrand"><?= $product['brand']; ?></td>
-                <td class="editbrand"><?= $product['expiry_date']; ?></td>
+                <td class="editbrand <?= $product['isExpired'];?>"><?= $product['expiry_date']; ?></td>
         <!--         <td>
 
                   <a href="" data-expiration="<?= $product['expiration']; ?>" data-quantity="<?= $product['qty']; ?>" data-description="<?= $product['description']; ?>" data-brand="<?= $product['brand']; ?>" data-price="<?= $product['price']; ?>" data-cost="<?= $product['cost']; ?>" data-id="<?= $product['id']; ?>" data-name="<?= $product['name']; ?>" class="btn btn-sm  edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
@@ -152,6 +156,7 @@
           <td class="editcost">[COST]</td>
           <td class="editqty">[REM]/[QUANTITY]</td>
           <td class="editbrand">[BRAND]</td>
+          <td class="editbrand [ISEXPIRED]">[EXPIRED]</td>
     <!--       <td>
             <a href="" data-expiration="[EXPIRATION]"  data-quantity="[QTY]" data-expiry="[EXPIRY]" data-cost="[COST]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" data-brand="[BRAND]" data-description="[DESCRIPTION]" class="btn btn-sm edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
             <a href="" data-id="[ID]" class="btn btn-sm  delete" alt="Delete Product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
@@ -310,6 +315,8 @@
                   replace("[BRAND]", response[i].brand).
                   replace("[STOREID]", response[i].storeid).
                   replace("[EXPIRY]", response[i].id).
+                  replace("[EXPIRED]", response[i].expiry_date).
+                  replace("[ISEXPIRED]", response[i].isExpired).
                   replace("[REM]", response[i].remaining_qty).
                   replace("[QTY]", response[i].qty).
                   replace("[PRICE]", response[i].price).

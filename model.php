@@ -84,8 +84,34 @@ class Model {
 		$this->updateSeenListener();
 		$this->addBatchListener();
 		$this->searchAllProductListener();
+		$this->updateStockListener();
 
 		// $this->getStoreNotifications();
+	}
+	
+	public function getStoreStockLimit(){
+		$sql = "
+			SELECT t1.material_low
+			FROM store t1
+			WHERE t1.userid = ". $_SESSION['id']."
+			LIMIT 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function updateStockListener(){
+		if(isset($_POST['updateStock'])){
+			$sql = "
+				update store
+				set material_low = ?
+				where userid = ?
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['val'], $_SESSION['id']));
+
+			die(json_encode(array("added")));
+		}
 	}
 
 	public function addBatchListener(){
@@ -105,12 +131,20 @@ class Model {
 		}
 	}
 
-	public function updateProductInventoryById($productId, $qty){
+	public function updateProductInventoryById($productId, $qty, $deduct = false){
 		$sql = "
 			update productt
 			set quantity = quantity + ? , remaining_qty = remaining_qty + ?
 			where id = ?
 		";
+
+		if($deduct){
+			$sql = "
+				update productt
+				set quantity = quantity - ? , remaining_qty = remaining_qty - ?
+				where id = ?
+			";
+		}
 
 		$this->db->prepare($sql)->execute(array($qty, $qty, $productId));
 
@@ -149,6 +183,7 @@ class Model {
 			where storeid = ".$_SESSION['storeid']."
 			and type = '$type'
 			and seen = 0
+			order by date_added desc
 		";
 
 		if($showAll){
@@ -157,6 +192,7 @@ class Model {
 				from notification
 				where storeid = ".$_SESSION['storeid']."
 				and type = '$type'
+				order by date_added desc
 			";
 
 		}
@@ -197,6 +233,130 @@ class Model {
 
 		return $this;
 	}
+	public function getExpiredProducts(){
+		$sql = "
+			SELECT t1.*,t2.name, if((date(CURRENT_DATE) >= date(t1.expiry_date)), 'expired' , '') as 'isExpired'
+			FROM production t1
+			left join productt t2
+			on t1.productid = t2.id
+			WHERE t2.storeid = '".$_SESSION['storeid']."'
+			AND t1.expiry_date <= date(CURRENT_DATE())
+		";
+
+		$_SESSION['lastQuery'] = $sql;
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function deductExpiredProduct($products){
+		$data = array();
+
+		foreach($products as $idx => $p){
+			if($p['deducted'] == 0){
+				//update deducted
+				$sql = "
+					update production
+					set deducted = ?
+					where id = ?
+				";
+
+				$this->db->prepare($sql)->execute(array(1, $p['id']));
+
+				//deduct expired qty to inventory
+				$this->updateProductInventoryById($p['productid'], $p['remaining_qty'],true);
+			}
+		}
+
+		return $this;
+	}
+
+	public function getExpiredProductNotification(&$notifications){
+		$lowStockProducts = array();
+      	$products = $this->getExpiredProducts();
+
+      	$title = '
+                  <div>';
+       //auto deduct expired products
+        $this->deductExpiredProduct($products);
+
+		if(count($products)){
+			$title .= "Expired Product: <b>".count($products) ." Product(s)</b> are expired.";
+		}
+
+		$title .=  '
+              	</div>';
+
+		$body = "<b>The following products are expired:</b> <ul>";
+
+        foreach($products as $idx => $p){
+        	$body .= "<li>".$p['name']."(".$p['expiry_date'].")</li>";
+        }
+
+        $body .= "</ul>";
+
+		if(count($products)){
+			$notifications[] = $title;
+
+			$this->addNotification($title, $body, "Order");
+        }
+
+		return $this;
+	}
+
+	public function getLowStockProductNotification(&$notifications){
+		$lowStockProducts = array();
+		$products = $this->getStoreProduction(true);
+		$title = '
+                  <div>';
+
+
+		if(count($products)){
+			$title .= "Low Stock Alert: <b>".count($products) ." Product(s)</b> are currently low in stock.";
+		}
+
+		$title .=  '<!-- <div class="small text-gray-500">December 2, 2019</div> -->
+              	</div>';
+
+        $body = "<b>The following products are low in stock:</b> <ul>";
+
+        foreach($products as $idx => $p){
+        	$body .= "<li>".$p['name']."(".$p['quantity'].")</li>";
+        }
+
+        $body .= "</ul>";
+
+		if(count($products)){
+			$notifications[] = $title;
+
+			$this->addNotification($title, $body, "Order");
+        }
+
+		return $this;
+	}
+
+	public function getStoreProduction($lowStock = false){
+		$sql = "
+			SELECT *
+			FROM productt
+			WHERE storeid = '".$_SESSION['storeid']."'
+		";
+
+		if($lowStock){
+			$limit = $this->getStoreStockLimit();
+			$productLow = $limit['material_low'];
+
+			$sql = "
+				SELECT *
+				FROM productt
+				WHERE storeid = '".$_SESSION['storeid']."'
+				AND quantity <= $productLow
+			";
+		}
+
+		$_SESSION['lastQuery'] = $sql;
+
+		return $this->db->query($sql)->fetchAll();
+	}
 
 	public function getStoreNotifications(){
 		//sa login, sa procure or sell
@@ -205,11 +365,10 @@ class Model {
 		//new order
 		//returned
 
-		// $this->getStoreCreditDeadlineNotifications($notifications);
 		// $this->checkSubscriptionDueDate($notifications);
-		// $this->getLowStockProductNotification($notifications);
-		// $this->getLowStockMaterialNotification($notifications);
-		// $this->getExpiredMaterialNotification($notifications);
+
+		$this->getLowStockProductNotification($notifications);
+		$this->getExpiredProductNotification($notifications);
 		$this->getPendingNotification($notifications);
 
 		return $this;
@@ -1481,7 +1640,7 @@ class Model {
 	public function searchAllProductListener(){
 		if(isset($_POST['searchAllProduct'])) {
 			$sql = "
-				SELECT t1.*, t2.name as 'filename', t3.name , t3.brand, t3.storeid, t3.cost
+				SELECT t1.*, t2.name as 'filename', t3.name , t3.brand, t3.storeid, t3.cost, if((date(CURRENT_DATE) >= date(t1.expiry_date)), 'expired' , '') as 'isExpired'
 				FROM production t1
 				LEFT JOIN media t2
 				ON t1.productid = t2.productid
@@ -1687,7 +1846,7 @@ class Model {
 
 	public function getStoreAllProducts(){
 		$sql = "
-			SELECT t1.*, t2.name as 'filename', t3.name , t3.brand
+			SELECT t1.*, t2.name as 'filename', t3.name , t3.brand, if((date(CURRENT_DATE) >= date(t1.expiry_date)), 'expired' , '') as 'isExpired'
 			FROM production t1
 			LEFT JOIN media t2
 			ON t1.productid = t2.productid

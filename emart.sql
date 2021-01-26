@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2021 at 05:54 PM
+-- Generation Time: Jan 26, 2021 at 09:49 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -347,7 +347,11 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (121, 'ee1337728027d3a72ffa1443ee740c7c.jpg', 50, '2021-01-26 15:30:38', 62, 1),
 (122, 'ee1337728027d3a72ffa1443ee740c7c.jpg', 50, '2021-01-26 15:35:41', 63, 1),
 (123, 'ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', 50, '2021-01-26 16:09:36', 64, 1),
-(124, 'ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', 50, '2021-01-26 16:47:59', 65, 1);
+(124, 'ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', 50, '2021-01-26 16:47:59', 65, 1),
+(125, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:03:43', 66, 1),
+(126, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:33:19', 67, 1),
+(127, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:36:11', 68, 1),
+(128, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:38:03', 69, 1);
 
 -- --------------------------------------------------------
 
@@ -407,7 +411,8 @@ INSERT INTO `payments` (`id`, `payment_id`, `amount`, `currency`, `payment_statu
 (79, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:32:18', 71, 'ecommerce'),
 (80, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:34:31', 71, 'ecommerce'),
 (81, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:35:29', 71, 'ecommerce'),
-(82, 'ch_1IDukyJmfnsrzK578C9wVnaf', 244.00, 'PHP', 'Captured', '2021-01-27 01:51:09', 71, 'ecommerce');
+(82, 'ch_1IDukyJmfnsrzK578C9wVnaf', 244.00, 'PHP', 'Captured', '2021-01-27 01:51:09', 71, 'ecommerce'),
+(83, 'COD', 154.40, 'PHP', 'Pending', '2021-01-27 05:41:46', 71, 'ecommerce');
 
 -- --------------------------------------------------------
 
@@ -670,17 +675,18 @@ CREATE TABLE `store` (
   `subscriptionid` int(255) DEFAULT NULL,
   `last_payment_id` varchar(255) DEFAULT NULL,
   `allow_pickup` int(11) DEFAULT 0,
-  `pickup_location` varchar(255) DEFAULT NULL
+  `pickup_location` varchar(255) DEFAULT NULL,
+  `material_low` int(11) DEFAULT 20
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `store`
 --
 
-INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`, `allow_pickup`, `pickup_location`) VALUES
-(49, 'MerryMart', '<p>MerryMart Consumer Corp. (“MM”) is an emerging consumer focused retail company principally engaged in the operation of retail stores in the supermarket and household essentials category. MM through its subsidiary, MerryMart Grocery Centers Inc. (“MMGC”', 'uploads/merchant/49/logo/97e994858d56148a6d6c30b275e77bf7.png', '2021-01-02 21:46:35', 70, 37, 'ch_1I5Hx7JmfnsrzK572OVG6CZg', 1, 'Pili, Boac, Marinduque'),
-(50, 'Pure Gold', '<p>Puregold Price Club, Inc. (“Puregold” or “the Company”) was incorporated on September 8, 1998 and opened its first Puregold hypermarket store in Mandaluyong City in December of the same year. In 2001, it began its expansion by building 2 additional hyp', 'uploads/merchant/50/logo/de42dd6728605d39be5e5dde12452c0b.jpg', '2021-01-02 23:18:27', 72, 38, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl', 1, 'Tabi'),
-(51, 'lazada', NULL, NULL, '2021-01-03 05:46:49', 74, 37, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ', 0, NULL);
+INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`, `allow_pickup`, `pickup_location`, `material_low`) VALUES
+(49, 'MerryMart', '<p>MerryMart Consumer Corp. (“MM”) is an emerging consumer focused retail company principally engaged in the operation of retail stores in the supermarket and household essentials category. MM through its subsidiary, MerryMart Grocery Centers Inc. (“MMGC”', 'uploads/merchant/49/logo/97e994858d56148a6d6c30b275e77bf7.png', '2021-01-02 21:46:35', 70, 37, 'ch_1I5Hx7JmfnsrzK572OVG6CZg', 1, 'Pili, Boac, Marinduque', 20),
+(50, 'Pure Gold', '<p>Puregold Price Club, Inc. (“Puregold” or “the Company”) was incorporated on September 8, 1998 and opened its first Puregold hypermarket store in Mandaluyong City in December of the same year. In 2001, it began its expansion by building 2 additional hyp', 'uploads/merchant/50/logo/de42dd6728605d39be5e5dde12452c0b.jpg', '2021-01-02 23:18:27', 72, 38, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl', 1, 'Tabi', 201),
+(51, 'lazada', NULL, NULL, '2021-01-03 05:46:49', 74, 37, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ', 0, NULL, 20);
 
 -- --------------------------------------------------------
 
@@ -767,7 +773,8 @@ INSERT INTO `transaction` (`id`, `userid`, `date_created`, `total`, `status`) VA
 (91, 71, '2021-01-26 16:32:18', 15, 'pending'),
 (92, 71, '2021-01-26 16:34:31', 15, 'pending'),
 (93, 71, '2021-01-26 16:35:29', 15, 'pending'),
-(94, 71, '2021-01-26 16:51:09', 200, 'pending');
+(94, 71, '2021-01-26 16:51:09', 200, 'pending'),
+(95, 71, '2021-01-26 20:41:46', 120, 'pending');
 
 -- --------------------------------------------------------
 
@@ -1018,13 +1025,13 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1060,19 +1067,19 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `pos`
@@ -1084,13 +1091,13 @@ ALTER TABLE `pos`
 -- AUTO_INCREMENT for table `production`
 --
 ALTER TABLE `production`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -1138,7 +1145,7 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `user`

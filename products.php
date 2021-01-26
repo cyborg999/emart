@@ -1,5 +1,22 @@
 <?php include "./head2.php";?>
+<?php include "./spinner.php";?>
 <body>
+   <style type="text/css">
+    .advance {
+      display: block;
+    }
+    tr.lowstock {
+      background: #e6e6e6;
+    }
+    .lowstock .editqty {
+      color: red;
+      font-weight: 700;
+    }
+    .export {
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
   <div class="container">
     <div class="row">
       <br>
@@ -16,6 +33,7 @@
         <div class="content row">
            <?php
             $products = $model->getAllProducts();
+            $store = $model->getStoreStockLimit();
           ?>
 
           <table class="table">
@@ -32,13 +50,28 @@
             </thead>
             <tbody>
               <tr id="search">
-                <td colspan="4">
+                <td colspan="6">
                   <input type="text" class="form-control" id="searchName" placeholder="Name search..."/>
+                  <a href="" class="advance">
+                    <small>advance</small>
+                  </a>
                 </td>
               </tr>
+
+              <tr  id="search" class="advance_tr hidden">
+              <td colspan="4">
+                <small style="max-width: 100%;"><i>Set alert when the remaining stock is less than or equal to</i></small>
+              </td>
+              <td colspan="2">
+                <input type="number" class="form-control" id="stock" value="<?= ($store) ? $store['material_low'] : 20;?>">
+              </td>
+              <td colspan="1">
+                <a href="" class="updateAlert btn btn-sm btn-primary">update</a>
+              </td>
+            </tr>
               <?php foreach($products as $idx => $product): ?>
 
-              <tr class="result" id="edit<?= $product['id']; ?>">
+              <tr class="result <?=($product['qty'] <= $store['material_low']) ? 'lowstock' : ''; ?>" id="edit<?= $product['id']; ?>">
                 <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/<?= $_SESSION['storeid'];?>/<?= $product['id']; ?>/<?= $product['filename']; ?>" /></td>
                 <td class="editname"><?= $product['name']; ?></td>
                 <td class="editprice"><?= $product['price']; ?></td>
@@ -111,7 +144,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Quantity:
-                    <input type="number" id="editqty" required class="form-control" name="quantity" placeholder="Quantity..."/>
+                    <input type="number" readonly="" id="editqty" required class="form-control" name="quantity" placeholder="Quantity..."/>
                   </label>
                 </div>
                 <div class="form-group">
@@ -139,12 +172,12 @@
 </div>
 
 <script type="text/html" id="productTPL">
-      <tr class="result" id="edit[ID]">
+      <tr class="result [LOWSTOCK]" id="edit[ID]">
          <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]" /></td>
           <td class="editname">[NAME]</td>
           <td class="editprice">[PRICE]</td>
           <td class="editcost">[COST]</td>
-          <td class="editqty">[REM]/[QUANTITY]</td>
+          <td class="editqty">[QUANTITY]</td>
           <td class="editbrand">[BRAND]</td>
           <td>
             <a href="" data-expiration="[EXPIRATION]"  data-quantity="[QTY]" data-expiry="[EXPIRY]" data-cost="[COST]" data-price="[SRP]" data-id="[ID]" data-name="[NAME]" data-brand="[BRAND]" data-description="[DESCRIPTION]" class="btn btn-sm edit"  data-toggle="modal" data-target="#editProductModal" alt="Edit product"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#pencil"/></svg> </a>
@@ -177,6 +210,29 @@
     (function($){
       $(document).ready(function(){
         $("#editvendorname").chosen();
+
+        $(".advance").on("click", function(e){
+          e.preventDefault();
+
+          $(".advance_tr").toggleClass("hidden");
+        });
+
+        $(".updateAlert").on("click", function(e){
+          e.preventDefault();
+
+          showPreloader();
+          $.ajax({
+            url : "ajax.php",
+            data : {updateStock :true, type :'product', val : $("#stock").val() },
+            type : "post",
+            dataType : "json",
+            success : function(response){
+              hidePreloader();
+            }
+          });
+        });
+
+          
         function __listen(){
           $("#editform").off().on("submit", function(e){
             e.preventDefault();
@@ -301,6 +357,7 @@
                   replace("[SRP]", response[i].price).
                   replace("[DESCRIPTION]", response[i].description).
                   replace("[NAME]", response[i].name).
+                  replace("[LOWSTOCK]", (response[i].quantity <= $("#stock").val()) ? 'lowstock' : '').
                   replace("[BRAND]", response[i].brand).
                   replace("[STOREID]", response[i].storeid).
                   replace("[EXPIRY]", response[i].id).
