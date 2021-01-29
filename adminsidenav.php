@@ -68,6 +68,42 @@
 				    </div>
 				  </div> -->
 
+				  
+				 <div class="card">
+					<div class="card-header" id="collapseFooter">
+					  <h2 class="mb-0">
+					    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseFooterb" aria-expanded="true" aria-controls="collapseFooterb">
+					      <svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#clipboard-plus"/></svg> Footer
+					    </button>
+					  </h2>
+					</div>
+
+					<div id="collapseFooterb" class="<?= ($active == "footer") ? "show" : ""; ?> collapse" aria-labelledby="collapseFooter" data-parent="#accordionExample">
+					  <div class="card-body">
+					  	<ul class="list-group list-group-flush">
+						  <li class="list-group-item">
+						  	<a href="terms.php" class="black">Terms & Conditions</a>
+						  </li>
+						   <li class="list-group-item">
+						  	<a href="privacy.php" class="black">Privacy & Policy</a>
+						  </li>
+						  <li class="list-group-item">
+						  	<a href="contact.php" class="black">Contact Us</a>
+						  </li>
+						  <li class="list-group-item">
+						  	<a href="about.php" class="black">About Us</a>
+						  </li>
+						  <li class="list-group-item">
+						  	<a href="overview.php" class="black">Overview</a>
+						  </li>
+						  <li class="list-group-item">
+						  	<a href="socialmedia.php" class="black">Social Media</a>
+						  </li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+
 				  <div class="card">
 				    <div class="card-header" id="headingTwo">
 				      <h2 class="mb-0">

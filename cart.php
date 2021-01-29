@@ -93,7 +93,7 @@
                     </li>
                   </ul>
                   <?php if(isset($_SESSION['id'])): ?>
-                    <a href="#" data-toggle="modal" data-target="#confirmationModal" class="btn btn-warning rounded-pill py-2 btn-block">Proceed to checkout</a>
+                    <a href="#" id="proceed" data-toggle="modal" data-target="#confirmationModal" class="btn btn-warning rounded-pill py-2 btn-block">Proceed to checkout</a>
                   <?php else: ?>
                     <p class="please">Please <a href="./login.php">login</a> first to proceed to checkout.</p>
                   <?php endif ?>
@@ -126,46 +126,7 @@
         height: 31px;
       }
     </style>
-  <script type="text/html" id="store">
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-   <tr>
-        <th colspan="6" scope="col" class="store align-middle border-0 bg-light">
-          <b>[STORE]</b>
-        </th>
-    
-      </tr>
-    
-     <tr>
-        <th scope="col" class="border-0 bg-light">
-          <div class="p-2 px-3 text-uppercase">Product</div>
-        </th>
-        <th scope="col" class="border-0 bg-light">
-          <div class="p-2 px-3 text-uppercase">Name</div>
-        </th>
-        <th scope="col" class="border-0 bg-light">
-          <div class="py-2 text-uppercase">Price</div>
-        </th>
-        <th scope="col" class="border-0 bg-light">
-          <div class="py-2 text-uppercase">Quantity</div>
-        </th>
-   <!--      <th scope="col" class="border-0 bg-light">
-          <div class="py-2 text-uppercase">Shipping</div>
-        </th> -->
-         <th scope="col" class="border-0 bg-light">
-          <div class="py-2 text-uppercase">Tax</div>
-        </th>
-        <th scope="col" class="border-0 bg-light">
-          <div class="py-2 text-uppercase">Remove</div>
-        </th>
-      </tr>
-  </script>
+
 
 <!-- Modal -->
 <div class="modal fade" id="confirmationModal" data-id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -183,6 +144,8 @@
 
           <div class="col-sm">
             <h5>Are you sure you want to proceed to checkout?</h5>
+            <br>
+            <div id="excluded"></div>
             <br>
             <a href="" id="checkout" class="btn btn-lg btn-success">Proceed</a>
             <a href="" class="btn btn-lg btn-danger" data-dismiss="modal">Cancel</a>
@@ -203,13 +166,20 @@
     text-align: left;
     display: block;
   }
-  .minimumTotal.active {
+  .minimumTotal {
     font-weight: 700;
-    color: red;
+    display: block;
     line-height: 1;
+  }
+  .minimumTotal.active {
+
+    color: red;
   }
   .tfoot td * {
     text-align: left;
+  }
+  tr.excludedTr {
+    background: #ffefef;
   }
 </style>
   <script type="text/html" id="tFoot">
@@ -226,28 +196,56 @@
         </div>
       </td>
       <td colspan="2">
-       <!--  <b style="display: block;">Total : ₱ <span class="storeTotal" data-val="[STORETOTAL]">[STORETOTAL]</span></b>
-        <small class="minimumTotal active">(Minimum Total ₱ <span class="minTotal">[MINTOTAL]</span>)</small> -->
+        <b style="display: block;">Total : ₱ <span class="storeTotal" data-val="[STORETOTAL]">[STORETOTAL]</span></b>
+        <small class="minimumTotal active">(Minimum Total ₱ <span class="minTotal">[MINTOTAL]</span>)</small>
         <b style="display: block;">Shipping : ₱ <span class="shipping" data-val="[SHIPPING]">[SHIPPING]</span></b>
       </td>
     </tr>
   </script>
-  <script type="text/html" id="tplContainer">
-    <tr>
-      <td>
-        []
+  <script type="text/html" id="store">
+  <tr class="storeTr" id="[ID]">
+      <td colspan="6">
+        <table class="table">
+            <tr>
+              <th colspan="1" scope="col" class="store align-middle border-0 bg-light">
+                <h3>[STORE]</h3>
+              </th>
+              <th colspan="5" scope="col" class="store align-middle border-0 bg-light">
+            </tr>
+            <tr>
+              <th scope="col" class="border-0 bg-light">
+                <div class="p-2 px-3 text-uppercase">Product</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="p-2 px-3 text-uppercase">Name</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Price</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Quantity</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Tax</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Remove</div>
+              </th>
+            </tr>
+            [PRODUCTS]
+        </table>
       </td>
-    </tr>
+  </tr>
+  
   </script>
   <script type="text/html" id="tpl">
-    [STORE]
     <tr class="tr" data-shipping="[SHIPPING]" data-baseprice="[PRICE]" data-store="[STORENAME]">
       <td><img src="./uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]"" alt="" width="70" class="img-fluid rounded shadow-sm"></td>
       <td><div class="ml-3 d-inline-block align-middle">
           <h5 class="mb-0" style="max-width: 100%;"><a href="./productdetail.php?id=[ID]"  target="_blank" class="text-dark d-inline-block">[NAME]</a></h5><span class="text-muted font-weight-normal font-italic">Category: [CATEGORY]</span>
         </div>
       </td>
-        <td class="align-middle"><strong>₱ <span class="price">[PRICE]</span></strong></td>
+        <td class="align-middle"><strong>₱ <span class="price" data-price="[PRICE]">[PRICE]</span></strong></td>
         <td class="align-middle">
           <nav aria-label="..." class="maxQty" data-id="[PRODUCTID]" data-max="100" class="qty">
             <ul class="pagination pagination-sm">
@@ -255,7 +253,7 @@
                   <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#dash"/></svg>
               </a></li>
               <li  class="page-item">
-                <input type="number" class="count form-control page-link qty" value="[QTY]" name="">
+                <input type="number" min="1" width="80" class="manualInput form-control  qty" value="[QTY]" name="">
               </li>
               <li class="page-item"><a class="page-link count" data-action="plus" href="#">
                   <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#plus"/></svg>
@@ -302,46 +300,69 @@
                 var taxTotalInner = 0;
                 var grandTotalInner = 0;
 
-                $("#tbody .tr").each(function(x,y){
+                $("#tbody .storeTr").each(function(x,y){
                   var me = $(this);
+                  var tr = me.find(".tr");
+                  var storeTrTotal = 0;
+                  var storeTrTax = 0;
 
-                  var price = parseFloat(me.find(".price").html());
-                  var tax = parseFloat(me.find(".taxedPrice").html());
-                  var shipping = parseFloat(me.data("shipping"));
-                  var tFoot = trTfoot.closest("tr").next(".tfoot");
+                  tr.each(function(){
+                    var meTr = $(this);
+                    var price = parseFloat(meTr.find(".price").data("price"));
+                    var tax = parseFloat(meTr.find(".taxedPrice").data("tax"));
+                    var shipping = parseFloat(meTr.data("shipping"));
 
-                  subTotal += price;
-                  shippingTotalInner += shipping;
-                  taxTotalInner += tax;
-  
+                    storeTrTotal += price;
+                    storeTrTax += tax;
+                    subTotal += price;
+                    shippingTotalInner += shipping;
+                    taxTotalInner += tax;
+                  });
+
+                  var tFoot = me.find(".tfoot");
+
                   if(tFoot.html() != undefined){
-                    var storeTotal = tFoot.find(".storeTotal");
-                    var sTotal = parseFloat(price)+parseFloat(tax);
+                    var storeTotal = me.find(".storeTotal");
+
+                    var sTotal = parseFloat(storeTrTotal) + parseFloat(storeTrTax);
                     var minTotal = tFoot.find(".minTotal");
-                    
-                    console.log(sTotal, parseFloat(minTotal.html()));
-                    if(sTotal < parseFloat(minTotal.html())){
+
+                    if(parseFloat(sTotal) < parseFloat(minTotal.html())){
                       minTotal.addClass("active");
                     } else {
-                      minTotal.removeClass("active");
+                      me.removeClass("excludedTr");
                     }
 
-                    storeTotal.html(sTotal.toFixed(2));
+                    var minOrder = me.find(".minTotal");
 
+                    if(sTotal >= parseFloat(minOrder.html())){
+                      me.find(".minimumTotal").removeClass("active");
+                      minTotal.removeClass("active");
+                    } else {
+                      me.addClass("excludedTr");
+                      me.find(".minimumTotal").addClass("active");
+                    }
+
+                    storeTotal.html(sTotal);
                   }
+               
                 });
 
-                grandTotalInner = subTotal + shippingTotalInner + taxTotalInner;
+                if(!me.hasClass("excludedTr")){
+                  console.log(me.attr("id"));
+                  grandTotalInner = subTotal + shippingTotalInner + taxTotalInner;
 
-                total = subTotal;
-                taxTotal = taxTotalInner;
-                grandTotal = grandTotalInner;
-                shippingTotal = shippingTotalInner;
+                  total = subTotal;
+                  taxTotal = taxTotalInner;
+                  grandTotal = grandTotalInner;
+                  shippingTotal = shippingTotalInner;
 
-                $("#total").html("₱"+subTotal.toFixed(2));
-                $("#shipping").html("₱"+shippingTotalInner.toFixed(2));
-                $("#tax").html("₱"+taxTotal.toFixed(2));
-                $("#grandTotal").html("₱"+grandTotalInner.toFixed(2));
+                  $("#total").html("₱"+subTotal.toLocaleString());
+                  $("#shipping").html("₱"+shippingTotalInner.toLocaleString());
+                  $("#tax").html("₱"+taxTotal.toLocaleString());
+                  $("#grandTotal").html("₱"+grandTotalInner.toLocaleString());
+                }
+                
               }
 
               function loadData() {
@@ -375,6 +396,7 @@
                         var counter = 0;
 
                         storeTpl = storeTpl.replace("[STORENAME]", store.storename).
+                          replace("[ID]", store.productid).
                           replace("[LOGO]", store.storelogo);
                         tFoot = tFoot.replace("[SHIPPING]", store.storeshipping).
                           replace("[ALLOW_PICKUP]", (store.allow_pickup == 1) ? '' : 'hidden').
@@ -384,8 +406,9 @@
                         orders = orders + storeTpl;
                         storeShipping += parseFloat(store.storeshipping);
 
+                        var productsTpl = "";
+
                         for(var i in products){
-                          // console.log(products[i]);
                           var data = products[i];
                           var detail = data.detail;
                           var tpl = $("#tpl").html();
@@ -414,34 +437,35 @@
                             replace("[PRICE]", detail.price).
                             replace("[SHIPPING]", detail.shipping).
                             replace("[SHIPPING]", detail.shipping).
-                            replace("[PRICE]", detail.price).
+                            replace("[PRICE]", detail.price * qty).
+                            replace("[PRICE]", detail.price * qty).
                             replace("[CATEGORY]", detail.category).
                             // replace("[SHIPPING]", "₱" + qty * detail.shipping + " <sup>(₱" + detail.shipping + ")</sup>").
-                            replace("[TAX]", "₱<span class='taxedPrice'>" + Math.round(tax) + "</span> <sup>(<span class='tax'>" + (Math.round(detail.tax) + "</span>%)</sup>")).
+                            replace("[TAX]", "₱<span class='taxedPrice' data-tax='"+Math.round(tax) +"'>" + Math.round(tax) + "</span> <sup>(<span class='tax'>" + (Math.round(detail.tax) + "</span>%)</sup>")).
                             replace("[QTY]", qty).
                             replace("[ID]", detail.id).
                             replace("[ID]", detail.id).
                             replace("[ID]", detail.id);
 
                             orders = orders.replace("[STORE]", store.storename);
-                            orders = orders + tpl;
+                            productsTpl = productsTpl + tpl;
 
                             counter++;
                         }
-                        
-                        orders = orders + tFoot;
+                        productsTpl = productsTpl + tFoot;
+                        orders = orders.replace("[PRODUCTS]", productsTpl);
                         grandTotal = total + storeShipping + taxTotal;
                       }
 
-                      $("tbody").append(orders);
+                      $("#tbody").append(orders);
                       __listen();
 
                       shippingTotal = storeShipping;
                       
-                      $("#total").html("₱" + total.toFixed(2));
-                      $("#shipping").html("₱" + storeShipping.toFixed(2));
-                      $("#tax").html("₱" + taxTotal.toFixed(2));
-                      $("#grandTotal").html( "₱" + (grandTotal.toFixed(2)));
+                      $("#total").html("₱" + total.toLocaleString());
+                      $("#shipping").html("₱" + storeShipping.toLocaleString());
+                      $("#tax").html("₱" + taxTotal.toLocaleString());
+                      $("#grandTotal").html( "₱" + (grandTotal.toLocaleString()));
 
                       hidePreloader();
                       calculateFinalPrice();
@@ -467,10 +491,35 @@
 
                   calculateFinalPrice();
 
-                  me.parents("tr").find(".location").toggleClass("hidden");
+                  me.parents(".tfoot").find(".location").toggleClass("hidden");
                 });
 
-                $(".count").off().on("click keyup", function(e){
+                $(".manualInput").off().on("keyup", function(e){
+                    e.preventDefault();
+
+                    var me = $(this);
+                    var max = $(".maxQty").data("max");
+                    var qty = me;
+                    var current = parseInt(me.val());
+
+                    var price = me.parents(".tr").find(".price");
+                    var basePrice = me.parents(".tr").data("baseprice");
+                    var taxedPrice = me.parents(".tr").find(".taxedPrice");
+                    var tax = me.parents(".tr").find(".tax");
+                    var qtyPrice = parseFloat(basePrice*current);
+                        
+                    price.html(qtyPrice);
+
+                    var finalPrice = (parseFloat(tax.html()) /100 ) * (basePrice * current);
+
+                    finalPrice = finalPrice.toLocaleString();
+
+                    taxedPrice.html(finalPrice);
+
+                    calculateFinalPrice();
+                });
+
+                $(".count").off().on("click", function(e){
                     e.preventDefault();
 
                     var me = $(this);
@@ -491,19 +540,21 @@
                         }
                     }
 
-                    var price = me.parents("tr").find(".price");
-                    var basePrice = me.parents("tr").data("baseprice");
-                    var taxedPrice = me.parents("tr").find(".taxedPrice");
-                    var tax = me.parents("tr").find(".tax");
+                    var price = me.parents(".tr").find(".price");
+                    var basePrice = me.parents(".tr").data("baseprice");
+                    var taxedPrice = me.parents(".tr").find(".taxedPrice");
+                    var tax = me.parents(".tr").find(".tax");
                     var qtyPrice = parseFloat(basePrice*current);
                         
-                    price.html(qtyPrice);
+                    price.data("price", qtyPrice);
+                    price.html(qtyPrice.toLocaleString());
 
                     var finalPrice = (parseFloat(tax.html()) /100 ) * (basePrice * current);
 
-                    finalPrice = finalPrice.toFixed(2);
+                    taxedPrice.data("tax", finalPrice);
+                    finalPrice = finalPrice.toLocaleString();
 
-                    taxedPrice.html(finalPrice);
+                    taxedPrice.html(finalPrice.toLocaleString());
 
                     calculateFinalPrice();
                 });
@@ -534,10 +585,45 @@
               loadData();
             }
 
+            function getValidProducts(products){
+              var data = Array();
+              var excludedItem = 0;
+
+              $("#excluded").html("");
+
+              $("#tbody .storeTr").each(function(x,y){
+                var me = $(this);
+                var minTotal = me.find(".minTotal");
+                var itemName = me.find(".storeTotal");
+                var productPerStore = me.find(".tr").length;
+                var id = me.attr("id"); 
+              console.log(productPerStore);
+
+                if(minTotal.hasClass("active")){
+                  excludedItem += productPerStore;
+                } else {
+                  data[id] = products[id];
+                }
+              });
+
+              if(excludedItem > 0 ){
+                $("#excluded").html("<b style='color:red;font-size:16px;'>("+ excludedItem +") items are excluded from your order because total amount is less than the required minimum total per store.</b><br/>");
+              }
+
+              console.log(excludedItem);
+              return data;
+            }
+
+            $("#proceed").on("click", function(){
+              getValidProducts(lastProducts);
+            });
+
             $("#checkout").on("click", function(e){
                 e.preventDefault();
+                 var newData = getValidProducts(lastProducts);
+                console.log(newData);
 
-                if(lastProducts.length < 1){
+                if(newData.length < 1){
                   alert("Please add an item first");
                   return false;
                 }

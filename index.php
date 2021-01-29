@@ -566,6 +566,9 @@
             </div>
         </section> -->
         <!-- End Footer Area -->
+        <br>
+        <br>
+  <?php include "./footer2.php"; ?>
 
 
         <!-- =========================================

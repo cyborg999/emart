@@ -85,8 +85,102 @@ class Model {
 		$this->addBatchListener();
 		$this->searchAllProductListener();
 		$this->updateStockListener();
+		$this->updateTermsListener();
+		$this->removeSocialListener();
+		$this->addSocialListener();
 
 		// $this->getStoreNotifications();
+	}
+
+	public function removeSocialListener(){
+		if(isset($_POST['removeSocial'])){
+    		$sql = "
+    			delete from social
+    			where id = ?
+    		";
+
+    		$this->db->prepare($sql)->execute(array($_POST['id']));
+
+    		die(json_encode("deleted"));
+
+		}
+	}
+
+	public function getAllSocialMedia(){
+		$sql = "
+			select *
+			from social
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getAllSocial(){
+		$sql = "
+			select *
+			from social
+			where userid = ".$_SESSION['id']."
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function addSocialListener(){
+		if(isset($_POST['addSocial'])){
+    		$sql = "
+    			insert into social(social,link,userid)
+    			values(?,?,?)
+    		";
+    		$this->db->prepare($sql)->execute(array($_POST['name'], $_POST['link'], $_SESSION['id']));
+
+    		die(json_encode(array("id" => $this->db->lastInsertId())));
+		}
+	}
+
+	public function updateTermsListener(){
+		if(isset($_POST['updateTerms'])){
+			if($_POST['updateTerms'] == "terms"){
+				$sql = "
+					update settings
+					set terms = ?
+					where userid = ? 
+				";
+				
+				$this->db->prepare($sql)->execute(array($_POST['terms'], $_SESSION['id']));
+			} elseif(isset($_POST['about'])) {
+				$sql = "
+					update settings
+					set about = ?
+					where userid = ? 
+				";
+				$this->db->prepare($sql)->execute(array($_POST['about'], $_SESSION['id']));
+			} elseif(isset($_POST['overview'])) {
+				$sql = "
+					update settings
+					set overview = ?
+					where userid = ? 
+				";
+				$this->db->prepare($sql)->execute(array($_POST['overview'], $_SESSION['id']));
+			} elseif(isset($_POST['contact'])) {
+				$sql = "
+					update settings
+					set contact = ?
+					where userid = ? 
+				";
+				$this->db->prepare($sql)->execute(array($_POST['contact'], $_SESSION['id']));
+			} else {
+				$sql = "
+					update settings
+					set privacy = ?
+					where userid = ? 
+				";
+				$this->db->prepare($sql)->execute(array($_POST['privacy'], $_SESSION['id']));
+			}
+
+			$this->success = "You have succesfully update this record";
+
+			return $this;
+		}
 	}
 	
 	public function getStoreStockLimit(){
@@ -1360,6 +1454,18 @@ class Model {
 		return false;
 	}
 
+	public function getAdminSetting($public=false){
+		$where = ($public) ? "" : "where userid = ".$_SESSION['id'];
+		$sql = "
+			SELECT *
+			FROM settings
+			$where
+			LIMIT 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
 	public function getCartItemsListener(){
 		if(isset($_POST['getCartItems'])){
 			$products = $_POST['products'];
@@ -1402,6 +1508,7 @@ class Model {
 					$cartItems[$detail['storeid']]['allow_pickup'] = $detail['allow_pickup'];
 					$cartItems[$detail['storeid']]['minimum'] = number_format($detail['minimum'],2);
 					$cartItems[$detail['storeid']]['pickup_location'] = $detail['pickup_location'];
+					$cartItems[$detail['storeid']]['productid'] = $detail['storeid'];
 					$cartItems[$detail['storeid']]['storeshipping'] = number_format($shippingFee,2);
 					$cartItems[$detail['storeid']]['storename'] = $detail['storename'];
 					$cartItems[$detail['storeid']]['storelogo'] = ($detail['storelogo']!="") ? $detail['storelogo'] : './node_modules/bootstrap-icons/icons/image-alt.svg';
@@ -1412,6 +1519,7 @@ class Model {
 
 				}
 			}
+
 			die(json_encode($cartItems));
 		}
 	}

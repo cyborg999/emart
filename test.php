@@ -1,5 +1,40 @@
-<?php include "./adminhead.php";?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
 <body>
-<svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg>
+	<style type="text/css">
+		table {
+			width: 600px;
+			margin: 0 auto;
+		}
+	</style>
+	<table border="1">
+		<tr>
+			<tbody>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+			</tbody>
+		</tr>
+		<tr>
+			<td colspan="6">
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+				</tbody>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
