@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2021 at 09:49 PM
+-- Generation Time: Jan 30, 2021 at 01:35 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -351,7 +351,13 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (125, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:03:43', 66, 1),
 (126, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:33:19', 67, 1),
 (127, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:36:11', 68, 1),
-(128, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:38:03', 69, 1);
+(128, 'e260b9bc6e950293d73b0775d3548998.jpg', 50, '2021-01-26 20:38:03', 69, 1),
+(129, 'ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', 50, '2021-01-26 23:03:48', 70, 1),
+(130, '1fb91c8792c4fa5d28fa8831973dbe41.jpg', 49, '2021-01-28 12:17:50', 71, 1),
+(131, 'd1398cd08dca7e5ecda025cddf356535.png', 50, '2021-01-28 13:28:11', 72, 1),
+(132, '05d0e7b29d64e56dc46ac86ef0afb3d7.jpg', 57, '2021-01-30 00:04:00', 73, 1),
+(133, 'ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', 57, '2021-01-30 00:10:01', 74, 1),
+(134, '1fb91c8792c4fa5d28fa8831973dbe41.jpg', 57, '2021-01-30 00:24:18', 75, 1);
 
 -- --------------------------------------------------------
 
@@ -386,33 +392,6 @@ CREATE TABLE `payments` (
   `userid` int(11) DEFAULT NULL,
   `payment_for` varchar(255) DEFAULT 'ecommerce'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `payment_id`, `amount`, `currency`, `payment_status`, `captured_at`, `userid`, `payment_for`) VALUES
-(63, 'ch_1I5Hx7JmfnsrzK572OVG6CZg', 3000.00, 'PHP', 'Captured', '2021-01-03 06:48:02', 70, 'subscription'),
-(64, 'ch_1I5IYZJmfnsrzK57d09qyGCI', 450.00, 'PHP', 'Captured', '2021-01-03 07:26:45', 71, 'ecommerce'),
-(65, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl', 4800.00, 'PHP', 'Captured', '2021-01-03 08:18:53', 72, 'subscription'),
-(66, 'COD', 390.00, 'PHP', 'Pending', '2021-01-03 08:47:03', 71, 'ecommerce'),
-(67, 'ch_1I5PPUJmfnsrzK57o79m4UnY', 250.00, 'PHP', 'Captured', '2021-01-03 14:45:47', 73, 'ecommerce'),
-(68, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ', 3000.00, 'PHP', 'Captured', '2021-01-03 14:47:48', 74, 'subscription'),
-(69, 'COD', 413.60, 'PHP', 'Pending', '2021-01-05 13:55:44', 71, 'ecommerce'),
-(70, 'COD', 194.48, 'PHP', 'Pending', '2021-01-21 11:13:33', 71, 'ecommerce'),
-(71, 'COD', 310.00, 'PHP', 'Pending', '2021-01-21 11:32:11', 71, 'ecommerce'),
-(72, 'COD', 310.00, 'PHP', 'Pending', '2021-01-21 12:02:14', 71, 'ecommerce'),
-(73, 'COD', 250.84, 'PHP', 'Pending', '2021-01-25 04:59:01', 71, 'ecommerce'),
-(74, 'COD', 33.44, 'PHP', 'Pending', '2021-01-25 05:00:56', 71, 'ecommerce'),
-(75, 'COD', 200.44, 'PHP', 'Pending', '2021-01-25 22:43:50', 71, 'ecommerce'),
-(76, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:15:41', 71, 'ecommerce'),
-(77, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:30:04', 71, 'ecommerce'),
-(78, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:30:20', 71, 'ecommerce'),
-(79, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:32:18', 71, 'ecommerce'),
-(80, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:34:31', 71, 'ecommerce'),
-(81, 'COD', 36.80, 'PHP', 'Pending', '2021-01-27 01:35:29', 71, 'ecommerce'),
-(82, 'ch_1IDukyJmfnsrzK578C9wVnaf', 244.00, 'PHP', 'Captured', '2021-01-27 01:51:09', 71, 'ecommerce'),
-(83, 'COD', 154.40, 'PHP', 'Pending', '2021-01-27 05:41:46', 71, 'ecommerce');
 
 -- --------------------------------------------------------
 
@@ -476,8 +455,19 @@ CREATE TABLE `production` (
   `qty` int(11) NOT NULL DEFAULT 0,
   `dateadded` date DEFAULT current_timestamp(),
   `price` float NOT NULL,
-  `cost` int(11) DEFAULT NULL
+  `cost` int(11) DEFAULT NULL,
+  `deleted` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `production`
+--
+
+INSERT INTO `production` (`id`, `productid`, `batchnumber`, `remaining_qty`, `deducted`, `expiry_date`, `qty`, `dateadded`, `price`, `cost`, `deleted`) VALUES
+(32, 73, '2101301', 100, 0, '2021-01-30', 100, '2021-01-30', 76, 34, 0),
+(33, 73, '21013033', 100, 0, '2021-02-03', 100, '2021-01-30', 854, 354, 0),
+(34, 74, '2101301', 100, 0, '2021-02-05', 100, '2021-01-30', 567, 23, 1),
+(35, 75, '21013035', 345, 0, '2021-02-03', 345, '2021-01-30', 655675, 324, 0);
 
 -- --------------------------------------------------------
 
@@ -500,8 +490,17 @@ CREATE TABLE `productt` (
   `active` int(11) DEFAULT 1,
   `expiration` date DEFAULT NULL,
   `remaining_qty` int(11) DEFAULT 0,
-  `deducted` int(11) DEFAULT 0
+  `deducted` int(11) DEFAULT 0,
+  `deleted` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `productt`
+--
+
+INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`, `rating`, `date_added`, `storeid`, `description`, `cost`, `active`, `expiration`, `remaining_qty`, `deducted`, `deleted`) VALUES
+(74, 23, 'test', 567, 'test', 100, 0, '2021-01-30 00:10:00', 57, 'asd', 23, 1, '2021-02-05', 100, 0, 1),
+(75, 23, 'asdsa', 655675, 'dfgdfg', 345, 0, '2021-01-30 00:24:17', 57, 'asdsad', 324, 1, '2021-02-03', 345, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -625,15 +624,20 @@ INSERT INTO `sales` (`id`, `storeid`, `productid`, `qty`, `date_purchased`, `oth
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `logo` varchar(255) NOT NULL,
-  `userid` int(11) NOT NULL
+  `userid` int(11) NOT NULL,
+  `terms` text DEFAULT NULL,
+  `privacy` text DEFAULT NULL,
+  `contact` text DEFAULT NULL,
+  `about` text DEFAULT NULL,
+  `overview` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `logo`, `userid`) VALUES
-(1, './uploads/logo/logo.png', 36);
+INSERT INTO `settings` (`id`, `logo`, `userid`, `terms`, `privacy`, `contact`, `about`, `overview`) VALUES
+(1, './uploads/logo/logo.png', 36, '<div class=\"EN\">\r\n                        <div>\r\n                            <h2>TERMS AND CONDITIONS</h2>\r\n                            <p><span>This site is owned and operated by eMart.</span></p>\r\n                            <h3>AGREEMENT</h3>\r\n                            <p><span>eMart contains multiple Web pages operated by eMart. This offer is available for you and is subject to the acceptance of the following terms and conditions. Your use of the eMart site and related offers represents your consent to all such terms contained herein. eMart reserves the right to change the terms in which this offer is being offered. Please check this page for any changes. eMart seeks to ensure that all available information on the website is accurate and true, however there is no guarantee. These terms and conditions apply exclusively, although in contrast to the general or specific conditions or stipulations of the buyer. These conditions will remain in force during the sale and during the relevant activities relating to such sale.</span></p>\r\n                            <h3>BASIC TERMS OF THE AGREEMENT</h3>\r\n                            <p><span>The price of this product is the price set at the time of purchase and may change from time to time if it is used to complete a new purchase. In no event shall the purchase price of today guarantee a price for future purchases not related. The price does not include shipping and applicable operating costs that may be evaluated based on the amount of purchase.</span></p>\r\n                            <p><span>Live email support is available:</span><span> </span><a href=\"mailto:support@emart.com\"><span> </span><span>support@emart.com</span></a></p>\r\n                            <p>Or you may call us toll-free:</p>\r\n                            <div class=\"billing_support\">\r\n                                <div>\r\n                                    <p><strong>CA : </strong><span>1 (888) 254-5183</span></p>\r\n                                    <p><strong>IE : </strong><span>1800 903 218</span></p>\r\n                                    <p><strong>NZ : </strong><span>0800 359 816</span></p>\r\n                                    <p><strong>US : </strong><span>1 (877) 359-4160</span></p>\r\n                                    <p><strong>ZA : </strong><span>080 099 5067</span></p>\r\n                                </div>\r\n                            </div>\r\n                            <h3>CANCELLATIONS / REFUNDS</h3>\r\n                            <p>To cancel your order at any time, please contact our Customer Service Department.</p>\r\n                            <p><span>Live Email Support</span><span>:  </span><a class=\"supp\" href=\"mailto:support@emart.com\">support@emart.com</a></p>\r\n                            <div class=\"billing_support\">\r\n                                <div>\r\n                                    <p><strong>CA : </strong><span>1 (888) 254-5183</span></p>\r\n                                    <p><strong>IE : </strong><span>1800 903 218</span></p>\r\n                                    <p><strong>NZ : </strong><span>0800 359 816</span></p>\r\n                                    <p><strong>US : </strong><span>1 (877) 359-4160</span></p>\r\n                                    <p><strong>ZA : </strong><span>080 099 5067</span></p>\r\n                                </div>\r\n                            </div>\r\n                            <p><span>If the cancellation is made after the order has been shipped, you will be responsible for the payment of the product that has been (1) already been shipped or (2) has already been given to you when you call.</span></p>\r\n                            <p><span>You can receive a refund of any Product that you ordered up to thirty (30) days after the completion of your order. Customers will receive a refund for the product ordered, and repetitive refunds are not allowed, unless at the time of delivery the product is defective. eMart reserves the right to refuse to refund all customers who make repeated requests for refunds or who, in the opinion of eMart, require refunds in bad faith.</span></p>\r\n                            <p><span>In order to process the refund, you must contact our customer service and provide your name and account information. If you provide incorrect information, we will not be able to access your account and we will not complete the return. Refunds can take up to two weeks to appear on your credit card according to the bank that issued the credit card.</span></p>\r\n                            <h3>SHIPPING / RETURNS</h3>\r\n                            <p><span>Standard shipping usually takes 14-21 working days. If you want to return the unused product please do so by sending the address indicated below.</span></p>\r\n                            <p>Please send all returns to:</p>\r\n                            <p><span><strong>eMart</strong>: <br>6525 Gunpark Dr, Ste 370-346<br> Boulder, CO 80301 USA</span></p>\r\n                            <p><span>Customers are responsible for any shipping fees associated with their return, and may be subject to a restocking fee.</span></p>\r\n                            <h3>RELATIONS WITH THIRD PARTIES</h3>\r\n                            <p><span>eMart is not responsible for web-casting or any other form of transmission received from any Linked Site. eMart is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement by eMart the site or any association with its officers or directors.</span></p>\r\n                            <h3>NO UNLAWFUL OR PROHIBITED USE</h3>\r\n                            <p><span>As a condition of your use of eMart, you agree not to use the Site for any purpose that is unlawful or prohibited by these terms and conditions. You may not use eMart to damage, disable or impair the website eMart. You may not obtain or seek to obtain any materials or information through any means not intentionally made available or provided for through our website.</span></p>\r\n                            <h3>USER REGISTRATION AND ELECTRONIC SIGNATURE</h3>\r\n                            <p><span>You must register as a \"member\" of the eMart in order to access certain functions of the site. You must provide current, complete and accurate information about you when you register as a member. You agree that such information is true and complete. You agree to maintain and keep your personal information current and update the information as needed. Without your true information, eMart can not be held responsible for any access or access problem.</span></p>\r\n                            <p><span>Once the registration is completed you consent to these Terms and Conditions, you gave us your approval and electronic signature for this offer, and, therefore, the authorization. Only in this way the charge and the acceptance can be confirmed.</span></p>\r\n                            <h3>DISCLAIMER</h3>\r\n                            <p><span>THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES INCLUDED IN OR AVAILABLE THROUGH THE WEB SITE eMart MAY INCLUDE INACCURACIES OR TYPOGRAPHICAL ERRORS. CHANGES ARE PERIODICALLY ADDED TO THE INFORMATION.</span></p>\r\n                            <p><span>eMart MAKES NO REPRESENTATIONS OR WARRANTIES AS TO THE RELIABILITY, FITNESS, TIMELINESS, AND ACCURACY OF THE INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS CONTAINED ON THE SITE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL eMart AND / OR ITS SUPPLIERS BE LIABLE FOR ANY DIRECT, INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF USE, DATA OR PROFITS, ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE USE OR PERFORMANCE OF THE PRODUCTS OR SERVICES.</span></p>\r\n                            <h3>TERMINATION / ACCESS RESTRICTION</h3>\r\n                            <div>\r\n                                <p><span>eMart reserves the right, in its sole discretion, to terminate your access to the website and the related services or any portion thereof at any time, without notice. You agree that no joint venture, partnership, employment, or agency relationship exists between you and eMart as a result of this agreement or use of the services. This agreement is written in English, which must be considered the official language of the text of this contract, regardless of the language in which these terms may have been translated. If you wish to receive a copy of these terms, please send a request to:</span><span> </span><a href=\"mailto:support@emart.com\"><span> </span><span>support@emart.com</span></a></p>\r\n                            </div>\r\n                            <h3>NOTICES OF INTELLECTUAL PROPERTY, COPYRIGHT AND TRADEMARKS:</h3>\r\n                            <p><span>eMart and all its related logos are trademarks or trade names. You may not copy, imitate or use the above without the prior written consent of eMart. You may not alter, modify or in any way change these HTML logos, or use them in a manner deemed offensive according eMart or use them in any way that implies sponsorship or endorsement of eMart.</span></p>\r\n                            <h3>TRADEMARKS</h3>\r\n                            <p><span>The names of actual companies and products mentioned herein may be the trademarks of their respective owners. The example companies, organizations, products, people and events depicted herein are fictitious. No association with any real company, organization, product, person, or event is intended or should be inferred. All rights not expressly granted herein are reserved.</span></p>\r\n                            <h3>PRIVACY POLICY</h3>\r\n                            <p><span>Please consult the privacy policy of eMart. By accepting these Terms and Conditions, and each time you use the service, you consent to the collection, use and disclosure of information or data recording by eMart, in accordance with the privacy policy without notice or liability to you or any other person.</span></p>\r\n                            <p><span>Customer Service is available 24 hours a day at:</span><span> </span><a href=\"mailto:support@emart.com\"><span> </span><span>support@emart.com</span></a></p>\r\n                            <p class=\"termscopy\"><span>Copyright</span><span> © </span><span>2021</span><span> </span><span>eMart</span><span> </span><span class=\"mobilef\">All Rights Reserved</span><span> </span></p>\r\n                        </div>\r\n                    </div>', 'privacy', '<p>\r\n              A108 Adam Street <br>\r\n              New York, NY 535022<br>\r\n              United States <br><br>\r\n              <strong>Phone:</strong> +1 5589 55488 55<br>\r\n              <strong>Email:</strong> info@emart.com<br>\r\n            </p>', 'testab', NULL);
 
 -- --------------------------------------------------------
 
@@ -662,6 +666,27 @@ INSERT INTO `slides` (`id`, `title`, `content`, `status`, `photo`, `date_created
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `social`
+--
+
+CREATE TABLE `social` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `social` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `social`
+--
+
+INSERT INTO `social` (`id`, `userid`, `social`, `link`, `date_added`) VALUES
+(10, 36, 'test', 'sad', '2021-01-29 07:51:04');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `store`
 --
 
@@ -676,17 +701,20 @@ CREATE TABLE `store` (
   `last_payment_id` varchar(255) DEFAULT NULL,
   `allow_pickup` int(11) DEFAULT 0,
   `pickup_location` varchar(255) DEFAULT NULL,
-  `material_low` int(11) DEFAULT 20
+  `material_low` int(11) DEFAULT 20,
+  `b_address` varchar(255) DEFAULT NULL,
+  `b_contact` varchar(255) DEFAULT NULL,
+  `b_email` varchar(255) DEFAULT NULL,
+  `dti` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `store`
 --
 
-INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`, `allow_pickup`, `pickup_location`, `material_low`) VALUES
-(49, 'MerryMart', '<p>MerryMart Consumer Corp. (“MM”) is an emerging consumer focused retail company principally engaged in the operation of retail stores in the supermarket and household essentials category. MM through its subsidiary, MerryMart Grocery Centers Inc. (“MMGC”', 'uploads/merchant/49/logo/97e994858d56148a6d6c30b275e77bf7.png', '2021-01-02 21:46:35', 70, 37, 'ch_1I5Hx7JmfnsrzK572OVG6CZg', 1, 'Pili, Boac, Marinduque', 20),
-(50, 'Pure Gold', '<p>Puregold Price Club, Inc. (“Puregold” or “the Company”) was incorporated on September 8, 1998 and opened its first Puregold hypermarket store in Mandaluyong City in December of the same year. In 2001, it began its expansion by building 2 additional hyp', 'uploads/merchant/50/logo/de42dd6728605d39be5e5dde12452c0b.jpg', '2021-01-02 23:18:27', 72, 38, 'ch_1I5JN6JmfnsrzK57FhKt1Rtl', 1, 'Tabi', 201),
-(51, 'lazada', NULL, NULL, '2021-01-03 05:46:49', 74, 37, 'ch_1I5PRRJmfnsrzK578VIQZ6DZ', 0, NULL, 20);
+INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`, `allow_pickup`, `pickup_location`, `material_low`, `b_address`, `b_contact`, `b_email`, `dti`) VALUES
+(57, 'store1', 'test desci', NULL, '2021-01-29 23:19:34', 86, 40, NULL, 0, NULL, 200, 'sd sdfdsf2', '345342', 'sda@mail.com2', '34532'),
+(58, 'Jordan Sadiwa', NULL, NULL, '2021-01-29 23:43:16', 87, 35, NULL, 0, NULL, 20, '1852 Sandejas Pasay City', '324', 'sad@mail.com', '24');
 
 -- --------------------------------------------------------
 
@@ -741,41 +769,6 @@ CREATE TABLE `transaction` (
   `status` varchar(255) DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`id`, `userid`, `date_created`, `total`, `status`) VALUES
-(67, 71, '2021-01-02 22:26:46', 450, 'pending'),
-(68, 71, '2021-01-02 23:47:03', 390, 'pending'),
-(69, 70, '2021-01-02 23:49:56', 250, 'pos'),
-(70, 70, '2021-01-02 23:50:18', 250, 'pos'),
-(71, 70, '2021-01-02 23:51:53', 250, 'pos'),
-(72, 70, '2021-01-02 23:52:46', 250, 'pos'),
-(73, 70, '2021-01-02 23:53:10', 250, 'pos'),
-(74, 70, '2021-01-02 23:54:01', 250, 'pos'),
-(75, 70, '2021-01-02 23:54:16', 250, 'pos'),
-(76, 70, '2021-01-02 23:54:38', 250, 'pos'),
-(77, 70, '2021-01-02 23:54:42', 500, 'pos'),
-(78, 70, '2021-01-02 23:57:07', 250, 'pos'),
-(79, 73, '2021-01-03 05:45:47', 250, 'pending'),
-(80, 72, '2021-01-03 05:54:04', 750, 'pos'),
-(81, 71, '2021-01-05 04:55:44', 280, 'pending'),
-(82, 71, '2021-01-21 02:13:34', 129, 'pending'),
-(83, 71, '2021-01-21 02:32:12', 250, 'pending'),
-(84, 71, '2021-01-21 03:02:14', 250, 'pending'),
-(85, 71, '2021-01-24 19:59:01', 157, 'pending'),
-(86, 71, '2021-01-24 20:00:56', 12, 'pending'),
-(87, 71, '2021-01-25 13:43:50', 112, 'pending'),
-(88, 71, '2021-01-26 16:15:42', 15, 'pending'),
-(89, 71, '2021-01-26 16:30:04', 15, 'pending'),
-(90, 71, '2021-01-26 16:30:20', 15, 'pending'),
-(91, 71, '2021-01-26 16:32:18', 15, 'pending'),
-(92, 71, '2021-01-26 16:34:31', 15, 'pending'),
-(93, 71, '2021-01-26 16:35:29', 15, 'pending'),
-(94, 71, '2021-01-26 16:51:09', 200, 'pending'),
-(95, 71, '2021-01-26 20:41:46', 120, 'pending');
-
 -- --------------------------------------------------------
 
 --
@@ -798,17 +791,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_created`, `photo`) VALUES
 (36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55', 'uploads/user/20/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(70, 'store1', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 21:46:35', 'uploads/user/49/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(71, 'client1', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-02 22:24:19', 'uploads/user//profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(72, 'store2', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-02 23:18:27', 'uploads/user/50/profile/079e667b0c7f01c37a21c1e736b4a6e0.png'),
-(73, 'user2', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-03 05:44:11', 'uploads/user//profile/4cc4b036737170bd9eb963d24f549a31.png'),
-(74, 'store3', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 1, '2021-01-03 05:46:49', NULL),
-(75, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:39:08', NULL),
-(76, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:39:14', NULL),
-(77, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:39:43', NULL),
-(78, 'test', '3dbe00a167653a1aaee01d93e77e730e', 'client', 0, '2021-01-08 04:43:22', NULL),
-(79, 'loki999', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2021-01-08 04:44:42', NULL),
-(80, 'lok999', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2021-01-08 04:45:54', NULL);
+(86, 'store1', '3dbe00a167653a1aaee01d93e77e730e', 'merchant', 0, '2021-01-29 23:19:34', NULL),
+(87, 'store2', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 0, '2021-01-29 23:43:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -834,17 +818,8 @@ CREATE TABLE `userinfo` (
 
 INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`, `date_created`, `userid`, `photo`) VALUES
 (25, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2020-12-05 19:12:46', 36, NULL),
-(49, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 21:46:35', 70, NULL),
-(50, 'Jordan Sadiwauser1test2', 'Pili,Boac,Marinqueu', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 22:24:19', 71, NULL),
-(51, 'Jordan Sadiwauser1test', '1852 Sandejas Pasay Cityuser1test', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-02 23:18:27', 72, NULL),
-(52, 'Update Fullname', 'Updated address', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:44:11', 73, NULL),
-(53, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2021-01-03 05:46:49', 74, NULL),
-(54, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:39:09', 75, NULL),
-(55, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:39:15', 76, NULL),
-(56, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:39:43', 77, NULL),
-(57, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:43:23', 78, NULL),
-(58, NULL, NULL, NULL, NULL, NULL, '2021-01-08 04:44:42', 79, NULL),
-(59, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '11', 'sad@mail.com', '0111-11-11', '2021-01-08 04:45:55', 80, NULL);
+(65, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '23423', 'sad@mail.com', NULL, '2021-01-29 23:19:34', 86, NULL),
+(66, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '53453', 'sad@mail.com', NULL, '2021-01-29 23:43:16', 87, NULL);
 
 -- --------------------------------------------------------
 
@@ -982,6 +957,12 @@ ALTER TABLE `slides`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `social`
+--
+ALTER TABLE `social`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `store`
 --
 ALTER TABLE `store`
@@ -1025,13 +1006,13 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1067,19 +1048,19 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `pos`
@@ -1091,13 +1072,13 @@ ALTER TABLE `pos`
 -- AUTO_INCREMENT for table `production`
 --
 ALTER TABLE `production`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -1130,10 +1111,16 @@ ALTER TABLE `slides`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
+-- AUTO_INCREMENT for table `social`
+--
+ALTER TABLE `social`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `subscription`
@@ -1145,19 +1132,19 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `vendor`

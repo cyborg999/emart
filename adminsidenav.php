@@ -127,6 +127,9 @@
 						  <li class="list-group-item">
 						  	<a href="plan.php" class="black">Subscription</a>
 						  </li>
+						   <li class="list-group-item">
+						  	<a href="backup.php" class="black">Backup Data</a>
+						  </li>
 						<!--    <li class="list-group-item">
 						  	<a href="addnews.php" class="black">Add News</a>
 						  </li>

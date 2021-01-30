@@ -101,10 +101,39 @@
 				<form method="post" class="form">
 					<div class="err"></div>
 					<input type="hidden" name="addstore" value="true">
-					<h3>Store Name</h3>
+					<h3>Store Details</h3>
 					<br>
-					<input type="text" class="form-control" name="name" value="" placeholder="Store Name..." required/>
+					<div class="row">
+						<div class="form-group col-sm">
+							<input type="text" class="form-control" name="name" value="" placeholder="Store Name..." required/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Details</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<label>Address</label>
+							<input type="text" required class="form-control" placeholder="Business Address..." name="adddress">
+						</div>
+					</div>
 					<br>
+					<div class="row">
+						<div class="col-sm-4">
+							<label>DTI</label>
+							<input type="text" required class="form-control" placeholder="DTI..." name="dti">
+						</div>
+						<div class="col-sm-4">
+							<label>Email</label>
+							<input type="email" required class="form-control" name="email">
+						</div>
+						<div class="col-sm-4">
+							<label>Contact #</label>
+							<input type="text" placeholder="Contact #..." class="form-control" name="contact" required>
+						</div>
+					</div>
 					<br>
 					<a href="" data-target=".usertype"  data-left="-100%" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
 
@@ -114,30 +143,32 @@
 			</div>
 			<div class="plan slide col-sm">
 				<form method="post" class="form">
-					<?php
-						$subscription = $model->getActiveSubscriptions();
-					?>
-					<div class="err"></div>
-					<input type="hidden" name="addStoreSubscription" value="true">
-					<input type="hidden" name="subscriptionId" id="subscriptionId" value="<?= ($subscription) ? $subscription[0]['id'] : 0;?>">
-					<h3>Choose Your Subscription Plan</h3>
-					<br>
-					<div class="row">
-						<?php 
-
-						foreach($subscription as $idx => $sub): ?>
-							<div class="col-sm-4 cardd">
-								<div class="card mb-3 subscription"   data-id="<?= $sub['id'];?>" style="max-width: 18rem;">
-								  <div class="card-header"><?= $sub['title'];?></div>
-								  <div class="card-body">
-								    <h5 class="card-title"><?= $sub['caption'];?></h5>
-								    <p class="card-text"><?= $sub['cost'];?>/<small>Month</small></p>
-								  </div>
-								</div>
-							</div>
-						<?php endforeach ?>
+					<h3>Personal Information</h3>
+					<input type="hidden" name="plan" value="true">
+					<div class="form-row">
+					 	<div class="form-group col-md-12">
+						  <label for="inputPassword4">Full Name</label>
+						  <input type="text" class="form-control" id="inputPassword4" required value="" name="fullname">
+						</div>
 					</div>
-
+					<div class="form-group">
+						<label for="inputAddress">Address</label>
+						<input type="text" class="form-control" required id="inputAddress" value="" name="address" placeholder="1234 Main St">
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4 hidden">
+						  <label for="inputCity">Birthday</label>
+						  <input type="date" value="" name="birthday"  class="form-control" id="inputCity">
+						</div>
+						<div class="form-group col-md-6">
+						  <label for="inputState">Contact Number</label>
+						  <input type="number"  class="form-control" required id="inputState" value="" name="contact">
+						</div>
+						<div class="form-group col-md-6">
+								<label for="inputEmail4">Email</label>
+								<input type="email" name="email" required class="form-control" value="" id="inputEmail4">
+						</div>
+					</div>
 					<br>
 					<br>
 					<a href="" data-target=".info"  data-left="-200%" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
@@ -151,32 +182,29 @@
 				<div class="row">
 					<div class="col-sm">
 						<form method="post" class="form">
-							<h3>Personal Information</h3>
-							<input type="hidden" name="plan" value="true">
-						  <div class="form-row">
-					  	 	<div class="form-group col-md-12">
-						      <label for="inputPassword4">Full Name</label>
-						      <input type="text" class="form-control" id="inputPassword4" required value="" name="fullname">
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <label for="inputAddress">Address</label>
-						    <input type="text" class="form-control" required id="inputAddress" value="" name="address" placeholder="1234 Main St">
-						  </div>
-						  <div class="form-row">
-						    <div class="form-group col-md-4">
-						      <label for="inputCity">Birthday</label>
-						      <input type="date" value="" name="birthday" required class="form-control" id="inputCity">
-						    </div>
-						    <div class="form-group col-md-4">
-						      <label for="inputState">Contact Number</label>
-						      <input type="number"  class="form-control" required id="inputState" value="" name="contact">
-						    </div>
-						    <div class="form-group col-md-4">
-					       		<label for="inputEmail4">Email</label>
-					      		<input type="email" name="email" required class="form-control" value="" id="inputEmail4">
-						    </div>
-						  </div>
+							<?php
+								$subscription = $model->getActiveSubscriptions();
+							?>
+							<div class="err"></div>
+							<input type="hidden" name="addStoreSubscription" value="true">
+							<input type="hidden" name="subscriptionId" id="subscriptionId" value="<?= ($subscription) ? $subscription[0]['id'] : 0;?>">
+							<h3>Choose Your Subscription Plan</h3>
+							<br>
+							<div class="row">
+								<?php 
+
+								foreach($subscription as $idx => $sub): ?>
+									<div class="col-sm-4 cardd">
+										<div class="card mb-3 subscription"   data-id="<?= $sub['id'];?>" style="max-width: 18rem;">
+										  <div class="card-header"><?= $sub['title'];?></div>
+										  <div class="card-body">
+										    <h5 class="card-title"><?= $sub['caption'];?></h5>
+										    <p class="card-text"><?= $sub['cost'];?>/<small>Month</small></p>
+										  </div>
+										</div>
+									</div>
+								<?php endforeach ?>
+							</div>
 						  	<a href="" id="planNext" data-target=".store"  data-left="-400%" class="next enabled "><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
 
 						  <button type="submit" class="btn btn-lg btn-success">Save</button>

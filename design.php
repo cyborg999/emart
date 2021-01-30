@@ -73,22 +73,21 @@ done2
 8. consider the expiration date sa deduction
 3. verify credit card number
 9. contact information(lagay nlang ng terms,privacy,contact page kay admin)
+19. business profile(signup and user page)
+10. delete button (explain deleted)
+20. added database backup
 
 round2
 1. cod sa membership
 2. notification if the owner paid, add narin if malapit na mag expire, or expired
 4. same format file upload(hindi pwede i resize kasi if niresize yung small image, magiging pixelated. so mag lagay nalang ng minimum resolution, resize if sobrang laki ng resolution)
 5. Product Options
-10. delete button(dapat mawala sa sales and inventory, check if may babad na order)
 12. reports (filter daily, weekly,monthly)
 13. analytics ng customers and products
-15.(explain cookie baka mxagtaka sa mga added carts sa product na d naadd)
 16. may negative quantity
 
-17. exclude sa order of minimum
-19. business profile(signup and user page)
-18. redesign, continue shopping link https://bootstrap-ecommerce.com/page-components.html#download
-if manual input sa product detail
+
+
 
 
 bugs
@@ -100,3 +99,11 @@ dapat magreflect yung excluded product before mapunta sa checkout
 check overall total if kelangan i reset(if mag add delete ng order)
 lumiit yung sidenav sa filtered.php page
 fix terms.php/privacy/contact design
+redesign social media add
+add footer to other public pages
+backup data
+(dapat mawala sa sales and inventory, check if may babad na order)
+15.(explain cookie baka mxagtaka sa mga added carts sa product na d naadd)
+17. exclude sa order of minimum
+18. redesign, continue shopping link https://bootstrap-ecommerce.com/page-components.html#download
+if manual input sa product detail

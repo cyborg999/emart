@@ -71,7 +71,7 @@
             </tr>
               <?php foreach($products as $idx => $product): ?>
 
-              <tr class="result <?=($product['qty'] <= $store['material_low']) ? 'lowstock' : ''; ?>" id="edit<?= $product['id']; ?>">
+              <tr class="result <?=($product['quantity'] <= $store['material_low']) ? 'lowstock' : ''; ?>" id="edit<?= $product['id']; ?>">
                 <td class="editphoto"><img height="50" width="auto" src="uploads/merchant/<?= $_SESSION['storeid'];?>/<?= $product['id']; ?>/<?= $product['filename']; ?>" /></td>
                 <td class="editname"><?= $product['name']; ?></td>
                 <td class="editprice"><?= $product['price']; ?></td>

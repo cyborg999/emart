@@ -88,8 +88,58 @@ class Model {
 		$this->updateTermsListener();
 		$this->removeSocialListener();
 		$this->addSocialListener();
+		$this->updateBusinessListener();
 
 		// $this->getStoreNotifications();
+	}
+
+	public function updateBusinessListener(){
+		if(isset($_POST['updateBusiness'])){
+			$sql = "
+				update store 
+				set description = ?, b_address = ?, dti = ? , 
+					b_email = ?, b_contact = ?
+				where id = ?
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['description'], $_POST['b_address'], $_POST['dti'], $_POST['b_email'], $_POST['b_contact'], $_SESSION['storeid']));
+
+			$this->success = "You have successfully updated this record";
+
+			return $this;
+		}
+	}
+
+	public function addStoreListener(){
+		if(isset($_POST['addstore'])){
+			$data = array();
+			$sql = "
+				SELECT *
+				FROM store
+				WHERE name = '".$_POST['name']."'
+			";
+
+			$exists = $this->db->query($sql)->fetch();
+
+			if($exists){
+				$this->errors[] = "Store name already exists.";
+
+				$data = array(
+					"errors" => $this->errors,
+					"added" => false
+				);
+
+			} else {
+				$_SESSION['setup']['store'] = $_POST['name'];
+				$_SESSION['setup']['b_address'] = $_POST['adddress'];
+				$_SESSION['setup']['dti'] = $_POST['dti'];
+				$_SESSION['setup']['b_email'] = $_POST['email'];
+				$_SESSION['setup']['b_contact'] = $_POST['contact'];
+
+				$data = array("added" => true);
+			}
+			die(json_encode($data));
+		}
 	}
 
 	public function removeSocialListener(){
@@ -1109,8 +1159,23 @@ class Model {
 	public function addStoreSubscriptionListener(){
 		if(isset($_POST['addStoreSubscription'])){
 			$_SESSION['setup']['subscriptionId'] = $_POST['subscriptionId'];
+
+			$this->addUser();
+
+			if($_SESSION['setup']['usertype'] != "client"){
+				$this->addStore();
+			}
+
+			$_POST['updateUserInfo'] = true;
+
+			$this->updateUserInfoListener();
+		
+			$data = array(
+				"added" => true,
+				"done" => true
+			);
 			
-			die(json_encode(array("added" => true)));
+			die(json_encode($data));
 		}
 	}
 
@@ -1899,6 +1964,7 @@ class Model {
 			WHERE t2.active = 1
 			AND t1.name LIKE '%$name%'
 			AND t4.verified = 1
+			AND t1.deleted = 0
 			LIMIT 100
 		";
 
@@ -1917,6 +1983,7 @@ class Model {
 			ON t4.id = t3.userid
 			WHERE t2.active = 1
 			AND t1.categoryid = $id
+			AND t1.deleted = 0
 			AND t4.verified = 1
 			LIMIT 100
 		";
@@ -1946,6 +2013,7 @@ class Model {
 			ON t4.id = t3.userid
 			WHERE t2.active = 1
 			AND t4.verified = 1
+			AND t1.deleted = 0
 			LIMIT 100
 		";
 
@@ -1962,6 +2030,7 @@ class Model {
 			on t1.productid = t3.id
 			WHERE t3.storeid = ".$_SESSION['storeid']."
 			AND t2.active = 1
+			AND t1.deleted = 0
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -1975,6 +2044,7 @@ class Model {
 			ON t1.id = t2.productid
 			WHERE t1.storeid = ".$_SESSION['storeid']."
 			AND t2.active = 1
+			and t1.deleted = 0
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -2556,7 +2626,8 @@ class Model {
 	public function deleteProductionListener(){
 		if(isset($_POST['deleteProduction'])){
 			$sql = "
-				DELETE FROM production
+				update production
+				set deleted = 1
 				WHERE id = ?
 			";
 
@@ -2749,6 +2820,7 @@ class Model {
 				WHERE t1.name LIKE '%".$_POST['txt']."%'
 				AND t1.storeid = '".$_SESSION['storeid']."'
 				AND t2.active = 1
+				AND t1.deleted = 0
 				group by t1.id
 				LIMIT 20
 			";
@@ -2997,21 +3069,22 @@ class Model {
 			if(!$exists){
 				//insert
 				$sql = "
-					INSERT INTO userinfo(fullname,address,contact,email,bday,userid)
-					VALUES(?,?,?,?,?,?)
+					INSERT INTO userinfo(fullname,address,contact,email,userid)
+					VALUES(?,?,?,?,?)
 				";
-				$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday'], $_SESSION['id']));
+	
+				$this->db->prepare($sql)->execute(array($_SESSION['setup']['fullname'], $_SESSION['setup']['address'], $_SESSION['setup']['contact'], $_SESSION['setup']['email'], $_SESSION['id']));
 			} else {
 
 				$id = (isset($_SESSION['id']) ? $_SESSION['id'] : $_SESSION['lastinsertedid']);
 
 				$sql = "
 					UPDATE userinfo
-					SET fullname = ?, address = ?, contact = ?, email = ?, bday = ?
+					SET fullname = ?, address = ?, contact = ?, email = ?
 					where userid = $id
 				";
 
-				$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email'], $_POST['birthday']));
+				$this->db->prepare($sql)->execute(array($_SESSION['setup']['fullname'], $_SESSION['setup']['address'], $_SESSION['setup']['contact'], $_SESSION['setup']['email']));
 
 			}
 
@@ -3231,7 +3304,8 @@ class Model {
 	public function deleteMaterialInventoryListener(){
 		if(isset($_POST['deleteMaterialInventory'])){
 			$sql = "
-				DELETE from productt
+				update productt
+				set deleted = 1
 				WHERE id = ?
 			";
 
@@ -3395,16 +3469,16 @@ class Model {
 	//for easy deletion of records
 	public function reset(){
 		$sql = array();
-		// $sql[] = "delete from store";
-		// $sql[] = "delete from user where usertype !='admin'";
+		$sql[] = "delete from store";
+		$sql[] = "delete from user where usertype !='admin'";
 		$sql[] = "delete from productt";
 		$sql[] = "delete from production";
-		// $sql[] = "delete from material";
-		// $sql[] = "delete from userinfo where userid !=36";
+		$sql[] = "delete from material";
+		$sql[] = "delete from userinfo where userid !=36";
 		$sql[] = "delete from cart";
 		$sql[] = "delete from cart_details";
-		// $sql[] = "delete from payments";
-		// $sql[] = "delete from transaction";
+		$sql[] = "delete from payments";
+		$sql[] = "delete from transaction";
 		$sql[] = "delete from notification";
 
 		foreach ($sql as $key => $s) {
@@ -3501,61 +3575,25 @@ class Model {
 
 	public function addSubscriptionListener(){
 		if(isset($_POST['plan'])){
-			$this->addUser();
-
-			if($_SESSION['setup']['usertype'] != "client"){
-				$this->addStore();
-			}
-
-			$_POST['updateUserInfo'] = true;
-
-			$this->updateUserInfoListener();
-		
-			//wait for admin to verify this store
-			$data = array(
-				"added" => true,
-				"done" => true
-			);
-
-			die(json_encode($data));
-		}
-	}
-
-	public function addStoreListener(){
-		if(isset($_POST['addstore'])){
-			$sql = "
-				SELECT *
-				FROM store
-				WHERE name = '".$_POST['name']."'
-			";
-
-			$exists = $this->db->query($sql)->fetch();
-
-			if($exists){
-				$this->errors[] = "Store name already exists.";
-
-				$data = array(
-					"errors" => $this->errors,
-					"added" => false
-				);
-
-			} else {
-				$_SESSION['setup']['store'] = $_POST['name'];
-
-				$data = array("added" => true);
-			}
+			$_SESSION['setup']['fullname'] = $_POST['fullname'];
+			$_SESSION['setup']['address'] = $_POST['address'];
+			$_SESSION['setup']['contact'] = $_POST['contact'];
+			$_SESSION['setup']['email'] = $_POST['email'];
 			
+			$data = array("added" => true);
+
 			die(json_encode($data));
 		}
 	}
+
 
 	public function addStore(){
 		$sql = "
-			INSERT INTO store(name,userid,subscriptionid)
-			VALUES(?,?,?)
+			INSERT INTO store(name,userid,b_address,dti,b_email,b_contact,subscriptionid)
+			VALUES(?,?,?,?,?,?,?)
 		";
 
-		$this->db->prepare($sql)->execute(array($_SESSION['setup']['store'], $_SESSION['lastinsertedid'], $_SESSION['setup']['subscriptionId']));
+		$this->db->prepare($sql)->execute(array($_SESSION['setup']['store'], $_SESSION['lastinsertedid'],$_SESSION['setup']['b_address'],$_SESSION['setup']['dti'],$_SESSION['setup']['b_email'],$_SESSION['setup']['b_contact'], $_SESSION['setup']['subscriptionId']));
 
 		$_SESSION['laststoreid'] = $this->db->lastInsertId();
 

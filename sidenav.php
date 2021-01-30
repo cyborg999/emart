@@ -55,6 +55,7 @@
     <div id="collapseOne" class="collapse <?=($active =='user') ? 'show' : ''; ?>" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <ul class="sublist">
+          <li><a href="store.php">Store</a></li>
           <li><a href="profile.php">Personal</a></li>
           <li><a href="changepassword.php">Change Password</a></li>
 
@@ -216,9 +217,7 @@
     <div id="collapseFour" class="collapse <?=($active =='settings') ? 'show' : ''; ?>" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
         <ul class="sublist">
-          <li>
-            <a href="store.php">Store</a>
-          </li>
+          
           <li>
             <a href="globalfees.php">Global Fee</a>
           </li>
