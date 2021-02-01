@@ -29,18 +29,21 @@
 				    </div>
 				  </div>
 
-				    <div class="card hidden">
+				   <div class="card ">
 				    <div class="card-header" id="headingOne">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
-				           <svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#bell"/></svg> Notifications
+				           <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#bell-fill"/></svg> Notifications
 				        </button>
 				      </h2>
 				    </div>
-
-				    <div id="collapseZero" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+				    <div id="collapseZero" class="collapse <?= ($active == "notification") ? "show" : ""; ?>" aria-labelledby="headingOne" data-parent="#accordionExample">
 				      <div class="card-body">
-				        TODO 
+				        <ul class="sublist">
+				          <li>
+				            <a href="adminnotification.php" class="black">View</a>
+				          </li>
+				        </ul> 
 				      </div>
 				    </div>
 				  </div>

@@ -19,16 +19,17 @@
 				<?php  include_once "./error.php"; ?>
 				<?php
 					$store = $model->getStoreById($_SESSION['storeid']);
+					// opd($store);
 				?>
 
 				<div class="row">
 					<div class="col-sm">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 						  <li class="nav-item">
-						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Personal</a>
+						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Store</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Store</a>
+						    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Business</a>
 						  </li>
 						</ul>
 					</div>
@@ -42,7 +43,7 @@
 								<br>
 								<form method="post" enctype="multipart/form-data">
 									<div class="col-sm">
-										<h3>Personal Details</h3>
+										<h3>Store Details</h3>
 										<input type="hidden" name="updateStore" value="true">
 										<div class="form-group">
 											<label>Logo</label>
@@ -59,12 +60,12 @@
 										</div>
 										<div class="form-group">
 											<label>Allow Pickup?
-												<input id="allow" type="checkbox" name="allow_pickup">
+												<input id="allow" type="checkbox" <?= ($store) ? ($store['allow_pickup'] == 1) ? 'checked' : '' : '';?> name="allow_pickup">
 											</label>
 										</div>
-										<div class="form-group  location hidden">
+										<div class="form-group  location <?= ($store) ? ($store['allow_pickup'] == 1) ? '' : 'hidden' : 'hidden';?>">
 											<label>Pickup Location</label>
-											<textarea class="form-control" name="pickup_location" placeholder="Pickup Location"></textarea>
+											<textarea class="form-control" name="pickup_location" placeholder="Pickup Location"><?= ($store) ? $store['pickup_location'] : '';?></textarea>
 										</div>
 										<br>
 										<button class="btn btn-lg btn-primary" id="save">Save</button>
@@ -76,35 +77,35 @@
 							<div class="col-sm">
 								<br>
 								<?php
-									$store = $model->getUserStore();
+									$business = $model->getUserStore();
 								?>
 								<form method="post">
 									<input type="hidden"  name="updateBusiness" value="true">
 									<div class="col-sm">
-										<h3><?= $store['name'];?>'s Details</h3>
+										<h3>Business Details</h3>
 										<div class="form-group">
 											<label>Business</label>
-											<input type="text" readonly class="form-control" placeholder="Store Name..." name="store" value="<?= ($store) ? $store['name'] : '';?>">
+											<input type="text" readonly class="form-control" placeholder="Store Name..." name="store" value="<?= ($business) ? $business['name'] : '';?>">
 										</div>
 										<div class="form-group">
 											<label>Description</label>
-											<textarea class="form-control" name="description" placeholder="Description..."><?= ($store) ? $store['description'] : '';?></textarea>
+											<textarea class="form-control" name="description" placeholder="Description..."><?= ($business) ? $business['description'] : '';?></textarea>
 										</div>
 										<div class="form-group">
 											<label>Business Address</label>
-											<input type="text" class="form-control" placeholder="Address..." name="b_address" value="<?= ($store) ? $store['b_address'] : '';?>">
+											<input type="text" class="form-control" placeholder="Address..." name="b_address" value="<?= ($business) ? $business['b_address'] : '';?>">
 										</div>
 										<div class="form-group">
 											<label>DTI</label>
-											<input type="text" class="form-control" placeholder="DTI..." name="dti" value="<?= ($store) ? $store['dti'] : '';?>">
+											<input type="text" class="form-control" placeholder="DTI..." name="dti" value="<?= ($business) ? $business['dti'] : '';?>">
 										</div>
 										<div class="form-group">
 											<label>Email</label>
-											<input type="email" class="form-control" placeholder="Email..." name="b_email" value="<?= ($store) ? $store['b_email'] : '';?>">
+											<input type="email" class="form-control" placeholder="Email..." name="b_email" value="<?= ($business) ? $business['b_email'] : '';?>">
 										</div>
 										<div class="form-group">
 											<label>Contact #</label>
-											<input type="text" class="form-control" placeholder="Contact #..." name="b_contact" value="<?= ($store) ? $store['b_contact'] : '';?>">
+											<input type="text" class="form-control" placeholder="Contact #..." name="b_contact" value="<?= ($business) ? $business['b_contact'] : '';?>">
 										</div>
 										<input type="submit" class="btn btn-primary" value="Update" name="">
 									</div>

@@ -127,7 +127,7 @@
                                 <td><?= $p['productname'];?></td>
                                 <td>₱<?= number_format($p['price'],2);?></td>
                                 <td><?= $p['quantity'];?></td>
-                                <td>₱<?= number_format($p['shipping'],2);?></td>
+                                <td>₱<?= number_format($p['shipping'],2);?> <?= ($p['for_pickup']) ? "<i>(For Pickup)</i>" : "";?></td>
                                 <td><?= number_format($p['tax'],2);?>%</td>
                               </tr>
                          <!--      <tr>
@@ -206,6 +206,9 @@
           success : function(response){
             hidePreloader();
             me.parents("tr").find(".status").html("cancelled");
+          }
+          , complete : function(){
+            window.location.href = "pending.php";
           }
         });
       });

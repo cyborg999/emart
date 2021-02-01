@@ -89,6 +89,7 @@ class Model {
 		$this->removeSocialListener();
 		$this->addSocialListener();
 		$this->updateBusinessListener();
+		$this->codSubscriptionListener();
 
 		// $this->getStoreNotifications();
 	}
@@ -135,6 +136,7 @@ class Model {
 				$_SESSION['setup']['dti'] = $_POST['dti'];
 				$_SESSION['setup']['b_email'] = $_POST['email'];
 				$_SESSION['setup']['b_contact'] = $_POST['contact'];
+				$_SESSION['setup']['position'] = $_POST['position'];
 
 				$data = array("added" => true);
 			}
@@ -414,6 +416,39 @@ class Model {
 		return $this;
 	}
 
+	public function cashSubscriptionNotification($date){
+		$title = "Subscription Payment: Cash";
+		$body = "<p>".$_SESSION['storename']." requested a meetup on $date for the payment of subscription.</p>";
+
+		$this->addNotification($title, $body, "cashSubscription");
+
+		return $this;
+	}
+
+	public function checkSubscriptionDueDate(&$notifications){
+		$expiration = $this->getSubscriptionExpiration();
+		$date1 = date_create(date("Y-m-d"));
+		$date2 = date_create($expiration);
+		$diff = date_diff($date1,$date2);
+
+		if($diff->days <= 10){
+			$title = '<div>';
+
+			$title .= "Subscription Alert: Expiration.";
+
+			$title .=  '
+			  	</div>';
+
+			$body = "<p>Your subscription will expire in".$diff->days." (".$expiration.")</p>";
+			
+			$this->addNotification($title, $body, "SubscriptionDueDate");
+
+		  	$notifications[] = $title;
+		}
+
+		return $this;
+	}
+
 	public function getExpiredProductNotification(&$notifications){
 		$lowStockProducts = array();
       	$products = $this->getExpiredProducts();
@@ -509,8 +544,7 @@ class Model {
 		//new order
 		//returned
 
-		// $this->checkSubscriptionDueDate($notifications);
-
+		$this->checkSubscriptionDueDate($notifications);
 		$this->getLowStockProductNotification($notifications);
 		$this->getExpiredProductNotification($notifications);
 		$this->getPendingNotification($notifications);
@@ -531,6 +565,25 @@ class Model {
 				select *
 				from notification
 				where userid = ".$_SESSION['id']."
+			";
+		}
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getAdminNotification($showAll = false){
+		$sql = "
+			select *
+			from notification
+			where type in ('cardSubscription', 'cashSubscription')
+			and seen = 0
+		";
+
+		if($showAll){
+			$sql = "
+				select *
+				from notification
+			 	where type in ('cardSubscription', 'cashSubscription')
 			";
 		}
 
@@ -768,7 +821,6 @@ class Model {
 					where storeid = ".$_SESSION['storeid']."
 					limit 1
 				";
-				// oppd();
 
 				$fees = $this->db->query($sql)->fetch();
 
@@ -838,6 +890,47 @@ class Model {
 		return $this->db->query($sql)->fetchAll();
 	}
 
+	public function getCODSubscription(){
+		$sql = "
+			select *
+			from payments
+			where payment_for = 'CODSubscription'
+			and userid = ".$_SESSION['id']."
+			and payment_status = 'Pending'
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function codSubscriptionListener(){
+		if(isset($_POST['codSubscription'])){
+			$exists = $this->getCODSubscription();
+			if($exists){
+				$sql = "
+					update payments
+					set codsub_date = ?
+					where id = ?
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['date'], $exists['id']));
+
+	          	$this->success = "Updated";
+			} else {
+				$sql = "INSERT INTO payments(payment_id, amount, currency, payment_status,userid,codsub_date,payment_for) VALUES(?,?,?,?,?,?,?)
+                          ";
+
+	          	$this->db->prepare($sql)->execute(array("COD", $_POST['amount'], 'PHP', 'Pending', $_SESSION['id'], $_POST['date'], "CODSubscription"));
+
+	          	$this->success = "Saved";
+			}
+
+			$this->cashSubscriptionNotification($_POST['date']);
+
+          	return $this;
+		}
+	}
+
 	public function codPaymentListener(){
 		if(isset($_POST['codPayment'])){
 			$sql = "INSERT INTO payments(payment_id, amount, currency, payment_status,userid) VALUES(?,?,?,?,?)
@@ -865,15 +958,23 @@ class Model {
 			//add cart products
 			if(isset($_SESSION['cart']['products'])){
 				foreach($_SESSION['cart']['products'] as $idx0 => $i){
-                    foreach($i['products'] as $idx => $p){
-						$sql = "
-						  INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status)
-						  VALUES(?,?,?,?,?,?,?,?,?)   
-						";          
-						$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['qty'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId, $p['detail']['storeid'], 'pending'));
+                	if(!empty($i)){
+                		$f_pickup = $i['f_pickup'];
+                		$f_shipping = $i['f_storeshipping'];
+                		$f_total = $i['f_total'];
+                		$f_tax = $i['f_tax'];
 
-						$this->updateProductQuantityById($p['productId'], $p['qty']);
-                    }
+						foreach($i['products'] as $idx => $p){
+							$sql = "
+							  INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status,for_pickup)
+							  VALUES(?,?,?,?,?,?,?,?,?,?)   
+							";          
+							$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['qty'],$f_shipping ,$f_tax, $transactionId, $p['detail']['storeid'], 'pending', $f_pickup));
+
+							$this->updateProductQuantityById($p['productId'], $p['qty']);
+	                    }
+                	}
+                    
                 }
 			}
 
@@ -985,8 +1086,7 @@ class Model {
 			";
 
 			$_SESSION['lastQuery'] = $sql;
-			// op($sql);
-			// oppd();
+
 			$record = $this->db->query($sql)->fetchAll();
 
 			die(json_encode(array("record" => $record)));
@@ -1131,8 +1231,7 @@ class Model {
 		";
 		$record = $this->db->query($sql)->fetch();
 
-		return ($record['id']) ? $record['id'] : 0;
-
+		return ($record) ? $record['id'] : 0;
 	}
 
 	public function updateProductionQuantityById($id, $qty, $add = false){
@@ -1181,7 +1280,6 @@ class Model {
 
 	public function likeShopListener(){
 		if(isset($_POST['likeShop'])){
-			// oppd();
 			$userid = $_POST['userid'];
 			$storeId = $_POST['storeid'];
 
@@ -1242,7 +1340,6 @@ class Model {
 	public function updateStoreListener(){
 		if(isset($_POST['updateStore'])){
 			$files = $_FILES['storelogo']['tmp_name'];
-			
 			if($files != ""){
 
 				//start
@@ -1284,6 +1381,7 @@ class Model {
 				}
 
 			} else {
+
 				if(isset($_POST['allow_pickup'])){
 					$sql = "
 						UPDATE store
@@ -1362,18 +1460,18 @@ class Model {
 
 	public function checkoutListener(){
 		if(isset($_POST['checkout'])){
-			$products = $_POST['products'];
-			$modifiedQty = $_POST['modifiedQty'];
+			// $products = $_POST['products'];
+			// $modifiedQty = $_POST['modifiedQty'];
+			// oppd()
+			// foreach($products as $idx => &$p){
+			// 	foreach($p['products'] as $idx2 => &$pp ){
+			// 		$pId = $pp['productId'];
+			// 		$qty = $pp['qty'];
+			// 		$pp['qty'] = $modifiedQty[$pp['productId']];
+			// 	}
+			// }
 
-			foreach($products as $idx => &$p){
-				foreach($p['products'] as $idx2 => &$pp ){
-					$pId = $pp['productId'];
-					$qty = $pp['qty'];
-					$pp['qty'] = $modifiedQty[$pp['productId']];
-				}
-			}
-
-			$_POST['products'] = $products;
+			// $_POST['products'] = $_POST['products'];
 
 			$_SESSION['cart'] = $_POST;
 
@@ -1538,6 +1636,7 @@ class Model {
 			$products = str_replace("]", "", $products);
 			$products = explode(",", $products);
 			$cartItems = array();
+
 			foreach($products as  $idx => $p){
 				if($p != "null"){
 					$sql = "
@@ -1553,6 +1652,7 @@ class Model {
 						ON t5.id = t1.storeid
 						WHERE t1.id = $idx
 						AND t2.active = 1
+						AND t1.deleted = 0
 						LIMIT 1
 					";
 					$detail = $this->db->query($sql)->fetch();
@@ -1602,6 +1702,7 @@ class Model {
 			WHERE t1.categoryid = $id
 			AND t2.active =1
 			AND t4.verified = 1
+			and t1.deleted = 0
 			LIMIT 5
 		";
 
@@ -1822,6 +1923,7 @@ class Model {
 				WHERE t3.storeid = ".$_SESSION['storeid']."
 				AND t3.name LIKE '%".$_POST['txt']."%'
 				AND t2.active = 1
+				AND t1.deleted = 0
 				limit 20
 			";
 
@@ -2623,16 +2725,40 @@ class Model {
 		}
 	}
 
+	public function getProductionById($id){
+		$sql = "
+			select *
+			from production
+			where id = $id
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
 	public function deleteProductionListener(){
 		if(isset($_POST['deleteProduction'])){
-			$sql = "
-				update production
-				set deleted = 1
-				WHERE id = ?
-			";
+			$production = $this->getProductionById($_POST['id']);
 
-			$this->db->prepare($sql)->execute(array($_POST['id']));
+			if($production['deducted']){
+				$sql = "
+					update production
+					set deleted = 1
+					WHERE id = ?
+				";
 
+				$this->db->prepare($sql)->execute(array($_POST['id']));
+			} else {
+				$sql = "
+					update production
+					set deleted = 1, deducted = 1
+					WHERE id = ?
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['id']));
+				$this->updateProductInventoryById($production['productid'],$production['remaining_qty'], true);
+			}
+			
 			die(json_encode(array("deleted")));
 		}
 	}
@@ -2957,8 +3083,12 @@ class Model {
 			from cart t1
 			left join transaction t2
 			on t1.transactionid = t2.id
+			left join productt t3
+			on t1.productid = t3.id
 			where t1.status = '$status'
 			and t1.userid = ".$_SESSION['id']."
+			and t3.deleted = 0
+			order by t1.date_created desc
 		";
 
 		$data = $this->db->query($sql)->fetchAll();
@@ -2980,8 +3110,11 @@ class Model {
 				ON t1.transactionid = t2.id
 				LEFT JOIN cart_details t3
 				ON t2.id = t3.transactionid
+				left join productt t4
+				on t1.productid = t4.id
 				WHERE t1.status = '$status'
 				and t1.userid =".$_SESSION['id']."
+				and t4.deleted = 0
 			";
 			return $this->db->query($sql)->fetch();
 		} else {
@@ -3002,10 +3135,12 @@ class Model {
 
 	public function getUserProfile(){
 		$sql = "
-			SELECT t1.*,t2.photo as 'profilePicture'
+			SELECT t1.*,t2.photo as 'profilePicture', t3.position
 			FROM userinfo t1
 			LEFT JOIN user t2
 			ON t1.userid = t2.id
+			left join store t3
+			on t3.userid = t2.id
 			WHERE t1.userid = ".$_SESSION['id']."
 			LIMIT 1
 		";	
@@ -3439,8 +3574,11 @@ class Model {
 				from cart t1
 				left join transaction t2
 				on t1.transactionid = t2.id
+				left join productt t3 
+				on t1.productid = t3.id
 				where t1.status = '$status'
 				and t1.storeid = ".$_SESSION['storeid']."
+				and t3.deleted = 0
 			";
 
 			return $this->db->query($sql)->fetch();
@@ -3451,8 +3589,11 @@ class Model {
 			from cart t1
 			left join transaction t2
 			on t1.transactionid = t2.id
+			left join productt t3 
+			on t1.productid = t3.id
 			where t1.status = '$status'
 			and t1.storeid = ".$_SESSION['storeid']."
+			and t3.deleted = 0
 		";
 
 		$data = $this->db->query($sql)->fetchAll();
@@ -3469,16 +3610,16 @@ class Model {
 	//for easy deletion of records
 	public function reset(){
 		$sql = array();
-		$sql[] = "delete from store";
-		$sql[] = "delete from user where usertype !='admin'";
+		// $sql[] = "delete from store";
+		// $sql[] = "delete from user where usertype !='admin'";
 		$sql[] = "delete from productt";
 		$sql[] = "delete from production";
-		$sql[] = "delete from material";
-		$sql[] = "delete from userinfo where userid !=36";
+		// $sql[] = "delete from material";
+		// $sql[] = "delete from userinfo where userid !=36";
 		$sql[] = "delete from cart";
 		$sql[] = "delete from cart_details";
-		$sql[] = "delete from payments";
-		$sql[] = "delete from transaction";
+		// $sql[] = "delete from payments";
+		// $sql[] = "delete from transaction";
 		$sql[] = "delete from notification";
 
 		foreach ($sql as $key => $s) {
@@ -3580,6 +3721,21 @@ class Model {
 			$_SESSION['setup']['contact'] = $_POST['contact'];
 			$_SESSION['setup']['email'] = $_POST['email'];
 			
+			if($_SESSION['setup']['usertype'] == "client"){
+				$this->addUser();
+
+				$_POST['updateUserInfo'] = true;
+
+				$this->updateUserInfoListener();
+
+				$data = array(
+					"added" => true,
+					"done" => true
+				);
+				
+				die(json_encode($data));
+			}
+
 			$data = array("added" => true);
 
 			die(json_encode($data));
@@ -3589,11 +3745,11 @@ class Model {
 
 	public function addStore(){
 		$sql = "
-			INSERT INTO store(name,userid,b_address,dti,b_email,b_contact,subscriptionid)
-			VALUES(?,?,?,?,?,?,?)
+			INSERT INTO store(name,userid,b_address,dti,b_email,b_contact,subscriptionid, position)
+			VALUES(?,?,?,?,?,?,?,?)
 		";
 
-		$this->db->prepare($sql)->execute(array($_SESSION['setup']['store'], $_SESSION['lastinsertedid'],$_SESSION['setup']['b_address'],$_SESSION['setup']['dti'],$_SESSION['setup']['b_email'],$_SESSION['setup']['b_contact'], $_SESSION['setup']['subscriptionId']));
+		$this->db->prepare($sql)->execute(array($_SESSION['setup']['store'], $_SESSION['lastinsertedid'],$_SESSION['setup']['b_address'],$_SESSION['setup']['dti'],$_SESSION['setup']['b_email'],$_SESSION['setup']['b_contact'], $_SESSION['setup']['subscriptionId'], $_SESSION['setup']['position']));
 
 		$_SESSION['laststoreid'] = $this->db->lastInsertId();
 
@@ -3622,6 +3778,7 @@ class Model {
 				$_SESSION['id'] = $exists['id'];
 				$_SESSION['username'] = $exists['username'];
 				$_SESSION['storeid'] = $exists['storeId'];
+				$_SESSION['storename'] = $exists['storeName'];
 				$_SESSION['usertype'] = $exists['usertype'];
 				$_SESSION['verified'] = $exists['verified'];
 

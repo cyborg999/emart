@@ -24,7 +24,7 @@
   </style>
 	<div class="profile-pic <?= ($profile['profilePicture'] !="") ? '' : 'pic2';?>" style="background-image:url(<?= ($profile['profilePicture'] !="") ? $profile['profilePicture'] : './node_modules/bootstrap-icons/icons/image-alt.svg';?>);"></div>
 	<b><?= $profile['fullname'];?></b>
-	<i>Merchant</i>
+	<i><?= $profile['position'];?></i>
 </div>
 <div class="accordion" id="accordionExample">
 
@@ -72,27 +72,24 @@
     </div>
   </div>
 
-<!-- 
-  <div class="card">
-    <div class="card-header" id="headingTwo">
+ <div class="card ">
+    <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        	<svg class="bi" width="15" height="15" fill="currentColor">
-	<use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#shop"/></svg> 
-          Store
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+           <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#bell-fill"/></svg> Notifications
         </button>
       </h2>
     </div>
-    <div id="collapseTwo" class="collapse <?=($active =='store') ? 'show' : ''; ?>" aria-labelledby="headingTwo" data-parent="#accordionExample">
+    <div id="collapseZero" class="collapse <?= ($active == "notification") ? "show" : ""; ?>" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <ul class="sublist">
-        	<li>Add Product</li>
-        	<li>All Products</li>
-        </ul>
+          <li>
+            <a href="notifications.php" class="black">View</a>
+          </li>
+        </ul> 
       </div>
     </div>
   </div>
- -->
 
   <div class="card">
     <div class="card-header" id="headingThree">

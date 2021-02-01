@@ -117,7 +117,7 @@
         display: block;
       }
       .qty {
-        width: 50px;
+        width: 60px;
         text-align: center;
         color: black;
         height: 30px;
@@ -253,7 +253,7 @@
                   <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#dash"/></svg>
               </a></li>
               <li  class="page-item">
-                <input type="number" min="1" width="80" class="manualInput form-control  qty" value="[QTY]" name="">
+                <input type="number" min="1" max="[MAX]" width="80" class="manualInput form-control  qty" value="[QTY]" name="">
               </li>
               <li class="page-item"><a class="page-link count" data-action="plus" href="#">
                   <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#plus"/></svg>
@@ -345,28 +345,28 @@
 
                     storeTotal.html(sTotal);
                   }
+
+                  if(!me.hasClass("excludedTr")){
+                    grandTotalInner = subTotal + shippingTotalInner + taxTotalInner;
+
+                    total = subTotal;
+                    taxTotal = taxTotalInner;
+                    grandTotal = grandTotalInner;
+                    shippingTotal = shippingTotalInner;
+
+                    $("#total").html("₱"+subTotal.toLocaleString());
+                    $("#shipping").html("₱"+shippingTotalInner.toLocaleString());
+                    $("#tax").html("₱"+taxTotal.toLocaleString());
+                    $("#grandTotal").html("₱"+grandTotalInner.toLocaleString());
+                  }
                
                 });
 
-                if(!me.hasClass("excludedTr")){
-                  console.log(me.attr("id"));
-                  grandTotalInner = subTotal + shippingTotalInner + taxTotalInner;
-
-                  total = subTotal;
-                  taxTotal = taxTotalInner;
-                  grandTotal = grandTotalInner;
-                  shippingTotal = shippingTotalInner;
-
-                  $("#total").html("₱"+subTotal.toLocaleString());
-                  $("#shipping").html("₱"+shippingTotalInner.toLocaleString());
-                  $("#tax").html("₱"+taxTotal.toLocaleString());
-                  $("#grandTotal").html("₱"+grandTotalInner.toLocaleString());
-                }
+                
                 
               }
 
               function loadData() {
-                  showPreloader();
                   $("tbody").html("");
                   
                   products = localStorage.getItem("items");
@@ -375,6 +375,7 @@
                   shippingTotal = 0;
                   taxTotal = 0;
                   grandTotal = 0;
+                  showPreloader();
 
                   $.ajax({
                     url  : "ajax.php",
@@ -386,8 +387,8 @@
                       var storeShipping = 0;
 
                       lastProducts = response;
+                          // console.log(response);
 
-                      // console.log(response);
                       for(var r in response){
                         var store = response[r];
                         var products = store.products;
@@ -437,6 +438,7 @@
                             replace("[PRICE]", detail.price).
                             replace("[SHIPPING]", detail.shipping).
                             replace("[SHIPPING]", detail.shipping).
+                            replace("[MAX]", detail.quantity).
                             replace("[PRICE]", detail.price * qty).
                             replace("[PRICE]", detail.price * qty).
                             replace("[CATEGORY]", detail.category).
@@ -467,8 +469,14 @@
                       $("#tax").html("₱" + taxTotal.toLocaleString());
                       $("#grandTotal").html( "₱" + (grandTotal.toLocaleString()));
 
-                      hidePreloader();
                       calculateFinalPrice();
+                    }
+                    , error : function(res){
+                      localStorage.clear();
+                      window.location.href = "cart.php";
+                    }
+                    , complete : function(){
+                      hidePreloader();
                     }
                   });
               }
@@ -498,9 +506,19 @@
                     e.preventDefault();
 
                     var me = $(this);
-                    var max = $(".maxQty").data("max");
+                    var max = me.attr("max");
                     var qty = me;
                     var current = parseInt(me.val());
+
+                    if(parseInt(current) > parseInt(max)){
+                      me.val(max);
+                    }
+
+                    if(parseInt(current) < 1){
+                      me.val(1);
+                    }
+                    
+                    current = parseInt(me.val());
 
                     var price = me.parents(".tr").find(".price");
                     var basePrice = me.parents(".tr").data("baseprice");
@@ -524,15 +542,15 @@
 
                     var me = $(this);
                     var action = me.data("action");
-                    var max = $(".maxQty").data("max");
+                    var max = me.attr("max");
                     var qty = me.parents(".pagination").find(".qty");
                     var current = parseInt(qty.val());
 
                     if(action == "plus"){
-                        // if(parseInt(current) < max){
+                        if(parseInt(current) < max){
                           current +=1;
                           qty.val(current);
-                        // }
+                        }
                     } else {
                         if(parseInt(current) > 1){
                           current -=1;
@@ -597,20 +615,39 @@
                 var itemName = me.find(".storeTotal");
                 var productPerStore = me.find(".tr").length;
                 var id = me.attr("id"); 
-              console.log(productPerStore);
 
                 if(minTotal.hasClass("active")){
                   excludedItem += productPerStore;
                 } else {
+                  var pickup = me.find(".pickup").is(":checked");
+
                   data[id] = products[id];
+                  data[id].f_pickup = 0;
+                  data[id].f_storeshipping = data[id].storeshipping;
+
+                  if(pickup == true){
+                    data[id].f_pickup = 1;
+                    data[id].f_storeshipping = 0;
+                  }
+                 
+                  data[id].f_total = me.find(".storeTotal").html();
+                  data[id].f_tax = me.find(".taxedPrice").html();
+
+                  var tr = me.find(".tr");
+
+                  tr.each(function(x){
+                    var meTr = $(this);
+                    var qty = meTr.find(".qty").val();
+                    data[id].products[x].qty = parseFloat(qty);
+                  });
                 }
+
               });
 
               if(excludedItem > 0 ){
                 $("#excluded").html("<b style='color:red;font-size:16px;'>("+ excludedItem +") items are excluded from your order because total amount is less than the required minimum total per store.</b><br/>");
               }
 
-              console.log(excludedItem);
               return data;
             }
 
@@ -621,7 +658,7 @@
             $("#checkout").on("click", function(e){
                 e.preventDefault();
                  var newData = getValidProducts(lastProducts);
-                console.log(newData);
+                // console.log(newData);
 
                 if(newData.length < 1){
                   alert("Please add an item first");
@@ -634,8 +671,8 @@
                   url  : "ajax.php",
                   data : { 
                     checkout : true , 
-                    modifiedQty : getQty(),
-                    products : lastProducts ,
+                    // modifiedQty : getQty(),
+                    products : newData ,
                     instruction : $("#instruction").val() ,
                     total : total ,
                     taxTotal : taxTotal ,

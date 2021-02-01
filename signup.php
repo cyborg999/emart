@@ -115,6 +115,10 @@
 					</div>
 					<div class="row">
 						<div class="col-sm">
+							<label>Position</label>
+							<input type="text" required class="form-control" placeholder="Position..." name="position">
+						</div>
+						<div class="col-sm">
 							<label>Address</label>
 							<input type="text" required class="form-control" placeholder="Business Address..." name="adddress">
 						</div>
@@ -171,9 +175,9 @@
 					</div>
 					<br>
 					<br>
-					<a href="" data-target=".info"  data-left="-200%" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
+					<a href="" id="personalPrevious" data-target=".info"  data-left="-200%" class="next enabled"><svg class="bi" width="50" height="50" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-compact-left"/></svg></a>
 
-						<button class="btn btn-success btn-lg">Next </button>
+						<button class="btn btn-success btn-lg" id="personalNext">Next</button>
 						<a href="" data-target=".info" data-left="-400%"  class=" disabled next hidden ">Next</a>
 				</form>
 			</div>
@@ -238,7 +242,6 @@
 					$(".enabled").off().on("click", function(e){
 						e.preventDefault();
 
-						console.log("d2");
 						var me = $(this);
 
 						if(me.hasClass("typeNext")){
@@ -247,16 +250,21 @@
 
 							if(val == "client"){
 								me.data("target", ".info");
-								me.data("left", "-400%");
-
-								$("#planNext").data("target", ".usertype");
-								$("#planNext").data("left", "-100%");
+								me.data("left", "-300%");
+								console.log(me.html());
+								
+								$("#personalNext").html("Save");
+								$("#personalPrevious").data("left", "-100%");
+								// $("#planNext").data("target", ".usertype");
+								// $("#planNext").data("left", "-200%");
 							} else {
 								me.data("target", ".store");
 								me.data("left", "-200%");
 
 								$("#planNext").data("target", ".usertype");
+								me.parents(".form").find(".btn").html("Next");
 								$("#planNext").data("left", "-200%");
+								$("#personalNext").html("Next");
 							}
 						}
 
