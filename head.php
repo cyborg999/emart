@@ -27,6 +27,7 @@ if(isset($_POST['REDIRECT'])){
         <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
 
 		<!-- Fontawesome Icon -->
+    <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.css" >
 
 		<!-- Animate Css -->
         <link rel="stylesheet" href="./index_files/animate.css">

@@ -195,6 +195,7 @@
               <li>
                 <a href="salesreport.php">Sales Report</a>
                 <a href="inventoryreport.php">Inventory Report</a>
+                <a href="analytics.php">Analytics</a>
               </li>
             </ul>
           </div>

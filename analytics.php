@@ -16,11 +16,7 @@
 						}
 					</style>
 					<div class="col-sm">
-						<h5>Sales Report</h5>
-						<?php
-							// $annual = $model->getCurrentYearAnnualEarnings();
-						?>
-					  	
+						<h5>Analytics</h5>
 					</div>
 					
 				</div>
@@ -72,10 +68,10 @@
 				<div class="content jumbotron">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						  <li class="nav-item">
-						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Chart</a>
+						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Customers</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" id="chart-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="chart" aria-selected="false">Record</a>
+						    <a class="nav-link" id="chart-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="chart" aria-selected="false">Products</a>
 						  </li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
@@ -257,24 +253,18 @@
 			function loadChart(year){
 				$.ajax({
 					url : "ajax.php",
-					data : { loadSalesReport : true, year : year},
+					data : { loadAnnualCustomerByMunicipality : true, year : year},
 					type : "post",
 					dataType : "json",
 					success : function(response){
 						lastData = response.record;
 						console.log(response.total );
 						var annualData = {
-					        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					        labels: ['Boac', 'Mogpog', 'Santa Cruz', 'Torrijos', 'Buenavista', 'Gasan'],
 					        datasets: [{
-					            label: 'Annual Sale ' + year,
+					            label: 'Customers by Municipality for year '+ year,
 					            data: response.total ,
 					            backgroundColor: [
-					                'rgba(99, 161, 249, 0.5)',
-					                'rgba(99, 161, 249, 0.5)',
-					                'rgba(99, 161, 249, 0.5)',
-					                'rgba(99, 161, 249, 0.5)',
-					                'rgba(99, 161, 249, 0.5)',
-					                'rgba(99, 161, 249, 0.5)',
 					                'rgba(99, 161, 249, 0.5)',
 					                'rgba(99, 161, 249, 0.5)',
 					                'rgba(99, 161, 249, 0.5)',
@@ -283,11 +273,6 @@
 					                'rgba(99, 161, 249, 0.5)'
 					            ],
 					            borderColor: [
-					                'rgba(86, 150, 239, .8)',
-					                'rgba(86, 150, 239, .8)',
-					                'rgba(86, 150, 239, .8)',
-					                'rgba(86, 150, 239, .8)',
-					                'rgba(86, 150, 239, .8)',
 					                'rgba(86, 150, 239, .8)',
 					                'rgba(86, 150, 239, .8)',
 					                'rgba(86, 150, 239, .8)',

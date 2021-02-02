@@ -113,15 +113,15 @@
 						    <input type="text" class="form-control" id="inputAddress" value="<?= isset($profile['address']) ? $profile['address'] : '';?>" name="address" placeholder="1234 Main St">
 						  </div>
 						  <div class="form-row">
-						    <div class="form-group">
+						    <div class="form-group  hidden">
 						      <label for="inputCity">Birthday</label>
 						      <input type="date" value="<?= isset($profile['bday']) ? $profile['bday'] : '';?>" name="birthday" class="form-control" id="inputCity">
 						    </div>
-						    <div class="form-group">
+						    <div class="form-group col-sm">
 						      <label for="inputState">Contact Number</label>
 						      <input type="number"  class="form-control" id="inputState" value="<?= isset($profile['contact']) ? $profile['contact'] : '';?>" name="contact" placeholder="Contact #">
 						    </div>
-						    <div class="form-group">
+						    <div class="form-group col-sm">
 					       		<label for="inputEmail4">Email</label>
 					      		<input type="email" name="email" class="form-control" value="<?= isset($profile['email']) ? $profile['email'] : '';?>" id="inputEmail4" placeholder="Email">
 						    </div>

@@ -106,6 +106,8 @@
 						lastData = response.record;
 						
 						loadRecord();
+					}
+					, complete : function(){
 						hidePreloader();
 					}
 				});

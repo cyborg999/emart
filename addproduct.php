@@ -109,6 +109,22 @@
 							label {
 								margin-top: 10px;
 							}
+							.closeList {
+								font-weight: bold;
+								font-size: .9em;
+								margin-left: 10px;								
+							}
+							.what {
+								color: white;
+								background: #007bff;
+								width: 20px;
+								height: 20px;
+								border-radius: 100%;
+								text-align: center;
+								font-size: .8em;
+								line-height: 2;
+								font-weight: normal;
+							}
 						</style>
 						<div class="row assets">
 						</div>  
@@ -164,6 +180,81 @@
 										<label>Description</label>
 										<textarea class="form-control" id="desc" name="desc"></textarea>
 									</div>
+									<div class="form-group">
+										<style type="text/css">
+											.sm {
+												position: relative;
+											}
+											.sm:hover figure {
+												display: block;
+											}
+											.list-fig {
+												background: url(./images/list.png) no-repeat;
+												width: 322px;
+												height: 166px;
+												background-size: contain;
+												position: absolute;
+												left: 0;
+												top: 0;
+												display: none;
+											}
+											.variant-fig {
+												background: url(./images/variants.png) no-repeat;
+												width: 322px;
+												height: 166px;
+												background-size: contain;
+												position: absolute;
+												left: 0;
+												top: 0;
+												display: none;
+											}
+										</style>
+										<label>List Description 
+											<small class="sm">
+												<i  title="What is this?" class="fa fa-info what"></i>
+												<figure class="list-fig"></figure>
+											</small>
+
+										</label>
+
+										<ul id="list">
+											<li>
+												<input type="text" style="margin-right: 5px;" id="listdesc" class="float-left" name="">
+												<a href="" class="addList btn btn-sm btn-primary">add +</a>
+											</li>
+										</ul>
+									</div>
+									<div class="form-group">
+										<label>Variants
+											<small class="sm">
+												<i  title="What is this?" class="fa fa-info what"></i>
+												<figure class="variant-fig"></figure>
+											</small>
+										</label>
+										<table class="table">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Value</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr id="start">
+												<td>
+													<input type="text" class="form-control" id="variant" name="name" required placeholder="Variant...">
+												</td>
+												<td>
+													<input required type="text" class="form-control" id="val" name="val" placeholder="Value...">
+												</td>
+												<td>
+													<input type="submit" id="add" class="btn  btn-success" value="Add">
+												</td>
+											</tr>
+											
+										</tbody>
+									</table>
+									</div>
 									<br>
 									<div class="row  ">
 							          <div class="col-sm msg hidden"></div>
@@ -182,6 +273,19 @@
 		</div>
 	</div>
 
+	<script type="text/html" id="variants">
+		<tr class="trVariant">
+			<td>
+				<input type="text"  class="variant form-control" value="[VARIANT]">
+			</td>
+			<td>
+				<input type="text"  class="val form-control" value="[VAL]">
+			</td>
+			<td>
+				<a href="" data-id="[ID]" class="btn btn-danger btn-sm remove">remove</a>
+			</td>
+		</tr>
+	</script>
 	<!-- tpl scripts -->
 	<script type="text/html" id="tpl">
 		<div class="col-sm-2">
@@ -204,6 +308,12 @@
         </button>
       </div>
 	</script>
+	<script type="text/html" id="li">
+      <li class="li">
+      	<input type="hidden" name="listdesc[]" class="listdesc" value="[NAME]">
+      	[NAME] <a href="" class="closeList">x</a>
+      </li>
+	</script>
 	<!-- end tpl scripts -->
 
 	<?php include "./foot.php"; ?>
@@ -211,8 +321,48 @@
 	<script type="text/javascript">
 		(function($){
 			$(document).ready(function(){
+				$("#add").on("click", function(e){
+	    			e.preventDefault();
+					e.stopPropagation();
+
+	    			var me = $(this);
+	    			var tr = me.parents("tr");
+	    			var tpl = $("#variants").html();
+
+	    			tpl = tpl.replace("[VARIANT]", tr.find("#variant").val()).
+	    				replace("[VAL]", tr.find("#val").val());
+
+	    			if(tr.find("#variant").val() == ""){
+	    				alert("Please enter a variant name");
+	    			} else {
+		    			if(tr.find("#val").val() == ""){
+		    				alert("Please enter a value");	
+		    			} else {
+	    					$("#start").after(tpl);
+
+	    					__listen();
+
+		    			}
+	    			}
+	    		});
+				$(".addList").on("click", function(e){
+					e.preventDefault();
+
+					var name = $("#listdesc").val();
+					var ul = $("#list");
+					var li = $("#li").html();
+
+					li = li.replace("[NAME]", name).
+						replace("[NAME]", name);
+
+					ul.find("li").last().after(li);
+					$("#listdesc").val("");
+					__listen();
+				});
+
 				$("#addNewBatch").on("submit", function(e){
 					e.preventDefault();
+					e.stopPropagation();
 
 					var me = $(this);
 					var cost = $("#costPrice").val();
@@ -259,15 +409,57 @@
 				});
 
 				function __listen() {
+					$(".remove").off().on("click", function(e){
+	    				e.preventDefault();
+
+	    				var me = $(this);
+
+						me.parents("tr").remove();
+	    			});
+
 					$(".img").off().on("click", function(){
 						var me = $(this);
 
 						$(".img.active").removeClass("active");
 						me.addClass("active");
 					});
+
+					$(".closeList").off().on("click", function(e){
+						e.preventDefault();
+
+						var me = $(this);
+						me.parents(".li").remove();
+					});
 				}
 
 				__listen();
+
+				function getListDesc() {
+					var data = Array();
+
+					$("#list .li").each(function(){
+						var me = $(this);
+						var name = me.find(".listdesc").val();
+
+						data.push(name);
+					});
+
+					return data;
+				}
+
+				function getVariants() {
+					var data = Array();
+
+					$(".trVariant").each(function(){
+						var me = $(this);
+						var variant = me.find(".variant").val();
+						var variantVal = me.find(".val").val();
+
+						data.push(Array(variant, variantVal));
+					});
+
+					return data;
+				}
 
 				$("#addSlider").on("submit", function(e){
 					e.preventDefault();
@@ -300,6 +492,8 @@
 								date_expire : $("#expiration").val(),
 								batch : $("#batch").val(),
 								desc : $("#desc").val(),
+								listDesc : getListDesc(),
+								variants : getVariants(),
 								active : img.data("src"),
 								src : imgs,
 								addProduct : true

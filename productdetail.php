@@ -81,7 +81,8 @@
                     $comments  = $model->getAllProductCommentsById($_GET['id']);
                     $average = $model->GetAvgCommentByProductId($_GET['id']);
                     $related = $model->getRelatedProductsByCategoryId($product['categoryid']);
-
+                    $productList = $model->getProductListByProductId($_GET['id']);
+                    $variants = $model->getProductVariantsByProductId($_GET['id']);
 
                     $fees = $model->getGlobalFeesByStoreId($_GET['id']);
                     $activeMedia = "";
@@ -126,6 +127,12 @@
                                 color: black;
                                 font-weight: normal;
                             }
+                            .list-check {
+                                list-style-type: none;
+                            }
+                            .list-check i.fa {
+                                color: green;
+                            }
                         </style>
                         <ul class="star_rating">
                             <?php for($i = 1;$i<=5;$i++) : ?>
@@ -143,6 +150,31 @@
                         <?php endif ?>
                         <em class="price">₱<?= number_format($product['price'],2);?></em>
                         <p><?= $product['description'];?></p>
+                        <ul class="list-check mb-4">
+                            <?php foreach($productList as $idx => $pl): ?>
+                                <li><i class="fa fa-check"></i> <?= $pl['name'];?></li>
+                            <?php endforeach ?>
+                        </ul>
+                        <dl class="row">
+                            <?php foreach($variants['single'] as $idx => $pl): ?>
+                                <dt class="col-sm-2"><?= $idx;?></dt>
+                                <dd class="col-sm-10"><?= $pl[0];?></dd>
+                            <?php endforeach ?>
+                        </dl>
+                        <div class="item-option-select row">
+                            <?php foreach($variants['multiple'] as $idx => $pl): ?>
+                                <dt class="col-sm-2"><?= $idx;?></dt>
+                                <dd class="col-sm-10">
+                                    <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                                    <?php foreach($pl as $idx2 => $p): ?>
+                                        <label class="btn btn-light <?= ($idx2 == 0) ? 'active' : '';?>">
+                                            <input type="radio" name="options" <?= ($idx2 == 0) ? 'checked' : '';?>><?= $p;?>
+                                        </label>
+                                    <?php endforeach ?>
+                                    </div>
+                                </dd>
+                            <?php endforeach ?>
+                        </div>
                         <ul id="tags">
                             <li><a href="./filtered.php?category=<?= $product['categoryid'];?>"><?= $product['categoryname'];?></a></li>
                         </ul>

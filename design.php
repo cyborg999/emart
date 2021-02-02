@@ -79,21 +79,21 @@ done2
 fixed bugs
 * signup client 
 * position ng owner
-* profile error
 * pickup nawala
+* profile error
 * Inventory of batch per product
 * consider the expiration date sa deduction (nasa login yung checking)
 * production > if deleted, update remaining qty (if expired, d na ibawas)
 * may negative quantity
 * cod sa membership
+* cod/credit notification sa admin
+* due date notification sa store if malapit na mag expire  (pag 10 days or less nalang)
+* sales reports (added date range filter, dapat mashoshow kahit deleted product)
 
 round2
-2. notification if the owner paid, add narin if malapit na mag expire, or expired
-4. same format file upload(hindi pwede i resize kasi if niresize yung small image, magiging pixelated. so mag lagay nalang ng minimum resolution, resize if sobrang laki ng resolution)
 5. Product Options
-12. reports (filter daily, weekly,monthly)
+4. same format file upload(hindi pwede i resize kasi if niresize yung small image, magiging pixelated. so mag lagay nalang ng minimum resolution, resize if sobrang laki ng resolution)
 13. analytics ng customers and products
-
 
 
 
@@ -116,8 +116,7 @@ hide out of stock/expired product sa search and homepage, if inventory > 0
 set max width sa related product(p details), masyado malaki if 1 or 2 lang
 may price na 0
 notification sa sidenav
-
-test cases
+enable checkifpayed sa activate
 
 client
 show orders per transaction not per item

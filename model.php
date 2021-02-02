@@ -90,6 +90,8 @@ class Model {
 		$this->addSocialListener();
 		$this->updateBusinessListener();
 		$this->codSubscriptionListener();
+		$this->loadDateRangeListener();
+		$this->loadAnnualByMunicipalityListener();
 
 		// $this->getStoreNotifications();
 	}
@@ -990,6 +992,107 @@ class Model {
 		}
 	}
 
+	public function loadAnnualByMunicipalityListener(){
+		if(isset($_POST['loadAnnualCustomerByMunicipality'])){
+			$storeid = $_SESSION['storeid'];
+			$status = "delivered";
+			$year = $_POST['year'];
+			$month = "todo";
+			$record = null;
+			$months = array(
+				"Boac" => 0,
+				"Mogpog" => 0,
+				"Santa Cruz" => 0,
+				"Torrijos" => 0,
+				"Buenavista" => 0,
+				"Gasan" => 0
+			);
+
+			$sql = "
+				select t3.address, t1.*,t2.name as 'product'
+				from cart t1
+				left join productt t2
+				on t2.id = t1.productid
+				left join userinfo t3
+				on t3.userid = t1.userid
+				where t1.storeid = $storeid
+				and  t1.status = '$status'
+				and YEAR( t1.date_created) = $year
+			";
+
+
+			$record = $this->db->query($sql)->fetchAll();
+
+			foreach($record as $idx => $r){
+				foreach($months as $idx2 => $m){
+					$found = strpos($idx2, $r['address']);
+					op($found);
+					if($found > -1){
+						$months[$idx2] += 1;
+
+
+						break;
+					}
+				}
+
+			}
+			opd($months);
+			$totalOnly = array_values($months);
+
+			if(!$json){
+				return array("total" => $totalOnly, "record" => $record);
+
+			}
+
+			// $data =  json_encode(array("total" => $totalOnly, "record" => $record));
+
+			die($data);
+		}
+	}
+
+	public function loadDateRangeListener(){
+		if(isset($_POST['loadDateRange'])){
+			$storeid = $_SESSION['storeid'];
+			$status = "delivered";
+			$products = array();
+			$where = ($_POST['date2'] == "")  ? "" : " AND t1.delivery_date BETWEEN '".$_POST['date2']."' AND '".$_POST['date3']."'";
+
+			$sql = "
+				select t1.*,t2.name as 'product'
+				from cart t1
+				left join productt t2
+				on t2.id = t1.productid
+				where t1.storeid = $storeid
+				and  t1.status = '$status'
+				$where
+			";
+
+			$_SESSION['lastQuery'] = $sql;
+
+			$record = $this->db->query($sql)->fetchAll();
+
+			foreach($record as $idx => $r){
+				$total = ((($r['price'] * $r['quantity']) * ($r['tax']/100)) + ($r['price'] * $r['quantity'])) + $r['shipping'];
+
+				// $months[$m] += $total;
+				$products[$r['productid']]['name'] = $r['product'];
+				@$products[$r['productid']]['total'] += $total;
+			}
+
+			$labels = array();
+			$items = array();
+
+			foreach($products as $idx => $p){
+				$labels[] = $p['name'];
+				$items[] = $p['total'];
+			}
+
+			$data =  json_encode(array("total" => $items,  "labels"=> $labels, "record" => $record));
+
+			die($data);
+		}
+	}
+
 	public function loadMonthlyListener(){
 		if(isset($_POST['loadMonthly'])){
 			$storeid = $_SESSION['storeid'];
@@ -1081,6 +1184,7 @@ class Model {
 				left join category t3
 				on t3.id = t1.categoryid
 				where t1.storeid = $storeid
+				and t1.deleted = 0
 				$and
 
 			";
@@ -1958,9 +2062,74 @@ class Model {
 
 		$this->db->prepare($sql)->execute(array($productId, $_POST['batch'],$_POST['quantity'],$_POST['quantity'],$_POST['date_expire'],$_POST['price'],$_POST['cost']));
 
-		return $this;
+		return $this->db->lastInsertId();
 
 	}
+
+	public function getProductListByProductId($id){
+		$sql = "
+			select *
+			from product_list
+			where productid = $id
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getProductVariantsByProductId($id){
+		$sql = "
+			select *
+			from variants
+			where productid = $id
+		";
+
+		$data = $this->db->query($sql)->fetchAll();
+		$filteredData = array();
+		$groupedData = array("single" => array(), "multiple" => array());
+
+		foreach($data as $idx => $d){
+			$filteredData[$d['name']][] = $d['value'];
+		}
+
+		foreach($filteredData as $idx2 => $f){
+			if(count($f) > 1){
+				$groupedData["multiple"][$idx2] = $f;
+			} else {
+				$groupedData["single"][$idx2] = $f;
+			}
+
+		}
+		// opd($groupedData);
+
+		return $groupedData;
+	}
+
+	public function addListDescription($list, $productId, $productionId){
+		foreach($list as $idx => $l){
+			$sql = "
+				insert into product_list(storeid,productid,name,productionid)
+				values(?,?,?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_SESSION['storeid'], $productId, $l, $productionId));
+		}
+
+		return $this;
+	}
+
+	public function addVariants($variants, $productId, $productionId){
+		foreach($variants as $idx => $l){
+			$sql = "
+				insert into variants(productid,name,value,productionid)
+				values(?,?,?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($productId, $l[0], $l[1], $productionId));
+		}
+
+		return $this;
+	}
+	
 
 	public function addProductListener(){
 		if(isset($_POST['addProduct'])){
@@ -1991,9 +2160,16 @@ class Model {
 
 				$id = $this->db->lastInsertId();
 
-				$this->addToProduction($id);
+				$productionId = $this->addToProduction($id);
 				$this->addMediaByProductId($id, $_POST['src'], $_POST['active']);
 
+				if(isset($_POST['listDesc'])){
+					$this->addListDescription($_POST['listDesc'], $id, $productionId);
+
+				}
+				if(isset($_POST['variants'])){
+					$this->addVariants($_POST['variants'], $id, $productionId);
+				}
 			} else {
 				$this->errors[] = "You already have this product added before.";
 			}
@@ -3219,7 +3395,11 @@ class Model {
 					where userid = $id
 				";
 
-				$this->db->prepare($sql)->execute(array($_SESSION['setup']['fullname'], $_SESSION['setup']['address'], $_SESSION['setup']['contact'], $_SESSION['setup']['email']));
+				if(isset($_SESSION['setup']['fullname'])){
+					$this->db->prepare($sql)->execute(array($_SESSION['setup']['fullname'], $_SESSION['setup']['address'], $_SESSION['setup']['contact'], $_SESSION['setup']['email']));
+				} else {
+					$this->db->prepare($sql)->execute(array($_POST['fullname'], $_POST['address'], $_POST['contact'], $_POST['email']));
+				}
 
 			}
 
