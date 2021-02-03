@@ -549,6 +549,7 @@
 
                     var me = $(this);
                     var btn = me.data("btn");
+                    console.log(me.data("id"));
 
                     var count = parseInt(qty.html());
                     var total = 0;
@@ -571,7 +572,6 @@
                     localStorage.setItem("items", JSON.stringify(cartData));
 
                     var storeditems = JSON.parse(localStorage.getItem("items"));
-                    console.log(me.data("id"));
 
                     for(var i in storeditems){
                         if(storeditems[i] != null){

@@ -1061,7 +1061,7 @@ class Model {
 							  INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status,for_pickup)
 							  VALUES(?,?,?,?,?,?,?,?,?,?)   
 							";          
-							$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['detail']['activeproductid'],$p['detail']['price'],$p['qty'],$f_shipping ,$f_tax, $transactionId, $p['detail']['storeid'], 'pending', $f_pickup));
+							$this->db->prepare($sql)->execute(array($_SESSION['id'],$p['detail']['activeproductid'],$p['detail']['price'],$p['qty'],$f_shipping ,$p['detail']['tax'], $transactionId, $p['detail']['storeid'], 'pending', $f_pickup));
 
 							if($p['detail']['active'] == "production"){
 								$this->updateProductQuantityById($p['detail']['activeproductid'], $p['qty'], false, $p['productId']);
@@ -1830,6 +1830,17 @@ class Model {
 		return $this->db->query($sql)->fetch();
 	}
 
+	public function checkProductIdVariant($id){
+		$sql = "
+			select id,default_variant
+			from productt
+			where id = $id
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
 	public function getCartItemsListener(){
 		if(isset($_POST['getCartItems'])){
 			$products = $_POST['products'];
@@ -1840,29 +1851,57 @@ class Model {
 
 			foreach($products as  $idx => $p){
 				if($p != "null"){
-					$sql = "
-						SELECT t5.name as 'storename', t4.minimum, t5.allow_pickup, t5.pickup_location, t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax, t6.id as 'productionid', t6.price as 'productionprice', t6.variant as 'productionvariant', 'production' as active, t1.id as 'activeproductid', t6.remaining_qty as 'maxQty'
-						FROM productt t1
-						LEFT JOIN media t2
-						ON t1.id = t2.productid
-						LEFT JOIN category t3
-						ON t1.categoryid = t3.id
-						LEFT JOIN fees t4 
-						ON t4.storeid = t1.storeid
-						LEFT JOIN store t5
-						ON t5.id = t1.storeid
-						left join production t6
-						on t6.productid = t1.id
-						WHERE t6.id = $idx
-						AND t2.active = 1
-						AND t1.deleted = 0
-						LIMIT 1
-					";
-					$detail = $this->db->query($sql)->fetch();
+					$productVariant = $this->checkProductIdVariant($idx);
+					$detail = array();
 
-					if(!$detail){
+					if($productVariant){
+						if($productVariant['default_variant'] == ""){
+							//productt
+							$sql = "
+								SELECT t5.name as 'storename', t4.minimum, t5.allow_pickup, t5.pickup_location, t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax, t1.id as 'productionid', t6.price as 'productionprice', t6.variant as 'productionvariant', 'productt' as active, t1.id as 'activeproductid', t1.remaining_qty as 'maxQty'
+								FROM productt t1
+								LEFT JOIN media t2
+								ON t1.id = t2.productid
+								LEFT JOIN category t3
+								ON t1.categoryid = t3.id
+								LEFT JOIN fees t4 
+								ON t4.storeid = t1.storeid
+								LEFT JOIN store t5
+								ON t5.id = t1.storeid
+								left join production t6
+								on t6.productid = t1.id
+								WHERE t1.id = $idx
+								AND t2.active = 1
+								AND t1.deleted = 0
+								LIMIT 1
+							";
+							$detail = $this->db->query($sql)->fetch();
+						} else {
+							//production
+							$sql = "
+								SELECT t5.name as 'storename', t4.minimum, t5.allow_pickup, t5.pickup_location, t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax, t6.id as 'productionid', t6.price as 'productionprice', t6.variant as 'productionvariant', 'production' as active, t1.id as 'activeproductid', t6.remaining_qty as 'maxQty'
+								FROM productt t1
+								LEFT JOIN media t2
+								ON t1.id = t2.productid
+								LEFT JOIN category t3
+								ON t1.categoryid = t3.id
+								LEFT JOIN fees t4 
+								ON t4.storeid = t1.storeid
+								LEFT JOIN store t5
+								ON t5.id = t1.storeid
+								left join production t6
+								on t6.productid = t1.id
+								WHERE t6.id = $idx
+								AND t2.active = 1
+								AND t1.deleted = 0
+								LIMIT 1
+							";
+							$detail = $this->db->query($sql)->fetch();
+						}
+					} else {
+							//production
 						$sql = "
-							SELECT t5.name as 'storename', t4.minimum, t5.allow_pickup, t5.pickup_location, t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax, t1.id as 'productionid', t6.price as 'productionprice', t6.variant as 'productionvariant', 'productt' as active, t1.id as 'activeproductid', t1.remaining_qty as 'maxQty'
+							SELECT t5.name as 'storename', t4.minimum, t5.allow_pickup, t5.pickup_location, t5.logo as 'storelogo',t1.*,t2.name as 'filename', t3.name as 'category', t4.shipping, t4.tax, t6.id as 'productionid', t6.price as 'productionprice', t6.variant as 'productionvariant', 'production' as active, t1.id as 'activeproductid', t6.remaining_qty as 'maxQty'
 							FROM productt t1
 							LEFT JOIN media t2
 							ON t1.id = t2.productid
@@ -1874,14 +1913,15 @@ class Model {
 							ON t5.id = t1.storeid
 							left join production t6
 							on t6.productid = t1.id
-							WHERE t1.id = $idx
+							WHERE t6.id = $idx
 							AND t2.active = 1
 							AND t1.deleted = 0
 							LIMIT 1
 						";
+
 						$detail = $this->db->query($sql)->fetch();
 					}
-
+				
 					$shippingFee = $detail['shipping'];
 					//determine shiping fee
 					if(isset($_SESSION['id'])){
@@ -2315,8 +2355,8 @@ class Model {
 					die(json_encode(array("error" => $this->errors)));
 				}
 
-				$variantQty = (count($_POST['variantData']) > 0) ? $this->getVariantsTotal() : $_POST['quantity'];
-				$defaultVariant = (count($_POST['variantData']) > 0) ? $_POST['variantData'][0][0] : '';
+				$variantQty = (isset($_POST['variantData'])) ? $this->getVariantsTotal() : $_POST['quantity'];
+				$defaultVariant = isset($_POST['variantData']) ? $_POST['variantData'][0][0] : '';
 
 				$sql = "
 					INSERT INTO productt(name,categoryid,price,brand,quantity,cost,description,storeid, expiration,remaining_qty,default_variant)
@@ -2329,7 +2369,7 @@ class Model {
 
 				$id = $this->db->lastInsertId();
 
-				if(count($_POST['variantData']) > 0){
+				if(isset($_POST['variantData']) > 0){
 					$this->addVariantToProduction($id);
 				} else {
 					$this->addToProduction($id);
@@ -2483,6 +2523,7 @@ class Model {
 			WHERE t3.storeid = ".$_SESSION['storeid']."
 			AND t2.active = 1
 			AND t1.deleted = 0
+			and t3.deleted = 0
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -4155,7 +4196,7 @@ class Model {
 				$_SESSION['name'] = $exists['fullname'];
 
 				unset($_SESSION['setup']);
-				
+
 				if($exists['usertype'] == "admin"){
 					header("Location:admindashboard.php");
 				} else if($exists['usertype'] == "client") {

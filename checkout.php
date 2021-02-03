@@ -19,6 +19,9 @@
       if(!isset($_SESSION['id'])){
         header("Location:login.php");
       }
+
+                          // opd($_SESSION['cart']);
+
     ?>
 <!doctype html>
 <html lang="en">
@@ -252,49 +255,68 @@
                           ";
 
                           $db->prepare($sql)->execute(array($transactionId,$_SESSION['id'],$_POST['fullname'],$_POST['address'],$_POST['contact'],$_POST['email'],$_SESSION['cart']['instruction'],$_SESSION['cart']['total'],$_SESSION['cart']['taxTotal'],$_SESSION['cart']['grandTotal'],$_SESSION['cart']['shippingTotal']));
-
                           //add cart products
                           if(isset($_SESSION['cart']['products'])){
                             foreach($_SESSION['cart']['products'] as $idx0 => $i){
+                              if(!empty($i)){
+                                $f_pickup = $i['f_pickup'];
+                                $f_shipping = $i['f_storeshipping'];
+                                $f_total = $i['f_total'];
+                                $f_tax = $i['f_tax'];
+
                                 foreach($i['products'] as $idx => $p){
                                   $sql = "
-                                      INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status)
-                                      VALUES(?,?,?,?,?,?,?,?,?)   
-                                  ";          
-                                  $db->prepare($sql)->execute(array($_SESSION['id'],$p['productId'],$p['detail']['price'],$p['qty'],$p['detail']['shipping'],$p['detail']['tax'], $transactionId,$p['detail']['storeid'], 'pending'));
+                                      INSERT INTO cart(userid,productid,price,quantity,shipping,tax,transactionid,storeid,status, for_pickup)
+                                      VALUES(?,?,?,?,?,?,?,?,?,?)   
+                                  ";   
+
+                                  $db->prepare($sql)->execute(array($_SESSION['id'],$p['detail']['activeproductid'],$p['detail']['price'],$p['qty'],$f_shipping,$p['detail']['tax'], $transactionId,$p['detail']['storeid'], 'pending', $f_pickup));
+
+                                  if($p['detail']['active'] == "production"){
+                                    $model->updateProductQuantityById($p['detail']['activeproductid'], $p['qty'], false, $p['productId']);
+                                  } else {
+                                    //productt
+                                    $model->updateProductQuantityById($p['detail']['activeproductid'], $p['qty']);
+                                  }
 
                                   //update remaining qty
-                                  $sql = "
-                                    update productt
-                                    set quantity = quantity-?
-                                    where id = ?
-                                  ";
+                                  // $sql = "
+                                  //   update productt
+                                  //   set quantity = quantity-?
+                                  //   where id = ?
+                                  // ";
 
-                                  $db->prepare($sql)->execute(array($p['qty'], $p['productId']));
+                                  // $db->prepare($sql)->execute(array($p['qty'], $p['detail']['activeproductid']));
 
-                                  //product production
-                                  $sql = "
-                                    select t1.*
-                                    from production t1
-                                    where t1.remaining_qty > 0
-                                    and t1.productid = ".$p['productId']." 
-                                    and date(t1.expiry_date) > date(CURRENT_DATE) 
-                                    and t1.deducted = 0
-                                    order by t1.expiry_date asc
-                                    limit 1
-                                  ";
+                                  // if($p['detail']['active'] == "production"){
+                                  //   $model->updateProductQuantityById($p['detail']['activeproductid'], $p['qty'], false, $p['productId']);
+                                  // } else {
+                                  //   //productt
+                                  //    //product production
+                                  //   $sql = "
+                                  //     select t1.*
+                                  //     from production t1
+                                  //     where t1.remaining_qty > 0
+                                  //     and t1.productid = ".$p['productId']." 
+                                  //     and date(t1.expiry_date) > date(CURRENT_DATE) 
+                                  //     and t1.deducted = 0
+                                  //     order by t1.expiry_date asc
+                                  //     limit 1
+                                  //   ";
 
-                                  $pRecord = $db->query($sql)->fetch();
-                                  $productId = ($pRecord['id']) ? $pRecord['id'] : 0;
-                                  $sql = "
-                                    update production
-                                    set remaining_qty = remaining_qty-?
-                                    where id = ?
-                                  ";
-                                  $db->prepare($sql)->execute(array($p['qty'], $productId));
-                                }
-
+                                  //   $pRecord = $db->query($sql)->fetch();
+                                  //   $productId = ($pRecord['id']) ? $pRecord['id'] : 0;
+                                  //   $sql = "
+                                  //     update production
+                                  //     set remaining_qty = remaining_qty-?
+                                  //     where id = ?
+                                  //   ";
+                                  //   $db->prepare($sql)->execute(array($p['qty'], $productId));
+                                  // }
+                              
+                                  }
                               }
+                            }
                           }
                       } 
 
