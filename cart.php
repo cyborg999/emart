@@ -480,8 +480,8 @@
                       calculateFinalPrice();
                     }
                     , error : function(res){
-                      // localStorage.clear();
-                      // window.location.href = "cart.php";
+                      localStorage.clear();
+                      window.location.href = "cart.php";
                     }
                     , complete : function(){
                       hidePreloader();

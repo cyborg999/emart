@@ -11,7 +11,15 @@ if(isset($_GET['category'])){
 
 ?>
  <style type="text/css">
-      .products {
+ .img {
+      display: block;
+      margin: 0 auto;
+      height: 100%;
+    background-size: cover;
+    width: auto;
+    background-position: center;
+     }
+  /*    .products {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
@@ -87,20 +95,36 @@ if(isset($_GET['category'])){
      }
      .slider-area .menu-widget ul li a {
       text-decoration: none;
-     }
+     }*/
  </style>
  <?php if(!count($products)): ?>
     <h5>No product found.</h5>
  <?php endif ?>
  <?php foreach($products as $idx => $p): ?>
-  <div class="product">
+  <div class="col-md-3">
+    <figure class="card card-product-grid">
+      <a href="#" class="img-wrap"> 
+        <figure class="img" style="background:url(./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>) no-repeat;background-size: cover; background-position: center; padding: 0; margin: 0; width: auto;"></figure>
+        <!-- <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"> -->
+      </a>
+      <figcaption class="info-wrap">
+        <a href="#" class="title"><?= $p['name'];?></a>
+        <div class="mt-2">
+          <var class="price">₱<?= number_format($p['price'],2);?></var> <!-- price-wrap.// -->
+          <a href="productdetail.php?id=<?= $p['id'];?>" class="view btn btn-sm btn-outline-primary float-right">View Product </a>
+        </div> <!-- action-wrap.end -->
+      </figcaption>
+    </figure> <!-- card // -->
+  </div> <!-- col.// -->
+ <?php endforeach ?>
+<!-- 
+   <div class="product">
       <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"/>
       <div class="content">
-          <a href="productdetail.php?id=<?= $p['id'];?>" class="view">View Product</a>
+          <a href="productdetail.php?id=<?= $p['id'];?>" class="view btn btn-sm btn-outline-primary float-right">View Product <i class="fa fa-shopping-cart"></a>
       </div>
       <div class="bottom-content">
           <em><?= $p['name'];?></em>
           <h4>₱<?= number_format($p['price'],2);?></h4>
       </div>
-  </div>
- <?php endforeach ?>
+  </div> -->

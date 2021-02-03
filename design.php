@@ -104,17 +104,6 @@ age analytics
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 19. search user if nakaorder ng palit product
 20. update cart yung hindi cod na payment(shipping,tax,etc) sa checkout
 cart
@@ -122,9 +111,7 @@ lumiit yung sidenav sa filtered.php page
 fix terms.php/privacy/contact design
 redesign social media add
 add footer to other public pages
-(dapat mawala sa sales and inventory, check if may babad na order)
 18. redesign, continue shopping link https://bootstrap-ecommerce.com/page-components.html#download
-fix decimals
 set max width sa related product(p details), masyado malaki if 1 or 2 lang
 enable checkifpayed sa activate
 if expired yung product with variant, dapat d mababawasan
