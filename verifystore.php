@@ -1,48 +1,66 @@
-<?php include_once "./head.php"; ?>
+<?php include "./adminhead.php";?>
 <body>
-		<?php include_once "./spinner.php"; ?>
-	<div class="container-sm">
-		<?php include_once "./admindashboardnav.php"; ?>
+<?php include "./spinner.php";?>
+	<div class="container">
 		<div class="row">
 			<br>
-			<div class="col-sm-3">
-				<?php 
-					$users = $model->getAllUsers();
-				 	$active = "users"; 
-				 	include "./adminsidenav.php"; ?>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 side">
+				<?php $active="user";include "./adminsidenav.php";?>
 			</div>
-			<div class="col-sm-9">
-				<?php  include_once "./error.php"; ?>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Username</th>
-							<th>Contact #</th>
-							<th>Email</th>
-							<th>Status</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach($users as $idx => $u): ?>
-						<tr>
-							<td><a href="" data-id="<?= $u['id'];?>" class="view"><?= $u['username'];?></a></td>
-							<td><?= $u['contact'];?></td>
-							<td><?= $u['email'];?></td>
-							<td><span class="badge <?= (!$u['verified']) ? 'btn-warning' : 'btn-info'; ?>""><?= ($u['verified']) ? 'verified' : 'suspended'; ?></span></td>
-							<td>
-								<a href="" data-toggle="modal" data-target="#updateModal" class="verify1 btn btn-sm <?= ($u['verified']) ? 'btn-danger' : 'btn-success'; ?>"><?= (!$u['verified']) ? 'verify' : 'suspend'; ?></a>
+			<div class="col-sm-10">
 
-								<a href="" data-verify="<?= $u['verified'];?>" data-id="<?= $u['id'];?>" class="verify2 hidden btn btn-sm <?= ($u['verified']) ? 'btn-danger' : 'btn-success'; ?>"><?= (!$u['verified']) ? 'verify' : 'suspend'; ?></a></td>
-						</tr>
-						<?php endforeach ?>
-					</tbody>
-				</table>
+				<div class="content row">
+					<div class="col-sm">
+						<h5>Store Verification</h5>
+					</div>
+				</div>
+				<div class="row content">
+					<div class="col-sm">
+						<?php 
+							$users = $model->getAllStores();
+
+							// op($users);
+						?>
+						<?php  include_once "./error.php"; ?>
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Store Name</th>
+									<th>Position</th>
+									<th>Contact #</th>
+									<th>Email</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($users as $idx => $u): ?>
+								<tr>
+									<td><a href="" data-id="<?= $u['userid'];?>" class="view"><?= $u['name'];?></a></td>
+									<td><?= $u['position'];?></td>
+									<td><?= $u['b_contact'];?></td>
+									<td><?= $u['b_email'];?></td>
+									<td><span class="badge <?= (!$u['verified']) ? 'btn-warning' : 'btn-info'; ?>""><?= ($u['verified']) ? 'verified' : 'suspended'; ?></span></td>
+									<td>
+										<a href="" data-toggle="modal" data-target="#updateModal" class="verify1 btn btn-sm <?= ($u['verified']) ? 'btn-danger' : 'btn-success'; ?>"><?= (!$u['verified']) ? 'verify' : 'suspend'; ?></a>
+
+										<a href="" data-verify="<?= $u['verified'];?>" data-id="<?= $u['userid'];?>" class="verify2 hidden btn btn-sm <?= ($u['verified']) ? 'btn-danger' : 'btn-success'; ?>"><?= (!$u['verified']) ? 'verify' : 'suspend'; ?></a></td>
+								</tr>
+								<?php endforeach ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
 
-<!-- Modal -->
+
+	<!-- Modal -->
 <div class="modal fade" id="updateModal" data-id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -72,71 +90,72 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="checkPayment" data-id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">User Information</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-        <div class="row  ">
-          <div class="col-sm msg hidden"></div>
-        </div>
-        <div class="row">
+	<!-- Modal -->
+	<div class="modal fade" id="checkPayment" data-id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Store Information</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
 
-          <div class="col-sm">
-            <table class="table">
-            	<tbody id="tbody">
-            		
-            	</tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+	        <div class="row  ">
+	          <div class="col-sm msg hidden"></div>
+	        </div>
+	        <div class="row">
 
-<script type="text/html" id="tpl">
-	<tr>
-		<th>Name:</th>
-		<td>[NAME]</td>
-	</tr>
-	<tr>
-		<th>Address:</th>
-		<td>[ADDRESS]</td>
-	</tr>
-	<tr>
-		<th>Contact:</th>
-		<td>[CONTACT]</td>
-	</tr>
-	<tr>
-		<th>Email:</th>
-		<td>[EMAIL]</td>
-	</tr>
-	<tr>
-		<th>Store:</th>
-		<td>[STORE]</td>
-	</tr>
-	<tr>
-		<th>Business Contact:</th>
-		<td>[BCONTACT]</td>
-	</tr>
-	<tr>
-		<th>Business Email:</th>
-		<td>[BEMAIL]</td>
-	</tr>
-</script>
+	          <div class="col-sm">
+	            <table class="table">
+	            	<tbody id="tbody">
+	            		
+	            	</tbody>
+	            </table>
+	          </div>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
-	<?php include_once "./foot.php"; ?>
+	<script type="text/html" id="tpl">
+		<tr>
+			<th>Name:</th>
+			<td>[NAME]</td>
+		</tr>
+		<tr>
+			<th>Address:</th>
+			<td>[ADDRESS]</td>
+		</tr>
+		<tr>
+			<th>Contact:</th>
+			<td>[CONTACT]</td>
+		</tr>
+		<tr>
+			<th>Email:</th>
+			<td>[EMAIL]</td>
+		</tr>
+		<tr>
+			<th>Store:</th>
+			<td>[STORE]</td>
+		</tr>
+		<tr>
+			<th>Business Contact:</th>
+			<td>[BCONTACT]</td>
+		</tr>
+		<tr>
+			<th>Business Email:</th>
+			<td>[BEMAIL]</td>
+		</tr>
+	</script>
+
+	<?php include "./foot.php"; ?>
 	<script type="text/javascript">
 		(function($){
 			$(document).ready(function(){
@@ -202,8 +221,6 @@
 						});
 
 					});
-
-
 					$(".verify1").off().on("click", function(){
 						var me = $(this);
 
@@ -272,6 +289,5 @@
 			});
 		})(jQuery);
 	</script>
-
 </body>
 </html>

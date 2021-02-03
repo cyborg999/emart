@@ -240,9 +240,14 @@
   </script>
   <script type="text/html" id="tpl">
     <tr class="tr" data-shipping="[SHIPPING]" data-baseprice="[PRICE]" data-store="[STORENAME]">
-      <td><img src="./uploads/merchant/[STOREID]/[PRODUCTID]/[FILENAME]"" alt="" width="70" class="img-fluid rounded shadow-sm"></td>
-      <td><div class="ml-3 d-inline-block align-middle">
-          <h5 class="mb-0" style="max-width: 100%;"><a href="./productdetail.php?id=[ID]"  target="_blank" class="text-dark d-inline-block">[NAME]</a></h5><span class="text-muted font-weight-normal font-italic">Category: [CATEGORY]</span>
+      <td><img src="./uploads/merchant/[STOREID]/[ACTIVEPRODUCTID]/[FILENAME]"" alt="" width="70" class="img-fluid rounded shadow-sm"></td>
+      <td>
+        <div class="ml-3 d-inline-block align-middle">
+          <h5 class="mb-0" style="max-width: 100%;"><a href="./productdetail.php?id=[ID]"  target="_blank" class="text-dark d-inline-block">[NAME]</a></h5>
+          
+          <small><span class="text-muted font-weight-normal font-italic">Category: [CATEGORY]</span></small>
+          <br/>
+          <small><i>[VARIANT]</i></small>
         </div>
       </td>
         <td class="align-middle"><strong>₱ <span class="price" data-price="[PRICE]">[PRICE]</span></strong></td>
@@ -263,7 +268,7 @@
         </td>
         <!-- <td class="align-middle"><strong>[SHIPPING]</strong></td> -->
         <td class="align-middle"><strong>[TAX]</strong></td>
-        <td class="align-middle"><a href="#" data-id="[ID]" class="remove text-dark"><svg class="bi" width="25" height="25" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
+        <td class="align-middle"><a href="#" data-id="[PRODUCTIONID]" class="remove text-dark"><svg class="bi" width="25" height="25" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg></a>
         </td>
     </tr>
     </script>
@@ -417,7 +422,7 @@
 
                           qty = qty.replace('"', '');
 
-                         var tax = (detail.tax /100 ) * (detail.price * qty);
+                         var tax = (detail.tax /100 ) * (detail.productionprice * qty);
 
                           if(detail.shipping == null){
                             detail.shipping = 0;
@@ -426,7 +431,7 @@
                             detail.shipping = 0;
                           }
 
-                          total += qty * detail.price;
+                          total += qty * detail.productionprice;
                           taxTotal += tax;
 
                           tpl = tpl.replace("[STOREID]", detail.storeid).
@@ -435,18 +440,21 @@
                             replace("[STORENAME]", store.storename).
                             replace("[FILENAME]", detail.filename).
                             replace("[NAME]", detail.name).
-                            replace("[PRICE]", detail.price).
+                            replace("[PRICE]", detail.productionprice).
                             replace("[SHIPPING]", detail.shipping).
                             replace("[SHIPPING]", detail.shipping).
-                            replace("[MAX]", detail.quantity).
-                            replace("[PRICE]", detail.price * qty).
-                            replace("[PRICE]", detail.price * qty).
+                            replace("[MAX]", detail.maxQty).
+                            replace("[PRICE]", detail.productionprice * qty).
+                            replace("[PRICE]", detail.productionprice * qty).
                             replace("[CATEGORY]", detail.category).
                             // replace("[SHIPPING]", "₱" + qty * detail.shipping + " <sup>(₱" + detail.shipping + ")</sup>").
                             replace("[TAX]", "₱<span class='taxedPrice' data-tax='"+Math.round(tax) +"'>" + Math.round(tax) + "</span> <sup>(<span class='tax'>" + (Math.round(detail.tax) + "</span>%)</sup>")).
                             replace("[QTY]", qty).
                             replace("[ID]", detail.id).
                             replace("[ID]", detail.id).
+                            replace("[ACTIVEPRODUCTID]", detail.activeproductid).
+                            replace("[PRODUCTIONID]", detail.productionid).
+                            replace("[VARIANT]", (detail.productionvariant == undefined) ? '' : detail.productionvariant).
                             replace("[ID]", detail.id);
 
                             orders = orders.replace("[STORE]", store.storename);
@@ -472,8 +480,8 @@
                       calculateFinalPrice();
                     }
                     , error : function(res){
-                      localStorage.clear();
-                      window.location.href = "cart.php";
+                      // localStorage.clear();
+                      // window.location.href = "cart.php";
                     }
                     , complete : function(){
                       hidePreloader();
@@ -526,13 +534,15 @@
                     var tax = me.parents(".tr").find(".tax");
                     var qtyPrice = parseFloat(basePrice*current);
                         
-                    price.html(qtyPrice);
+                    price.data("price", qtyPrice);
+                    price.html(qtyPrice.toLocaleString());
 
                     var finalPrice = (parseFloat(tax.html()) /100 ) * (basePrice * current);
 
+                    taxedPrice.data("tax", finalPrice);
                     finalPrice = finalPrice.toLocaleString();
 
-                    taxedPrice.html(finalPrice);
+                    taxedPrice.html(finalPrice.toLocaleString());
 
                     calculateFinalPrice();
                 });
@@ -542,11 +552,12 @@
 
                     var me = $(this);
                     var action = me.data("action");
-                    var max = me.attr("max");
+                    var max = me.parents(".tr").find(".manualInput").attr("max");
                     var qty = me.parents(".pagination").find(".qty");
                     var current = parseInt(qty.val());
 
                     if(action == "plus"){
+                      console.log(current,max);
                         if(parseInt(current) < max){
                           current +=1;
                           qty.val(current);
@@ -584,6 +595,8 @@
                   var cartItems = JSON.parse(localStorage.getItem("items"));
                   var count = $("#count").html();
 
+                  console.log(cartItems);
+                  console.log(me.data("id"));
                   cartItems[me.data("id")] = null;
 
                   localStorage.setItem("items", JSON.stringify(cartItems));

@@ -20,7 +20,7 @@
 					</div>
 					
 				</div>
-				<div class="row content">
+				<!-- <div class="row content">
 						<div class="col-sm-4">
 							<b class="label">Filter By:</b>
 							<label> Date Range
@@ -64,42 +64,25 @@
 						<div class="col-sm-1">
 							<a href="" id="search" class="btn btn-sm btn-primary">filter</a>
 						</div>
-					</div>
+					</div> -->
 				<div class="content jumbotron">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						  <li class="nav-item">
-						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Customers</a>
+						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Municipality</a>
 						  </li>
-						  <li class="nav-item">
-						    <a class="nav-link" id="chart-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="chart" aria-selected="false">Products</a>
-						  </li>
+						 <!--  <li class="nav-item">
+						    <a class="nav-link" id="chart-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="chart" aria-selected="false">Customer Age</a>
+						  </li> -->
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade  show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 								<canvas id="monthlyChart" width="100" height="30" aria-label="Hello ARIA World" role="img"></canvas>		
 
 							</div>
-							<div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="chart-tab">
+							<div class="tab-pane fade shsow activse" id="chart" role="tabpanel" aria-labelledby="chart-tab">
 								<br>
-								<a href="ajax.php?salesreport=true">Export CSV</a>
-								<div class="table-responsive">
-									<table class="table table-sm table-hover">
-										<thead>
-											<tr>
-												<th>Product</th>
-												<th>Price</th>
-												<th>Qty</th>
-												<th>Shipping Fee</th>
-												<th>Tax</th>
-												<th>Date Purchased</th>
-												<th>Date Delivered</th>
-											</tr>
-										</thead>
-										<tbody id="tbody">
-											
-										</tbody>
-									</table>
-								</div>
+								<canvas id="ageChart" width="100" height="30" aria-label="Hello ARIA World" role="img"></canvas>		
+								
 							</div>
 						</div>
 				</div>
@@ -295,6 +278,52 @@
 				});
 			}
 
+
+			function loadAge(year){
+				$.ajax({
+					url : "ajax.php",
+					data : { loadAnnualCustomerByMunicipality : true, year : year},
+					type : "post",
+					dataType : "json",
+					success : function(response){
+						lastData = response.record;
+						console.log(response.total );
+						var annualData = {
+					        labels: ['Boac', 'Mogpog', 'Santa Cruz', 'Torrijos', 'Buenavista', 'Gasan'],
+					        datasets: [{
+					            label: 'Customers by Municipality for year '+ year,
+					            data: response.total ,
+					            backgroundColor: [
+					                'rgba(99, 161, 249, 0.5)',
+					                'rgba(99, 161, 249, 0.5)',
+					                'rgba(99, 161, 249, 0.5)',
+					                'rgba(99, 161, 249, 0.5)',
+					                'rgba(99, 161, 249, 0.5)',
+					                'rgba(99, 161, 249, 0.5)'
+					            ],
+					            borderColor: [
+					                'rgba(86, 150, 239, .8)',
+					                'rgba(86, 150, 239, .8)',
+					                'rgba(86, 150, 239, .8)',
+					                'rgba(86, 150, 239, .8)',
+					                'rgba(86, 150, 239, .8)',
+					                'rgba(86, 150, 239, .8)'
+					            ],
+					            borderWidth: 1
+					        }]
+					    };
+
+						var myChart = new Chart(monthlyChart, {
+						    type: 'bar',
+						    data: annualData,
+						    options: options
+						});
+
+						loadRecord();
+					}
+				});
+			}
+
 			function loadRecord(){
 				$("#tbody tr").remove();
 
@@ -316,6 +345,7 @@
 			}
 
 			loadChart(year);
+			// loadAge(year);
 
 
 			$("#search").on("click", function(e){

@@ -35,6 +35,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Cost</th>
                 <th scope="col">Quantity</th>
+                <th scope="col">Variants</th>
                 <th scope="col">Brand</th>
                 <th scope="col">Date Expired</th>
                 <th>Action</th>
@@ -54,6 +55,7 @@
                 <td class="editprice"><?= $product['price']; ?></td>
                 <td class="editcost"><?= $product['cost']; ?></td>
                 <td class="editqty"><?= $product['remaining_qty']; ?>/<?= $product['qty']; ?></td>
+                <td class="editvariant"><?= $product['variant']; ?></td>
                 <td class="editbrand"><?= $product['brand']; ?></td>
                 <td class="editbrand <?= $product['isExpired'];?>"><?= $product['expiry_date']; ?></td>
                 <td>
@@ -156,6 +158,7 @@
           <td class="editprice">[PRICE]</td>
           <td class="editcost">[COST]</td>
           <td class="editqty">[REM]/[QUANTITY]</td>
+          <td class="editvariant">[VARIANT]</td>
           <td class="editbrand">[BRAND]</td>
           <td class="editbrand [ISEXPIRED]">[EXPIRED]</td>
           <td>
@@ -320,6 +323,7 @@
                   replace("[ISEXPIRED]", response[i].isExpired).
                   replace("[REM]", response[i].remaining_qty).
                   replace("[QTY]", response[i].qty).
+                  replace("[VARIANT]", response[i].variant).
                   replace("[PRICE]", response[i].price).
                   replace("[EXPIRATION]", response[i].expiration).
                   replace("[COST]", response[i].cost).

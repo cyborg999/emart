@@ -242,10 +242,10 @@
 										<tbody>
 											<tr id="start">
 												<td>
-													<input type="text" class="form-control" id="variant" name="name" required placeholder="Variant...">
+													<input type="text" class="form-control" id="variant" name="name"  placeholder="Variant...">
 												</td>
 												<td>
-													<input required type="text" class="form-control" id="val" name="val" placeholder="Value...">
+													<input  type="text" class="form-control" id="val" name="val" placeholder="Value...">
 												</td>
 												<td>
 													<input type="submit" id="add" class="btn  btn-success" value="Add">
@@ -254,8 +254,27 @@
 											
 										</tbody>
 									</table>
+									<a href="" id="generate">generate price list table</a>
+									<br>
+									<a href="" id="reset">reset table</a>
 									</div>
 									<br>
+									<div class="row">
+										<div class="col-sm">
+											<table class="table tbl-sm">
+												<thead>
+													<tr>
+														<th>Variant Combination</th>
+														<th>Price</th>
+														<th>Quantity</th>
+													</tr>
+												</thead>
+												<tbody id="variantBody">
+													
+												</tbody>
+											</table>
+										</div>
+									</div>
 									<div class="row  ">
 							          <div class="col-sm msg hidden"></div>
 							        </div>
@@ -273,6 +292,13 @@
 		</div>
 	</div>
 
+	<script type="text/html" id="variantBodyTr">
+		<tr>
+			<td class="combo">[COMBO]</td>
+			<td><input type="number" min="1" class="form-control variantPrice" name="price" required class="price"></td>
+			<td><input type="number" min="1" class="form-control variantQty" required name="qty" class="qty"></td>
+		</tr>
+	</script>
 	<script type="text/html" id="variants">
 		<tr class="trVariant">
 			<td>
@@ -461,6 +487,21 @@
 					return data;
 				}
 
+				function getVariantData() {
+					var data = Array();
+
+					$("#variantBody tr").each(function(){
+						var me = $(this);
+						var variant = me.find(".combo").html();
+						var vPrice = me.find(".variantPrice").val();
+						var vQty = me.find(".variantQty").val();
+
+						data.push(Array(variant, vPrice, vQty));
+					});
+
+					return data;
+				}
+
 				$("#addSlider").on("submit", function(e){
 					e.preventDefault();
 
@@ -494,6 +535,7 @@
 								desc : $("#desc").val(),
 								listDesc : getListDesc(),
 								variants : getVariants(),
+								variantData : getVariantData(),
 								active : img.data("src"),
 								src : imgs,
 								addProduct : true
@@ -513,10 +555,44 @@
 
 				                }
 
+							}
+							, complete : function(){
 				                hidePreloader();
+								
 							}
 						});
 					}
+				});
+
+				$("#reset").on("click", function(e){
+					e.preventDefault();
+
+					$("#variantBody").html("");
+				});
+
+				$("#generate").on("click", function(e){
+					e.preventDefault();
+
+					$.ajax({
+						url : "ajax.php",
+						data : {
+							variants : getVariants(),
+							generateVariants : true
+						},
+						type : "post",
+						dataType : "json",
+						success : function(response){
+							console.log(response);
+			                for(var i in response){
+			                	var tpl = $("#variantBodyTr").html();
+			                	var data = response[i];
+
+			                	tpl = tpl.replace("[COMBO]", data);
+
+			                	$("#variantBody").append(tpl);
+			                }
+						}
+					});
 				});
 
 				$("#category").chosen();

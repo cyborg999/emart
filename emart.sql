@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2021 at 07:23 AM
+-- Generation Time: Feb 03, 2021 at 07:37 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -139,7 +139,8 @@ INSERT INTO `delivery_fee` (`id`, `storeid`, `municipality`, `fee`, `date_added`
 (6, 50, 'Mogpog', 30, '2021-01-24 03:31:06'),
 (7, 50, 'Boac', 20, '2021-01-24 09:14:02'),
 (8, 58, 'Boac', 20, '2021-01-30 03:48:09'),
-(9, 58, 'Gasan', 50, '2021-01-30 03:48:15');
+(9, 58, 'Gasan', 50, '2021-01-30 03:48:15'),
+(10, 66, 'Boac', 20, '2021-02-02 04:30:42');
 
 -- --------------------------------------------------------
 
@@ -172,7 +173,8 @@ INSERT INTO `fees` (`id`, `storeid`, `shipping`, `tax`, `productid`, `date_creat
 (11, 49, 30, 12, NULL, '2021-01-05 11:53:23', NULL, NULL, 122),
 (12, 58, 50, 12, NULL, '2021-01-30 03:20:02', NULL, NULL, 600),
 (13, 64, 50, 12, NULL, '2021-01-31 03:04:39', NULL, NULL, 500),
-(14, 63, 10, 12, NULL, '2021-01-31 04:21:40', NULL, NULL, 50);
+(14, 63, 10, 12, NULL, '2021-01-31 04:21:40', NULL, NULL, 50),
+(15, 66, 50, 12, NULL, '2021-02-02 04:30:52', NULL, NULL, 300);
 
 -- --------------------------------------------------------
 
@@ -375,7 +377,25 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (143, 'ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', 64, '2021-01-31 06:01:01', 84, 1),
 (144, 'd1398cd08dca7e5ecda025cddf356535.png', 64, '2021-01-31 11:25:57', 85, 1),
 (145, '05d0e7b29d64e56dc46ac86ef0afb3d7.jpg', 63, '2021-01-31 12:10:43', 86, 1),
-(146, '05d0e7b29d64e56dc46ac86ef0afb3d7.jpg', 63, '2021-01-31 12:57:08', 87, 1);
+(146, '05d0e7b29d64e56dc46ac86ef0afb3d7.jpg', 63, '2021-01-31 12:57:08', 87, 1),
+(147, 'd5fa42ff3d5b6145063a4b91633021af.jpg', 63, '2021-02-01 11:58:11', 88, 1),
+(148, 'd5fa42ff3d5b6145063a4b91633021af.jpg', 63, '2021-02-01 12:03:19', 89, 1),
+(149, '05d0e7b29d64e56dc46ac86ef0afb3d7.jpg', 63, '2021-02-01 12:20:44', 90, 1),
+(150, 'e260b9bc6e950293d73b0775d3548998.jpg', 63, '2021-02-01 21:05:30', 91, 1),
+(151, 'e260b9bc6e950293d73b0775d3548998.jpg', 63, '2021-02-01 21:06:39', 92, 1),
+(152, 'e260b9bc6e950293d73b0775d3548998.jpg', 63, '2021-02-01 21:07:54', 93, 1),
+(153, '590a2d03320e83ebd29fd8ea74b8942a.jpg', 63, '2021-02-01 21:13:44', 94, 0),
+(154, '4718599b5374d058571a331d43e2ab5f.jpg', 63, '2021-02-01 21:13:44', 94, 1),
+(155, '3935efd44ee8c28711d31e39127aace2.png', 66, '2021-02-02 04:29:24', 95, 1),
+(156, '3935efd44ee8c28711d31e39127aace2.png', 66, '2021-02-02 05:05:53', 96, 1),
+(157, '3935efd44ee8c28711d31e39127aace2.png', 66, '2021-02-02 05:07:56', 97, 1),
+(158, '3935efd44ee8c28711d31e39127aace2.png', 66, '2021-02-02 05:22:26', 98, 1),
+(159, '1bb87d41d15fe27b500a4bfcde01bb0e.png', 66, '2021-02-02 18:01:18', 99, 1),
+(160, 'f50c73d00fda2bd6d78ce4082e70f008.png', 66, '2021-02-02 18:05:48', 100, 1),
+(161, 'f50c73d00fda2bd6d78ce4082e70f008.png', 66, '2021-02-02 18:14:13', 101, 1),
+(162, 'f50c73d00fda2bd6d78ce4082e70f008.png', 66, '2021-02-02 18:22:41', 102, 1),
+(163, '1bb87d41d15fe27b500a4bfcde01bb0e.png', 66, '2021-02-02 19:28:30', 103, 1),
+(164, '1bb87d41d15fe27b500a4bfcde01bb0e.png', 67, '2021-02-02 20:32:17', 104, 1);
 
 -- --------------------------------------------------------
 
@@ -394,15 +414,6 @@ CREATE TABLE `notification` (
   `type` varchar(255) DEFAULT 'Order'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `notification`
---
-
-INSERT INTO `notification` (`id`, `title`, `body`, `seen`, `date_added`, `storeid`, `userid`, `type`) VALUES
-(198, 'Subscription Payment: Card', '<p>Cod Store paid a monthly subscription.</p>', 1, '2021-02-01 04:26:14', 65, NULL, 'cardSubscription'),
-(199, 'Subscription Payment: Cash', '<p>Cod Store requested a meetup on 2021-02-18 for the payment of subscription.</p>', 1, '2021-02-01 04:38:04', 65, NULL, 'cashSubscription'),
-(200, '<div>Subscription Alert: Expiration.\r\n			  	</div>', '<p>Your subscription will expire in0 ()</p>', 0, '2021-02-01 06:19:14', 63, NULL, 'SubscriptionDueDate');
-
 -- --------------------------------------------------------
 
 --
@@ -420,31 +431,6 @@ CREATE TABLE `payments` (
   `payment_for` varchar(255) DEFAULT 'ecommerce',
   `codsub_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `payment_id`, `amount`, `currency`, `payment_status`, `captured_at`, `userid`, `payment_for`, `codsub_date`) VALUES
-(114, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:31:09', 97, 'ecommerce', NULL),
-(115, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:34:15', 97, 'ecommerce', NULL),
-(116, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:40:52', 97, 'ecommerce', NULL),
-(117, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:41:51', 97, 'ecommerce', NULL),
-(118, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:55:07', 97, 'ecommerce', NULL),
-(119, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:55:24', 97, 'ecommerce', NULL),
-(120, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:56:19', 97, 'ecommerce', NULL),
-(121, 'COD', 815.20, 'PHP', 'Pending', '2021-01-31 20:56:49', 97, 'ecommerce', NULL),
-(122, 'COD', 134.00, 'PHP', 'Pending', '2021-01-31 20:57:52', 97, 'ecommerce', NULL),
-(123, 'COD', 144.00, 'PHP', 'Pending', '2021-01-31 21:15:53', 97, 'ecommerce', NULL),
-(124, 'COD', 134.00, 'PHP', 'Pending', '2021-01-31 21:17:43', 97, 'ecommerce', NULL),
-(125, 'COD', 7267.60, 'PHP', 'Pending', '2021-01-31 21:35:01', 97, 'ecommerce', NULL),
-(126, 'COD', 144.00, 'PHP', 'Pending', '2021-01-31 21:58:40', 97, 'ecommerce', NULL),
-(127, 'COD', 144.00, 'PHP', 'Pending', '2021-01-31 22:09:59', 97, 'ecommerce', NULL),
-(128, 'COD', 1000.00, 'PHP', 'Pending', '2021-02-01 11:31:45', 98, 'ecommerce', '2021-02-24'),
-(129, 'COD', 1000.00, 'PHP', 'Pending', '2021-02-01 11:34:10', 98, 'ecommerce', '2021-02-26'),
-(130, 'COD', 1000.00, 'PHP', 'Pending', '2021-02-01 11:35:26', 98, 'CODSubscription', '2021-02-18'),
-(131, 'ch_1IFtyEJmfnsrzK57jFoc9BeD', 1000.00, 'PHP', 'Captured', '2021-02-01 13:25:03', 98, 'subscription', NULL),
-(132, 'ch_1IFtzNJmfnsrzK57dQ3U4kbN', 1000.00, 'PHP', 'Captured', '2021-02-01 13:26:14', 98, 'subscription', NULL);
 
 -- --------------------------------------------------------
 
@@ -509,7 +495,8 @@ CREATE TABLE `production` (
   `dateadded` date DEFAULT current_timestamp(),
   `price` float NOT NULL,
   `cost` int(11) DEFAULT NULL,
-  `deleted` int(11) DEFAULT 0
+  `deleted` int(11) DEFAULT 0,
+  `variant` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -534,8 +521,49 @@ CREATE TABLE `productt` (
   `expiration` date DEFAULT NULL,
   `remaining_qty` int(11) DEFAULT 0,
   `deducted` int(11) DEFAULT 0,
-  `deleted` int(11) DEFAULT 0
+  `deleted` int(11) DEFAULT 0,
+  `default_variant` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_list`
+--
+
+CREATE TABLE `product_list` (
+  `id` int(11) NOT NULL,
+  `storeid` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `date_added` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_list`
+--
+
+INSERT INTO `product_list` (`id`, `storeid`, `productid`, `name`, `date_added`) VALUES
+(1, 63, 89, 'asd12', '2021-02-01 12:03:19'),
+(2, 63, 89, 'asd122', '2021-02-01 12:03:19'),
+(3, 63, 90, 'Best performance of battery', '2021-02-01 12:20:45'),
+(4, 63, 90, '5 years warranty for this product', '2021-02-01 12:20:45'),
+(5, 63, 90, 'Best performance of battery', '2021-02-01 12:20:45'),
+(6, 63, 94, 'Lorem', '2021-02-01 21:13:45'),
+(7, 63, 94, 'Ipsum', '2021-02-01 21:13:45'),
+(8, 66, 95, 'Description1', '2021-02-02 04:29:24'),
+(9, 66, 95, '3', '2021-02-02 04:29:24'),
+(10, 66, 95, 'desc', '2021-02-02 04:29:24'),
+(11, 66, 96, 'desc 1', '2021-02-02 05:05:53'),
+(12, 66, 96, 'desc 2', '2021-02-02 05:05:53'),
+(13, 66, 96, 'desc 3', '2021-02-02 05:05:53'),
+(14, 66, 97, 'asdas', '2021-02-02 05:07:56'),
+(15, 66, 99, 'test1', '2021-02-02 18:01:18'),
+(16, 66, 99, 'test2', '2021-02-02 18:01:19'),
+(17, 66, 101, 'test', '2021-02-02 18:14:13'),
+(18, 66, 101, 'eest3', '2021-02-02 18:14:13'),
+(19, 66, 102, 'asd', '2021-02-02 18:22:41'),
+(20, 66, 102, 'asdsadas', '2021-02-02 18:22:41');
 
 -- --------------------------------------------------------
 
@@ -745,15 +773,6 @@ CREATE TABLE `store` (
   `position` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `store`
---
-
-INSERT INTO `store` (`id`, `name`, `description`, `logo`, `date_creaed`, `userid`, `subscriptionid`, `last_payment_id`, `allow_pickup`, `pickup_location`, `material_low`, `b_address`, `b_contact`, `b_email`, `dti`, `position`) VALUES
-(63, 'Jordan Sadiwa', '', NULL, '2021-01-30 20:44:20', 95, 35, 'ch_1IFQJSJmfnsrzK576StB7PmJ', 1, 'test location', 20, '1852 Sandejas Pasay City', '34523', 'sad@mail.com', 'asd', '345'),
-(64, 'Jordan Sadiwa324', 'test12', 'uploads/merchant/64/logo/ae48fdf86e1d2e14eb67ca72fa953b8e.jpg', '2021-01-31 03:00:08', 96, 35, 'ch_1IFWCgJmfnsrzK57WqbkdtZT', 1, 'testwfdsf', 20, '21852 Sandejas Pasay City', '3452', '2JORDAN-E14NWI096B87359TFWN@TEST.INFO', '3452', '345'),
-(65, 'Cod Store', NULL, NULL, '2021-01-31 13:19:18', 98, 40, 'ch_1IFtzNJmfnsrzK57dQ3U4kbN', 0, NULL, 20, '1852 Sandejas Pasay City', '234234', 'sad@mail.com', '23432', 'Web Developer');
-
 -- --------------------------------------------------------
 
 --
@@ -807,48 +826,6 @@ CREATE TABLE `transaction` (
   `status` varchar(255) DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`id`, `userid`, `date_created`, `total`, `status`) VALUES
-(98, 97, '2021-01-31 04:29:06', 587, 'pending'),
-(99, 97, '2021-01-31 04:33:04', 456, 'pending'),
-(100, 97, '2021-01-31 04:35:15', 456, 'pending'),
-(101, 97, '2021-01-31 05:15:20', 120, 'pending'),
-(102, 97, '2021-01-31 05:17:19', 120, 'pending'),
-(103, 97, '2021-01-31 05:54:50', 120, 'pending'),
-(104, 97, '2021-01-31 06:01:47', 600, 'pending'),
-(105, 97, '2021-01-31 06:07:49', 120, 'pending'),
-(106, 97, '2021-01-31 11:00:11', 120, 'pending'),
-(107, 97, '2021-01-31 11:00:26', 120, 'pending'),
-(108, 97, '2021-01-31 11:00:50', 120, 'pending'),
-(109, 97, '2021-01-31 11:01:27', 120, 'pending'),
-(110, 97, '2021-01-31 11:01:51', 120, 'pending'),
-(111, 97, '2021-01-31 11:02:30', 120, 'pending'),
-(112, 97, '2021-01-31 11:03:04', 120, 'pending'),
-(113, 97, '2021-01-31 11:03:26', 120, 'pending'),
-(114, 97, '2021-01-31 11:03:52', 120, 'pending'),
-(115, 97, '2021-01-31 11:06:29', 120, 'pending'),
-(116, 97, '2021-01-31 11:22:11', 120, 'pending'),
-(117, 97, '2021-01-31 11:28:14', 630, 'pending'),
-(118, 97, '2021-01-31 11:28:40', 630, 'pending'),
-(119, 97, '2021-01-31 11:28:56', 630, 'pending'),
-(120, 97, '2021-01-31 11:31:09', 630, 'pending'),
-(121, 97, '2021-01-31 11:34:16', 630, 'pending'),
-(122, 97, '2021-01-31 11:40:53', 630, 'pending'),
-(123, 97, '2021-01-31 11:41:51', 630, 'pending'),
-(124, 97, '2021-01-31 11:55:07', 630, 'pending'),
-(125, 97, '2021-01-31 11:55:24', 630, 'pending'),
-(126, 97, '2021-01-31 11:56:19', 630, 'pending'),
-(127, 97, '2021-01-31 11:56:49', 630, 'pending'),
-(128, 97, '2021-01-31 11:57:53', 120, 'pending'),
-(129, 97, '2021-01-31 12:15:53', 120, 'pending'),
-(130, 97, '2021-01-31 12:17:43', 120, 'pending'),
-(131, 97, '2021-01-31 12:35:01', 6480, 'pending'),
-(132, 97, '2021-01-31 12:58:40', 120, 'pending'),
-(133, 97, '2021-01-31 13:09:59', 120, 'pending');
-
 -- --------------------------------------------------------
 
 --
@@ -870,11 +847,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `usertype`, `verified`, `date_created`, `photo`) VALUES
-(36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55', 'uploads/user/20/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg'),
-(95, 'store1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 1, '2021-01-30 20:44:20', NULL),
-(96, 'store2', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 1, '2021-01-31 03:00:08', NULL),
-(97, 'client1', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'client', 0, '2021-01-31 04:26:51', NULL),
-(98, 'codstore', '5c07f19fdd6ce3b1a588f71d11ee2b23', 'merchant', 1, '2021-01-31 13:19:18', NULL);
+(36, 'admin', 'eed57216df3731106517ccaf5da2122d', 'admin', 0, '2020-10-12 15:56:55', 'uploads/user/20/profile/cb424a2f54ed050e9bde2ba1d7d30120.jpg');
 
 -- --------------------------------------------------------
 
@@ -899,11 +872,59 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`id`, `fullname`, `address`, `contact`, `email`, `bday`, `date_created`, `userid`, `photo`) VALUES
-(25, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2020-12-05 19:12:46', 36, NULL),
-(74, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '34534', 'sad@mail.com', NULL, '2021-01-30 20:44:20', 95, NULL),
-(75, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '345345', 'sad@mail.com', NULL, '2021-01-31 03:00:08', 96, NULL),
-(76, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '34534', 'sad@mail.com', NULL, '2021-01-31 04:26:51', 97, NULL),
-(77, 'Jordan Sadiwa', '1852 Sandejas Pasay City', '32432', 'sad@mail.com', NULL, '2021-01-31 13:19:18', 98, NULL);
+(25, 'Jordan Sadiwauser1', '1852 Sandejas Pasay Cityuser1', '11123', 'JORDAN-E14NWI096B87359TFWN@TEST.INFO1user1', '1111-12-11', '2020-12-05 19:12:46', 36, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variants`
+--
+
+CREATE TABLE `variants` (
+  `id` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `variants`
+--
+
+INSERT INTO `variants` (`id`, `productid`, `name`, `value`) VALUES
+(1, 93, 'Colore', 'Green'),
+(2, 93, 'Colore', 'Red'),
+(3, 94, 'Delivery', 'Russia, USA, and Europe'),
+(4, 94, 'Model#', 'Odsy-1000'),
+(5, 94, 'Color', 'Green'),
+(6, 94, 'Color', 'Red'),
+(7, 95, 'Color', 'Red'),
+(8, 95, 'Flavor', 'Chilimansi'),
+(9, 95, 'Flavor', 'Spicy'),
+(10, 96, 'Unit', 'g'),
+(11, 96, 'Color', 'Red'),
+(12, 96, 'Color', 'Blue'),
+(13, 97, 'Color', 'Green'),
+(14, 97, 'Color', 'Red'),
+(15, 97, 'Unit', 'g'),
+(16, 97, 'Unit', 'kg'),
+(17, 98, 'size', 'pc'),
+(18, 98, 'size', 'pack'),
+(19, 98, 'flavor', 'spicy,chilimansi,original'),
+(20, 100, 'Size', 'Medium'),
+(21, 100, 'Size', 'Small'),
+(22, 100, 'Color', 'Green'),
+(23, 100, 'Color', 'Red'),
+(24, 101, 'Flavor', 'Spicy'),
+(25, 101, 'Size', 'Medium'),
+(26, 101, 'Size', 'Small'),
+(27, 101, 'Color', 'Green'),
+(28, 101, 'Color', 'Red'),
+(29, 102, 'Size', 'Medium'),
+(30, 102, 'Size', 'Small'),
+(31, 102, 'Color', 'Green'),
+(32, 102, 'Color', 'Red'),
+(33, 103, 'Norma', 'asd');
 
 -- --------------------------------------------------------
 
@@ -1011,6 +1032,12 @@ ALTER TABLE `productt`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_list`
+--
+ALTER TABLE `product_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `purchase`
 --
 ALTER TABLE `purchase`
@@ -1077,6 +1104,12 @@ ALTER TABLE `userinfo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `variants`
+--
+ALTER TABLE `variants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `vendor`
 --
 ALTER TABLE `vendor`
@@ -1090,13 +1123,13 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1108,13 +1141,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `delivery_fee`
 --
 ALTER TABLE `delivery_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `fees`
 --
 ALTER TABLE `fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -1132,19 +1165,19 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `pos`
@@ -1156,13 +1189,19 @@ ALTER TABLE `pos`
 -- AUTO_INCREMENT for table `production`
 --
 ALTER TABLE `production`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+
+--
+-- AUTO_INCREMENT for table `product_list`
+--
+ALTER TABLE `product_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -1204,7 +1243,7 @@ ALTER TABLE `social`
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `subscription`
@@ -1216,19 +1255,25 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
+-- AUTO_INCREMENT for table `variants`
+--
+ALTER TABLE `variants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `vendor`

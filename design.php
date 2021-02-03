@@ -99,7 +99,22 @@ round2
 
 
 
-18. show padn sa report kahit deleted
+schedule ng admin
+age analytics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 19. search user if nakaorder ng palit product
 20. update cart yung hindi cod na payment(shipping,tax,etc) sa checkout
 cart
@@ -109,15 +124,12 @@ redesign social media add
 add footer to other public pages
 (dapat mawala sa sales and inventory, check if may babad na order)
 18. redesign, continue shopping link https://bootstrap-ecommerce.com/page-components.html#download
-if manual input sa product detail
 fix decimals
-add notification sa sidenav ng merch
-hide out of stock/expired product sa search and homepage, if inventory > 0
 set max width sa related product(p details), masyado malaki if 1 or 2 lang
-may price na 0
-notification sa sidenav
 enable checkifpayed sa activate
-
+if expired yung product with variant, dapat d mababawasan
+if ordered cancelled, dapat sa same variant ma add yung remaining qty
+wala bootstrap sa report ng client
 client
 show orders per transaction not per item
 

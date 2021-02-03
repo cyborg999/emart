@@ -155,12 +155,14 @@
 						  <input type="text" class="form-control" id="inputPassword4" required value="" name="fullname">
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="inputAddress">Address</label>
-						<input type="text" class="form-control" required id="inputAddress" value="" name="address" placeholder="1234 Main St">
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="inputAddress">Address</label>
+							<input type="text" class="form-control" required id="inputAddress" value="" name="address" placeholder="1234 Main St">
+						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-4 hidden">
+						<div class="form-group col-md-4">
 						  <label for="inputCity">Birthday</label>
 						  <input type="date" value="" name="birthday"  class="form-control" id="inputCity">
 						</div>
@@ -169,8 +171,8 @@
 						  <input type="number"  class="form-control" required id="inputState" value="" name="contact">
 						</div>
 						<div class="form-group col-md-6">
-								<label for="inputEmail4">Email</label>
-								<input type="email" name="email" required class="form-control" value="" id="inputEmail4">
+							<label for="inputEmail4">Email</label>
+							<input type="email" name="email" required class="form-control" value="" id="inputEmail4">
 						</div>
 					</div>
 					<br>

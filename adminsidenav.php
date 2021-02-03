@@ -49,6 +49,24 @@
 				  </div>
 
 
+				 <div class="card ">
+				    <div class="card-header" id="headingOne">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+				           <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#store"/></svg> Store
+				        </button>
+				      </h2>
+				    </div>
+				    <div id="collapseZero" class="collapse <?= ($active == "store") ? "show" : ""; ?>" aria-labelledby="headingOne" data-parent="#accordionExample">
+				      <div class="card-body">
+				        <ul class="sublist">
+				          <li>
+				            <a href="verifystore.php" class="black">Verify</a>
+				          </li>
+				        </ul> 
+				      </div>
+				    </div>
+				  </div>
 			   
 
 		<!-- 		  <div class="card">

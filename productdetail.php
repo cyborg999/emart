@@ -83,7 +83,6 @@
                     $related = $model->getRelatedProductsByCategoryId($product['categoryid']);
                     $productList = $model->getProductListByProductId($_GET['id']);
                     $variants = $model->getProductVariantsByProductId($_GET['id']);
-
                     $fees = $model->getGlobalFeesByStoreId($_GET['id']);
                     $activeMedia = "";
 
@@ -165,10 +164,10 @@
                             <?php foreach($variants['multiple'] as $idx => $pl): ?>
                                 <dt class="col-sm-2"><?= $idx;?></dt>
                                 <dd class="col-sm-10">
-                                    <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                                    <div class="btn-group btn-group-sm btn-group-toggle" >
                                     <?php foreach($pl as $idx2 => $p): ?>
-                                        <label class="btn btn-light <?= ($idx2 == 0) ? 'active' : '';?>">
-                                            <input type="radio" name="options" <?= ($idx2 == 0) ? 'checked' : '';?>><?= $p;?>
+                                        <label data-val="<?= $p;?>" class="btn getVariant btn-light <?= ($p == $product['default_variant']) ? 'active' : '';?>">
+                                            <input type="radio" name="options" <?= ($p == $product['default_variant']) ? 'checked' : '';?> ><?= $p;?>
                                         </label>
                                     <?php endforeach ?>
                                     </div>
@@ -403,6 +402,68 @@
     <script type="text/javascript">
         (function($){
             $(document).ready(function(){
+                function loadVariants(combo){
+                    var data = <?= $model->getProducionVariantByProductId($_GET['id']); ?>;
+                    console.clear();
+
+                    if(combo == ""){
+                        combo = "default";
+                    }
+
+                    console.log(data);
+                    console.log(combo);
+                    var max = $("#maxQty");
+                    var price = $("em.price").first();
+                    var qty = $(".instock span").first();
+                    var dataPrice = parseFloat(data[combo].price);
+
+                    dataPrice = dataPrice.toFixed(2);
+                    price.data("price", data[combo].price);
+                    max.data("max", parseInt(data[combo].remaining_qty));
+
+                    qty.data("qty", data[combo].remaining_qty);
+                    price.html("₱" + dataPrice);
+                    qty.html(data[combo].remaining_qty);
+
+
+                    $(".add2Cart, #add2Cart").data("id", data[combo].id);
+                }
+
+
+                $(".getVariant").off().on("click", function(){
+                    var label = $(this);
+                    var combo = Array();
+
+                    label.parents(".btn-group-toggle").find(".getVariant.active").removeClass("active");
+                    label.addClass("active");
+
+                    $(".getVariant.active").each(function(){
+                        var me = $(this);
+
+                        combo.push(me.data("val"));
+                    });
+
+                    loadVariants(combo.join("-"));                  
+                });
+
+                $(".getVariant").dblclick(function(){
+                    var me = $(this);
+                    console.log("removed");
+                    me.removeClass("active");
+
+                    var combo = Array();
+
+                    $(".getVariant.active").each(function(){
+                        var me = $(this);
+
+                        combo.push(me.data("val"));
+                    });
+
+                    loadVariants(combo.join("-"));                  
+                });
+
+                $(".getVariant.active").trigger("click");
+
                 var __listen = function(){
 
                 }
@@ -470,7 +531,7 @@
                     var action = me.data("action");
                     var current = qty.html();
                     var max = $("#maxQty").data("max");
-
+                    console.log("d2",max);
                     if(action == "plus"){
                         if(parseInt(current) < max){
                             qty.html(parseInt(current) + 1);
@@ -489,12 +550,16 @@
                     var me = $(this);
                     var btn = me.data("btn");
 
-                    
                     var count = parseInt(qty.html());
                     var total = 0;
                     var cartData = Array();
                     cartData[0] = null;
 
+                    if(count <=0){
+                        alert("Insufficient Quantity");
+
+                        return false;
+                    }
                     if(localStorage.getItem("items") == null){
                         localStorage.setItem("items", JSON.stringify(cartData));
                     }
@@ -506,7 +571,7 @@
                     localStorage.setItem("items", JSON.stringify(cartData));
 
                     var storeditems = JSON.parse(localStorage.getItem("items"));
-                    console.log(storeditems);
+                    console.log(me.data("id"));
 
                     for(var i in storeditems){
                         if(storeditems[i] != null){
