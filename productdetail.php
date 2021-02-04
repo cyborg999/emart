@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <?php include_once "./head.php"; ?>
-<body>
-    <?php include_once "./nav.php"; ?>
+
+    <?php include_once "./head4.php"; ?>
+    <?php include_once "./headnew.php"; ?>
     <main>
     <script src="./node_modules/jquery-zoom/jquery.zoom.min.js"></script>
+    <section class="sec0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="tracking-wrap">
+                        <div class="step active">
+                            <span class="icon"> <i class="fa fa-cart-plus"></i> </span>
+                            <span class="text">Add to Cart</span>
+                        </div> <!-- step.// -->
+                        <div class="step ">
+                            <span class="icon"> <i class="fa fa-shopping-bag"></i> </span>
+                            <span class="text">Proceed to Checkout</span>
+                        </div> <!-- step.// -->
+                        <div class="step">
+                            <span class="icon"> <i class="fa fa-credit-card"></i> </span>
+                            <span class="text">Pay</span>
+                        </div> <!-- step.// -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
         <section class="sec1">
             <style type="text/css">
             .sec1 {
@@ -94,6 +114,7 @@
                         }
                     }
                 ?>
+              
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row">
@@ -379,6 +400,8 @@
                 <br>
             </article>
         </section>
+    <?php include "./newfooter.php"; ?>
+
     </main>
 
     <!-- start tpl -->

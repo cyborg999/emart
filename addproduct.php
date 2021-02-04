@@ -248,7 +248,7 @@
 													<input  type="text" class="form-control" id="val" name="val" placeholder="Value...">
 												</td>
 												<td>
-													<input type="submit" id="add" class="btn  btn-success" value="Add">
+													<a href="" id="add" class="btn  btn-success">Add</a>
 												</td>
 											</tr>
 											

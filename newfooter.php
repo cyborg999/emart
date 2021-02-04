@@ -1,24 +1,3 @@
-    <?php include_once "./head4.php"; ?>
-
-    <div class="container-fluid">
-         <?php include_once "headnew.php"; ?>
-        
-        <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm">
-                        <?php include "./indexslide.php"; ?>
-                    </div>
-                </div>
-        </div>
-        <div class="container">
-            <br>
-        
-            <div class="row">
-                <div class="col-sm">
-                   <?php include "./indexproduct.php"; ?>
-                </div>
-            </div>
-        </div>
         <footer class="section-footer border-top">
             <div class="container">
                 <section class="footer-top padding-y">
@@ -66,10 +45,3 @@
                 </section>  <!-- footer-top.// -->
             </div><!-- //container -->
         </footer>
-
-
-    </div>
-    
-    <?php include_once "./foot.php"; ?>
-</body>
-</html>

@@ -9341,8 +9341,7 @@ input:focus, textarea:focus {
 40. Footer Area
 ======================================= */
 .footer-top {
-  background: #25272e;
-  padding: 50px 0 40px;
+
 }
 
 .footer-top .f-contact h5 {
@@ -9428,9 +9427,6 @@ input:focus, textarea:focus {
 }
 
 .footer-btm {
-  background: #25272e;
-  border-top: 1px solid #2f2f2f;
-  padding: 40px 0;
 }
 
 .footer-btm p {

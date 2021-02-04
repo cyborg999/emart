@@ -97,26 +97,31 @@ if(isset($_GET['category'])){
       text-decoration: none;
      }*/
  </style>
- <?php if(!count($products)): ?>
-    <h5>No product found.</h5>
- <?php endif ?>
- <?php foreach($products as $idx => $p): ?>
-  <div class="col-md-3">
-    <figure class="card card-product-grid">
-      <a href="#" class="img-wrap"> 
-        <figure class="img" style="background:url(./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>) no-repeat;background-size: cover; background-position: center; padding: 0; margin: 0; width: auto;"></figure>
-        <!-- <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"> -->
-      </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title"><?= $p['name'];?></a>
-        <div class="mt-2">
-          <var class="price">₱<?= number_format($p['price'],2);?></var> <!-- price-wrap.// -->
-          <a href="productdetail.php?id=<?= $p['id'];?>" class="view btn btn-sm btn-outline-primary float-right">View Product </a>
-        </div> <!-- action-wrap.end -->
-      </figcaption>
-    </figure> <!-- card // -->
-  </div> <!-- col.// -->
- <?php endforeach ?>
+ <div class="row" style="min-height: 500px;padding: 50px 0;">
+   <?php if(!count($products)): ?>
+    <div class="col-sm" >
+      <h5>No product found.</h5>
+    </div>
+   <?php endif ?>
+   <?php foreach($products as $idx => $p): ?>
+    <div class="col-md-3">
+      <figure class="card card-product-grid">
+        <a href="productdetail.php?id=<?= $p['id'];?>" class="img-wrap"> 
+          <figure class="img" style="background:url(./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>) no-repeat;background-size: cover; background-position: center; padding: 0; margin: 0; width: auto;"></figure>
+          <!-- <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"> -->
+        </a>
+        <figcaption class="info-wrap">
+          <a href="#" class="title"><?= $p['name'];?></a>
+          <div class="mt-2">
+            <var class="price">₱<?= number_format($p['price'],2);?></var> <!-- price-wrap.// -->
+            <a href="productdetail.php?id=<?= $p['id'];?>" class="view btn btn-sm btn-outline-primary float-right">View Product </a>
+          </div> <!-- action-wrap.end -->
+        </figcaption>
+      </figure> <!-- card // -->
+    </div> <!-- col.// -->
+   <?php endforeach ?>   
+ </div>
+
 <!-- 
    <div class="product">
       <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"/>

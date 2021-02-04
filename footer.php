@@ -1,139 +1,125 @@
 <?php 
-  include_once "./model.php";
+if(isset($_POST['REDIRECT'])){
+    header("Location: success.php");
+}
+    include_once "./model.php";
 
-  $model = new Model();
-	$err = $model->getErrors();
+    $model = new Model();
+    $err = $model->getErrors();
+  // $logo = $model->getLogo();
 ?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>eMart</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <!-- <link href="assets/img/favicon.png" rel="icon"> -->
-  <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+  <meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+  <meta name="description" content="ui library for front-end developers to create online shor templates">
+  <meta name="keywords" content="ui kit, ecommerce templates, website, e-commerce, uikit framework, HTML, CSS, Bootstrap 4">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+  <!-- Bootstrap-ecommerce -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
 
-  <!-- Vendor CSS Files -->
-  <link href="./css/style.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" type="text/css" href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/bootstrap.css?v=2.0"> -->
+  <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/ui.css?v=2.0" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.css" >
+  <!-- <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/responsive.css?v=2.0" rel="stylesheet"> -->
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  <style type="text/css">
-  	#header {
-  		background: rgba(30, 67, 86, 0.8)!important;
-  	}
-  	#features {
-  		min-height: 100vh;
-  	}
-  	#features .container {
-  		min-height: 70vh;
-  	}
-  	.features .row + .row {
-  		margin-top: 10px;
-  	}
-  	.float-right {
-  		float: right;
-  		margin-right: 100px;
-  	}
-.form-group {
-	margin: 20px 0;
-}
-  </style>
+  <!-- fonticon -->
+  <!-- <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/fonts/fontawesome/css/all.min.css?v=2.0" type="text/css" rel="stylesheet"> -->
+
+  <!-- Custom styling -->
+  <link href="https://bootstrap-ecommerce.com/assets/css/style.css?v=2.0" rel="stylesheet">
 </head>
-
 <body>
-	  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-transparent">
-    <div class="container d-flex justify-content-between align-items-center">
-
-      <div class="logo">
-        <h1 class="text-light"><a href="index.php"><span>BakedPH</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+  <style type="text/css">
+    .container-fluid {
+      padding: 0;
+      margin: 0 auto;
+    }
+    header {
+      box-shadow: 1px 1px 10px #c9c9c9;
+    }
+    footer {
+      background: white;
+    }
+  </style>
+  <div class="container-fluid">
+    <?php include_once "headnew.php"; ?>
+ 
+    <div class="container" style="padding:50px 0;">
+      <br>
+    
+      <div class="row">
+        <div class="col-sm">
+          <div class="row">
+            <?php
+              $setting = $model->getAdminSetting(true);
+              echo $setting[$_GET['page']];
+            ?>
+          </div>
+        </div>
       </div>
-
-      <nav class="nav-menu float-right d-none d-lg-block">
-        <ul>
-          <li><a href="index.php">Home</a></li>
-          <!-- <li><a href="">About Us</a></li> -->
-          <li><a href="signup.php">Sign Up</a></li>
-          <li class="active"><a href="login.php">Login</a></li>
-         
-        </ul>
-      </nav><!-- .nav-menu -->
-
     </div>
-  </header><!-- End Header -->
 
-  <main id="main">
-    <!-- ======= Features Section ======= -->
-    <section  id="features" class="features">
+
+
+
+    <footer class="section-footer border-top">
       <div class="container">
-      <?php
-        $setting = $model->getAdminSetting(true);
-        echo $setting[$_GET['page']];
-      ?>
-			</div>
-    </section><!-- End Features Section -->
-    <br>
-    <br>
-  </main><!-- End #main -->
+        <section class="footer-top padding-y">
+          <div class="row">
+             <?php
+                $setting = $model->getAdminSetting(true);
+              ?>
+            <aside class="col-sm-6">
+              <article class="mr-3">
+                <figure id="logo" class="logo-footer"></figure>
+                      <p class="mt-3"><?= ($setting) ? $setting['overview'] : ''; ?></p>
+                <div>
+                  <?php
+                          $social = $model->getAllSocialMedia();
+                        ?>
+                    <ul class="nav mr-auto d-none d-md-flex">
+                      <?php foreach($social as $idx => $s): ?>
+                        <li><a href="<?= $s['link'];?>" class="nav-link px-2"> <i class="fa fa-<?= $s['social'];?>"></i> </a></li>
+                          <?php endforeach ?>
+                    </ul>
 
- <script type="text/javascript">
-	   	function setDefaultDate(){
-	   		var now = new Date();
+                </div>
+              </article>
+            </aside>
+            <aside class="col-sm-3">
+              <h4 style="padding:0;">Useful Links</h4>
+                    <ul style="padding:0;">
+                      <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
+                      <li><i class="bx bx-chevron-right"></i> <a href="footer.php?page=about" target="_blank">About us</a></li>
+                      <li><i class="bx bx-chevron-right"></i> <a href="footer.php?page=terms" target="_blank">Terms of service</a></li>
+                      <li><i class="bx bx-chevron-right"></i> <a href="footer.php?page=privacy" target="_blank">Privacy policy</a></li>
+                    </ul>
+            </aside>
+            <aside class="col-sm-3">
+              <h4>Contact Us</h4>
+            
+                    <?= ($setting) ? $setting['contact'] : ''; ?>
+                    <div class="text-md-left tesxt-muted">
+                    <i class="fa fa-lg fa-cc-visa"></i>
+                    <i class="fa fa-lg fa-cc-paypal"></i>
+                    <i class="fa fa-lg fa-cc-mastercard"></i>
+                  </div>
+            </aside>
+          </div> <!-- row.// -->
+        </section>  <!-- footer-top.// -->
+      </div><!-- //container -->
+    </footer>
 
-			var day = ("0" + now.getDate()).slice(-2);
-			var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-			var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-
-			var dateInput = $("input[type='date']");
-
-			dateInput.val(today);
-	   	}		
-	   	
-	   	setDefaultDate();
-    </script>
-  <?php include "./footer2.php"; ?>
-
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-  	<script type="text/javascript">
-		(function($){
-			
-		})(jQuery);
-	</script>
+  </div>
+  
+  <?php include_once "./foot.php"; ?>
 </body>
-
 </html>

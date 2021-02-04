@@ -15,7 +15,7 @@ class Model {
 		$this->loginListener();
 		$this->addStoreListener();
 		$this->addSubscriptionListener();
-		$this->getAllUnverifiedStores();
+		// $this->getAllUnverifiedStores();
 		$this->addProductListener();
 		$this->deleteProductListener();
 		$this->editproductListener();
@@ -2345,7 +2345,7 @@ class Model {
 				WHERE name = '".$_POST['title']."'  AND storeid = '".$_SESSION['storeid']."'
 				LIMIT 1
 			";
-
+			
 			$exists = $this->db->query($sql)->fetch();
 	
 			if(!$exists){

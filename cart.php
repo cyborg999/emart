@@ -1,18 +1,31 @@
-
-<!DOCTYPE html>
-<html>
-    <?php include_once "./head.php"; ?>
-        <?php
-      if(isset($_SESSION['usertype'])){
-        if($_SESSION['usertype'] !="client"){
-          header("Location:useronly.php");
-        }
-      }
-    ?>
-<body>
-    <?php include_once "./nav.php"; ?>
+    <?php include "./headcart.php"; ?>
+    <?php include "./spinner.php"; ?>
+    <?php include_once "./headnew.php"; ?>
 
     <main>
+        <section class="sec0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="tracking-wrap">
+                        <div class="step active">
+                            <span class="icon"> <i class="fa fa-cart-plus"></i> </span>
+                            <span class="text">Add to Cart</span>
+                        </div> <!-- step.// -->
+                        <div class="step active">
+                            <span class="icon"> <i class="fa fa-shopping-bag"></i> </span>
+                            <span class="text">Proceed to Checkout</span>
+                        </div> <!-- step.// -->
+                        <div class="step">
+                            <span class="icon"> <i class="fa fa-credit-card"></i> </span>
+                            <span class="text">Pay</span>
+                        </div> <!-- step.// -->
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+    </section>
       <section class="sec1">
       <div class="px-4 px-lg-0">
         <style type="text/css">
@@ -84,8 +97,16 @@
                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
                 <div class="p-4">
                   <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
-                  <ul class="list-unstyled mb-4">
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong id="total">0</strong></li>
+                  <style type="text/css">
+                    #finalUl li strong {
+                      display: block;
+                      width: 50%;
+                    }
+                  </style>
+                  <ul class="list-unstyled mb-4" id="finalUl">
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                      <strong class="text-muted">Order Subtotal </strong><strong id="total">0</strong>
+                    </li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and Handling</strong><strong id="shipping">0.00</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong id="tax">0.00</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
@@ -106,6 +127,8 @@
         </div>
       </div>
       </section>
+    <?php include "./newfooter.php"; ?>
+      
     </main>
     <style type="text/css">
       .logo {

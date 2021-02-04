@@ -2,7 +2,7 @@
   include_once "./model.php";
   $model = new Model();
 
-    require_once "vendor/autoload.php";
+    require "vendor/autoload.php";
     use Omnipay\Omnipay;
     $host = "localhost";
     $dbname = "emart";
@@ -23,48 +23,77 @@
                           // opd($_SESSION['cart']);
 
     ?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>eMart</title>
-      <meta name="description" content="">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Favicon -->
-      <link rel="shortcut icon" href="http://www.thetahmid.com/themes/xemart-v1.0/images/favicon.ico" type="image/x-icon">
-      <link rel="icon" href="http://www.thetahmid.com/themes/xemart-v1.0/images/favicon.ico" type="image/x-icon">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      <!-- Google Fonts -->
-      <link href="./index_files/css" rel="stylesheet">
+  <title>eMart</title>
 
-      <!-- Bootstrap -->
-      <!-- <link rel="stylesheet" href="./index_files/bootstrap.min.css"> -->
-      <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
+  <meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+  <meta name="description" content="ui library for front-end developers to create online shor templates">
+  <meta name="keywords" content="ui kit, ecommerce templates, website, e-commerce, uikit framework, HTML, CSS, Bootstrap 4">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
 
-  <!-- Fontawesome Icon -->
+  <!-- Bootstrap-ecommerce -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
 
-  <!-- Animate Css -->
-      <link rel="stylesheet" href="./index_files/animate.css">
+  <!-- <link rel="stylesheet" type="text/css" href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/bootstrap.css?v=2.0"> -->
+  <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/ui.css?v=2.0" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.css" >
+  <!-- <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/responsive.css?v=2.0" rel="stylesheet"> -->
 
-      <!-- Owl Slider -->
-      <link rel="stylesheet" href="./index_files/owl.carousel.min.css">
+  <!-- fonticon -->
+  <!-- <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/fonts/fontawesome/css/all.min.css?v=2.0" type="text/css" rel="stylesheet"> -->
 
-      <!-- Custom Style -->
-      <link rel="stylesheet" href="./index_files/normalize.css">
-      <link rel="stylesheet" href="./index_files/style.css">
-      <link rel="stylesheet" href="./index_files/responsive.css">
-
-    </head>
+  <!-- Custom styling -->
+  <link href="https://bootstrap-ecommerce.com/assets/css/style.css?v=2.0" rel="stylesheet">
+      <!-- Animate Css -->
+       
+        <link rel="stylesheet" href="./index_files/style.css">
+</head>
 <body>
-  <?php include_once "./nav.php"; ?>
+  <style type="text/css">
+    .container-fluid {
+      padding: 0;
+      margin: 0 auto;
+    }
+    header {
+      box-shadow: 1px 1px 10px #c9c9c9;
+    }
+    footer {
+      background: white;
+    }
+  </style>
+    <?php include_once "./headnew.php"; ?>
     <?php
       $profile = $model->getUserProfile();
     ?>
   <main class="container-fluid">
     <section class="container">
+      <section class="sec0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="tracking-wrap">
+                        <div class="step active">
+                            <span class="icon"> <i class="fa fa-cart-plus"></i> </span>
+                            <span class="text">Add to Cart</span>
+                        </div> <!-- step.// -->
+                        <div class="step active">
+                            <span class="icon"> <i class="fa fa-shopping-bag"></i> </span>
+                            <span class="text">Proceed to Checkout</span>
+                        </div> <!-- step.// -->
+                        <div class="step active">
+                            <span class="icon"> <i class="fa fa-credit-card"></i> </span>
+                            <span class="text">Pay</span>
+                        </div> <!-- step.// -->
+                    </div>
+                </div>
+            </div>
+        </div>
       <article class="row">
         <div class="col-sm">
           <br>
@@ -339,6 +368,8 @@
         </div>
       </article>
     </section>
+    <?php include "./newfooter.php"; ?>
+    
   </main>
   <script src="./js/card.js"></script>
   <script src="./js/popper.min.js"></script>
