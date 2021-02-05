@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <?php include_once "./head.php"; ?>
-<body>
-    <?php include_once "./nav.php"; ?>
+
+    <?php include_once "./head4.php"; ?>
+    <?php include_once "./headnew.php"; ?>
+
+
     <main>
         <section class="sec1">
             <article class="container">
@@ -161,24 +161,34 @@
                 <hr>
 
             </article>
+
+
             <article class="container">
-                <div class="row products">
-                    <?php 
-                    foreach($products as $idx => $p): ?>
-                      <div class="product">
-                          <img class="img" src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"/>
-                          <div class="content">
-                              <a href="productdetail.php?id=<?= $p['id'];?>" class="view">View Product</a>
-                          </div>
-                          <div class="bottom-content">
-                              <em><?= $p['name'];?></em>
-                              <h4>₱<?= $p['price'];?></h4>
-                          </div>
-                      </div>
-                     <?php endforeach ?>
+              <div class="card card-body">
+                  <div class="row">
+
+                    <?php foreach($products as $idx => $p): ?>
+                       <div class="col-md-3">
+                        <figure class="card-product-grid mb-0 card-sm">
+                          <div class="img-wrap"> <img src="./uploads/merchant/<?= $p['storeid'];?>/<?= $p['id'];?>/<?= $p['filename'];?>"> </div>
+                          <figcaption class="info-wrap text-center">
+                            <a href="productdetail.php?id=<?= $p['id'];?>" class="title"><?= $p['name'];?></a>
+                            <div class="price mt-2">₱<?= number_format($p['price'],2);?></div> <!-- price-wrap.// -->
+                          <a href="productdetail.php?id=<?= $p['id'];?>" class="btn btn-light text-primary btn-sm"> View Item </a>
+                          </figcaption>
+                        </figure> <!-- card // -->
+                      </div> <!-- col.// -->
+                      <?php endforeach ?>
+
+                  </div> <!-- row.// -->
                 </div>
             </article>
+            <br>
+            <br>
+            <br>
+            <br>
         </section>
+    <?php include "./newfooter.php"; ?>
     </main>
 
     <!-- start tpl -->

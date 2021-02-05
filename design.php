@@ -103,6 +103,7 @@ schedule ng admin
 age analytics
 
 
+store page, redesign product
 
 19. search user if nakaorder ng palit product
 20. update cart yung hindi cod na payment(shipping,tax,etc) sa checkout

@@ -1,5 +1,4 @@
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-
 <header class="section-header">
       <section class="header-top-light border-bottom">
         <div class="container">
@@ -63,9 +62,18 @@
                   <span class="notify" id="count">0</span>
                 </div>
               </a>
+              <?php
+                $wishlist = 0;
+                
+                if(isset($_SESSION['id'])){
+                  $wishlist = $model->getUserWishlist(true);
+                  $wishlist = $wishlist['total'];
+                }
+              ?>
               <a href="wishlist.php" class="widget-header mr-2">
                 <div class="icon">
                   <i class="icon-sm rounded-circle border fa fa-heart"></i>
+                  <span class="notify" id="wishListcount"><?= $wishlist; ?></span>
                 </div>
               </a>
               <div class="widget-header dropdown">

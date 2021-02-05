@@ -1,6 +1,7 @@
 
     <?php include_once "./head4.php"; ?>
     <?php include_once "./headnew.php"; ?>
+    <?php include_once "./spinner.php"; ?>
     <main>
     <script src="./node_modules/jquery-zoom/jquery.zoom.min.js"></script>
     <section class="sec0">
@@ -213,8 +214,15 @@
                         </nav>
                         <a href="cart.php" data-id="<?= $_GET['id'];?>"  data-btn="buy" class="btn btn-primary btn-lg add2Cart">Buy Now</a>
                         <a href="" data-btn="add"  data-id="<?= $_GET['id'];?>" class="btn btn-lg btn-light add2Cart" id="add2Cart">Add to Cart</a>
+                        <a href="login.php" data-id="<?= $_GET['id'];?>" class="<?= (isset($_SESSION['id'])) ? 'heart' : '';?> <?= ($model->isProductInUserWishlist($_GET['id'])) ? 'active' : ''; ?>" title="Add to wishlist"><svg class="bi" width="30" height="30" fill="currentColor"> <use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#heart-fill"/></svg> </a>
                         <br>
                         <style type="text/css">
+                            .heart {
+                                margin-left: 10px;
+                            }
+                            .heart.active {
+                                color: #e43737;
+                            }
                             #tags {
                                 list-style-type: none;
                             }
@@ -425,6 +433,31 @@
     <script type="text/javascript">
         (function($){
             $(document).ready(function(){
+                $(".heart").on("click", function(e){
+                    e.preventDefault();
+
+                    var me = $(this);
+
+                    me.toggleClass("active");
+
+                    var wl = (me.hasClass("active")) ? 1 : 0;
+
+                    showPreloader();
+
+                    $.ajax({
+                        url : "ajax.php",
+                        data : { addWishlist : true, wl : wl, id : me.data("id")},
+                        type : "post",
+                        dataType : "json",
+                        success : function(response){
+                            $("#wishListcount").html(response.wishlist.length);
+                        }
+                        , complete : function(){
+                            hidePreloader();
+                        }
+                    });
+                });
+
                 function loadVariants(combo){
                     var data = <?= $model->getProducionVariantByProductId($_GET['id']); ?>;
                     console.clear();

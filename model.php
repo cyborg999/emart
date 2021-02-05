@@ -95,6 +95,92 @@ class Model {
 		$this->generateVariantsListener();
 		$this->updateVerifyListener();
 		$this->viewUserListener();
+		$this->addWishlistListener();
+		$this->deleteWishlistListener();
+	}
+
+	public function deleteWishlistListener(){
+		if(isset($_POST['deleteWishlist'])){
+			$sql = "
+				delete
+				from wishlist
+				where userid = ?
+				and productid = ?";
+
+			$this->db->prepare($sql)->execute(array($_SESSION['id'], $_POST['id']));
+			
+			die(json_encode(array("wishlist" => $this->getUserWishlist())));
+		}
+	}
+
+	public function addWishlistListener(){
+		if(isset($_POST['addWishlist'])){
+			$exists = $this->isProductInUserWishlist($_POST['id']);
+
+			if($exists){
+				$sql = "
+					delete
+					from wishlist
+					where userid = ?
+					and productid = ?";
+
+			} else {
+				$sql = "
+					insert into wishlist(userid, productid)
+					values(?,?)
+				";
+			}
+
+			$this->db->prepare($sql)->execute(array($_SESSION['id'], $_POST['id']));
+
+			die(json_encode(array("wishlist" => $this->getUserWishlist())));
+		}
+	}
+
+	public function isProductInUserWishlist($productId){
+		$sql = "
+			select *
+			from wishlist
+			where userid = ".$_SESSION['id']."
+			and productid = $productId
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getWishlistProducts(){
+		$sql = "
+			SELECT t2.name as 'filename',t1.*
+			from wishlist t0
+			left join productt t1
+			on t1.id = t0.productid
+			RIGHT JOIN media t2
+			ON t1.id = t2.productid
+			WHERE  t1.deleted = 0
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getUserWishlist($count = false){
+		
+		if($count){
+			$sql = "
+				select count(id) as 'total'
+				from wishlist
+				where userid = ".$_SESSION['id']."
+			"; 
+		return $this->db->query($sql)->fetch();
+		} else {
+			$sql = "
+				select *
+				from wishlist
+				where userid = ".$_SESSION['id']."
+			"; 
+		}
+
+		return $this->db->query($sql)->fetchAll();
 	}
 
 	public function viewUserListener(){
@@ -2100,6 +2186,7 @@ class Model {
 			ON t1.id = t2.productid
 			WHERE t2.active = 1
 			AND t1.storeid = $id
+			and t1.deleted = 0
 			LIMIT 100
 		";
 
