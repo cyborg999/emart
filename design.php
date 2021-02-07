@@ -4,8 +4,6 @@ https://www.bootdey.com/snippets/view/Shop-cart
 
 
 
-add to notification if someone commented on product
-
 
 cart
 flag dummy client that dont pay cod
@@ -101,7 +99,8 @@ round2
 
 schedule ng admin
 age analytics
-
+hide variants, advanced
+category levels
 
 store page, redesign product
 

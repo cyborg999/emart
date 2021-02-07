@@ -58,6 +58,8 @@ class Model {
 		$this->deletePlanListener();
 		$this->activatePlanListener();
 		$this->addCategoryListener();
+		$this->addCategory2Listener();
+		$this->addCategory3Listener();
 		$this->deleteCategoryListener();
 		$this->updateCategoryStatus();
 		$this->addRatingListener();
@@ -97,6 +99,8 @@ class Model {
 		$this->viewUserListener();
 		$this->addWishlistListener();
 		$this->deleteWishlistListener();
+		$this->getLevel2CategoryListener();
+		$this->getLevel3CategoryListener();
 	}
 
 	public function deleteWishlistListener(){
@@ -241,8 +245,9 @@ class Model {
 								if($idx3 != $idx){
 									$final[] = $gg."-".$last;
 								} else {
-
-									$final[] = $last;
+									if(!in_array($last, $final)){
+										$final[] = $last;
+									}
 								}
 							}
 							
@@ -2248,19 +2253,114 @@ class Model {
 		}
 	}
 
+	public function getCategoryByParentId($id){
+		$sql = "
+			select *
+			from category
+			where type = $id
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getLevel2CategoryListener(){
+		if(isset($_POST['getLevel2Category'])){
+			$categories = $this->getCategoryByParentId($_POST['id']);
+
+			die(json_encode($categories));
+		}
+	}
+
+	public function getLevel3CategoryListener(){
+		if(isset($_POST['getLevel3Category'])){
+			$categories = $this->getCategoryByParentId($_POST['id']);
+
+			die(json_encode($categories));
+		}
+	}
+
+	public function getCategoryByName($name, $level, $parent = false){
+		$and = ($parent) ? " AND type = $parent" :"";
+
+
+		$sql = "
+			select *
+			from category
+			where name like '%".$name."%'
+			and level = $level
+			$and
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function addCategory2Listener(){
+		if(isset($_POST['addCategory2'])){
+			$exists = $this->getCategoryByName($_POST['name'],2, $_POST['category1']);
+
+			if($exists){
+				die(json_encode(array(false)));
+
+			} else {
+				$sql = "
+					INSERT INTO category(name, level, type, breadcrumbs)
+					VALUES(?, 2, ?,?)
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['name'],$_POST['category1'],$_POST['breadCrumbs']));
+
+				$id = $this->db->lastInsertId();
+
+				die(json_encode(array($id)));
+			}
+			
+		}
+	}
+
+	public function addCategory3Listener(){
+		if(isset($_POST['addCategory3'])){
+			$exists = $this->getCategoryByName($_POST['name'],3, $_POST['category1']);
+
+			if($exists){
+				die(json_encode(array(false)));
+
+			} else {
+				$sql = "
+					INSERT INTO category(name, level, type, breadcrumbs)
+					VALUES(?, 3, ?,?)
+				";
+
+				$this->db->prepare($sql)->execute(array($_POST['name'],$_POST['category1'],$_POST['breadCrumbs']));
+
+				$id = $this->db->lastInsertId();
+
+				die(json_encode(array($id)));
+			}
+			
+		}
+	}
+
 	public function addCategoryListener(){
 		if(isset($_POST['addCategory'])){
-			//todo check if exists
-			$sql = "
-				INSERT INTO category(name)
-				VALUES(?)
-			";
+			$exists = $this->getCategoryByName($_POST['name'],1);
 
-			$this->db->prepare($sql)->execute(array($_POST['name']));
+			if($exists){
+				die(json_encode(array(false)));
 
-			$id = $this->db->lastInsertId();
+			} else {
+				$sql = "
+					INSERT INTO category(name,breadcrumbs)
+					VALUES(?,?)
+				";
 
-			die(json_encode(array($id)));
+				$this->db->prepare($sql)->execute(array($_POST['name'], $_POST['name']));
+
+				$id = $this->db->lastInsertId();
+
+				die(json_encode(array($id)));
+			}
+			
 		}
 	}
 
@@ -2550,6 +2650,26 @@ class Model {
 		return $this->db->query($sql)->fetchAll();
 	}
 
+	public function getProductByBrand($brand){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename'
+			FROM productt t1
+			LEFT JOIN media t2
+			ON t1.id = t2.productid
+			LEFT JOIN store t3
+			ON t3.id = t1.storeid
+			LEFT JOIN user t4
+			ON t4.id = t3.userid
+			WHERE t2.active = 1
+			AND t1.brand LIKE '%$brand%'
+			AND t4.verified = 1
+			AND t1.deleted = 0
+			LIMIT 100
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
 	public function getProductByCategoryId($id){
 		$sql = "
 			SELECT t1.*, t2.name as 'filename'
@@ -2562,6 +2682,28 @@ class Model {
 			ON t4.id = t3.userid
 			WHERE t2.active = 1
 			AND t1.categoryid = $id
+			AND t1.deleted = 0
+			AND t4.verified = 1
+			LIMIT 100
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getProductByCategoryName($name){
+		$sql = "
+			SELECT t1.*, t2.name as 'filename'
+			FROM productt t1
+			LEFT JOIN media t2
+			ON t1.id = t2.productid
+			LEFT JOIN store t3
+			ON t3.id = t1.storeid
+			LEFT JOIN user t4
+			ON t4.id = t3.userid
+			left join category t5
+			on t5.id = t1.categoryid
+			WHERE t2.active = 1
+			AND t5.breadcrumbs like '%$name%'
 			AND t1.deleted = 0
 			AND t4.verified = 1
 			LIMIT 100
@@ -2792,11 +2934,43 @@ class Model {
 		}
 	}
 
+	public function getBreadcrumbsByCategoryId($id){
+		$sql = "
+			select *
+			from category
+			where id = $id
+			limit 1
+		";
+
+		$bread = array();
+
+		$data =  $this->db->query($sql)->fetch();
+
+		if($data){
+			$crumb = explode("</span>", $data['breadcrumbs']);
+
+			foreach($crumb as $idx => $c){
+				if(trim($c) != ""){
+					$category = strstr($c, '>');
+					$category = str_replace(">", "", $category);
+					$category = str_replace("&gt;", "", $category);
+
+					if($category != ""){
+						$bread[] = str_replace("&gt;", "", $category);
+					}
+				}
+			}
+		}
+
+		return $bread;
+	}
+
 	public function getAllActiveCategories(){
 		$sql = "
 			SELECT *
 			FROM category
 			WHERE isactive = 1
+			and type = 'parent'
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -2805,6 +2979,17 @@ class Model {
 		$sql = "
 			SELECT *
 			FROM category
+			where type = 'parent'
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getAllProductCategories(){
+		$sql = "
+			SELECT *
+			FROM category
+			where isactive = 1
 		";
 
 		return $this->db->query($sql)->fetchAll();

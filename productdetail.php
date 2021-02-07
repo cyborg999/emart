@@ -4,26 +4,63 @@
     <?php include_once "./spinner.php"; ?>
     <main>
     <script src="./node_modules/jquery-zoom/jquery.zoom.min.js"></script>
+    <?php
+        $product = $model->getProductById($_GET['id']);
+        $media = $model->getMediaByProductId($_GET['id']);
+        $total = $model->getReviewCountByProductId($_GET['id']);
+        $comments  = $model->getAllProductCommentsById($_GET['id']);
+        $average = $model->GetAvgCommentByProductId($_GET['id']);
+        $related = $model->getRelatedProductsByCategoryId($product['categoryid']);
+        $productList = $model->getProductListByProductId($_GET['id']);
+        $variants = $model->getProductVariantsByProductId($_GET['id']);
+        $fees = $model->getGlobalFeesByStoreId($_GET['id']);
+        $breadcrumbs = $model->getBreadcrumbsByCategoryId($product['categoryid']);
+        $activeMedia = "";
+
+
+        foreach($media as $idx => $m){
+            if($m['active']){
+                $activeMedia = $m;
+
+                break;
+            }
+        }
+    ?>
     <section class="sec0">
         <div class="container">
-            <div class="row">
+             <div class="row">
+                <div class="col-sm">
+                    <br>
+                    <nav aria-label="breadcrumb">
+                        <style type="text/css">
+                            .breadcrumb-item+.breadcrumb-item::before {
+                                /*display: none;*/
+                            }
+                        </style>
+                      <ol class="breadcrumb">
+                        <?php foreach($breadcrumbs as $idx => $b): ?>
+                            <li class="breadcrumb-item"><a href="filtered.php?name=<?= $b; ?>"><?= $b; ?></a></li>
+                        <?php endforeach ?>
+                        <li class="breadcrumb-item " aria-current="page"><a href="filtered.php?brand=<?= $product['brand'];?>"><?= $product['brand'];?></a></li>
+                      </ol>
+                    </nav>
+                </div>
+            </div>
+        <!--     <div class="row">
                 <div class="col-sm">
                     <div class="tracking-wrap">
                         <div class="step active">
                             <span class="icon"> <i class="fa fa-cart-plus"></i> </span>
                             <span class="text">Add to Cart</span>
-                        </div> <!-- step.// -->
                         <div class="step ">
                             <span class="icon"> <i class="fa fa-shopping-bag"></i> </span>
                             <span class="text">Proceed to Checkout</span>
-                        </div> <!-- step.// -->
                         <div class="step">
                             <span class="icon"> <i class="fa fa-credit-card"></i> </span>
                             <span class="text">Pay</span>
-                        </div> <!-- step.// -->
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
         <section class="sec1">
@@ -95,27 +132,6 @@
                 }
             </style>
             <article class="container">
-                <?php
-                    $product = $model->getProductById($_GET['id']);
-                    $media = $model->getMediaByProductId($_GET['id']);
-                    $total = $model->getReviewCountByProductId($_GET['id']);
-                    $comments  = $model->getAllProductCommentsById($_GET['id']);
-                    $average = $model->GetAvgCommentByProductId($_GET['id']);
-                    $related = $model->getRelatedProductsByCategoryId($product['categoryid']);
-                    $productList = $model->getProductListByProductId($_GET['id']);
-                    $variants = $model->getProductVariantsByProductId($_GET['id']);
-                    $fees = $model->getGlobalFeesByStoreId($_GET['id']);
-                    $activeMedia = "";
-
-                    foreach($media as $idx => $m){
-                        if($m['active']){
-                            $activeMedia = $m;
-
-                            break;
-                        }
-                    }
-                ?>
-              
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row">

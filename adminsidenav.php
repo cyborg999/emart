@@ -50,14 +50,14 @@
 
 
 				 <div class="card ">
-				    <div class="card-header" id="headingOne">
+				    <div class="card-header" id="headingStore">
 				      <h2 class="mb-0">
-				        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+				        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseStore" aria-expanded="true" aria-controls="collapseStore">
 				           <svg class="bi" width="15" height="15" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#shop-window"/></svg> Store
 				        </button>
 				      </h2>
 				    </div>
-				    <div id="collapseZero" class="collapse <?= ($active == "store") ? "show" : ""; ?>" aria-labelledby="headingOne" data-parent="#accordionExample">
+				    <div id="collapseStore" class="collapse <?= ($active == "store") ? "show" : ""; ?>" aria-labelledby="headingStore" data-parent="#accordionExample">
 				      <div class="card-body">
 				        <ul class="sublist">
 				          <li>

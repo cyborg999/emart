@@ -148,11 +148,11 @@
 										<label>Category</label>
 										<br>
 										<?php 
-										$categories = $model->getAllCategories();
+										$categories = $model->getAllProductCategories();
 										 ?>
 										<select id="category" name="category">
 											<?php foreach($categories as $idx => $c): ?>
-											<option value="<?= $c['id'];?>"><?= $c['name'];?></option>
+											<option value="<?= $c['id'];?>"><?= $c['breadcrumbs'];?></option>
 											<?php endforeach ?>
 										</select>
 									</div>
@@ -181,6 +181,9 @@
 										<textarea class="form-control" id="desc" name="desc"></textarea>
 									</div>
 									<div class="form-group">
+										<a href="" id="advance">Show Advance Setting</a>
+									</div>
+									<div class="form-group advance hidden">
 										<style type="text/css">
 											.sm {
 												position: relative;
@@ -224,7 +227,7 @@
 											</li>
 										</ul>
 									</div>
-									<div class="form-group">
+									<div class="form-group advance hidden">
 										<label>Variants
 											<small class="sm">
 												<i  title="What is this?" class="fa fa-info what"></i>
@@ -259,7 +262,7 @@
 									<a href="" id="reset">reset table</a>
 									</div>
 									<br>
-									<div class="row">
+									<div class="row advance hidden">
 										<div class="col-sm">
 											<table class="table tbl-sm">
 												<thead>
@@ -347,6 +350,23 @@
 	<script type="text/javascript">
 		(function($){
 			$(document).ready(function(){
+				$("#advance").on("click", function(e){
+	    			e.preventDefault();
+
+	    			var me = $(this);
+
+	    			if(me.html()=="Hide Advance Setting"){
+	    				$(".advance").addClass("hidden");
+
+	    				me.html("Show Advance Setting");
+
+	    			} else {
+						$(".advance").removeClass("hidden");
+
+	    				me.html("Hide Advance Setting");
+	    			}
+				});
+
 				$("#add").on("click", function(e){
 	    			e.preventDefault();
 					e.stopPropagation();

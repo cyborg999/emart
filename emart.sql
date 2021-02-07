@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2021 at 01:10 PM
+-- Generation Time: Feb 07, 2021 at 04:06 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -116,27 +116,41 @@ CREATE TABLE `category` (
   `name` varchar(255) DEFAULT NULL,
   `type` varchar(255) NOT NULL DEFAULT 'parent',
   `deleted` int(11) NOT NULL,
-  `isactive` int(11) DEFAULT 1
+  `isactive` int(11) DEFAULT 1,
+  `level` int(11) DEFAULT 1,
+  `breadcrumbs` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `isactive`) VALUES
-(23, 'Men\'s Clothing', 'parent', 0, 1),
-(24, 'Women\'s Clothing', 'parent', 0, 1),
-(25, 'Electronics', 'parent', 0, 1),
-(26, 'Home Appliances', 'parent', 0, 0),
-(27, 'Kids & Babies', 'parent', 0, 0),
-(28, 'Health & Beauty', 'parent', 0, 0),
-(29, 'Automobiles', 'parent', 0, 0),
-(30, 'Sports', 'parent', 0, 1),
-(33, 'Baby Care', 'parent', 0, 1),
-(34, 'Beauty & Hygiene', 'parent', 0, 1),
-(35, 'Food Grain', 'parent', 0, 1),
-(36, 'Fruits & Vegetables', 'parent', 0, 1),
-(40, 'bago', 'parent', 0, 1);
+INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `isactive`, `level`, `breadcrumbs`) VALUES
+(72, 'Electronic Devices', 'parent', 0, 1, 1, 'Electronic Devices'),
+(73, 'TV & Home Appliances', 'parent', 0, 1, 1, 'TV & Home Appliances'),
+(74, 'Health & Beauty', 'parent', 0, 1, 1, 'Health & Beauty'),
+(75, 'Babies & Toys', 'parent', 0, 1, 1, 'Babies & Toys'),
+(76, 'Groceries & Pets', 'parent', 0, 1, 1, 'Groceries & Pets'),
+(77, 'Home & Living', 'parent', 0, 1, 1, 'Home & Living'),
+(79, 'Fashion', 'parent', 0, 1, 1, 'Fashion'),
+(80, 'Sports & Lifystyle', 'parent', 0, 1, 1, 'Sports & Lifystyle'),
+(81, 'Automotives & Motorcycles', 'parent', 0, 1, 1, 'Automotives & Motorcycles'),
+(82, 'Mobiles', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Mobiles</span>\n        	<span id=\"level3\"></span>\n        '),
+(83, 'Tablets', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Tablets</span>\n        	<span id=\"level3\"></span>\n        '),
+(84, 'Laptops', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Laptops</span>\n        	<span id=\"level3\"></span>\n        '),
+(85, 'Desktop', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Desktop</span>\n        	<span id=\"level3\"></span>\n        '),
+(86, 'Security Cameras', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Security Cameras</span>\n        	<span id=\"level3\"></span>\n        '),
+(87, 'Digital Cameras', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Digital Cameras</span>\n        	<span id=\"level3\"></span>\n        '),
+(88, 'Gaming Consoles', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Gaming Consoles</span>\n        	<span id=\"level3\"></span>\n        '),
+(89, 'Gadgets', '72', 0, 1, 2, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt; Gadgets</span>\n        	<span id=\"level3\"></span>\n        '),
+(90, 'Traditional Laptops', '84', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Laptops</span>\n        	<span id=\"level3\">&gt; Traditional Laptops</span>\n        '),
+(91, 'Gaming', '84', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Laptops</span>\n        	<span id=\"level3\">&gt; Gaming</span>\n        '),
+(92, '2 in 1s', '84', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Laptops</span>\n        	<span id=\"level3\">&gt; 2 in 1s</span>\n        '),
+(93, 'All in One', '85', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Desktop</span>\n        	<span id=\"level3\">&gt; All in One</span>\n        '),
+(94, 'Gaming', '85', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Desktop</span>\n        	<span id=\"level3\">&gt; Gaming</span>\n        '),
+(95, 'DIY', '85', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Desktop</span>\n        	<span id=\"level3\">&gt; DIY</span>\n        '),
+(96, 'Ip Security Cameras', '86', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Security Cameras</span>\n        	<span id=\"level3\">&gt; Ip Security Cameras</span>\n        '),
+(97, 'CCTV Security Cameras', '86', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Security Cameras</span>\n        	<span id=\"level3\">&gt; CCTV Security Cameras</span>\n        ');
 
 -- --------------------------------------------------------
 
@@ -455,7 +469,10 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (180, '799bad5a3b514f096e69bbc4a7896cd9.jpg', 70, '2021-02-04 01:53:43', 120, 1),
 (181, 'd0096ec6c83575373e3a21d129ff8fef.jpg', 70, '2021-02-04 01:54:10', 121, 1),
 (182, '18e2999891374a475d0687ca9f989d83.jpg', 70, '2021-02-04 01:54:36', 122, 1),
-(183, 'fe5df232cafa4c4e0f1a0294418e5660.jpg', 70, '2021-02-04 01:55:11', 123, 1);
+(183, 'fe5df232cafa4c4e0f1a0294418e5660.jpg', 70, '2021-02-04 01:55:11', 123, 1),
+(184, '31320a35aa87a8bd8b65e793a6b41d02.png', 70, '2021-02-07 13:43:54', 124, 1),
+(185, '8aa8557f131b553bd27b4352f9742638.png', 70, '2021-02-07 15:00:27', 125, 1),
+(186, '8aa8557f131b553bd27b4352f9742638.png', 70, '2021-02-07 15:05:26', 126, 1);
 
 -- --------------------------------------------------------
 
@@ -483,7 +500,9 @@ INSERT INTO `notification` (`id`, `title`, `body`, `seen`, `date_added`, `storei
 (261, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-03 12:24:00', 70, NULL, 'Order'),
 (262, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-03 13:20:06', 70, NULL, 'Order'),
 (263, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-04 00:42:56', 70, NULL, 'Order'),
-(264, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-04 01:43:29', 70, NULL, 'Order');
+(264, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-04 01:43:29', 70, NULL, 'Order'),
+(265, '\r\n                  <div>Low Stock Alert: <b>1 Product(s)</b> are currently low in stock.<!-- <div class=\"small text-gray-500\">December 2, 2019</div> -->\r\n              	</div>', '<b>The following products are low in stock:</b> <ul><li>Chair(6)</li></ul>', 0, '2021-02-07 13:19:25', 70, NULL, 'Order'),
+(266, 'New Orders', '<p>You have (14) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-07 13:19:25', 70, NULL, 'Order');
 
 -- --------------------------------------------------------
 
@@ -643,7 +662,12 @@ INSERT INTO `production` (`id`, `productid`, `batchnumber`, `remaining_qty`, `de
 (150, 120, '210204150', 100, 0, '2021-02-23', 100, '2021-02-04', 160, 100, 0, NULL),
 (151, 121, '210204151', 100, 0, '2021-02-24', 100, '2021-02-04', 170, 100, 0, NULL),
 (152, 122, '210204152', 6, 0, '2021-03-04', 6, '2021-02-04', 800, 100, 0, NULL),
-(153, 123, '210204153', 100, 0, '2021-03-05', 100, '2021-02-04', 15000, 12000, 0, NULL);
+(153, 123, '210204153', 100, 0, '2021-03-05', 100, '2021-02-04', 15000, 12000, 0, NULL),
+(154, 124, '210207154', 100, 0, '2021-03-02', 100, '2021-02-07', 150, 120, 0, NULL),
+(155, 125, '210207155', 14, 0, '2021-03-05', 14, '2021-02-08', 120, 100, 0, NULL),
+(156, 126, '210207155', 100, 0, '2021-03-05', 100, '2021-02-08', 120, 100, 0, 'Green'),
+(157, 126, '210207155', 101, 0, '2021-03-05', 101, '2021-02-08', 121, 100, 0, 'Red'),
+(158, 126, '210207155', 102, 0, '2021-03-05', 102, '2021-02-08', 122, 100, 0, 'Blue');
 
 -- --------------------------------------------------------
 
@@ -685,7 +709,10 @@ INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`
 (120, 23, 'Short', 160, 'short', 100, 0, '2021-02-04 01:53:43', 70, 'asdsd', 100, 1, '2021-02-23', 100, 0, 0, ''),
 (121, 23, 'Blue Bag', 170, 'bag', 100, 0, '2021-02-04 01:54:10', 70, 'asdsad', 100, 1, '2021-02-24', 100, 0, 0, ''),
 (122, 23, 'Chair', 800, 'chair', 6, 0, '2021-02-04 01:54:36', 70, 'adsad', 100, 1, '2021-03-04', 6, 0, 0, ''),
-(123, 23, 'Apple Watch', 15000, 'watch', 100, 0, '2021-02-04 01:55:11', 70, 'asdsd', 12000, 1, '2021-03-05', 100, 0, 0, '');
+(123, 23, 'Apple Watch', 15000, 'watch', 100, 0, '2021-02-04 01:55:11', 70, 'asdsd', 12000, 1, '2021-03-05', 100, 0, 0, ''),
+(124, 96, 'Category Product', 150, 'Bike', 100, 0, '2021-02-07 13:43:53', 70, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor ', 120, 1, '2021-03-02', 100, 0, 0, ''),
+(125, 82, 'Iphone6', 120, 'Apple', 14, 0, '2021-02-07 15:00:27', 70, 'asdsad', 100, 1, '2021-03-05', 14, 0, 0, ''),
+(126, 82, 'Iphone67', 120, 'Apple', 303, 0, '2021-02-07 15:05:25', 70, 'asdsad', 100, 1, '2021-03-05', 303, 0, 0, 'Green');
 
 -- --------------------------------------------------------
 
@@ -729,7 +756,11 @@ INSERT INTO `product_list` (`id`, `storeid`, `productid`, `name`, `date_added`) 
 (21, 70, 115, 'test', '2021-02-03 09:09:09'),
 (22, 70, 115, 'test2', '2021-02-03 09:09:09'),
 (23, 70, 118, 'list1', '2021-02-04 01:44:44'),
-(24, 70, 118, 'list2', '2021-02-04 01:44:45');
+(24, 70, 118, 'list2', '2021-02-04 01:44:45'),
+(25, 70, 125, 'list1', '2021-02-07 15:00:28'),
+(26, 70, 125, 'list2', '2021-02-07 15:00:28'),
+(27, 70, 126, 'list1', '2021-02-07 15:05:26'),
+(28, 70, 126, 'list2', '2021-02-07 15:05:27');
 
 -- --------------------------------------------------------
 
@@ -1140,7 +1171,10 @@ INSERT INTO `variants` (`id`, `productid`, `name`, `value`) VALUES
 (44, 116, 'Size', 'Small'),
 (45, 117, 'Size', 'Extra Big'),
 (46, 117, 'Size', 'Extra Big'),
-(47, 117, 'Size', 'Big');
+(47, 117, 'Size', 'Big'),
+(48, 126, 'Color', 'Blue'),
+(49, 126, 'Color', 'Green'),
+(50, 126, 'Color', 'Red');
 
 -- --------------------------------------------------------
 
@@ -1379,7 +1413,7 @@ ALTER TABLE `cart_details`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `delivery_fee`
@@ -1409,13 +1443,13 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -1433,19 +1467,19 @@ ALTER TABLE `pos`
 -- AUTO_INCREMENT for table `production`
 --
 ALTER TABLE `production`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -1517,7 +1551,7 @@ ALTER TABLE `userinfo`
 -- AUTO_INCREMENT for table `variants`
 --
 ALTER TABLE `variants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `vendor`
