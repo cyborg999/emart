@@ -162,6 +162,7 @@ class Model {
 			RIGHT JOIN media t2
 			ON t1.id = t2.productid
 			WHERE  t1.deleted = 0
+			AND  t0.userid = ".$_SESSION['id']."
 		";
 
 		return $this->db->query($sql)->fetchAll();
@@ -171,11 +172,12 @@ class Model {
 		
 		if($count){
 			$sql = "
-				select count(id) as 'total'
+				select count(*) as 'total'
 				from wishlist
 				where userid = ".$_SESSION['id']."
 			"; 
-		return $this->db->query($sql)->fetch();
+
+			return $this->db->query($sql)->fetch();
 		} else {
 			$sql = "
 				select *
