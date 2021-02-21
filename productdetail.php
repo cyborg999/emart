@@ -46,21 +46,6 @@
                     </nav>
                 </div>
             </div>
-        <!--     <div class="row">
-                <div class="col-sm">
-                    <div class="tracking-wrap">
-                        <div class="step active">
-                            <span class="icon"> <i class="fa fa-cart-plus"></i> </span>
-                            <span class="text">Add to Cart</span>
-                        <div class="step ">
-                            <span class="icon"> <i class="fa fa-shopping-bag"></i> </span>
-                            <span class="text">Proceed to Checkout</span>
-                        <div class="step">
-                            <span class="icon"> <i class="fa fa-credit-card"></i> </span>
-                            <span class="text">Pay</span>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </section>
         <section class="sec1">

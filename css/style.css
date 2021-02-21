@@ -59,17 +59,17 @@ body {
 .accordion>.card>.card-header {
 	padding: 0;
 }
-.card .btn {
+/*.card .btn {
 	color: black;
 	font-weight: 500;
 	text-decoration: none;
     font-size: 13px;
-    padding: 0 0 5px;
+    padding: 5px 0 5px;
     line-height: 1.4;
     text-align: center!important;
     margin: 0 auto;
     width: 56%;
-}
+}*/
 .card .btn svg {
 	float: left;
 	margin-top: 2px;

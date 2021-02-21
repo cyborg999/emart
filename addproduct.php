@@ -157,6 +157,11 @@
 										</select>
 									</div>
 									<div class="form-group">
+										<label>Brand</label>
+										<select id="brand" name="brand" class="form-control"></select>
+										<!-- <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand"> -->
+									</div>
+									<div class="form-group">
 										<label>Cost Price</label>
 										<input required type="number" id="cost" name="cost" class="form-control" placeholder="Cost Price">
 									</div>
@@ -164,10 +169,7 @@
 										<label>Retail Price</label>
 										<input required type="number" id="price" name="price" class="form-control" placeholder="Retail Price">
 									</div>
-									<div class="form-group">
-										<label>Brand</label>
-										<input type="text" name="brand" id="brand" class="form-control" placeholder="Brand">
-									</div>
+									
 									<div class="form-group">
 										<label>Quantity</label>
 										<input required type="number" min="1" id="quantity" name="quantity" class="form-control" placeholder="Quantity">
@@ -342,6 +344,9 @@
       	<input type="hidden" name="listdesc[]" class="listdesc" value="[NAME]">
       	[NAME] <a href="" class="closeList">x</a>
       </li>
+	</script>
+	<script type="text/html" id="opt">
+      <option value="[ID]">[VALUE]</option>
 	</script>
 	<!-- end tpl scripts -->
 
@@ -616,6 +621,40 @@
 				});
 
 				$("#category").chosen();
+
+				$("#category").on("change", function(){
+					var me = $(this);
+
+					console.log(me.val());
+					$("#brand").html("");
+					showPreloader();
+
+					$.ajax({
+						url : "ajax.php",
+						data : { loadCategoryBrands : true, id : me.val()},
+						type : "post",
+						dataType : "json",
+						success : function(response){
+							console.log(response);
+							for(var i in response){
+								var data = response[i];
+								var tpl = $("#opt").html();
+
+
+								tpl = tpl.replace("[VALUE]", data.name).
+									replace("[ID]", data.id);
+
+								$("#brand").append(tpl);
+							}
+						},
+						complete : function(){
+							hidePreloader();
+						}
+					});
+				});
+
+				$("#category").trigger("change");
+
 				$(".chosen-container").css("width", "100%");
 				var myDropzone = new Dropzone("#dropzone");
 

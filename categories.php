@@ -10,7 +10,6 @@
 				<?php $active="settings"; include "./adminsidenav.php";?>
 			</div>
 			<div class="col-sm-10">
-
 				<div class="content">
 					<?php
 						$categories = $model->getAllCategories();
@@ -47,6 +46,7 @@
 									<a href="" data-id="<?= $c['id'];?>" class="delete sv">
 										<svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg>
 									</a>
+									
 								</td>
 							</tr>
 							<?php endforeach ?>
@@ -63,9 +63,56 @@
 	#levels {
 		display: block;
 	}
+	#brandModal {
+		z-index: 9999;
+		min-height: 100vh;
+		position: absolute;
+	}
 </style>
-	<!-- Modal -->
-<div class="modal fade" id="updateModal" data-id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="brandModal" data-id="" tabindex="-1" data-focus-on="input:first" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Brand</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm">
+          	<h5>Category: <em id="categoryName"></em></h5>
+          	<table class="table table-sm">
+          		<thead>
+          			<tr>
+          				<th>Brand Name</th>
+          				<th>Action</th>
+          			</tr>
+          		</thead>
+          		<tbody>
+          			<tr id="level2trBrand">
+						<td>
+							<input type="text" class="form-control" id="brand" placeholder="Brand Name...">
+						</td>
+						<td>
+							<a href="" class="addBrandBtn sv btn btn-sm btn-primary"><svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#plus"/></svg> Add</a>
+						</td>
+					</tr>
+          		</tbody>
+          	</table>
+          </div>
+     
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="updateModal" data-id="" tabindex="-1" data-focus-on="input:first" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -168,7 +215,18 @@
 		<tr class="tr3">
 			<td class="lvl3">[NAME]</td>
 			<td>
+				<a href=""  data-id="[ID]" data-toggle="modal" data-target="#brandModal" class="addbrand btn btn-sm btn-success">Add Brand</a>
 				<a href="" data-id="[ID]" class="delete sv">
+					<svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg>
+				</a>
+			</td>
+			</tr>
+	</script>
+	<script type="text/html" id="trBrands">
+		<tr class="brands">
+			<td class="bName">[NAME]</td>
+			<td>
+				<a href="" data-id="[ID]" class="deleteBrand sv">
 					<svg class="bi" width="18" height="18" fill="currentColor"><use xlink:href="./node_modules/bootstrap-icons/bootstrap-icons.svg#trash"/></svg>
 				</a>
 			</td>
@@ -177,8 +235,49 @@
 	<!-- end tpl scripts -->
 	<?php include "./foot.php"; ?>
 	<script type="text/javascript">
+		var lastCategoryId = 0;
+
 		(function($){
 			function __listen(){
+				$(".addbrand").off().on("click", function(e){
+					e.preventDefault();
+
+					var me = $(this);
+
+					lastCategoryId = me.data("id");
+
+					console.log(lastCategoryId);
+					$(".brands").remove();
+					showPreloader();
+
+					$.ajax({
+						url  : "ajax.php", 
+						data : { loadBrands : true, category : lastCategoryId},
+						type : "post",
+						dataType : "json",
+						success : function(response){
+							console.log(response);
+							for(var i in response){
+								var tr = response[i];
+								var tpl = $("#trBrands").html();
+
+								tpl = tpl.replace("[NAME]", tr.name).
+									replace("[ID]", tr.id);
+
+								$("#level2trBrand").after(tpl);
+							}
+
+							__listen();
+						},
+						complete : function(){
+							hidePreloader();
+						}
+
+					});
+
+					$("#categoryName").html(me.parents("tr").find("td").first().find("a").html());
+				});
+
 				$(".lvl3").off().on("click", function(){
 					var me = $(this);
 					
@@ -212,6 +311,7 @@
 								var tpl = $("#trLevel3").html();
 
 								tpl = tpl.replace("[NAME]", data.name).
+									replace("[ID]", data.id).
 									replace("[ID]", data.id).
 									replace("[ID]", data.id).
 									replace("[ID]", data.id);
@@ -286,6 +386,22 @@
 					});
 				});
 
+				$(".deleteBrand").off().on("click", function(e){
+					e.preventDefault();
+
+					var me = $(this);
+
+					$.ajax({
+						url  : "ajax.php",
+						data :{ deleteBrand : true, id : me.data("id")} ,
+						type : "post",
+						dataType: "json",
+						success : function(response){
+							me.parents("tr").remove();
+						}
+					});
+				});
+
 				$(".status").off().on("click", function(e){
 
 					var me = $(this);
@@ -302,6 +418,35 @@
 					});
 				});
 			}
+
+			$(".addBrandBtn").on("click", function(e){
+				e.preventDefault();
+
+				$.ajax({
+					url  : "ajax.php", 
+					data : { addBrand : true, brand : $("#brand").val(), category : lastCategoryId},
+					type : "post",
+					dataType : "json",
+					success : function(response){
+						if(response.added){
+							var tpl = $("#trBrands").html();
+
+							tpl = tpl.replace("[NAME]", $("#brand").val()).
+								replace("[ID]", response.id);
+							$("#level2trBrand").after(tpl);
+
+							__listen();
+
+						} else {
+							alert("Brand already added in this category");
+						}
+					},
+					complete : function(){
+
+					}
+
+				});
+			});
 
 			$("#name2").on("keyup", function(){
 				var me = $(this);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2021 at 04:06 PM
+-- Generation Time: Feb 21, 2021 at 02:27 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `emart`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
+CREATE TABLE `brands` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `categoryid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `name`, `categoryid`) VALUES
+(1, 'test', 72),
+(2, 'test2', 72),
+(6, 'test', 73),
+(9, 'test34', 99),
+(10, 'test345', 99),
+(13, 'gadget2 brand', 101),
+(14, 'gadget2 brand2', 101),
+(15, 'gadget1 brand1', 100),
+(16, 'gadget1 brand2', 100),
+(17, 'gaming console brand 1', 102);
 
 -- --------------------------------------------------------
 
@@ -150,7 +178,10 @@ INSERT INTO `category` (`id`, `name`, `type`, `deleted`, `isactive`, `level`, `b
 (94, 'Gaming', '85', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Desktop</span>\n        	<span id=\"level3\">&gt; Gaming</span>\n        '),
 (95, 'DIY', '85', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Desktop</span>\n        	<span id=\"level3\">&gt; DIY</span>\n        '),
 (96, 'Ip Security Cameras', '86', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Security Cameras</span>\n        	<span id=\"level3\">&gt; Ip Security Cameras</span>\n        '),
-(97, 'CCTV Security Cameras', '86', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Security Cameras</span>\n        	<span id=\"level3\">&gt; CCTV Security Cameras</span>\n        ');
+(97, 'CCTV Security Cameras', '86', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Security Cameras</span>\n        	<span id=\"level3\">&gt; CCTV Security Cameras</span>\n        '),
+(100, 'Gadget1', '89', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Gadgets</span>\n        	<span id=\"level3\">&gt; Gadget1</span>\n        '),
+(101, 'Gadget2', '89', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Gadgets</span>\n        	<span id=\"level3\">&gt; Gadget2</span>\n        '),
+(102, 'gaming console cat', '88', 0, 1, 3, '\n        	<span id=\"level1\">Electronic Devices</span>\n        	<span id=\"level2\">&gt;Gaming Consoles</span>\n        	<span id=\"level3\">&gt; gaming console cat</span>\n        ');
 
 -- --------------------------------------------------------
 
@@ -472,7 +503,8 @@ INSERT INTO `media` (`id`, `name`, `storeid`, `date_added`, `productid`, `active
 (183, 'fe5df232cafa4c4e0f1a0294418e5660.jpg', 70, '2021-02-04 01:55:11', 123, 1),
 (184, '31320a35aa87a8bd8b65e793a6b41d02.png', 70, '2021-02-07 13:43:54', 124, 1),
 (185, '8aa8557f131b553bd27b4352f9742638.png', 70, '2021-02-07 15:00:27', 125, 1),
-(186, '8aa8557f131b553bd27b4352f9742638.png', 70, '2021-02-07 15:05:26', 126, 1);
+(186, '8aa8557f131b553bd27b4352f9742638.png', 70, '2021-02-07 15:05:26', 126, 1),
+(187, 'b8bc8bbfc7443a8b945a3a0b74a622f5.jpg', 70, '2021-02-21 13:23:06', 127, 1);
 
 -- --------------------------------------------------------
 
@@ -496,13 +528,19 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`id`, `title`, `body`, `seen`, `date_added`, `storeid`, `userid`, `type`) VALUES
-(260, 'Subscription Payment: Card', '<p>Jordan Sadiwa paid a monthly subscription.</p>', 0, '2021-02-03 09:00:43', 70, NULL, 'cardSubscription'),
+(260, 'Subscription Payment: Card', '<p>Jordan Sadiwa paid a monthly subscription.</p>', 1, '2021-02-03 09:00:43', 70, NULL, 'cardSubscription'),
 (261, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-03 12:24:00', 70, NULL, 'Order'),
 (262, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-03 13:20:06', 70, NULL, 'Order'),
 (263, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-04 00:42:56', 70, NULL, 'Order'),
 (264, 'New Orders', '<p>You have (6) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-04 01:43:29', 70, NULL, 'Order'),
 (265, '\r\n                  <div>Low Stock Alert: <b>1 Product(s)</b> are currently low in stock.<!-- <div class=\"small text-gray-500\">December 2, 2019</div> -->\r\n              	</div>', '<b>The following products are low in stock:</b> <ul><li>Chair(6)</li></ul>', 0, '2021-02-07 13:19:25', 70, NULL, 'Order'),
-(266, 'New Orders', '<p>You have (14) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-07 13:19:25', 70, NULL, 'Order');
+(266, 'New Orders', '<p>You have (14) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-07 13:19:25', 70, NULL, 'Order'),
+(267, '<div>Subscription Alert: Expiration.\r\n			  	</div>', '<p>Your subscription will expire in 10 days (2021-03-03)</p>', 0, '2021-02-21 04:15:13', 70, NULL, 'Order'),
+(268, '\r\n                  <div>Low Stock Alert: <b>2 Product(s)</b> are currently low in stock.<!-- <div class=\"small text-gray-500\">December 2, 2019</div> -->\r\n              	</div>', '<b>The following products are low in stock:</b> <ul><li>Chair(6)</li><li>Iphone6(14)</li></ul>', 0, '2021-02-21 04:15:13', 70, NULL, 'Order'),
+(269, 'New Orders', '<p>You have (14) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-21 04:15:14', 70, NULL, 'Order'),
+(270, '<div>Subscription Alert: Expiration.\r\n			  	</div>', '<p>Your subscription will expire in 10 days (2021-03-03)</p>', 0, '2021-02-21 11:56:38', 70, NULL, 'Order'),
+(271, '\r\n                  <div>Low Stock Alert: <b>2 Product(s)</b> are currently low in stock.<!-- <div class=\"small text-gray-500\">December 2, 2019</div> -->\r\n              	</div>', '<b>The following products are low in stock:</b> <ul><li>Chair(6)</li><li>Iphone6(14)</li></ul>', 0, '2021-02-21 11:56:38', 70, NULL, 'Order'),
+(272, 'New Orders', '<p>You have (14) new order(s).</p>\r\n				<p>Click <a href=\'neworder.php\'>here</a> to process them.</p>', 0, '2021-02-21 11:56:38', 70, NULL, 'Order');
 
 -- --------------------------------------------------------
 
@@ -667,7 +705,8 @@ INSERT INTO `production` (`id`, `productid`, `batchnumber`, `remaining_qty`, `de
 (155, 125, '210207155', 14, 0, '2021-03-05', 14, '2021-02-08', 120, 100, 0, NULL),
 (156, 126, '210207155', 100, 0, '2021-03-05', 100, '2021-02-08', 120, 100, 0, 'Green'),
 (157, 126, '210207155', 101, 0, '2021-03-05', 101, '2021-02-08', 121, 100, 0, 'Red'),
-(158, 126, '210207155', 102, 0, '2021-03-05', 102, '2021-02-08', 122, 100, 0, 'Blue');
+(158, 126, '210207155', 102, 0, '2021-03-05', 102, '2021-02-08', 122, 100, 0, 'Blue'),
+(159, 127, '210221159', 100, 0, '2021-02-24', 100, '2021-02-21', 120, 100, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -712,7 +751,8 @@ INSERT INTO `productt` (`id`, `categoryid`, `name`, `price`, `brand`, `quantity`
 (123, 23, 'Apple Watch', 15000, 'watch', 100, 0, '2021-02-04 01:55:11', 70, 'asdsd', 12000, 1, '2021-03-05', 100, 0, 0, ''),
 (124, 96, 'Category Product', 150, 'Bike', 100, 0, '2021-02-07 13:43:53', 70, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor ', 120, 1, '2021-03-02', 100, 0, 0, ''),
 (125, 82, 'Iphone6', 120, 'Apple', 14, 0, '2021-02-07 15:00:27', 70, 'asdsad', 100, 1, '2021-03-05', 14, 0, 0, ''),
-(126, 82, 'Iphone67', 120, 'Apple', 303, 0, '2021-02-07 15:05:25', 70, 'asdsad', 100, 1, '2021-03-05', 303, 0, 0, 'Green');
+(126, 82, 'Iphone67', 120, 'Apple', 303, 0, '2021-02-07 15:05:25', 70, 'asdsad', 100, 1, '2021-03-05', 303, 0, 0, 'Green'),
+(127, 89, 'test gadget', 120, '15', 100, 0, '2021-02-21 13:23:05', 70, 'asdasd', 100, 1, '2021-02-24', 100, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1219,11 +1259,19 @@ INSERT INTO `wishlist` (`id`, `userid`, `productid`) VALUES
 (11, 112, 118),
 (17, 112, 117),
 (18, 112, 116),
-(19, 112, 120);
+(19, 112, 120),
+(20, 111, 126),
+(21, 36, 123);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cart`
@@ -1398,6 +1446,12 @@ ALTER TABLE `wishlist`
 --
 
 --
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
@@ -1413,7 +1467,7 @@ ALTER TABLE `cart_details`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `delivery_fee`
@@ -1443,13 +1497,13 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -1467,13 +1521,13 @@ ALTER TABLE `pos`
 -- AUTO_INCREMENT for table `production`
 --
 ALTER TABLE `production`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT for table `productt`
 --
 ALTER TABLE `productt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `product_list`
@@ -1563,7 +1617,7 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -101,6 +101,152 @@ class Model {
 		$this->deleteWishlistListener();
 		$this->getLevel2CategoryListener();
 		$this->getLevel3CategoryListener();
+		$this->addBrandListener();
+		$this->loadBrandsListener();
+		$this->deleteBrandListener();
+		$this->loadCategoryBrandsListener();
+	}
+
+	public function getCategoryById($id){
+		$sql = "
+			select *
+			from category
+			where id = $id
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function getLevel3CategoryBrand($id){
+		$sql = "
+			select *
+			from brands
+			where categoryid = $id
+		";
+
+		return $this->db->query($sql)->fetchAll();
+	}
+
+	public function getLevel2CategoryBrand($id){
+		$data = $this->getCategoryByParentId($id);
+		$brands = array();
+
+		foreach($data as $idx => $d){
+			$brand = $this->getLevel3CategoryBrand($d['id']);
+
+			foreach($brand as $idx2 => $b){
+				$brands[] = $b;
+			}
+		}
+		
+		return $brands;
+	}
+
+	public function getLevel1CategoryBrand($id){
+		$level1 = $this->getCategoryByParentId($id);
+		$brands = array();
+
+		foreach($level1 as $idx0 => $l){
+			$data = $this->getCategoryByParentId($l['id']);
+
+			foreach($data as $idx => $d){
+				$brand = $this->getLevel3CategoryBrand($d['id']);
+
+				foreach($brand as $idx2 => $b){
+					$brands[] = $b;
+				}
+			}
+		}
+		
+		return $brands;
+	}
+
+	public function loadCategoryBrandsListener(){
+		if(isset($_POST['loadCategoryBrands'])){
+			$category = $this->getCategoryById($_POST['id']);
+			$data = array();
+			// op($category);
+			if($category){
+				if($category['level'] == 3){
+					$data = $this->getLevel3CategoryBrand($category['id']);
+				}
+
+				if($category['level'] == 2){
+					$data = $this->getLevel2CategoryBrand($category['id']);
+
+				}
+
+				if($category['level'] == 1){
+					$data = $this->getLevel1CategoryBrand($category['id']);
+
+				}
+			} 
+				// opd($category);
+
+			die(json_encode($data));
+		}
+	}
+
+	public function deleteBrandListener(){
+		if(isset($_POST['deleteBrand'])){
+			$sql = "
+				DELETE FROM brands
+				WHERE id = ?
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['id']));
+
+			die(json_encode(array("deleted")));
+		}
+	}
+
+	public function loadBrandsListener(){
+		if(isset($_POST['loadBrands'])){
+			$id = $_POST['category'];
+			$sql = "
+				select *
+				from brands
+				where categoryid = $id
+			";
+
+			$data = $this->db->query($sql)->fetchAll();
+
+			die(json_encode($data));
+		}
+		
+	}
+
+	public function isBrandExists($brand, $categoryId){
+		$sql = "
+			select *
+			from brands
+			where name = '$brand'
+			and categoryid = $categoryId
+			limit 1
+		";
+
+		return $this->db->query($sql)->fetch();
+	}
+
+	public function addBrandListener(){
+		if(isset($_POST['addBrand'])){
+			$exists = $this->isBrandExists($_POST['brand'], $_POST['category']);
+
+			if($exists){
+				die(json_encode(array("added"=>false)));
+			}
+
+			$sql = "
+				insert into brands(name, categoryid)
+				values(?,?)
+			";
+
+			$this->db->prepare($sql)->execute(array($_POST['brand'], $_POST['category']));
+			$id = $this->db->lastInsertId();
+
+			die(json_encode(array("added" => true, "id" => $id)));
+		}
 	}
 
 	public function deleteWishlistListener(){
@@ -142,6 +288,10 @@ class Model {
 	}
 
 	public function isProductInUserWishlist($productId){
+		if(!isset($_SESSION['id'])){
+			return false;
+		}
+
 		$sql = "
 			select *
 			from wishlist

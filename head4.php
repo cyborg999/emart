@@ -25,7 +25,8 @@ if(isset($_POST['REDIRECT'])){
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" >
 
 	<!-- <link rel="stylesheet" type="text/css" href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/bootstrap.css?v=2.0"> -->
-	<link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/ui.css?v=2.0" rel="stylesheet" type="text/css">
+	<link href="./css/ui.css?v=2.0" rel="stylesheet" type="text/css">
+	<!-- <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/ui.css?v=2.0" rel="stylesheet" type="text/css"> -->
     <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.css" >
 	<!-- <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/css/responsive.css?v=2.0" rel="stylesheet"> -->
 
@@ -33,7 +34,8 @@ if(isset($_POST['REDIRECT'])){
 	<!-- <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/fonts/fontawesome/css/all.min.css?v=2.0" type="text/css" rel="stylesheet"> -->
 
 	<!-- Custom styling -->
-	<link href="https://bootstrap-ecommerce.com/assets/css/style.css?v=2.0" rel="stylesheet">
+	<link href="./css/style.css?v=2.0" rel="stylesheet">
+	<!-- <link href="https://bootstrap-ecommerce.com/assets/css/style.css?v=2.0" rel="stylesheet"> -->
 			<!-- Animate Css -->
        
         <link rel="stylesheet" href="./index_files/style.css">
